@@ -1,0 +1,13 @@
+Chicos, les subo este ejemplo de programa en .NET tenemos casi todo para sacar de ahi
+
+Este fue mi proyecto lo que no se es si esa es la ultima version o no
+tengo como 30 archivos que dicen ultima de la ultima version jajaja
+
+No le den play que no va a andar porque hay que conectar la base de datos.
+
+Les subo tambien el ejecutable que les va a dar error ya despues me fijo porque
+pero pongan continuar asi ven las pantallas
+
+Si necesitan material tengo un monton para subir
+
+
