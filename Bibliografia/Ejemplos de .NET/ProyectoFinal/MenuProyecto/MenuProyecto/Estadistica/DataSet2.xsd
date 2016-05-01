@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Ganancias_X_Producto" msprop:Generator_TableClassName="Ganancias_X_ProductoDataTable" msprop:Generator_TableVarName="tableGanancias_X_Producto" msprop:Generator_TablePropName="Ganancias_X_Producto" msprop:Generator_RowDeletingName="Ganancias_X_ProductoRowDeleting" msprop:Generator_RowChangingName="Ganancias_X_ProductoRowChanging" msprop:Generator_RowEvHandlerName="Ganancias_X_ProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="Ganancias_X_ProductoRowDeleted" msprop:Generator_UserTableName="Ganancias_X_Producto" msprop:Generator_RowChangedName="Ganancias_X_ProductoRowChanged" msprop:Generator_RowEvArgName="Ganancias_X_ProductoRowChangeEvent" msprop:Generator_RowClassName="Ganancias_X_ProductoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Producto" msprop:Generator_ColumnVarNameInTable="columnProducto" msprop:Generator_ColumnPropNameInRow="Producto" msprop:Generator_ColumnPropNameInTable="ProductoColumn" msprop:Generator_UserColumnName="Producto" type="xs:string" minOccurs="0" />
+              <xs:element name="Ganancias" msprop:Generator_ColumnVarNameInTable="columnGanancias" msprop:Generator_ColumnPropNameInRow="Ganancias" msprop:Generator_ColumnPropNameInTable="GananciasColumn" msprop:Generator_UserColumnName="Ganancias" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Ganancias_X_Cliente" msprop:Generator_TableClassName="Ganancias_X_ClienteDataTable" msprop:Generator_TableVarName="tableGanancias_X_Cliente" msprop:Generator_TablePropName="Ganancias_X_Cliente" msprop:Generator_RowDeletingName="Ganancias_X_ClienteRowDeleting" msprop:Generator_RowChangingName="Ganancias_X_ClienteRowChanging" msprop:Generator_RowEvHandlerName="Ganancias_X_ClienteRowChangeEventHandler" msprop:Generator_RowDeletedName="Ganancias_X_ClienteRowDeleted" msprop:Generator_UserTableName="Ganancias_X_Cliente" msprop:Generator_RowChangedName="Ganancias_X_ClienteRowChanged" msprop:Generator_RowEvArgName="Ganancias_X_ClienteRowChangeEvent" msprop:Generator_RowClassName="Ganancias_X_ClienteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="Ganancias" msprop:Generator_ColumnVarNameInTable="columnGanancias" msprop:Generator_ColumnPropNameInRow="Ganancias" msprop:Generator_ColumnPropNameInTable="GananciasColumn" msprop:Generator_UserColumnName="Ganancias" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Ganancias_U_Semestre" msprop:Generator_TableClassName="Ganancias_U_SemestreDataTable" msprop:Generator_TableVarName="tableGanancias_U_Semestre" msprop:Generator_TablePropName="Ganancias_U_Semestre" msprop:Generator_RowDeletingName="Ganancias_U_SemestreRowDeleting" msprop:Generator_RowChangingName="Ganancias_U_SemestreRowChanging" msprop:Generator_RowEvHandlerName="Ganancias_U_SemestreRowChangeEventHandler" msprop:Generator_RowDeletedName="Ganancias_U_SemestreRowDeleted" msprop:Generator_UserTableName="Ganancias_U_Semestre" msprop:Generator_RowChangedName="Ganancias_U_SemestreRowChanged" msprop:Generator_RowEvArgName="Ganancias_U_SemestreRowChangeEvent" msprop:Generator_RowClassName="Ganancias_U_SemestreRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Mes" msprop:Generator_ColumnVarNameInTable="columnMes" msprop:Generator_ColumnPropNameInRow="Mes" msprop:Generator_ColumnPropNameInTable="MesColumn" msprop:Generator_UserColumnName="Mes" type="xs:short" minOccurs="0" />
+              <xs:element name="Ganancias" msprop:Generator_ColumnVarNameInTable="columnGanancias" msprop:Generator_ColumnPropNameInRow="Ganancias" msprop:Generator_ColumnPropNameInTable="GananciasColumn" msprop:Generator_UserColumnName="Ganancias" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

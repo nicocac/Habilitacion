@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="MenuProyecto.exe" version="1.0.0.0" publicKeyToken="15c84b23c730009a" language="neutral" processorArchitecture="x86" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="MenuProyecto" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="MenuProyecto.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la 
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.ReportViewer.Common" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.ReportViewer.DataVisualization" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.ReportViewer.ProcessingObjectModel" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.ReportViewer.WinForms" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Listados.DataSet1.Designer.vb.dll" size="50176">
+      <assemblyIdentity name="Listados.DataSet1.Designer.vb" version="0.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>caIADGqC+y24ft0V2lmPH6RbCxo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MenuProyecto.exe" size="775680">
+      <assemblyIdentity name="MenuProyecto" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>O5814tsngTpEa6UmUS0j2yzo93I=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=Equipo\Flia Camara" issuerKeyHash="e6cea568760ae57dd1d4992f357b15499df06994" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>0guNcpLWRCjPHnC3MMGeq1IYq4Y=</DigestValue></Reference></SignedInfo><SignatureValue>XCSa7byJQOsTJ+YnbmZb5wRa02WanvOkb6fDi+G9Kpv3yyMIllnR+Q9tK1oXcgP56haQyRKJVl3Sfn4KgIphYH2LgSN9TtPCsfIH6RwQrPj1CHoN9nLMk2o3Az01ar0OLByaqyg/yNnuL4JF0ms4Sj65y4ccm/Ue3QOU9eXo28E=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>m8e/ITh1HRhnFyiQ/xj0/7HanWw5g0EOpqZ08JPISKgchATTFwEj0D/xBrVuXnbO9cvG8afGE45z6KV45wT0C1XCaj4/8VhVCw0OVkljKK9M8fDmr7Gg1LWZb+qQFZLFAKooSWXtpVYNrlehl0g3HHB2fNbouM2ydm/0/4Er8tE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="86ab1852ab9ec130b7701ecf2844d692728d0bd2" Description="" Url=""><as:assemblyIdentity name="MenuProyecto.exe" version="1.0.0.0" publicKeyToken="15c84b23c730009a" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Equipo\Flia Camara</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>H8478zwLUKik9vEG4bZFoZWN3tc=</DigestValue></Reference></SignedInfo><SignatureValue>lYcM4zYAp5ywxBavT35D8oz0LmwkGr4khG5ghC5QavoRnbZJ+yhoiIV9qvnD+cPD0X+ZyNtktuxdnojaVGi+/NIqH1zW35lvOle6EgvqHIY/qwpbzXK5qPrk/dbzQ4GVQGy/IsA9F1437nvcoKHwURb+LBecRDZm+4A/5W8WfQs=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>m8e/ITh1HRhnFyiQ/xj0/7HanWw5g0EOpqZ08JPISKgchATTFwEj0D/xBrVuXnbO9cvG8afGE45z6KV45wT0C1XCaj4/8VhVCw0OVkljKK9M8fDmr7Gg1LWZb+qQFZLFAKooSWXtpVYNrlehl0g3HHB2fNbouM2ydm/0/4Er8tE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB4TCCAUqgAwIBAgIQYb/foZxW9bdOpNLWtVmCYDANBgkqhkiG9w0BAQUFADAvMS0wKwYDVQQDHiQARQBxAHUAaQBwAG8AXABGAGwAaQBhACAAQwBhAG0AYQByAGEwHhcNMTMxMTA1MDA1NDUxWhcNMTQxMTA1MDY1NDUxWjAvMS0wKwYDVQQDHiQARQBxAHUAaQBwAG8AXABGAGwAaQBhACAAQwBhAG0AYQByAGEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJvHvyE4dR0YZxcokP8Y9P+x2p1sOYNBDqamdPCTyEioHIQE0xcBI9A/8Qa1bl52zvXLxvGnxhOOc+ileOcE9AtVwmo+P/FYVQsNDlZJYyivTPHw5q+xoNS1mW/qkBWSxQCqKEll7aVWDa5XoZdINxxwdnzW6LjNsnZv9P+BK/LRAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAhVFhnFRWIgKA75aOvqYsRdSd0Ch6lpyokFsIbWSUDH+/4/eP48XXEWXspizMyR35UBNV2fzaVAPc15jyCc86mn6O87gKxRaLs/cTuHpzApltipvhshKLGgA05hnIj7y7nF61Yu6DaxpZlOrqckEcFC5HXwoA3bPB3FX2jblLQFI=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

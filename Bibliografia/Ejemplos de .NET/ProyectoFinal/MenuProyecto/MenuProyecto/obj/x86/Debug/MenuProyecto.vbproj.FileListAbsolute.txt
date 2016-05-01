@@ -1,0 +1,11 @@
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+c:\users\alain\documents\visual studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
