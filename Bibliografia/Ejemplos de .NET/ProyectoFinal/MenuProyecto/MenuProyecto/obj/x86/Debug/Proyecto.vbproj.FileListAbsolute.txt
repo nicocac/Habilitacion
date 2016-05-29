@@ -1,0 +1,480 @@
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Producto.resources
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Alain\Documents\Visual Studio 2010\Projects\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Constanza\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\enrique\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\Coti\proyecto insert funcionando\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Constanza\Dropbox\PAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+H:\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\FACULTAD\ProyectoPAV\Coti\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+D:\FACULTAD\ProyectoPAV\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Dropbox\PAV\Kike\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Dropbox\PAV\Fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+E:\Dropbox\PAV\Kike\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Kike\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Kike\Ultimo poroyecto fer\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\FACULTAD\ProyectoPAV\Ultimo proyecto\Ultimo proyecto\proyecto probar imagenes 2\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+E:\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+C:\Users\Constanza\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\Fer\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+C:\Users\Constanza\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+C:\Users\enrique\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Dropbox\PAV\UltimaVersion\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+C:\Users\enrique\Desktop\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+G:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+G:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+G:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbprojResolveAssemblyReference.cache
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+K:\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbprojResolveAssemblyReference.cache
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\ElCampito.mdf
+C:\Users\enrique\Desktop\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\ElCampito_log.ldf
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\ElCampito.mdf
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\ElCampito_log.ldf
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbprojResolveAssemblyReference.cache
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Listado_Productos_Grafico.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\Proyecto.vbproj.GenerateResource.Cache
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+C:\Users\enrique\Desktop\Esta es la utima\asdsadsa\proyecto\Ultimo proyecto\ProyectoPav\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+C:\Users\Constanza\Dropbox\PAV\Ultima de las ultimas y esperemos que sea la ultima\ULTIMAAAAAAAAAAAAAAA, ESTA ES POSTA, EN SERIO\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\Ultima de las ultimas y esperemos que sea la ultima\ULTIMAAAAAAAAAAAAAAA, ESTA ES POSTA, EN SERIO\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\Ultima de las ultimas y esperemos que sea la ultima\ULTIMAAAAAAAAAAAAAAA, ESTA ES POSTA, EN SERIO\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Listado_Productos_Grafico.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+D:\FACULTAD\ProyectoPAV\UltimaVersion\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe.manifest
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.application
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.exe
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.pdb
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\MenuProyecto.xml
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\bin\Debug\Listados.DataSet1.Designer.vb.dll
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Barrio.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_buscarPedido.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Cliente.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Compra.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Estadisticas.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Factura.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Localidad.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_proveedores.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_ProveedoresxProducto.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_Listados.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Listado_Productos_Grafico.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_elcampito.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.Resources.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.frm_producto.resources
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.cache
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\RdlCompile.compiled
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe.manifest
+E:\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.application
+C:\Users\Constanza\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+C:\Users\Constanza\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+C:\Users\Constanza\Dropbox\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
+D:\FACULTAD\PAV\Proyecto de pav 1\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.exe
+D:\FACULTAD\PAV\Proyecto de pav 1\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.xml
+D:\FACULTAD\PAV\Proyecto de pav 1\PAV\ProyectoFinal\MenuProyecto\MenuProyecto\obj\x86\Debug\MenuProyecto.pdb
