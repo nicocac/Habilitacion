@@ -1,6 +1,7 @@
 package Principal;
 
 import Insumo.CargaInsumo;
+import TipoInsumo.CargaTipoInsumo;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
 import javax.swing.*;
@@ -49,6 +50,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             f.setBackground(new Color(0, 255, 0));
         }
         if (e.getSource() == mi3) {
+            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo();
+            cargaTipoInsumo.setVisible(true);
+            getDefaultCloseOperation();
             f.setBackground(new Color(0, 0, 255));
         }
     }
