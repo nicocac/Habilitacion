@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Gestar - Gestar@localhost" uuid="d6b16708-25a3-4a36-94b1-b63becef70d7">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>gestar.*</schema-pattern>
+      <default-schemas>gestar.*</default-schemas>
+    </data-source>
+  </component>
+</project>
