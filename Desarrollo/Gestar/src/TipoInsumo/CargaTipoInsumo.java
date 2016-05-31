@@ -26,6 +26,7 @@ public class CargaTipoInsumo extends JFrame{
     public CargaTipoInsumo() {
         setContentPane(panel1);
         pack();
+
         this.setTitle("Cargar Tipo de Insumo");
         try {
             Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
@@ -62,7 +63,7 @@ public class CargaTipoInsumo extends JFrame{
                 tipo.setTinNombre(txtNombre.getText());
                 tipo.setTinDescripcion(txtDescripcion.getText());
                 tipo.setTinFechaAlta(new Date(2016, 05, 30));
-                tipo.setTinUsuarioAlta("andres");
+                tipo.setTinUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
                 session.save(tipo);
                 tx.commit();
