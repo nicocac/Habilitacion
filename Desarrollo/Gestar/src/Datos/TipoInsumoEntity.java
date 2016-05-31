@@ -158,4 +158,10 @@ public class TipoInsumoEntity {
     public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
         this.insumosByTinId = insumosByTinId;
     }
+
+    @Override
+    public String toString(){
+        return this.tinNombre;
+    }
+
 }
