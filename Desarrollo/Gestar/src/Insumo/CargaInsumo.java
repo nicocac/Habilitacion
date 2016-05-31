@@ -6,15 +6,18 @@ import Datos.TipoInsumoEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
 
 public class CargaInsumo extends JFrame {
-    JPanel panel1;
+    private JPanel panel1;
     private JTextField txtDescripcion;
     private JTextField txtNombre;
     private JButton cancelarButton;
@@ -25,11 +28,18 @@ public class CargaInsumo extends JFrame {
     public CargaInsumo() {
         setContentPane(panel1);
         pack();
-        this.setTitle("Cargar Tipo de Insumo");
+        this.setTitle("Cargar Alta de Insumo");
         try {
+            Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
+            Image imgCancel= ImageIO.read(getClass().getResource("rsz_cancelar.png"));
+            guardarButton.setIcon(new ImageIcon(imgSave));
+            cancelarButton.setIcon(new ImageIcon(imgCancel));
+
             // Set cross-platform Java L&F (also called "Metal")
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());
+        }
+        catch (IOException ex) {
         }
         catch (UnsupportedLookAndFeelException e) {
             // handle exception
@@ -65,6 +75,8 @@ public class CargaInsumo extends JFrame {
         Boolean guardado = false;
         if (validaCarga()=="S") {
             try {
+
+
                 InsumoEntity insumo = new InsumoEntity();
                 insumo.setInsNombre(txtNombre.getText());
                 insumo.setInsDescripcion(txtDescripcion.getText());
