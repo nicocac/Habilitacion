@@ -23,7 +23,7 @@
        </property>
 
        <property name="hibernate.connection.url">
-           jdbc:mysql://localhost:3306/Gestar
+           jdbc:mysql://localhost:3306/gestar
        </property>
 
        <property name="hibernate.connection.username">
@@ -31,7 +31,7 @@
        </property>
 
        <property name="hibernate.connection.password">
-           n30899658
+           tesis2016
        </property>
 
        <mapping class="Datos.InsumoEntity"/>

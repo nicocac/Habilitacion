@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import java.util.*;
 
 /**
@@ -69,5 +72,91 @@ public class ConsultarTipoInsumo extends JFrame{
                 }
             }
         });
+        btnEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        btnLimpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+//        btnBuscar.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Session session = Coneccion.getSession();
+//                String nombre = txtBuscar.getText();
+////                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.get(TipoInsumoEntity.class, 7);
+//                Query query = session.createQuery("SELECT p FROM TipoInsumoEntity p where p.tinNombre =  :nombre").setParameter("nombre", nombre);
+////                Query query = session.createQuery("SELECT p FROM TipoInsumoEntity p where p.tinNombre =  '" + nombre + "' + '\" + % + \"' ").setParameter("nombre", nombre);
+//                List<TipoInsumoEntity> listaTipoInsumo = query.list();
+//
+//                Vector<String> mivector = new Vector<String>();
+//                for (TipoInsumoEntity tipoInsumo : listaTipoInsumo) {
+//                    System.out.println(tipoInsumo.getTinNombre());
+//                    mivector.add(tipoInsumo.getTinNombre());
+//                }
+////                list1 = new JList(datos);
+//                jlTipos.setListData(mivector);
+//
+//            }
+//        });
+        btnEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Session session = Coneccion.getSession();
+                TipoInsumoEntity tipoInsumoEntity =(TipoInsumoEntity) jlTipos.getSelectedValue();
+//
+//                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", jlTipos.getSelectedValue()).uniqueResult();
+                textField2.setText(tipoInsumoEntity.getTinNombre());
+                textField3.setText(tipoInsumoEntity.getTinDescripcion());
+
+
+            }
+        });
+        btnGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Session session = Coneccion.getSession();
+                String nombre = textField2.getText();
+                String descripcion = textField3.getText();
+                if(modify(session, nombre, descripcion)){
+                    JOptionPane.showMessageDialog(null, "Se modifico correctamente el tipo insumo");
+                }
+            }
+        });
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+    }
+
+    public Boolean modify(Session session, String nombre, String descripcion) {
+        Boolean guardado = false;
+        try {
+            TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", nombre).uniqueResult();
+            textField2.setText(nombre);
+            textField3.setText(descripcion);
+            tipoInsumoEntity.setTinNombre(textField2.getText());
+            tipoInsumoEntity.setTinDescripcion(textField3.getText());
+            tipoInsumoEntity.setTinFechaAlta(new Date(2016, 05, 30));
+            tipoInsumoEntity.setTinUsuarioAlta("admin");
+            Transaction tx = session.beginTransaction();
+            session.save(tipoInsumoEntity);
+            tx.commit();
+            guardado = tx.wasCommitted();
+//            session.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo.");
+        } finally {
+            session.close();
+        }
+
+        return guardado;
     }
 }
