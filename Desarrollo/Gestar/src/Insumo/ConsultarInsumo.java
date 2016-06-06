@@ -50,10 +50,12 @@ public class ConsultarInsumo extends  JFrame {
             Image imgCancel = ImageIO.read(getClass().getResource("rsz_cancelar.png"));
             Image imgFind = ImageIO.read(getClass().getResource("rsz_buscar.png"));
             Image imgEdit = ImageIO.read(getClass().getResource("rsz_editar.png"));
+            Image imgClean = ImageIO.read(getClass().getResource("rsz_clean.png"));
             btnBuscar.setIcon(new ImageIcon(imgFind));
             btnCancelar.setIcon(new ImageIcon(imgCancel));
             btnEditar.setIcon(new ImageIcon(imgEdit));
             btnGuardar.setIcon(new ImageIcon(imgSave));
+            btnLimpiar.setIcon(new ImageIcon(imgClean));
         } catch (IOException ex) {
         }
         btnBuscar.addActionListener(new ActionListener() {
