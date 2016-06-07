@@ -22,8 +22,12 @@ public class CargaTipoInsumo extends JFrame{
     private JButton guardarButton;
     private JPanel panel1;
 
+    java.util.Date fecha = new java.util.Date();
+    Date fechaActual = new Date(fecha.getTime());
 
     public CargaTipoInsumo() {
+
+        //INICIO
         setContentPane(panel1);
         pack();
 
@@ -36,14 +40,20 @@ public class CargaTipoInsumo extends JFrame{
         } catch (IOException ex) {
         }
 
+
+        //GUARDAR
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(save()){
                     JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
+                    dispose();
                 }
             }
         });
+
+
+        //CANCELAR
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +63,7 @@ public class CargaTipoInsumo extends JFrame{
     }
 
 
-
+    //METODO GUARDAR
     public Boolean save() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
@@ -62,7 +72,7 @@ public class CargaTipoInsumo extends JFrame{
                 TipoInsumoEntity tipo = new TipoInsumoEntity();
                 tipo.setTinNombre(txtNombre.getText());
                 tipo.setTinDescripcion(txtDescripcion.getText());
-                tipo.setTinFechaAlta(new Date(2016, 05, 30));
+                tipo.setTinFechaAlta(fechaActual);
                 tipo.setTinUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
                 session.save(tipo);
@@ -80,6 +90,8 @@ public class CargaTipoInsumo extends JFrame{
         return guardado;
     }
 
+
+    //METODO VALIDAR DATOS
     public String validaCarga(){
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 

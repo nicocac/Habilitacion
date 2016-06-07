@@ -183,4 +183,9 @@ public class InsumoEntity {
     public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
         this.stockInsumosByInsId = stockInsumosByInsId;
     }
+
+    @Override
+    public String toString(){
+        return this.insNombre;
+    }
 }
