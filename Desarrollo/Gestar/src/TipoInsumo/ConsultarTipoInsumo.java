@@ -112,10 +112,13 @@ public class ConsultarTipoInsumo extends JFrame{
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (darBaja()){
-                    JOptionPane.showMessageDialog(null,"Se dio de baja exitosamente el tipo de insumo.");
-                }else{
-                    JOptionPane.showMessageDialog(null,"No se pudo dar de baja el tipo de insumo.");
+                switch (darBaja()){
+                    case 0 : {
+                    JOptionPane.showMessageDialog(null,"Se dio de baja exitosamente el tipo de insumo.");break;}
+                    case 1 :{
+                        JOptionPane.showMessageDialog(null,"Operacion Cancelada.");break;}
+                    case 2 :{
+                    JOptionPane.showMessageDialog(null,"No se pudo dar de baja el tipo de insumo.");break;}
                 }
                 inicializaTabla();
             }
@@ -139,7 +142,7 @@ public class ConsultarTipoInsumo extends JFrame{
     }
 
     //METODO DAR BAJA
-    public Boolean darBaja() {
+    public int darBaja() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
         try {
@@ -147,7 +150,7 @@ public class ConsultarTipoInsumo extends JFrame{
             int fila = tblTipos.getSelectedRow();
             if (fila == -1){
                 JOptionPane.showMessageDialog(null,"Debe seleccionar una fila para continuar.");
-                return false;
+                return -1;
             }
             tipo.setTinId((int)tblTipos.getModel().getValueAt(fila,0));
             tipo.setTinNombre((String)tblTipos.getModel().getValueAt(fila,1));
@@ -165,16 +168,16 @@ public class ConsultarTipoInsumo extends JFrame{
             tx.commit();
             guardado = tx.wasCommitted();
             }else{
-                return false;
+                return 1;
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error al dar de baja el tipo de insumo: "+e.toString());
-            return false;
+            return 2;
         } finally {
             session.close();
         }
 
-        return true;
+        return 0;
     }
 
     /*private void deshabilitarEdicion(){

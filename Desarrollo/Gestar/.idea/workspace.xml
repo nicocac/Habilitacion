@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Principal/rsz_guardar.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Datos/InsumoEntity.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Datos/InsumoEntity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" afterPath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java" afterPath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java" />
     </list>
     <list id="c5a94efd-4017-424e-b3dc-29d5a2f9cbfd" name="Gestar" comment="Inicio del proyecto">
@@ -51,14 +45,14 @@
       <file leaf-file-name="ConsultarTipoInsumo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="824">
-              <caret line="149" column="29" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+            <state relative-caret-position="229">
+              <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3614#3615#0" expanded="true" />
                 <element signature="e#3655#3656#0" expanded="true" />
-                <element signature="e#4533#4534#0" expanded="true" />
-                <element signature="e#4591#4592#0" expanded="true" />
+                <element signature="e#4710#4711#0" expanded="true" />
+                <element signature="e#4768#4769#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -951,7 +945,7 @@
       <workItem from="1464662473459" duration="2937000" />
       <workItem from="1464704830813" duration="4942000" />
       <workItem from="1465181630830" duration="5129000" />
-      <workItem from="1465337851683" duration="7082000" />
+      <workItem from="1465337851683" duration="7505000" />
     </task>
     <task id="LOCAL-00001" summary="Alta proyecto">
       <created>1464610037357</created>
@@ -1002,7 +996,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465338027568</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Armado de pantallas 1">
+      <created>1465345000970</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1465345000970</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1011,7 +1012,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31047000" />
+    <option name="totallyTimeSpent" value="31470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1348,14 +1349,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="824">
-          <caret line="149" column="29" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+        <state relative-caret-position="229">
+          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3614#3615#0" expanded="true" />
             <element signature="e#3655#3656#0" expanded="true" />
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4591#4592#0" expanded="true" />
+            <element signature="e#4710#4711#0" expanded="true" />
+            <element signature="e#4768#4769#0" expanded="true" />
           </folding>
         </state>
       </provider>
