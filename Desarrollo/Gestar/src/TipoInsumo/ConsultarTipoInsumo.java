@@ -114,13 +114,17 @@ public class ConsultarTipoInsumo extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switch (darBaja()){
                     case 0 : {
-                    JOptionPane.showMessageDialog(null,"Se dio de baja exitosamente el tipo de insumo.");break;}
+                    JOptionPane.showMessageDialog(null,"Se dio de baja exitosamente el tipo de insumo.");
+                        inicializaTabla();
+                        break;}
                     case 1 :{
-                        JOptionPane.showMessageDialog(null,"Operacion Cancelada.");break;}
+                        JOptionPane.showMessageDialog(null,"Operacion Cancelada.");
+                        break;}
                     case 2 :{
-                    JOptionPane.showMessageDialog(null,"No se pudo dar de baja el tipo de insumo.");break;}
+                    JOptionPane.showMessageDialog(null,"No se pudo dar de baja el tipo de insumo.");
+                        break;}
                 }
-                inicializaTabla();
+
             }
         });
     }
