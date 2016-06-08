@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,13 +24,15 @@ public class ConsultarTipoInsumo extends JFrame{
     private JTextField txtBuscar;
     private JPanel panel1;
     private JButton btnBuscar;
-    private JTextField txtNombre;
-    private JTextField txtDescripcion;
-    private JList jlTipos;
+    //private JTextField txtNombre;
+    //private JTextField txtDescripcion;
+    //private JList jlTipos;
     private JButton btnLimpiar;
     private JButton btnEditar;
-    private JButton btnGuardar;
+    //private JButton btnGuardar;
     private JButton btnCancelar;
+    private JTable tblTipos;
+    private JButton btnEliminar;
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
@@ -46,13 +50,13 @@ public class ConsultarTipoInsumo extends JFrame{
             Image imgFind = ImageIO.read(getClass().getResource("rsz_buscar.png"));
             Image imgEdit = ImageIO.read(getClass().getResource("rsz_editar.png"));
             Image imgClean = ImageIO.read(getClass().getResource("rsz_clean.png"));
+            Image imgBaja = ImageIO.read(getClass().getResource("rsz_baja.png"));
             btnBuscar.setIcon(new ImageIcon(imgFind));
             btnCancelar.setIcon(new ImageIcon(imgCancel));
             btnEditar.setIcon(new ImageIcon(imgEdit));
-            btnGuardar.setIcon(new ImageIcon(imgSave));
             btnLimpiar.setIcon(new ImageIcon(imgClean));
-            deshabilitarEdicion();
-
+            btnEliminar.setIcon(new ImageIcon(imgBaja));
+            inicializaTabla();
         } catch (IOException ex) {
         }
 
@@ -68,14 +72,11 @@ public class ConsultarTipoInsumo extends JFrame{
         });
 
 
-
         //LIMPIAR
         btnLimpiar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deshabilitarEdicion();
-                DefaultListModel listModel = new DefaultListModel();
-                jlTipos.setModel(listModel);
+                inicializaTabla();
                 txtBuscar.setText("");
             }
         });
@@ -86,35 +87,19 @@ public class ConsultarTipoInsumo extends JFrame{
         btnEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TipoInsumoEntity tipoInsumoEntity =(TipoInsumoEntity) jlTipos.getSelectedValue();
-                if (tipoInsumoEntity==null){
-                    showError("Debe seleccionar un tipo de Insumo para modificar");
+                int fila = tblTipos.getSelectedRow();
+                if (fila == -1){
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar una fila para continuar.");
                     return;
                 }
-                habilitarEdicion();
-                txtNombre.setText(tipoInsumoEntity.getTinNombre());
-                txtDescripcion.setText(tipoInsumoEntity.getTinDescripcion());
+                int tinId = (int)tblTipos.getModel().getValueAt(fila,0);
+                String nombre = (String)tblTipos.getModel().getValueAt(fila,1);
+                String descripcion = (String) tblTipos.getModel().getValueAt(fila,2);
+                CargaTipoInsumo carga = new CargaTipoInsumo("Modificacion",nombre,descripcion,tinId);
+                carga.setVisible(true);
+                inicializaTabla();
             }
         });
-
-
-
-        //GUARDAR
-        btnGuardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Session session = Coneccion.getSession();
-                String nombre = txtNombre.getText();
-                String descripcion = txtDescripcion.getText();
-                if(modify(session, nombre, descripcion)){
-                    JOptionPane.showMessageDialog(null, "Se modifico correctamente el tipo insumo");
-                    deshabilitarEdicion();
-                    buscarTiposInsumo();
-                }
-            }
-        });
-
-
 
         //CANCELAR
         btnCancelar.addActionListener(new ActionListener() {
@@ -123,19 +108,76 @@ public class ConsultarTipoInsumo extends JFrame{
                 dispose();
             }
         });
+        //BAJA
+        btnEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (darBaja()){
+                    JOptionPane.showMessageDialog(null,"Se dio de baja exitosamente el tipo de insumo.");
+                }else{
+                    JOptionPane.showMessageDialog(null,"No se pudo dar de baja el tipo de insumo.");
+                }
+                inicializaTabla();
+            }
+        });
     }
 
 
 
     //METODOS
+    private void inicializaTabla(){
+        DefaultTableModel model;
+        model = new DefaultTableModel();
+        String[] columnNames ={"Cod","Nombre", "Descripcion"};
+        Object[][] data = new Object[1][3];
+        model.setDataVector(data,columnNames);
+        tblTipos.setModel(model);
+    }
 
     private void showError(String error){
         JOptionPane.showMessageDialog(this, error);
     }
 
+    //METODO DAR BAJA
+    public Boolean darBaja() {
+        Session session = Coneccion.getSession();
+        Boolean guardado = false;
+        try {
+            TipoInsumoEntity tipo = new TipoInsumoEntity();
+            int fila = tblTipos.getSelectedRow();
+            if (fila == -1){
+                JOptionPane.showMessageDialog(null,"Debe seleccionar una fila para continuar.");
+                return false;
+            }
+            tipo.setTinId((int)tblTipos.getModel().getValueAt(fila,0));
+            tipo.setTinNombre((String)tblTipos.getModel().getValueAt(fila,1));
+            tipo.setTinDescripcion((String)tblTipos.getModel().getValueAt(fila,2));
+            tipo.setTinFechaAlta(fechaActual);
+            tipo.setTinUsuarioAlta("adminBAJA");
+            tipo.setTinFechaUltMod(fechaActual);
+            tipo.setTinUsuarioUtlMod("adminBAJA");
+            tipo.setTinFechaBaja(fechaActual);
+            tipo.setTinUsuarioBaja("adminBAJA");
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del tipo de insumo: " + (String) tblTipos.getModel().getValueAt(fila, 1));
+            if (i==0){
+            Transaction tx = session.beginTransaction();
+            session.update(tipo);
+            tx.commit();
+            guardado = tx.wasCommitted();
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al dar de baja el tipo de insumo: "+e.toString());
+            return false;
+        } finally {
+            session.close();
+        }
 
+        return true;
+    }
 
-    private void deshabilitarEdicion(){
+    /*private void deshabilitarEdicion(){
         txtNombre.setEnabled(false);
         txtDescripcion.setEnabled(false);
         btnGuardar.setEnabled(false);
@@ -149,55 +191,35 @@ public class ConsultarTipoInsumo extends JFrame{
         txtNombre.setEnabled(true);
         txtDescripcion.setEnabled(true);
         btnGuardar.setEnabled(true);
-    }
+    }*/
 
 
 
-    //METODO MODIFICAR
-    public Boolean modify(Session session, String nombre, String descripcion) {
-        Boolean guardado = false;
-        try {
-//            TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", nombre).uniqueResult();
-            TipoInsumoEntity tipoInsumoEntity =(TipoInsumoEntity) jlTipos.getSelectedValue();
-            txtNombre.setText(nombre);
-            txtDescripcion.setText(descripcion);
-            tipoInsumoEntity.setTinNombre(txtNombre.getText());
-            tipoInsumoEntity.setTinDescripcion(txtDescripcion.getText());
-            tipoInsumoEntity.setTinFechaAlta(fechaActual);
-            tipoInsumoEntity.setTinUsuarioAlta("admin");
-            Transaction tx = session.beginTransaction();
-            session.update(tipoInsumoEntity);
-            tx.commit();
-            guardado = tx.wasCommitted();
-//            session.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurri� un error al guardar el tipo de insumo.");
-        } finally {
-            session.close();
-        }
-
-        return guardado;
-    }
-
-
-
-     //METODO BUSCAR TIPOS
+    //METODO BUSCAR TIPOS
     public void buscarTiposInsumo() {
         Session session = Coneccion.getSession();
-
+        int i = 0;
         try {
             TipoInsumoEntity entity;
-            Query query = session.createQuery("select t from TipoInsumoEntity t where ucase(tinNombre) like ucase(:pNombre)");
+            Query query = session.createQuery("select t from TipoInsumoEntity t where ucase(tinNombre) like ucase(:pNombre) and tinFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            DefaultListModel listModel = new DefaultListModel();
+            DefaultTableModel model;
+            model = new DefaultTableModel();
+            String[] columnNames ={"Cod","Nombre", "Descripcion"};
+            Object[][] data = new Object[list.size()][3];
+
             while (iter.hasNext()) {
                 entity = (TipoInsumoEntity) iter.next();
                 //JOptionPane.showMessageDialog(panel1, entity.toString());
-                listModel.addElement(entity);
-                jlTipos.setModel(listModel);
+                data[i][0]= entity.getTinId();
+                data[i][1]= entity.getTinNombre();
+                data[i][2]=entity.getTinDescripcion();
+                i++;
             }
+            model.setDataVector(data,columnNames);
+            tblTipos.setModel(model);
         }finally{
             session.close();
         }

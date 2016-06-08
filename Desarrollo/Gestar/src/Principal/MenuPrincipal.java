@@ -65,7 +65,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
         if (e.getSource() == mi3) {
-            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo();
+            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga","","",0);
             cargaTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
         }

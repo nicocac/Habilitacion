@@ -21,17 +21,23 @@ public class CargaTipoInsumo extends JFrame{
     private JButton cancelarButton;
     private JButton guardarButton;
     private JPanel panel1;
+    private String tipoOperacion;
+    private int tinId;
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
-    public CargaTipoInsumo() {
+    public CargaTipoInsumo(String operacion, String nombre, String descripcion, int id) {
 
         //INICIO
         setContentPane(panel1);
         pack();
-
-        this.setTitle("Cargar Tipo de Insumo");
+        tipoOperacion = operacion;
+        if (tipoOperacion == "Carga") {
+            this.setTitle("Cargar Tipo de Insumo");
+        }else{
+            this.setTitle("Modificar Tipo de Insumo");
+        }
         try {
             Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
             Image imgCancel= ImageIO.read(getClass().getResource("rsz_cancelar.png"));
@@ -60,6 +66,12 @@ public class CargaTipoInsumo extends JFrame{
                 dispose();
             }
         });
+
+        if (nombre != "" && descripcion!= ""&& id!= 0){
+            txtNombre.setText(nombre);
+            txtDescripcion.setText(descripcion);
+            tinId=  id;
+        }
     }
 
 
@@ -75,11 +87,16 @@ public class CargaTipoInsumo extends JFrame{
                 tipo.setTinFechaAlta(fechaActual);
                 tipo.setTinUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
-                session.save(tipo);
+                if (tipoOperacion == "Carga") {
+                    session.save(tipo);
+                }else{
+                    tipo.setTinId(tinId);
+                    session.update(tipo);
+                }
                 tx.commit();
                 guardado = tx.wasCommitted();
 //            session.close();
-            }catch (Exception e){JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo.");}
+            }catch (Exception e){JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo: "+ e.toString());}
              finally {
                 session.close();
             }
