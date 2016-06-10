@@ -38,13 +38,13 @@ public class CargaTipoInsumo extends JFrame{
         }else{
             this.setTitle("Modificar Tipo de Insumo");
         }
-        try {
+        /*try {
             Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
             Image imgCancel= ImageIO.read(getClass().getResource("rsz_cancelar.png"));
             guardarButton.setIcon(new ImageIcon(imgSave));
             cancelarButton.setIcon(new ImageIcon(imgCancel));
         } catch (IOException ex) {
-        }
+        }*/
 
 
         //GUARDAR

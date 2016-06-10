@@ -3,9 +3,7 @@ package Principal;
 import Insumo.CargaInsumo;
 import Insumo.ConsultarInsumo;
 import Insumo.EliminarInsumo;
-import TipoInsumo.CargaTipoInsumo;
-import TipoInsumo.ConsultarTipoInsumo;
-import TipoInsumo.EliminarTipoInsumo;
+import TipoInsumo.PantallaAdministrarTipoInsumo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,17 +36,17 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi5.addActionListener(this);
         menu1.add(mi5);
 
-        mi3 = new JMenuItem("Cargar Tipo de Insumo");
+        /*mi3 = new JMenuItem("Cargar Tipo de Insumo");
         mi3.addActionListener(this);
-        menu1.add(mi3);
+        menu1.add(mi3);*/
 
-        mi4 = new JMenuItem("Consultar/Modificar Tipo de Insumo");
+        mi4 = new JMenuItem("Administrar Tipo de Insumo");
         mi4.addActionListener(this);
         menu1.add(mi4);
 
-        mi6 = new JMenuItem("Dar de baja Tipo de Insumo");
+        /*mi6 = new JMenuItem("Dar de baja Tipo de Insumo");
         mi6.addActionListener(this);
-        menu1.add(mi6);
+        menu1.add(mi6);*/
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -64,15 +62,15 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             consultarInsumo.setVisible(true);
             getDefaultCloseOperation();
         }
-        if (e.getSource() == mi3) {
+        /*if (e.getSource() == mi3) {
             CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga","","",0);
             cargaTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
-        }
+        }*/
 
         if (e.getSource() == mi4) {
-            ConsultarTipoInsumo consultarTipoInsumo = new ConsultarTipoInsumo();
-            consultarTipoInsumo.setVisible(true);
+            PantallaAdministrarTipoInsumo pantallaAdministrarTipoInsumo = new PantallaAdministrarTipoInsumo();
+            pantallaAdministrarTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
         }
 
@@ -82,11 +80,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi6) {
+        /*if (e.getSource() == mi6) {
             EliminarTipoInsumo eliminarTipoInsumo = new EliminarTipoInsumo();
             eliminarTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
-        }
+        }*/
     }
 
 
