@@ -1,8 +1,6 @@
 package Principal;
 
-import Insumo.CargaInsumo;
-import Insumo.ConsultarInsumo;
-import Insumo.EliminarInsumo;
+import Insumo.PantallaAdministrarInsumo;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 
 import javax.swing.*;
@@ -24,67 +22,33 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         menu1 = new JMenu("Insumos");
         mb.add(menu1);
 
-        mi1 = new JMenuItem("Carga Insumo");
+        mi1 = new JMenuItem("Administrar Insumo");
         mi1.addActionListener(this);
         menu1.add(mi1);
 
-        mi2 = new JMenuItem("Consultar/Modificar Insumo");
+        mi2 = new JMenuItem("Administrar Tipo de Insumo");
         mi2.addActionListener(this);
         menu1.add(mi2);
 
-        mi5 = new JMenuItem("Dar de baja Insumo");
-        mi5.addActionListener(this);
-        menu1.add(mi5);
 
-        /*mi3 = new JMenuItem("Cargar Tipo de Insumo");
-        mi3.addActionListener(this);
-        menu1.add(mi3);*/
-
-        mi4 = new JMenuItem("Administrar Tipo de Insumo");
-        mi4.addActionListener(this);
-        menu1.add(mi4);
-
-        /*mi6 = new JMenuItem("Dar de baja Tipo de Insumo");
-        mi6.addActionListener(this);
-        menu1.add(mi6);*/
     }
 
     public void actionPerformed(ActionEvent e) {
         Container f = this.getContentPane();
         if (e.getSource() == mi1) {
-            CargaInsumo cargaInsumo = new CargaInsumo();
-            cargaInsumo.setVisible(true);
+            PantallaAdministrarInsumo pantallaAdministrarInsumo = new PantallaAdministrarInsumo();
+            pantallaAdministrarInsumo.setVisible(true);
             getDefaultCloseOperation();
 
         }
+
         if (e.getSource() == mi2) {
-            ConsultarInsumo consultarInsumo = new ConsultarInsumo();
-            consultarInsumo.setVisible(true);
-            getDefaultCloseOperation();
-        }
-        /*if (e.getSource() == mi3) {
-            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga","","",0);
-            cargaTipoInsumo.setVisible(true);
-            getDefaultCloseOperation();
-        }*/
-
-        if (e.getSource() == mi4) {
             PantallaAdministrarTipoInsumo pantallaAdministrarTipoInsumo = new PantallaAdministrarTipoInsumo();
             pantallaAdministrarTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi5) {
-            EliminarInsumo eliminarInsumo = new EliminarInsumo();
-            eliminarInsumo.setVisible(true);
-            getDefaultCloseOperation();
-        }
 
-        /*if (e.getSource() == mi6) {
-            EliminarTipoInsumo eliminarTipoInsumo = new EliminarTipoInsumo();
-            eliminarTipoInsumo.setVisible(true);
-            getDefaultCloseOperation();
-        }*/
     }
 
 

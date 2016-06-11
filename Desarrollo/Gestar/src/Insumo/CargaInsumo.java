@@ -7,12 +7,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -26,40 +23,24 @@ public class CargaInsumo extends JFrame {
     private JComboBox cbxTipoInsumo;
     private JTextField textUnidadMedida;
 
+    private String tipoOperacion;
+    private int insId;
+
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
-    public CargaInsumo() {
+    public CargaInsumo(String operacion, String nombre, String descripcion, String unidadMedida, TipoInsumoEntity tipoInsumo, int id) {
 
         //INICIO
         setContentPane(panel1);
         pack();
-        this.setTitle("Cargar Alta de Insumo");
+        tipoOperacion = operacion;
+        if (tipoOperacion == "Carga") {
+            this.setTitle("Cargar Insumo");
+        }else{
+            this.setTitle("Modificar Insumo");
+        }
         cargaComboBoxTipo();
-        try {
-            Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
-            Image imgCancel= ImageIO.read(getClass().getResource("rsz_cancelar.png"));
-            guardarButton.setIcon(new ImageIcon(imgSave));
-            cancelarButton.setIcon(new ImageIcon(imgCancel));
-
-            // Set cross-platform Java L&F (also called "Metal")
-            UIManager.setLookAndFeel(
-                    UIManager.getCrossPlatformLookAndFeelClassName());
-        }
-        catch (IOException ex) {
-        }
-        catch (UnsupportedLookAndFeelException e) {
-            // handle exception
-        }
-        catch (ClassNotFoundException e) {
-            // handle exception
-        }
-        catch (InstantiationException e) {
-            // handle exception
-        }
-        catch (IllegalAccessException e) {
-            // handle exception
-        }
 
 
 
@@ -83,6 +64,16 @@ public class CargaInsumo extends JFrame {
                 dispose();
             }
         });
+
+
+        if (nombre != "" && descripcion!= ""&& id!= 0){
+            txtNombre.setText(nombre);
+            txtDescripcion.setText(descripcion);
+            textUnidadMedida.setText(unidadMedida);
+            cbxTipoInsumo.setSelectedItem(tipoInsumo);
+            insId = id;
+        }
+
     }
 
 
@@ -104,7 +95,13 @@ public class CargaInsumo extends JFrame {
                 TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", tipoInsumo).uniqueResult();
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
                 Transaction tx = session.beginTransaction();
-                session.save(insumo);
+                if (tipoOperacion == "Carga") {
+                    session.save(insumo);
+                }else{
+                    insumo.setInsId(insId);
+                    session.update(insumo);
+                }
+
                 tx.commit();
                 guardado = tx.wasCommitted();
 //            session.close();

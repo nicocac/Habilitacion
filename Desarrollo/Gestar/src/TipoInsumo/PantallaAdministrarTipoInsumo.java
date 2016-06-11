@@ -44,7 +44,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame{
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
-            Session session = Coneccion.getSession();
+//            Session session = Coneccion.getSession();
             buscarTiposInsumo();
         });
 
@@ -71,8 +71,11 @@ public class PantallaAdministrarTipoInsumo extends JFrame{
             inicializaTabla();
         });
 
+
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
+
+
         //BAJA
         btnEliminar.addActionListener(e -> {
             switch (darBaja()){
@@ -89,6 +92,9 @@ public class PantallaAdministrarTipoInsumo extends JFrame{
             }
 
         });
+
+
+        //NUEVO
         btnNuevo.addActionListener(e -> {
             CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga","","",0);
             cargaTipoInsumo.setVisible(true);

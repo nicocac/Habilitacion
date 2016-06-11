@@ -67,6 +67,8 @@ public class CargaTipoInsumo extends JFrame{
             }
         });
 
+
+
         if (nombre != "" && descripcion!= ""&& id!= 0){
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);

@@ -106,6 +106,7 @@
                         </constraints>
                         <properties>
                           <contentAreaFilled value="true"/>
+                          <enabled value="true"/>
                           <icon value="Imagenes/rsz_guardar.png"/>
                           <text value="Guardar"/>
                         </properties>
