@@ -2,6 +2,7 @@ package Insumo;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
+import Datos.StockInsumoEntity;
 import Datos.TipoInsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,6 +23,8 @@ public class CargaInsumo extends JFrame {
     private JButton guardarButton;
     private JComboBox cbxTipoInsumo;
     private JTextField textUnidadMedida;
+    private JPanel alta;
+    private JTextField txtStock;
 
     private String tipoOperacion;
     private int insId;
@@ -29,7 +32,7 @@ public class CargaInsumo extends JFrame {
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
-    public CargaInsumo(String operacion, String nombre, String descripcion, String unidadMedida, TipoInsumoEntity tipoInsumo, int id) {
+    public CargaInsumo(String operacion, String nombre, String descripcion, String unidadMedida, TipoInsumoEntity tipoInsumo, String stock, int id) {
 
         //INICIO
         setContentPane(panel1);
@@ -37,24 +40,22 @@ public class CargaInsumo extends JFrame {
         tipoOperacion = operacion;
         if (tipoOperacion == "Carga") {
             this.setTitle("Cargar Insumo");
-        }else{
+        } else {
             this.setTitle("Modificar Insumo");
         }
         cargaComboBoxTipo();
-
 
 
         //GUARDAR
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(save()){
+                if (save()) {
                     JOptionPane.showMessageDialog(null, "Se guardo correctamente la alta del nuevo insumo");
                     dispose();
                 }
             }
         });
-
 
 
         //CANCELAR
@@ -66,25 +67,26 @@ public class CargaInsumo extends JFrame {
         });
 
 
-        if (nombre != "" && descripcion!= ""&& id!= 0){
+        if (nombre != "" && descripcion != "" && id != 0) {
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);
             textUnidadMedida.setText(unidadMedida);
             cbxTipoInsumo.setSelectedItem(tipoInsumo);
+            txtStock.setText(stock);
             insId = id;
         }
 
     }
 
 
-
     //METODO GUARDAR
     public Boolean save() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
-        if (validaCarga()=="S") {
+        InsumoEntity insumo = new InsumoEntity();
+        if (validaCarga() == "S") {
             try {
-                InsumoEntity insumo = new InsumoEntity();
+
                 insumo.setInsNombre(txtNombre.getText());
                 insumo.setInsDescripcion(txtDescripcion.getText());
                 insumo.setInsFechaAlta(fechaActual);
@@ -94,10 +96,12 @@ public class CargaInsumo extends JFrame {
 //                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.get(TipoInsumoEntity.class, 7);
                 TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", tipoInsumo).uniqueResult();
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
+
                 Transaction tx = session.beginTransaction();
                 if (tipoOperacion == "Carga") {
                     session.save(insumo);
-                }else{
+
+                } else {
                     insumo.setInsId(insId);
                     session.update(insumo);
                 }
@@ -105,11 +109,13 @@ public class CargaInsumo extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //            session.close();
-            }catch (Exception e){JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");}
-            finally {
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
+            } finally {
                 session.close();
+                guardaStock(insumo);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
         }
 
@@ -117,16 +123,53 @@ public class CargaInsumo extends JFrame {
     }
 
 
-
     //METODO VALIDAR CARGA
-    public String validaCarga(){
+    public String validaCarga() {
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 
-        if (txtDescripcion.getText().replaceAll(" ", "").length() ==0) return "N";
+        if (txtDescripcion.getText().replaceAll(" ", "").length() == 0) return "N";
 
         return "S";
     }
 
+
+    //METODO GUARDAR STOCK
+    public void guardaStock(InsumoEntity insumo) {
+        //Carga Stock
+        Session session = Coneccion.getSession();
+        try {
+            int stockInsId = 0;
+            StockInsumoEntity stockInsumo = (StockInsumoEntity) session.createQuery("select x from StockInsumoEntity x where x.insumoBySinInsId = :pNombre").setParameter("pNombre", insumo).uniqueResult();
+            if (stockInsumo != null) {
+                stockInsId = stockInsumo.getSinId();
+            } else {
+                stockInsumo = new StockInsumoEntity();
+            }
+            if (insumo.getInsId() == 0) {
+                insumo = (InsumoEntity) session.createQuery("select x from InsumoEntity x where x.insNombre = :pNombre").setParameter("pNombre", insumo.getInsNombre()).uniqueResult();
+            }
+            stockInsumo.setInsumoBySinInsId(insumo);
+            stockInsumo.setSinFechaAlta(fechaActual);
+            stockInsumo.setSinFechaUltMod(fechaActual);
+            stockInsumo.setSinUsuarioAlta("admin");
+            stockInsumo.setSinUsuarioUtlMod("admin");
+            stockInsumo.setSinTotal(Integer.parseInt(txtStock.getText()));
+
+            Transaction tx = session.beginTransaction();
+            if (stockInsId == 0) {
+                session.save(stockInsumo);
+            } else {
+                stockInsumo.setSinId(stockInsId);
+                session.update(stockInsumo);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
+        } finally {
+            session.close();
+
+        }
+    }
 
 
     //METODO CARGA COMBO
