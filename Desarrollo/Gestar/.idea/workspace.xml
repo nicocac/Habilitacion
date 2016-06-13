@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" afterPath="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" afterPath="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" afterPath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" afterPath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
     </list>
     <list id="c5a94efd-4017-424e-b3dc-29d5a2f9cbfd" name="Gestar" comment="Inicio del proyecto">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Proyecto/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Proyecto/.idea/workspace.xml" />
@@ -48,31 +41,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PantallaAdministrarInsumo.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PantallaAdministrarInsumo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java">
+      <file leaf-file-name="CargaInsumo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="129" column="65" selection-start-line="129" selection-start-column="65" selection-end-line="129" selection-end-column="65" />
+            <state relative-caret-position="289">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CargaTipoInsumo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -222,20 +196,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Gestar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gestar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gestar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -823,7 +783,7 @@
       <workItem from="1465515812913" duration="1592000" />
       <workItem from="1465517474939" duration="4182000" />
       <workItem from="1465521790555" duration="107000" />
-      <workItem from="1465775454116" duration="3915000" />
+      <workItem from="1465775454116" duration="4064000" />
     </task>
     <task id="LOCAL-00001" summary="Alta proyecto">
       <created>1464610037357</created>
@@ -902,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465521870960</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Puesta a punto Sprint 1">
+      <created>1465781011695</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1465781011695</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -911,7 +878,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42601000" />
+    <option name="totallyTimeSpent" value="42750000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -924,7 +891,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.0925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="84" width="164" height="660" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -932,15 +899,15 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22816166" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22816166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22816166" sideWeight="0.4975" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.51167315" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.185625" sideWeight="0.48832685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.185625" sideWeight="0.48832685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -973,7 +940,8 @@
     <MESSAGE value="Armado de pantallas 1" />
     <MESSAGE value="Modificacion pantallas" />
     <MESSAGE value="Unificacion pantalla tipo de insumo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unificacion pantalla tipo de insumo" />
+    <MESSAGE value="Puesta a punto Sprint 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Puesta a punto Sprint 1" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -1253,11 +1221,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1268,17 +1231,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="120" column="83" selection-start-line="118" selection-start-column="6" selection-end-line="120" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java">
@@ -1289,13 +1254,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
+    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
