@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="Unificacion pantalla tipo de insumo">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_baja.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.form" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/rsz_buscar.png" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_buscar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/rsz_cancelar.png" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_cancelar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/rsz_clean.png" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_clean.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/rsz_editar.png" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_editar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TipoInsumo/rsz_guardar.png" afterPath="$PROJECT_DIR$/src/Imagenes/rsz_guardar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+    <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" afterPath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" afterPath="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" afterPath="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" afterPath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" afterPath="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" afterPath="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" afterPath="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
     </list>
     <list id="c5a94efd-4017-424e-b3dc-29d5a2f9cbfd" name="Gestar" comment="Inicio del proyecto">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Proyecto/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Proyecto/.idea/workspace.xml" />
@@ -56,7 +47,37 @@
     <favorites_list name="Gestar" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="PantallaAdministrarInsumo.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PantallaAdministrarInsumo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="129" column="65" selection-start-line="129" selection-start-column="65" selection-end-line="129" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CargaTipoInsumo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -88,14 +109,17 @@
         <option value="$PROJECT_DIR$/src/Datos/TipoInsumoEntity.java" />
         <option value="$PROJECT_DIR$/src/Insumo/ConsultarInsumo.java" />
         <option value="$PROJECT_DIR$/src/Insumo/ConsultarInsumo.form" />
-        <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
-        <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
         <option value="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.form" />
-        <option value="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java" />
+        <option value="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
+        <option value="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
+        <option value="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" />
+        <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
+        <option value="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" />
+        <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
       </list>
     </option>
   </component>
@@ -178,6 +202,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -216,7 +241,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -232,7 +256,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="328" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="148" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="103" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
   </component>
   <component name="RecentsManager">
@@ -250,6 +274,134 @@
       <recent name="C:\Users\OWNER\Documents\GitHub\Habilitacion\Habilitacion\Desarrollo\Gestar\src\Resources" />
       <recent name="C:\Users\OWNER\Documents\GitHub\Habilitacion\Habilitacion\Desarrollo\Gestar\src\TipoInsumo" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/CargaInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/CargaInsumo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Principal/MenuPrincipal.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Imagenes/login_out_48.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/ConsultarInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/ConsultarInsumo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/EliminarInsumo.form</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/EliminarInsumo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/rsz_buscar.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/rsz_cancelar.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/rsz_clean.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/rsz_editar.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Insumo/rsz_guardar.png</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -670,7 +822,8 @@
       <workItem from="1465514491909" duration="863000" />
       <workItem from="1465515812913" duration="1592000" />
       <workItem from="1465517474939" duration="4182000" />
-      <workItem from="1465521790555" duration="69000" />
+      <workItem from="1465521790555" duration="107000" />
+      <workItem from="1465775454116" duration="3915000" />
     </task>
     <task id="LOCAL-00001" summary="Alta proyecto">
       <created>1464610037357</created>
@@ -742,7 +895,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465345723304</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Unificacion pantalla tipo de insumo">
+      <created>1465521870960</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1465521870960</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -751,7 +911,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38648000" />
+    <option name="totallyTimeSpent" value="42601000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -767,32 +927,32 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.0925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="84" width="164" height="660" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22816166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.51167315" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.185625" sideWeight="0.48832685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39895698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39895698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22816166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1013,18 +1173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1047,26 +1195,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.java" />
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.form" />
     <entry file="file://$PROJECT_DIR$/src/Insumo/ConsultarInsumo.form">
       <provider selected="true" editor-type-id="ui-designer">
@@ -1096,30 +1224,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="189" column="11" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/java/awt/event/ActionListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" />
-    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
     <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form">
-      <provider editor-type-id="ui-designer">
+      <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java">
+    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="189" column="11" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="11" />
+        <state relative-caret-position="239">
+          <caret line="120" column="83" selection-start-line="118" selection-start-column="6" selection-end-line="120" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="129" column="65" selection-start-line="129" selection-start-column="65" selection-end-line="129" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

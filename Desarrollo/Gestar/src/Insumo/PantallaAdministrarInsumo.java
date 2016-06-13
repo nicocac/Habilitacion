@@ -128,9 +128,9 @@ public class PantallaAdministrarInsumo extends JFrame {
         tblInsumos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblInsumos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblInsumos.getColumnModel().getColumn(2).setPreferredWidth(300);
-        tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(150);
         tblInsumos.getColumnModel().getColumn(4).setPreferredWidth(200);
-        tblInsumos.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblInsumos.getColumnModel().getColumn(5).setPreferredWidth(60);
     }
 
     private void showMessage(String error) {

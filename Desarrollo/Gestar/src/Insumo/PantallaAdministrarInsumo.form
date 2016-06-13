@@ -194,9 +194,9 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="700" height="50"/>
-                    <preferred-size width="700" height="50"/>
-                    <maximum-size width="700" height="50"/>
+                    <minimum-size width="700" height="70"/>
+                    <preferred-size width="700" height="70"/>
+                    <maximum-size width="700" height="70"/>
                   </grid>
                 </constraints>
                 <properties/>

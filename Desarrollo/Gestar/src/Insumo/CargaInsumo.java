@@ -17,20 +17,20 @@ import java.util.Vector;
 
 public class CargaInsumo extends JFrame {
     private JPanel panel1;
-    private JTextField txtDescripcion;
+    private JTextArea txtDescripcion;
     private JTextField txtNombre;
     private JButton cancelarButton;
     private JButton guardarButton;
     private JComboBox cbxTipoInsumo;
-    private JTextField textUnidadMedida;
     private JPanel alta;
+    private JComboBox textUnidadMedida;
     private JTextField txtStock;
 
     private String tipoOperacion;
     private int insId;
 
-    java.util.Date fecha = new java.util.Date();
-    Date fechaActual = new Date(fecha.getTime());
+    private java.util.Date fecha = new java.util.Date();
+    private Date fechaActual = new Date(fecha.getTime());
 
     public CargaInsumo(String operacion, String nombre, String descripcion, String unidadMedida, TipoInsumoEntity tipoInsumo, String stock, int id) {
 
@@ -38,7 +38,7 @@ public class CargaInsumo extends JFrame {
         setContentPane(panel1);
         pack();
         tipoOperacion = operacion;
-        if (tipoOperacion == "Carga") {
+        if (tipoOperacion.equals("Carga")) {
             this.setTitle("Cargar Insumo");
         } else {
             this.setTitle("Modificar Insumo");
@@ -47,30 +47,22 @@ public class CargaInsumo extends JFrame {
 
 
         //GUARDAR
-        guardarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (save()) {
-                    JOptionPane.showMessageDialog(null, "Se guardo correctamente la alta del nuevo insumo");
-                    dispose();
-                }
-            }
-        });
-
-
-        //CANCELAR
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        guardarButton.addActionListener(e -> {
+            if (save()) {
+                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
                 dispose();
             }
         });
 
 
-        if (nombre != "" && descripcion != "" && id != 0) {
+        //CANCELAR
+        cancelarButton.addActionListener(e -> dispose());
+
+
+        if (nombre.length() > 1 && descripcion.length() > 1 && id != 0) {
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);
-            textUnidadMedida.setText(unidadMedida);
+            textUnidadMedida.setSelectedItem(unidadMedida); //setText(unidadMedida);
             cbxTipoInsumo.setSelectedItem(tipoInsumo);
             txtStock.setText(stock);
             insId = id;
@@ -80,27 +72,26 @@ public class CargaInsumo extends JFrame {
 
 
     //METODO GUARDAR
-    public Boolean save() {
+    private Boolean save() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
         InsumoEntity insumo = new InsumoEntity();
-        if (validaCarga() == "S") {
+        if (validaCarga().equals("S")) {
             try {
 
                 insumo.setInsNombre(txtNombre.getText());
                 insumo.setInsDescripcion(txtDescripcion.getText());
                 insumo.setInsFechaAlta(fechaActual);
                 insumo.setInsUsuarioAlta("admin");
-                insumo.setInsUnidadMedida(textUnidadMedida.getText());
+                insumo.setInsUnidadMedida(textUnidadMedida.getSelectedItem().toString());
                 String tipoInsumo = cbxTipoInsumo.getSelectedItem().toString();
 //                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.get(TipoInsumoEntity.class, 7);
                 TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", tipoInsumo).uniqueResult();
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
 
                 Transaction tx = session.beginTransaction();
-                if (tipoOperacion == "Carga") {
+                if (tipoOperacion.equals("Carga")) {
                     session.save(insumo);
-
                 } else {
                     insumo.setInsId(insId);
                     session.update(insumo);
@@ -108,12 +99,12 @@ public class CargaInsumo extends JFrame {
 
                 tx.commit();
                 guardado = tx.wasCommitted();
-//            session.close();
+//                session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
+                JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo: "+ e.toString());
             } finally {
                 session.close();
-                guardaStock(insumo);
+                //guardaStock(insumo);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
@@ -124,7 +115,7 @@ public class CargaInsumo extends JFrame {
 
 
     //METODO VALIDAR CARGA
-    public String validaCarga() {
+    private String validaCarga() {
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 
         if (txtDescripcion.getText().replaceAll(" ", "").length() == 0) return "N";
@@ -134,7 +125,7 @@ public class CargaInsumo extends JFrame {
 
 
     //METODO GUARDAR STOCK
-    public void guardaStock(InsumoEntity insumo) {
+    /*private void guardaStock(InsumoEntity insumo) {
         //Carga Stock
         Session session = Coneccion.getSession();
         try {
@@ -164,12 +155,12 @@ public class CargaInsumo extends JFrame {
             }
             tx.commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
+            //JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
         } finally {
             session.close();
 
         }
-    }
+    }*/
 
 
     //METODO CARGA COMBO
@@ -180,7 +171,7 @@ public class CargaInsumo extends JFrame {
 
         Vector<String> mivector = new Vector<>();
         for (TipoInsumoEntity tipoInsumo : listaTipoInsumo) {
-            System.out.println(tipoInsumo.getTinNombre());
+            //System.out.println(tipoInsumo.getTinNombre());
             mivector.add(tipoInsumo.getTinNombre());
             cbxTipoInsumo.addItem(tipoInsumo);
         }

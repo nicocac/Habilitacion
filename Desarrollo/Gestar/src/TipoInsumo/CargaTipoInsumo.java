@@ -5,18 +5,13 @@ import Datos.TipoInsumoEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.Date;
 
 
 public class CargaTipoInsumo extends JFrame{
 
-    private JTextField txtDescripcion;
+    private JTextArea txtDescripcion;
     private JTextField txtNombre;
     private JButton cancelarButton;
     private JButton guardarButton;
@@ -24,8 +19,8 @@ public class CargaTipoInsumo extends JFrame{
     private String tipoOperacion;
     private int tinId;
 
-    java.util.Date fecha = new java.util.Date();
-    Date fechaActual = new Date(fecha.getTime());
+    private java.util.Date fecha = new java.util.Date();
+    private Date fechaActual = new Date(fecha.getTime());
 
     public CargaTipoInsumo(String operacion, String nombre, String descripcion, int id) {
 
@@ -33,43 +28,28 @@ public class CargaTipoInsumo extends JFrame{
         setContentPane(panel1);
         pack();
         tipoOperacion = operacion;
-        if (tipoOperacion == "Carga") {
+        if (tipoOperacion.equals("Carga")) {
             this.setTitle("Cargar Tipo de Insumo");
         }else{
             this.setTitle("Modificar Tipo de Insumo");
         }
-        /*try {
-            Image imgSave = ImageIO.read(getClass().getResource("rsz_guardar.png"));
-            Image imgCancel= ImageIO.read(getClass().getResource("rsz_cancelar.png"));
-            guardarButton.setIcon(new ImageIcon(imgSave));
-            cancelarButton.setIcon(new ImageIcon(imgCancel));
-        } catch (IOException ex) {
-        }*/
 
 
         //GUARDAR
-        guardarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(save()){
-                    JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
-                    dispose();
-                }
-            }
-        });
-
-
-        //CANCELAR
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        guardarButton.addActionListener(e -> {
+            if(save()){
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
                 dispose();
             }
         });
 
 
+        //CANCELAR
+        cancelarButton.addActionListener(e -> dispose());
 
-        if (nombre != "" && descripcion!= ""&& id!= 0){
+
+
+        if (nombre.length() > 1 && descripcion.length() > 1 && id!= 0){
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);
             tinId=  id;
@@ -78,10 +58,10 @@ public class CargaTipoInsumo extends JFrame{
 
 
     //METODO GUARDAR
-    public Boolean save() {
+    private Boolean save() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
-        if (validaCarga()=="S") {
+        if (validaCarga().equals("S")) {
             try {
                 TipoInsumoEntity tipo = new TipoInsumoEntity();
                 tipo.setTinNombre(txtNombre.getText());
@@ -89,7 +69,7 @@ public class CargaTipoInsumo extends JFrame{
                 tipo.setTinFechaAlta(fechaActual);
                 tipo.setTinUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
-                if (tipoOperacion == "Carga") {
+                if (tipoOperacion.equals("Carga")) {
                     session.save(tipo);
                 }else{
                     tipo.setTinId(tinId);
@@ -111,7 +91,7 @@ public class CargaTipoInsumo extends JFrame{
 
 
     //METODO VALIDAR DATOS
-    public String validaCarga(){
+    private String validaCarga(){
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 
         if (txtDescripcion.getText().replaceAll(" ", "").length() ==0) return "N";
