@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Iterator;
 
@@ -26,6 +27,7 @@ public class PantallaAdministrarInsumo extends JFrame {
     private JButton btnNuevo;
     private JTable tblInsumos;
     private JButton btnCancelar;
+    private JTable table1;
     private InsumoEntity insumo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -110,8 +112,8 @@ public class PantallaAdministrarInsumo extends JFrame {
 
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
-    }
 
+    }
 
     //METODOS
     private void inicializaTabla() {

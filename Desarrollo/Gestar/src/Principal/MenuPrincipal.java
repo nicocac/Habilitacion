@@ -2,6 +2,7 @@ package Principal;
 
 import Insumo.PantallaAdministrarInsumo;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
+import Procesos.PantallaAdministrarCompra;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi2.addActionListener(this);
         menu1.add(mi2);
 
+        mi3 = new JMenuItem("Comprar Insumos");
+        mi3.addActionListener(this);
+        menu1.add(mi3);
 
     }
 
@@ -48,6 +52,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
 
+        if (e.getSource() == mi3) {
+            PantallaAdministrarCompra pantallaAdministrarCompra = new PantallaAdministrarCompra();
+            pantallaAdministrarCompra.setVisible(true);
+            getDefaultCloseOperation();
+        }
 
     }
 
