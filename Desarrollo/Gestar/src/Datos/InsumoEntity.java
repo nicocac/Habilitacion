@@ -185,7 +185,7 @@ public class InsumoEntity {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.insNombre;
     }
 }

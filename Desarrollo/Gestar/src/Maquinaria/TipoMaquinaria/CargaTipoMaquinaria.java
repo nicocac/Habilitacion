@@ -1,7 +1,7 @@
-package TipoInsumo;
+package Maquinaria.TipoMaquinaria;
 
 import Conexion.Coneccion;
-import Datos.TipoInsumoEntity;
+import Datos.TipoMaquinariaEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -9,36 +9,36 @@ import javax.swing.*;
 import java.sql.Date;
 
 
-public class CargaTipoInsumo extends JFrame {
-
-    private JTextArea txtDescripcion;
+public class CargaTipoMaquinaria extends JFrame {
+    private JPanel panel1;
     private JTextField txtNombre;
+    private JTextArea txtDescripcion;
     private JButton cancelarButton;
     private JButton guardarButton;
-    private JPanel panel1;
     private String tipoOperacion;
     private int tinId;
 
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
 
-    public CargaTipoInsumo(String operacion, String nombre, String descripcion, int id) {
+
+    public CargaTipoMaquinaria(String operacion, String nombre, String descripcion, int id) {
 
         //INICIO
         setContentPane(panel1);
         pack();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
-            this.setTitle("Cargar Tipo de Insumo");
+            this.setTitle("Cargar Tipo Maquinaria");
         } else {
-            this.setTitle("Modificar Tipo de Insumo");
+            this.setTitle("Modificar Tipo Maquinaria");
         }
 
 
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo maquinaria");
                 dispose();
             }
         });
@@ -62,23 +62,23 @@ public class CargaTipoInsumo extends JFrame {
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
-                TipoInsumoEntity tipo = new TipoInsumoEntity();
-                tipo.setTinNombre(txtNombre.getText());
-                tipo.setTinDescripcion(txtDescripcion.getText());
-                tipo.setTinFechaAlta(fechaActual);
-                tipo.setTinUsuarioAlta("admin");
+                TipoMaquinariaEntity tipo = new TipoMaquinariaEntity();
+                tipo.setTmaNombre(txtNombre.getText());
+                tipo.setTmaDescripcion(txtDescripcion.getText());
+                tipo.setTmaFechaAlta(fechaActual);
+                tipo.setTmaUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(tipo);
                 } else {
-                    tipo.setTinId(tinId);
+                    tipo.setTmaId(tinId);
                     session.update(tipo);
                 }
                 tx.commit();
                 guardado = tx.wasCommitted();
 //            session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "OcurriÃ³ un error al guardar el tipo de insumo: " + e.toString());
+                JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo maquinaria: " + e.toString());
             } finally {
                 session.close();
             }
@@ -99,6 +99,5 @@ public class CargaTipoInsumo extends JFrame {
         return "S";
 
     }
-
 
 }

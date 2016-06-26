@@ -10,13 +10,10 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Iterator;
 
-/**
- * Created by jagm on 6/11/2016.
- */
+
 public class PantallaAdministrarInsumo extends JFrame {
     private JPanel panel1;
     private JTextField txtBuscar;
@@ -71,7 +68,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             String descripcion = (String) tblInsumos.getModel().getValueAt(fila, 2);
             String unidadMedida = (String) tblInsumos.getModel().getValueAt(fila, 3);
             TipoInsumoEntity tipoInsumo = (TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4);
-            String stock =  String.valueOf(tblInsumos.getModel().getValueAt(fila, 5));
+            String stock = String.valueOf(tblInsumos.getModel().getValueAt(fila, 5));
 
             CargaInsumo carga = new CargaInsumo("Modificacion", nombre, descripcion, unidadMedida, tipoInsumo, stock, insId);
             carga.setVisible(true);

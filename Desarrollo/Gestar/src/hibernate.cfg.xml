@@ -6,39 +6,43 @@
     <session-factory>
         <!--<property name="connection.url">jdbc:mysql://localhost:3306/Gestar</property>
        <property name="connection.driver_class">com.mysql.jdbc.Driver</property> -->
-       <property name="show_sql">
-           true
-       </property>
+        <property name="show_sql">
+            true
+        </property>
 
-       <property name="dialect">
-           org.hibernate.dialect.MySQLDialect
-       </property>
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
 
-       <property name="hbm2ddl.auto">
-           update
-       </property>
+        <property name="hbm2ddl.auto">
+            update
+        </property>
 
-       <property name="hibernate.connection.driver_class">
-           com.mysql.jdbc.Driver
-       </property>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
 
-       <property name="hibernate.connection.url">
-           jdbc:mysql://localhost:3306/gestar
-       </property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/gestar
+        </property>
 
-       <property name="hibernate.connection.username">
-           root
-       </property>
+        <property name="hibernate.connection.username">
+            root
+        </property>
 
-       <property name="hibernate.connection.password">
-           tesis2016
-       </property>
+        <property name="hibernate.connection.password">
+            tesis2016
+        </property>
 
-       <mapping class="Datos.InsumoEntity"/>
-       <mapping class="Datos.MovimientosStockEntity"/>
-       <mapping class="Datos.StockInsumoEntity"/>
-       <mapping class="Datos.TipoInsumoEntity"/>
-       <!-- DB schema will be updated if needed -->
+        <mapping class="Datos.InsumoEntity"/>
+        <mapping class="Datos.MovimientosStockEntity"/>
+        <mapping class="Datos.StockInsumoEntity"/>
+        <mapping class="Datos.TipoInsumoEntity"/>
+        <mapping class="Datos.MaquinariaEntity"/>
+        <mapping class="Datos.TipoEstadoMaquinariaEntity"/>
+        <mapping class="Datos.TipoMaquinariaEntity"/>
+
+        <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>

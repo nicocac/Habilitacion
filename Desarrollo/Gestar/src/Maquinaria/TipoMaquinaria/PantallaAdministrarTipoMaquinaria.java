@@ -1,7 +1,7 @@
-package TipoInsumo;
+package Maquinaria.TipoMaquinaria;
 
 import Conexion.Coneccion;
-import Datos.TipoInsumoEntity;
+import Datos.TipoMaquinariaEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,37 +12,37 @@ import java.sql.Date;
 import java.util.Iterator;
 
 
-public class PantallaAdministrarTipoInsumo extends JFrame {
-    private JTextField txtBuscar;
+public class PantallaAdministrarTipoMaquinaria extends JFrame {
     private JPanel panel1;
+    private JTextField txtBuscar;
     private JButton btnBuscar;
+    private JButton btnEliminar;
     private JButton btnLimpiar;
     private JButton btnEditar;
-    private JButton btnCancelar;
-    private JTable tblTipos;
-    private JButton btnEliminar;
     private JButton btnNuevo;
-    private TipoInsumoEntity tipo;
+    private JTable tblTipos;
+    private JButton btnCancelar;
+    private TipoMaquinariaEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
-    public PantallaAdministrarTipoInsumo() {
+    public PantallaAdministrarTipoMaquinaria() {
 
 
         //INICIO
         setContentPane(panel1);
         pack();
-        this.setTitle("Consultar Tipo de Insumo");
+        this.setTitle("Consultar Tipo Maquinaria");
         inicializaTabla();
 
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Coneccion.getSession();
-            buscarTiposInsumo();
+            buscarTiposMaquinaria();
         });
 
 
@@ -59,10 +59,10 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return;
             }
-            int tinId = (int) tblTipos.getModel().getValueAt(fila, 0);
+            int tmaId = (int) tblTipos.getModel().getValueAt(fila, 0);
             String nombre = (String) tblTipos.getModel().getValueAt(fila, 1);
             String descripcion = (String) tblTipos.getModel().getValueAt(fila, 2);
-            CargaTipoInsumo carga = new CargaTipoInsumo("Modificacion", nombre, descripcion, tinId);
+            CargaTipoMaquinaria carga = new CargaTipoMaquinaria("Modificacion", nombre, descripcion, tmaId);
             carga.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
@@ -77,7 +77,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
         btnEliminar.addActionListener(e -> {
             switch (darBaja()) {
                 case 0: {
-                    showMessage("Se dio de baja exitosamente el tipo de insumo.");
+                    showMessage("Se dio de baja exitosamente el tipo de maquinaria.");
                     inicializaTabla();
                     break;
                 }
@@ -86,7 +86,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
                     break;
                 }
                 case 2: {
-                    showMessage("No se pudo dar de baja el tipo de insumo.");
+                    showMessage("No se pudo dar de baja el tipo de maquinaria.");
                     break;
                 }
             }
@@ -96,8 +96,8 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
-            cargaTipoInsumo.setVisible(true);
+            CargaTipoMaquinaria cargaTipoMaquinaria = new CargaTipoMaquinaria("Carga", "", "", 0);
+            cargaTipoMaquinaria.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
         });
@@ -129,22 +129,22 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
         try {
-            tipo = new TipoInsumoEntity();
+            tipo = new TipoMaquinariaEntity();
             int fila = tblTipos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            tipo.setTinId((int) tblTipos.getModel().getValueAt(fila, 0));
-            tipo.setTinNombre((String) tblTipos.getModel().getValueAt(fila, 1));
-            tipo.setTinDescripcion((String) tblTipos.getModel().getValueAt(fila, 2));
-            tipo.setTinFechaAlta(fechaActual);
-            tipo.setTinUsuarioAlta("adminBAJA");
-            tipo.setTinFechaUltMod(fechaActual);
-            tipo.setTinUsuarioUtlMod("adminBAJA");
-            tipo.setTinFechaBaja(fechaActual);
-            tipo.setTinUsuarioBaja("adminBAJA");
-            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del tipo de insumo: " + tblTipos.getModel().getValueAt(fila, 1));
+            tipo.setTmaId((int) tblTipos.getModel().getValueAt(fila, 0));
+            tipo.setTmaNombre((String) tblTipos.getModel().getValueAt(fila, 1));
+            tipo.setTmaDescripcion((String) tblTipos.getModel().getValueAt(fila, 2));
+            tipo.setTmaFechaAlta(fechaActual);
+            tipo.setTmaUsuarioAlta("adminBAJA");
+            tipo.setTmaFechaUltMod(fechaActual);
+            tipo.setTmaUsuarioUtlMod("adminBAJA");
+            tipo.setTmaFechaBaja(fechaActual);
+            tipo.setTmaUsuarioBaja("adminBAJA");
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del tipo de maquinaria: " + tblTipos.getModel().getValueAt(fila, 1));
             if (i == 0) {
                 tx = session.beginTransaction();
                 session.update(tipo);
@@ -154,7 +154,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
                 return 1;
             }
         } catch (Exception e) {
-            showMessage("Ocurrio un error al dar de baja el tipo de insumo: " + e.toString());
+            showMessage("Ocurrio un error al dar de baja el tipo de maquinaria: " + e.toString());
             return 2;
         } finally {
             session.close();
@@ -165,12 +165,12 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
 
 
     //METODO BUSCAR TIPOS
-    public void buscarTiposInsumo() {
+    public void buscarTiposMaquinaria() {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            tipo = new TipoInsumoEntity();
-            Query query = session.createQuery("select t from TipoInsumoEntity t where ucase(tinNombre) like ucase(:pNombre) and tinFechaBaja is null");
+            tipo = new TipoMaquinariaEntity();
+            Query query = session.createQuery("select t from TipoMaquinariaEntity t where ucase(tmaNombre) like ucase(:pNombre) and tmaFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
@@ -178,10 +178,10 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
             Object[][] data = new Object[list.size()][3];
 
             while (iter.hasNext()) {
-                tipo = (TipoInsumoEntity) iter.next();
-                data[i][0] = tipo.getTinId();
-                data[i][1] = tipo.getTinNombre();
-                data[i][2] = tipo.getTinDescripcion();
+                tipo = (TipoMaquinariaEntity) iter.next();
+                data[i][0] = tipo.getTmaId();
+                data[i][1] = tipo.getTmaNombre();
+                data[i][2] = tipo.getTmaDescripcion();
                 i++;
             }
             setModel(columnNames, data, tblTipos);

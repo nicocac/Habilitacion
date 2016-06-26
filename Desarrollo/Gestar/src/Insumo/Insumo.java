@@ -1,6 +1,6 @@
 package Insumo;
 
-import TipoInsumo.*;
+import TipoInsumo.TipoInsumo;
 
 /**
  * Created by OWNER on 5/29/2016.

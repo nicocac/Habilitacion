@@ -2,15 +2,12 @@ package Insumo;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
-import Datos.StockInsumoEntity;
 import Datos.TipoInsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -101,7 +98,7 @@ public class CargaInsumo extends JFrame {
                 guardado = tx.wasCommitted();
 //                session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo: "+ e.toString());
+                JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo: " + e.toString());
             } finally {
                 session.close();
                 //guardaStock(insumo);
