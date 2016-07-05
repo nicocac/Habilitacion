@@ -6,6 +6,15 @@
     <session-factory>
         <!--<property name="connection.url">jdbc:mysql://localhost:3306/Gestar</property>
        <property name="connection.driver_class">com.mysql.jdbc.Driver</property> -->
+
+        <property name="connection.username">
+            root
+        </property>
+
+        <property name="connection.password">
+            tesis2016
+        </property>
+
         <property name="show_sql">
             true
         </property>
@@ -18,21 +27,9 @@
             update
         </property>
 
-        <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
-        </property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/gestar
-        </property>
-
-        <property name="hibernate.connection.username">
-            root
-        </property>
-
-        <property name="hibernate.connection.password">
-            tesis2016
-        </property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Gestar</property>
 
         <mapping class="Datos.InsumoEntity"/>
         <mapping class="Datos.MovimientosStockEntity"/>
@@ -41,6 +38,8 @@
         <mapping class="Datos.MaquinariaEntity"/>
         <mapping class="Datos.TipoEstadoMaquinariaEntity"/>
         <mapping class="Datos.TipoMaquinariaEntity"/>
+        <mapping class="Datos.CompraEntity"/>
+        <mapping class="Datos.DetalleCompraEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

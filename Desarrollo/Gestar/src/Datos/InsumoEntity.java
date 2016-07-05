@@ -1,14 +1,20 @@
 package Datos;
 
+import Conexion.Coneccion;
+import org.hibernate.*;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.concurrent.TransferQueue;
 
 /**
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "insumo", schema = "gestar", catalog = "")
+@Table(name = "insumo", schema = "gestar")
 public class InsumoEntity {
     private int insId;
     private String insNombre;
@@ -20,6 +26,7 @@ public class InsumoEntity {
     private String insUsuarioUtlMod;
     private Date insFechaBaja;
     private String insUsuarioBaja;
+    private BigDecimal insStock;
     private TipoInsumoEntity tipoInsumoByInsTinId;
     private Collection<StockInsumoEntity> stockInsumosByInsId;
 
@@ -51,6 +58,16 @@ public class InsumoEntity {
 
     public void setInsDescripcion(String insDescripcion) {
         this.insDescripcion = insDescripcion;
+    }
+
+    @Basic
+    @Column(name = "ins_stock")
+    public BigDecimal getInsStock() {
+        return insStock;
+    }
+
+    public void setInsStock(BigDecimal insStock) {
+        this.insStock = insStock;
     }
 
     @Basic
@@ -188,4 +205,26 @@ public class InsumoEntity {
     public String toString() {
         return this.insNombre;
     }
+
+    public InsumoEntity getByNombre(String nombre){
+        Session session = Coneccion.getSession();
+        InsumoEntity insumo = new InsumoEntity();
+        org.hibernate.Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+        query.setParameter("pNombre", nombre);
+        java.util.List list = query.list();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            insumo = (InsumoEntity) iter.next();
+        }
+        session.close();
+        return insumo;
+    }
+
+    public boolean updateStock(Session ses, BigDecimal insStock){
+        Session session = ses;
+        this.setInsStock(insStock);
+        session.update(this);
+        return true;
+    }
+
 }

@@ -2,23 +2,24 @@ package Procesos;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
+import Insumo.Insumo;
 import Datos.StockInsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Arc2D;
-import java.sql.Date;
-import java.util.Arrays;
-import java.util.EventObject;
+import java.awt.event.*;
 import java.util.Iterator;
 
 /**
@@ -37,16 +38,23 @@ public class PantallaAdministrarCompra extends JFrame {
     private JButton btnCancelar;
     private JLabel jlTitulo;
     private JLabel jlTotal;
+    private JButton btnFinalizar;
+    private JLabel jlCantidadItems;
     private InsumoEntity insumo;
     private Transaction tx;
     private DefaultTableModel modelInsumo;
     private DefaultTableModel modelCompra;
     private String[] columnNamesInsumo = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock"};
-    private String[] columnNamesCompra = {"Cod", "Nombre", "Unidad de Medida", "Cantidad", "Precio"};
+    private String[] columnNamesCompra = {"Cod", "Nombre", "Observaciones", "Unidad de Medida", "Cantidad", "Precio"};
     private float total = 0;
-
-    java.util.Date fecha = new java.util.Date();
-    Date fechaActual = new Date(fecha.getTime());
+    private java.util.Date fecha = new java.util.Date();
+    private Date fechaActual = new Date(fecha.getTime());
+    private boolean existeValorCero = false;
+    private String scantidad = "0";
+    private String sprecio = "0";
+    private float cantidad = 0;
+    private float precio = 0;
+    private int cantItems = 0;
 
     public PantallaAdministrarCompra() {
 
@@ -67,8 +75,7 @@ public class PantallaAdministrarCompra extends JFrame {
 
         //LIMPIAR
         btnLimpiar.addActionListener(e -> {
-            inicializaTabla(0);
-            txtBuscar.setText("");
+            limpiarPantalla();
         });
 
 
@@ -86,17 +93,22 @@ public class PantallaAdministrarCompra extends JFrame {
                 fila ++;
             }
 
-            String scantidad = JOptionPane.showInputDialog("Ingrese la cantidad del insumo");
-            String sprecio = JOptionPane.showInputDialog("Ingrese el precio del insumo");
-            float cantidad;
-            float precio;
+            scantidad = (String) JOptionPane.showInputDialog(null,"Ingrese la cantidad del insumo","Ingreso Cantidad",JOptionPane.PLAIN_MESSAGE, null, null, null);
+            scantidad = nvl(scantidad,"0").replace(",",".");
+            sprecio = (String) JOptionPane.showInputDialog(null,"Ingrese el precio unitario del insumo","Ingreso Precio",JOptionPane.PLAIN_MESSAGE, null, null, null);
+            sprecio = nvl(sprecio,"0").replace(",",".");
+            cantidad=0;
+            precio=0;
             try{
                 cantidad = Float.valueOf(nvl(scantidad,"0"));
                 precio = Float.valueOf(nvl(sprecio,"0"));
             }catch (NumberFormatException ex){
                 showMessage("Debe ingresar valores numericos");
-                cantidad = 0;
-                precio = 0;
+                scantidad = "0";
+                sprecio = "0";
+            }catch (NullPointerException ex){
+                scantidad = "0";
+                sprecio = "0";
             }
 
             total += cantidad*precio;
@@ -104,37 +116,106 @@ public class PantallaAdministrarCompra extends JFrame {
             if (fila == 0 ) {
                 tblCompra.setValueAt(tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 0), fila, 0);
                 tblCompra.setValueAt(tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 1), fila, 1);
-                tblCompra.setValueAt(tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 3), fila, 2);
-                tblCompra.setValueAt(cantidad, fila, 3);
-                tblCompra.setValueAt(precio, fila, 4);
+                tblCompra.setValueAt("", fila, 2);
+                tblCompra.setValueAt(tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 3), fila, 3);
+                tblCompra.setValueAt(scantidad, fila, 4);
+                tblCompra.setValueAt(sprecio, fila, 5);
 
-                showMessage(String.valueOf(fila));
             }else{
 
                 modelCompra.addRow(new Object[]{tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 0)
                         ,tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 1)
+                        ,""
                         ,tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 3)
-                        ,cantidad
-                        ,precio});
+                        ,scantidad
+                        ,sprecio});
             }
 
-            jlTotal.setText(String.valueOf(total));
-
+            actualizaLabelTotal(total);
+            actualizaCantItems("add");
         });
 
         //QUITAR
         btnEliminar.addActionListener(e -> {
             if (!isCellSelected(tblCompra)){
-                showMessage("Debe seleccionar una fila para continuar.");
+                showMessage("Debe seleccionar un item para continuar.");
+                return;
+            }
+            int fila = tblCompra.getSelectedRow();
+            if (fila == 0){
+                tblCompra.setValueAt(null,0,0);
+                tblCompra.setValueAt(null,0,1);
+                tblCompra.setValueAt(null,0,2);
+                tblCompra.setValueAt(null,0,3);
+                tblCompra.setValueAt("0",0,4);
+                tblCompra.setValueAt("0",0,5);
+            }else{
+                DefaultTableModel modelo = (DefaultTableModel)tblCompra.getModel();
+                modelo.removeRow(tblCompra.getSelectedRow());
+            }
+
+            actualizaCantItems("remove");
+            actualizaTotal();
+
+        });
+
+
+        btnFinalizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (actualizaTotal()){
+                    showMessage("No puede haber ni cantidades ni precios con valor 0.");
+                    return;
+                }
+                Insumo ins = new Insumo("(Sin datos)",null,null,null);
+                DetalleCompra detalle ;
+                Compra compra = new Compra();
+                ArrayList <DetalleCompra> detalles = new ArrayList<DetalleCompra>();
+                java.sql.Date time;
+                java.util.Date utilDate = new java.util.Date();
+                compra.setFechaOperacion(new java.sql.Date(utilDate.getTime()));
+                compra.setMontoTotal(BigDecimal.valueOf(Double.valueOf((jlTotal.getText()))));
+                compra.setCantidadItems(Integer.valueOf(jlCantidadItems.getText()));
+                try {
+                    for (int i = 0; i < tblCompra.getRowCount(); i++) {
+                        ins = new Insumo((String)tblCompra.getValueAt(i,1),null,null,null);
+                        detalle = new DetalleCompra();
+                        detalle.setCantidad(BigDecimal.valueOf(Double.valueOf((String)tblCompra.getValueAt(i,4))));
+                        detalle.setPrecio(BigDecimal.valueOf(Double.valueOf((String)tblCompra.getValueAt(i,5))));
+                        detalle.setInsumo(ins);
+                        detalle.setObservaciones((String)tblCompra.getValueAt(i,2));
+                        detalles.add(detalle);
+                    }
+                } catch (NumberFormatException ex) {
+                    showMessage("Ocurrio un error por el ingreso de datos del insumo: "+ins.getNombre()+".\n Recuerde que solo debe ingresar datos numericos");
+                } catch (Exception ex) {
+                    showMessage("Ocurrio un error calcular el total de la compra: "+e.toString());
+                }
+                compra.setDetalles(detalles);
+                boolean save = new GestorCompras().registrarCompra(compra);
+
+                if (save){
+                   showMessage("La compra de insumos fue registrada exitosamente.");
+                   limpiarPantalla();
+                }
             }
         });
     }
 
     private String nvl(String scantidad, String s) {
-        if (scantidad.equals(null)){
+        if (scantidad == null){
             return s;
         }
         return scantidad;
+    }
+
+    private void limpiarPantalla(){
+        inicializaTabla(0);
+        txtBuscar.setText("");
+        jlCantidadItems.setText("0");
+        jlTotal.setText("0");
+        cantItems = 0;
+
     }
 
 
@@ -172,14 +253,26 @@ public class PantallaAdministrarCompra extends JFrame {
         tblCompra.setModel(modelCompra);
         tblCompra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCompra.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblCompra.getColumnModel().getColumn(1).setPreferredWidth(380);
-        tblCompra.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tblCompra.getColumnModel().getColumn(3).setPreferredWidth(60);
-        col = tblCompra.getColumnModel().getColumn(3);
-        col.setCellEditor(new MyTableCellEditor());
+        tblCompra.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tblCompra.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tblCompra.getColumnModel().getColumn(3).setPreferredWidth(150);
         tblCompra.getColumnModel().getColumn(4).setPreferredWidth(60);
         col = tblCompra.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
+        tblCompra.getColumnModel().getColumn(5).setPreferredWidth(60);
+        col = tblCompra.getColumnModel().getColumn(5);
+        col.setCellEditor(new MyTableCellEditor());
+        col = tblCompra.getColumnModel().getColumn(2);
+        col.setCellEditor(new MyTableCellEditor());
+        tblCompra.setCellSelectionEnabled(true);
+        tblCompra.getModel().addTableModelListener(new TableModelListener() {
+
+            public void tableChanged(TableModelEvent e) {
+                if (tblCompra.getSelectedColumn()==4 || tblCompra.getSelectedColumn()==5){
+                    actualizaTotal();
+                }
+            }
+        });
 
     }
 
@@ -187,6 +280,48 @@ public class PantallaAdministrarCompra extends JFrame {
         JOptionPane.showMessageDialog(this, error);
     }
 
+    private void actualizaLabelTotal(float total){
+        jlTotal.setText(String.valueOf(total));
+    }
+
+    private void actualizaCantItems(String tipo){
+        if (!tipo.equals("add")) {
+            cantItems--;
+        } else {
+            cantItems++;
+        }
+        jlCantidadItems.setText(String.valueOf(cantItems));
+    }
+
+    private boolean actualizaTotal() {
+        String ins = "";
+        existeValorCero = false;
+        try {
+            total = 0;
+            for (int i = 0; i < tblCompra.getRowCount(); i++) {
+                ins = (String)tblCompra.getValueAt(i, 1);
+                scantidad = nvl((String)tblCompra.getValueAt(i, 4),"0");
+                scantidad = scantidad.replace(",",".");
+                sprecio = nvl((String)tblCompra.getValueAt(i, 5),"0");
+                sprecio = sprecio.replace(",",".");
+                cantidad = Float.valueOf(scantidad);
+                precio = Float.valueOf(sprecio);
+                if (cantidad == 0 || precio == 0) {
+                    existeValorCero = true;
+                }
+                total+=cantidad*precio;
+            }
+        } catch (NumberFormatException e) {
+            showMessage("Ocurrio un error por el ingreso de datos del insumo: "+ins+".\n Recuerde que solo debe ingresar datos numericos");
+        } catch (Exception e) {
+            showMessage("Ocurrio un error calcular el total de la compra: "+e.toString());
+        }
+
+        actualizaLabelTotal(total);
+
+        return existeValorCero;
+
+    }
 
     //METODO BUSCAR INSUMOS
     public void buscarInsumos() {
@@ -208,13 +343,7 @@ public class PantallaAdministrarCompra extends JFrame {
                 data[i][2] = insumo.getInsDescripcion();
                 data[i][3] = insumo.getInsUnidadMedida();
                 data[i][4] = insumo.getTipoInsumoByInsTinId();
-                //TODO verificar como manejamos el stock
-                StockInsumoEntity stockInsumoEntity = (StockInsumoEntity) session.createQuery("select x from StockInsumoEntity x where x.insumoBySinInsId = :pNombre").setParameter("pNombre", insumo).uniqueResult();
-                if (stockInsumoEntity != null) {
-                    data[i][5] = stockInsumoEntity.getSinTotal();
-                } else {
-                    data[i][5] = 0;
-                }
+                data[i][5] =insumo.getInsStock();
                 i++;
             }
             setModelInsumo(columnNames, data, tblInsumos);

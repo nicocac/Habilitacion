@@ -10,6 +10,7 @@ public class Insumo {
     private String observaciones;
     private TipoInsumo tipoInsumo;
     private String unidadMedida;
+    private double stock;
 
     public Insumo(String nombre, String observaciones, TipoInsumo tipoInsumo, String unidadMedida) {
         this.nombre = nombre;
@@ -48,5 +49,13 @@ public class Insumo {
 
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
+    }
+
+    public double getStock() {
+        return stock;
+    }
+
+    public void setStock(double stock) {
+        this.stock = stock;
     }
 }

@@ -21,9 +21,19 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     public MenuPrincipal() {
 
-        //INSUMOS
         mb1 = new JMenuBar();
         setJMenuBar(mb1);
+
+        //MAQUINARIA
+        menu3 = new JMenu("Opciones");
+        mb1.add(menu3);
+
+        //SALIR
+        mi7 = new JMenuItem("Salir");
+        mi7.addActionListener(this);
+        menu3.add(mi7);
+
+        //INSUMOS
         menu1 = new JMenu("Insumos");
         mb1.add(menu1);
 
@@ -56,10 +66,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi6.addActionListener(this);
         menu2.add(mi6);
 
-        //SALIR
-        mi7 = new JMenuItem("Salir");
-        mi7.addActionListener(this);
-        mb1.add(mi7);
+
 
     }
 
