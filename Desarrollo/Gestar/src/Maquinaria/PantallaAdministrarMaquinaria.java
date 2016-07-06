@@ -130,8 +130,8 @@ public class PantallaAdministrarMaquinaria extends JFrame {
         tblMaquinaria.setModel(model);
         tblMaquinaria.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblMaquinaria.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblMaquinaria.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tblMaquinaria.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblMaquinaria.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tblMaquinaria.getColumnModel().getColumn(2).setPreferredWidth(200);
         tblMaquinaria.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblMaquinaria.getColumnModel().getColumn(4).setPreferredWidth(100);
         tblMaquinaria.getColumnModel().getColumn(5).setPreferredWidth(60);

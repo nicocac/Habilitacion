@@ -143,10 +143,10 @@ public class PantallaAdministrarCompra extends JFrame {
             }
             int fila = tblCompra.getSelectedRow();
             if (fila == 0){
-                tblCompra.setValueAt(null,0,0);
-                tblCompra.setValueAt(null,0,1);
-                tblCompra.setValueAt(null,0,2);
-                tblCompra.setValueAt(null,0,3);
+                tblCompra.setValueAt("",0,0);
+                tblCompra.setValueAt("",0,1);
+                tblCompra.setValueAt("",0,2);
+                tblCompra.setValueAt("",0,3);
                 tblCompra.setValueAt("0",0,4);
                 tblCompra.setValueAt("0",0,5);
             }else{
@@ -244,6 +244,8 @@ public class PantallaAdministrarCompra extends JFrame {
         tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(150);
         tblInsumos.getColumnModel().getColumn(4).setPreferredWidth(200);
         tblInsumos.getColumnModel().getColumn(5).setPreferredWidth(60);
+        tblInsumos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tblInsumos.setCe
     }
 
     private void setModelCompra(String[] columnames, Object[][] data, JTable tabla) {
@@ -265,6 +267,7 @@ public class PantallaAdministrarCompra extends JFrame {
         col = tblCompra.getColumnModel().getColumn(2);
         col.setCellEditor(new MyTableCellEditor());
         tblCompra.setCellSelectionEnabled(true);
+        tblCompra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCompra.getModel().addTableModelListener(new TableModelListener() {
 
             public void tableChanged(TableModelEvent e) {

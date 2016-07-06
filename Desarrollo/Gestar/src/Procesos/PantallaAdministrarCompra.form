@@ -163,7 +163,9 @@
                       <autoCreateRowSorter value="true"/>
                       <autoResizeMode value="4"/>
                       <cellSelectionEnabled value="true"/>
+                      <columnSelectionAllowed value="true"/>
                       <name value="Tipo de Insumos"/>
+                      <surrendersFocusOnKeystroke value="true"/>
                     </properties>
                   </component>
                 </children>

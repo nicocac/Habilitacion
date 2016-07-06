@@ -2,31 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Datos/CompraEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Datos/DetalleCompraEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Procesos/Compra.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Procesos/DetalleCompra.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Procesos/GestorCompras.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Datos/InsumoEntity.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Datos/InsumoEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/CargaInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/CargaInsumo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/Insumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/Insumo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/PantallaAdministrarInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/PantallaAdministrarInsumo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Principal/MenuPrincipal.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Principal/MenuPrincipal.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra$MyTableCellEditor.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra$MyTableCellEditor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/CargaTipoInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/CargaTipoInsumo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/PantallaAdministrarTipoInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/PantallaAdministrarTipoInsumo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestar.iml" afterPath="$PROJECT_DIR$/Gestar.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/out/production/Gestar/hibernate.cfg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/InsumoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/InsumoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/Insumo.java" afterPath="$PROJECT_DIR$/src/Insumo/Insumo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" afterPath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Maquinaria/CargaMaquinaria.form" afterPath="$PROJECT_DIR$/src/Maquinaria/CargaMaquinaria.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.java" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form" afterPath="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java" afterPath="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/hibernate.cfg.xml" />
     </list>
     <list id="c5a94efd-4017-424e-b3dc-29d5a2f9cbfd" name="Gestar" comment="Inicio del proyecto" />
     <ignored path="Gestar.iws" />
@@ -63,25 +43,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PantallaAdministrarCompra.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form">
+      <file leaf-file-name="PantallaAdministrarMaquinaria.form" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PantallaAdministrarCompra.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
-              <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6120#6135#0" expanded="true" />
-                <element signature="e#11134#11135#0" expanded="true" />
-                <element signature="e#11188#11189#0" expanded="true" />
-              </folding>
-            </state>
           </provider>
         </entry>
       </file>
@@ -127,7 +92,6 @@
         <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
         <option value="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
         <option value="$PROJECT_DIR$/src/hibernate.cfg.xml" />
-        <option value="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form" />
         <option value="$PROJECT_DIR$/src/Procesos/Compra.java" />
         <option value="$PROJECT_DIR$/src/Insumo/Insumo.java" />
         <option value="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" />
@@ -136,7 +100,10 @@
         <option value="$PROJECT_DIR$/src/Datos/DetalleCompraEntity.java" />
         <option value="$PROJECT_DIR$/src/Datos/CompraEntity.java" />
         <option value="$PROJECT_DIR$/src/Procesos/GestorCompras.java" />
+        <option value="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form" />
         <option value="$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/CargaMaquinaria.form" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.java" />
       </list>
     </option>
   </component>
@@ -234,7 +201,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Gestar" />
     <property name="JPA.DatabaseSchemaImportDialog" value="d6b16708-25a3-4a36-94b1-b63becef70d7" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="344" />
@@ -704,7 +671,7 @@
       <workItem from="1466220415718" duration="128000" />
       <workItem from="1466394389250" duration="163000" />
       <workItem from="1467139392352" duration="16681000" />
-      <workItem from="1467557048949" duration="36462000" />
+      <workItem from="1467557048949" duration="39520000" />
     </task>
     <task id="LOCAL-00001" summary="Alta proyecto">
       <created>1464610037357</created>
@@ -804,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466179639387</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Pantalla Compra Finalizada">
+      <created>1467742712687</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1467742712687</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -813,7 +787,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108735000" />
+    <option name="totallyTimeSpent" value="111793000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -826,7 +800,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.0925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="84" width="164" height="660" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -837,19 +811,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.495" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28091398" sideWeight="0.48375" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28091398" sideWeight="0.48375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17930591" sideWeight="0.5551402" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1844473" sideWeight="0.58928573" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1844473" sideWeight="0.42616823" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1844473" sideWeight="0.4107143" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.4975" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49776787" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17930591" sideWeight="0.4448598" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24421594" sideWeight="0.50446427" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39784947" sideWeight="0.4925" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39784947" sideWeight="0.4925" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -877,7 +851,8 @@
     <MESSAGE value="Unificacion pantalla tipo de insumo" />
     <MESSAGE value="Puesta a punto Sprint 1" />
     <MESSAGE value="Pantalla Compra Primera Parte" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pantalla Compra Primera Parte" />
+    <MESSAGE value="Pantalla Compra Finalizada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pantalla Compra Finalizada" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -897,7 +872,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java</url>
-          <line>296</line>
+          <line>299</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
@@ -915,41 +890,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/StockInsumoEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/../Proyecto/Datos/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1071,6 +1011,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1237,7 +1178,7 @@
         <state relative-caret-position="252">
           <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1253,6 +1194,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://Persistence/JavaeeElement:/fcd6702a/hibernate.cfg.xml/Gestar/hibernate/Hibernate/PersistenceModel">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Persistence</ID>
+          <OriginalElement>JavaeeElement:/fcd6702a/hibernate.cfg.xml/Gestar/hibernate/Hibernate/PersistenceModel</OriginalElement>
+          <nodes>
+            <node x="" y="">TipoEstadoMaquinariaEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/TipoEstadoMaquinariaEntity.java</node>
+            <node x="" y="">InsumoEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/InsumoEntity.java</node>
+            <node x="" y="">CompraEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/CompraEntity.java</node>
+            <node x="" y="">StockInsumoEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/StockInsumoEntity.java</node>
+            <node x="" y="">TipoMaquinariaEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/TipoMaquinariaEntity.java</node>
+            <node x="" y="">MovimientosStockEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/MovimientosStockEntity.java</node>
+            <node x="" y="">MaquinariaEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/MaquinariaEntity.java</node>
+            <node x="" y="">TipoInsumoEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/TipoInsumoEntity.java</node>
+            <node x="" y="">DetalleCompraEntity#file://C:/Users/OWNER/Documents/GitHub/Habilitacion/Habilitacion/Desarrollo/Gestar/src/Datos/DetalleCompraEntity.java</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.4651821862348178" x="587.9817232375981" y="470.4151436031332" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Properties</Category>
+            <Category>Embeddables</Category>
+            <Category>Superclasses</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="247" column="10" selection-start-line="247" selection-start-column="10" selection-end-line="247" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6112#6127#0" expanded="true" />
+            <element signature="e#11276#11277#0" expanded="true" />
+            <element signature="e#11330#11331#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1264,17 +1246,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java">
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/TipoEstado/CargaEstadoMaquinaria.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6120#6135#0" expanded="true" />
-            <element signature="e#11134#11135#0" expanded="true" />
-            <element signature="e#11188#11189#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1256">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/CargaMaquinaria.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="131" column="74" selection-start-line="131" selection-start-column="74" selection-end-line="131" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/PantallaAdministrarMaquinaria.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>
