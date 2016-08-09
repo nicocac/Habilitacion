@@ -22,9 +22,9 @@ public class CargaMaquinaria extends JFrame {
     private JButton cancelarButton;
     private JButton guardarButton;
     private JTextField txtAnio;
-    private JComboBox cbxMarca;
-    private JComboBox cbxModelo;
     private JComboBox cbxTipoMaquinaria;
+    private JTextField jtfMarca;
+    private JTextField jtfModelo;
 
     private String tipoOperacion;
     private int maqId;
@@ -65,8 +65,8 @@ public class CargaMaquinaria extends JFrame {
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);
             cbxEstado.setSelectedItem(tipoEstadoMaquinaria);
-            cbxMarca.setSelectedItem(marca);
-            cbxModelo.setSelectedItem(modelo);
+            jtfMarca.setText(marca);
+            jtfModelo.setText(modelo);
             cbxTipoMaquinaria.setSelectedItem(tipoMaquinaria);
             txtAnio.setText(anioFabricacion);
             maqId = id;
@@ -87,8 +87,8 @@ public class CargaMaquinaria extends JFrame {
                 maquinaria.setMaqDescripcion(txtDescripcion.getText());
                 maquinaria.setMaqFechaAlta(fechaActual);
                 maquinaria.setMaqUsuarioAlta("admin");
-                maquinaria.setMaqMarca(cbxMarca.getSelectedItem().toString());
-                maquinaria.setMaqModelo(cbxModelo.getSelectedItem().toString());
+                maquinaria.setMaqMarca(jtfMarca.getText());
+                maquinaria.setMaqModelo(jtfModelo.getText());
                 maquinaria.setMaqAnioFabricacion(txtAnio.getText());
 
                 String tipoMaquinaria = cbxTipoMaquinaria.getSelectedItem().toString();
