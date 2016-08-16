@@ -2,6 +2,7 @@ package Datos;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by OWNER on 8/9/2016.
@@ -19,6 +20,9 @@ public class LaboreoEntity {
     private String lboUsuarioUltMod;
     private Date lboFechaBaja;
     private String lboUsuarioBaja;
+    private int lboTpoId;
+    private int lboLcpId;
+    private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
 
     @Id
     @Column(name = "lbo_id")
@@ -161,5 +165,34 @@ public class LaboreoEntity {
         result = 31 * result + (lboFechaBaja != null ? lboFechaBaja.hashCode() : 0);
         result = 31 * result + (lboUsuarioBaja != null ? lboUsuarioBaja.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "lbo_tpo_id")
+    public int getLboTpoId() {
+        return lboTpoId;
+    }
+
+    public void setLboTpoId(int lboTpoId) {
+        this.lboTpoId = lboTpoId;
+    }
+
+    @Basic
+    @Column(name = "lbo_lcp_id")
+    public int getLboLcpId() {
+        return lboLcpId;
+    }
+
+    public void setLboLcpId(int lboLcpId) {
+        this.lboLcpId = lboLcpId;
+    }
+
+    @OneToMany(mappedBy = "laboreoByDboLboId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByLboId() {
+        return detalleLaboreosByLboId;
+    }
+
+    public void setDetalleLaboreosByLboId(Collection<DetalleLaboreoEntity> detalleLaboreosByLboId) {
+        this.detalleLaboreosByLboId = detalleLaboreosByLboId;
     }
 }

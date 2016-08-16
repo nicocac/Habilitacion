@@ -1,9 +1,6 @@
 package Datos;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -22,7 +19,7 @@ public class TipoLaboreoEntity {
     private Date tpoFechaBaja;
     private String tpoUsuarioBaja;
 
-    @Basic
+    @Id
     @Column(name = "tpo_id")
     public int getTpoId() {
         return tpoId;

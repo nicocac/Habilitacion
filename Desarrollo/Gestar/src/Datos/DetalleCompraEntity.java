@@ -8,7 +8,7 @@ import java.sql.Date;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "detalle_compra", schema = "gestar")
+@Table(name = "detalle_compra", schema = "gestar", catalog = "")
 public class DetalleCompraEntity {
     private int cpdId;
     private BigDecimal cpdCantidad;

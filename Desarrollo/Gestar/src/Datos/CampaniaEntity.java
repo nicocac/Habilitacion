@@ -2,6 +2,7 @@ package Datos;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by OWNER on 8/9/2016.
@@ -20,6 +21,7 @@ public class CampaniaEntity {
     private String cnaUsuarioUltMod;
     private Date cnaFechaBaja;
     private String cnaUsuarioBaja;
+    private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
     @Id
     @Column(name = "cna_id")
@@ -175,5 +177,14 @@ public class CampaniaEntity {
         result = 31 * result + (cnaFechaBaja != null ? cnaFechaBaja.hashCode() : 0);
         result = 31 * result + (cnaUsuarioBaja != null ? cnaUsuarioBaja.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "campaniaByLcpCnaId")
+    public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {
+        return loteCampaniasByCnaId;
+    }
+
+    public void setLoteCampaniasByCnaId(Collection<LoteCampaniaEntity> loteCampaniasByCnaId) {
+        this.loteCampaniasByCnaId = loteCampaniasByCnaId;
     }
 }

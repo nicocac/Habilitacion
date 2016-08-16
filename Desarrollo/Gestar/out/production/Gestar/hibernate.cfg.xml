@@ -4,16 +4,6 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!--<property name="connection.url">jdbc:mysql://localhost:3306/Gestar</property>
-       <property name="connection.driver_class">com.mysql.jdbc.Driver</property> -->
-
-        <property name="connection.username">
-            root
-        </property>
-
-        <property name="connection.password">
-            tesis2016
-        </property>
 
         <property name="show_sql">
             true
@@ -21,6 +11,14 @@
 
         <property name="dialect">
             org.hibernate.dialect.MySQLDialect
+        </property>
+
+        <property name="connection.username">
+            root
+        </property>
+
+        <property name="connection.password">
+            tesis2016
         </property>
 
         <property name="hbm2ddl.auto">
@@ -40,6 +38,14 @@
         <mapping class="Datos.TipoMaquinariaEntity"/>
         <mapping class="Datos.CompraEntity"/>
         <mapping class="Datos.DetalleCompraEntity"/>
+        <mapping class="Datos.CampaniaEntity"/>
+        <mapping class="Datos.CampoEntity"/>
+        <mapping class="Datos.DetalleLaboreoEntity"/>
+        <mapping class="Datos.LaboreoEntity"/>
+        <mapping class="Datos.LoteEntity"/>
+        <mapping class="Datos.LoteCampaniaEntity"/>
+        <mapping class="Datos.TipoLaboreoEntity"/>
+        <mapping class="Datos.TipoLaboreoEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

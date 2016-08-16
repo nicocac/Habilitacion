@@ -1,9 +1,6 @@
 package Datos;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -21,8 +18,11 @@ public class DetalleLaboreoEntity {
     private String dboUsuarioUltMod;
     private Date dboFechaBaja;
     private String dboUsuarioBaja;
+    private InsumoEntity insumoByDboInsId;
+    private LaboreoEntity laboreoByDboLboId;
+    private MaquinariaEntity maquinariaByDboMaqId;
 
-    @Basic
+    @Id
     @Column(name = "dbo_id")
     public int getDboId() {
         return dboId;
@@ -149,5 +149,35 @@ public class DetalleLaboreoEntity {
         result = 31 * result + (dboFechaBaja != null ? dboFechaBaja.hashCode() : 0);
         result = 31 * result + (dboUsuarioBaja != null ? dboUsuarioBaja.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false)
+    public InsumoEntity getInsumoByDboInsId() {
+        return insumoByDboInsId;
+    }
+
+    public void setInsumoByDboInsId(InsumoEntity insumoByDboInsId) {
+        this.insumoByDboInsId = insumoByDboInsId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    public LaboreoEntity getLaboreoByDboLboId() {
+        return laboreoByDboLboId;
+    }
+
+    public void setLaboreoByDboLboId(LaboreoEntity laboreoByDboLboId) {
+        this.laboreoByDboLboId = laboreoByDboLboId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_maq_id", referencedColumnName = "maq_id")
+    public MaquinariaEntity getMaquinariaByDboMaqId() {
+        return maquinariaByDboMaqId;
+    }
+
+    public void setMaquinariaByDboMaqId(MaquinariaEntity maquinariaByDboMaqId) {
+        this.maquinariaByDboMaqId = maquinariaByDboMaqId;
     }
 }

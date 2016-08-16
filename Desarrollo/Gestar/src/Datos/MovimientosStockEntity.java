@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "movimientos_stock", schema = "gestar", catalog = "")
+@Table(name = "movimientos_stock", schema = "gestar")
 public class MovimientosStockEntity {
     private int mosId;
     private String mosTipoMovimiento;

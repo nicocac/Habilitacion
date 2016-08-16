@@ -2,6 +2,7 @@ package Datos;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 
 @Entity
@@ -18,6 +19,7 @@ public class TipoEstadoMaquinariaEntity {
     private Date teMaFechaBaja;
     private String teMaUsuarioBaja;
 //    private Collection<InsumoEntity> insumosByTinId;
+    private Collection<MaquinariaEntity> maquinariasByTeMaId;
 
     @Id
     @Column(name = "te_ma_id")
@@ -134,6 +136,15 @@ public class TipoEstadoMaquinariaEntity {
 
     }
 
+//    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
+//    public Collection<InsumoEntity> getInsumosByTinId() {
+//        return insumosByTinId;
+//    }
+
+//    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
+//        this.insumosByTinId = insumosByTinId;
+//    }
+
     @Override
     public int hashCode() {
         int result = teMaId;
@@ -148,18 +159,17 @@ public class TipoEstadoMaquinariaEntity {
         return result;
     }
 
-//    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
-//    public Collection<InsumoEntity> getInsumosByTinId() {
-//        return insumosByTinId;
-//    }
-
-//    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
-//        this.insumosByTinId = insumosByTinId;
-//    }
-
     @Override
     public String toString() {
         return this.teMaNombre;
     }
 
+    @OneToMany(mappedBy = "tipoEstadoMaquinariaByMaqTestadoId")
+    public Collection<MaquinariaEntity> getMaquinariasByTeMaId() {
+        return maquinariasByTeMaId;
+    }
+
+    public void setMaquinariasByTeMaId(Collection<MaquinariaEntity> maquinariasByTeMaId) {
+        this.maquinariasByTeMaId = maquinariasByTeMaId;
+    }
 }

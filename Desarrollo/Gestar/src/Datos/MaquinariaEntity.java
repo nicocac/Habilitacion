@@ -2,6 +2,7 @@ package Datos;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 
 @Entity
@@ -26,7 +27,7 @@ public class MaquinariaEntity {
     private TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId;
 
 //    private Collection<StockInsumoEntity> stockInsumosByInsId;
-
+    private Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId;
 
     @Id
     @Column(name = "maq_id")
@@ -37,7 +38,6 @@ public class MaquinariaEntity {
     public void setMaqId(int maqId) {
         this.maqId = maqId;
     }
-
 
     @Basic
     @Column(name = "maq_nombre")
@@ -215,10 +215,6 @@ public class MaquinariaEntity {
         return tipoMaquinariaByMaqTmaqId;
     }
 
-    public void setTipoMaquinariaByMaqTmaqId(TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId) {
-        this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
-    }
-
 
 //    @OneToMany(mappedBy = "insumoBySinInsId")
 //    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
@@ -229,8 +225,21 @@ public class MaquinariaEntity {
 //        this.stockInsumosByInsId = stockInsumosByInsId;
 //    }
 
+    public void setTipoMaquinariaByMaqTmaqId(TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId) {
+        this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
+    }
+
     @Override
     public String toString() {
         return this.maqNombre;
+    }
+
+    @OneToMany(mappedBy = "maquinariaByDboMaqId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByMaqId() {
+        return detalleLaboreosByMaqId;
+    }
+
+    public void setDetalleLaboreosByMaqId(Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId) {
+        this.detalleLaboreosByMaqId = detalleLaboreosByMaqId;
     }
 }

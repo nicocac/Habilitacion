@@ -2,19 +2,21 @@ package Datos;
 
 import Conexion.Coneccion;
 import org.hibernate.*;
+import org.hibernate.Query;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TransferQueue;
 
 /**
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "insumo", schema = "gestar")
+@Table(name = "insumo", schema = "gestar", catalog = "")
 public class InsumoEntity {
     private int insId;
     private String insNombre;
@@ -29,6 +31,8 @@ public class InsumoEntity {
     private BigDecimal insStock;
     private TipoInsumoEntity tipoInsumoByInsTinId;
     private Collection<StockInsumoEntity> stockInsumosByInsId;
+    private Collection<DetalleCompraEntity> detalleComprasByInsId;
+    private Collection<DetalleLaboreoEntity> detalleLaboreosByInsId;
 
     @Id
     @Column(name = "ins_id")
@@ -209,9 +213,9 @@ public class InsumoEntity {
     public InsumoEntity getByNombre(String nombre){
         Session session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
-        org.hibernate.Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+        Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
         query.setParameter("pNombre", nombre);
-        java.util.List list = query.list();
+        List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
             insumo = (InsumoEntity) iter.next();
@@ -227,4 +231,21 @@ public class InsumoEntity {
         return true;
     }
 
+    @OneToMany(mappedBy = "insumoByCpdInsId")
+    public Collection<DetalleCompraEntity> getDetalleComprasByInsId() {
+        return detalleComprasByInsId;
+    }
+
+    public void setDetalleComprasByInsId(Collection<DetalleCompraEntity> detalleComprasByInsId) {
+        this.detalleComprasByInsId = detalleComprasByInsId;
+    }
+
+    @OneToMany(mappedBy = "insumoByDboInsId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByInsId() {
+        return detalleLaboreosByInsId;
+    }
+
+    public void setDetalleLaboreosByInsId(Collection<DetalleLaboreoEntity> detalleLaboreosByInsId) {
+        this.detalleLaboreosByInsId = detalleLaboreosByInsId;
+    }
 }

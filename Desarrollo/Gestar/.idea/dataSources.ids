@@ -8,832 +8,830 @@
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="gestar"/>
-      <table id="2" parent="1" name="insumo"/>
-      <table id="3" parent="1" name="movimientos_stock"/>
-      <table id="4" parent="1" name="stock_insumo"/>
-      <table id="5" parent="1" name="tipo_insumo"/>
-      <table id="6" parent="1" name="compra"/>
-      <table id="7" parent="1" name="detalle_compra"/>
-      <table id="8" parent="1" name="maquinaria"/>
-      <table id="9" parent="1" name="tipo_estado_maquinaria"/>
-      <table id="10" parent="1" name="tipo_maquinaria"/>
-      <table id="11" parent="1" name="campania"/>
-      <table id="12" parent="1" name="campo"/>
-      <table id="13" parent="1" name="detalle_laboreo"/>
-      <table id="14" parent="1" name="hibernate_sequences"/>
-      <table id="15" parent="1" name="laboreo"/>
-      <table id="16" parent="1" name="lote"/>
-      <table id="17" parent="1" name="lote_campania"/>
-      <table id="18" parent="1" name="tipo_laboreo"/>
-      <column id="19" parent="2" name="ins_id">
+      <table id="2" parent="1" name="campania"/>
+      <table id="3" parent="1" name="campo"/>
+      <table id="4" parent="1" name="compra"/>
+      <table id="5" parent="1" name="detalle_compra"/>
+      <table id="6" parent="1" name="detalle_laboreo"/>
+      <table id="7" parent="1" name="hibernate_sequences"/>
+      <table id="8" parent="1" name="insumo"/>
+      <table id="9" parent="1" name="laboreo"/>
+      <table id="10" parent="1" name="lote"/>
+      <table id="11" parent="1" name="lote_campania"/>
+      <table id="12" parent="1" name="maquinaria"/>
+      <table id="13" parent="1" name="movimientos_stock"/>
+      <table id="14" parent="1" name="stock_insumo"/>
+      <table id="15" parent="1" name="tipo_estado_maquinaria"/>
+      <table id="16" parent="1" name="tipo_insumo"/>
+      <table id="17" parent="1" name="tipo_laboreo"/>
+      <table id="18" parent="1" name="tipo_maquinaria"/>
+      <column id="19" parent="2" name="cna_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
       </column>
-      <column id="20" parent="2" name="ins_nombre">
+      <column id="20" parent="2" name="cna_denominacion">
         <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
+        <data-type>varchar(50)</data-type>
       </column>
-      <column id="21" parent="2" name="ins_descripcion">
+      <column id="21" parent="2" name="cna_fecha_inicio">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="22" parent="2" name="cna_fecha_fin_estimada">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="23" parent="2" name="cna_fecha_fin_real">
+        <data-type>date</data-type>
+      </column>
+      <column id="24" parent="2" name="cna_fecha_alta">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="25" parent="2" name="cna_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="26" parent="2" name="cna_fecha_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="27" parent="2" name="cna_usuario_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="28" parent="2" name="cna_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="29" parent="2" name="cna_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="30" parent="2" name="PRIMARY">
+        <columns>cna_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="31" parent="3" name="cpo_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="32" parent="3" name="cpo_nombre">
+        <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="22" parent="2" name="ins_unidad_medida">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="23" parent="2" name="ins_tin_id">
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="24" parent="2" name="ins_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="25" parent="2" name="ins_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="26" parent="2" name="ins_fecha_ult_mod">
-        <data-type>date</data-type>
-      </column>
-      <column id="27" parent="2" name="ins_usuario_utl_mod">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="28" parent="2" name="ins_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="29" parent="2" name="ins_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="30" parent="2" name="ins_stock">
+      <column id="33" parent="3" name="cpo_cant_metros">
         <mandatory>1</mandatory>
         <data-type>decimal(10)</data-type>
       </column>
-      <index id="31" parent="2" name="tin_fk">
-        <columns>ins_tin_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="32" parent="2" name="PRIMARY">
-        <columns>ins_id</columns>
+      <column id="34" parent="3" name="cpo_observaciones">
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="35" parent="3" name="cpo_propietario">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="36" parent="3" name="cpo_ubicacion">
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="37" parent="3" name="cpo_coordenadas">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="38" parent="3" name="cpo_fecha_alta">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="39" parent="3" name="cpo_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="40" parent="3" name="cpo_fecha_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="41" parent="3" name="cpo_usuario_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="42" parent="3" name="cpo_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="43" parent="3" name="cpo_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="44" parent="3" name="PRIMARY">
+        <columns>cpo_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="33" parent="2" name="tin_fk">
-        <columns>ins_tin_id</columns>
-        <ref-key>~.tipo_insumo.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="34" parent="3" name="mos_id">
+      <column id="45" parent="4" name="cpa_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="35" parent="3" name="mos_sin_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="36" parent="3" name="mos_tipo_movimiento">
-        <mandatory>1</mandatory>
-        <data-type>varchar(1)</data-type>
-      </column>
-      <column id="37" parent="3" name="mos_cantidad">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10)</data-type>
-      </column>
-      <column id="38" parent="3" name="mos_fecha_alta">
-        <mandatory>1</mandatory>
+      <column id="46" parent="4" name="cpa_fecha_compra">
         <data-type>date</data-type>
       </column>
-      <column id="39" parent="3" name="mos_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="40" parent="3" name="mos_fecha_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="41" parent="3" name="mos_usuario_utl_mod">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="42" parent="3" name="mos_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="43" parent="3" name="mos_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="44" parent="3" name="mos_fk">
-        <columns>mos_sin_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="45" parent="3" name="PRIMARY">
-        <columns>mos_id</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="46" parent="3" name="mos_fk">
-        <columns>mos_sin_id</columns>
-        <ref-key>~.stock_insumo.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="47" parent="4" name="sin_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="48" parent="4" name="sin_total">
-        <mandatory>1</mandatory>
-        <data-type>decimal(11)</data-type>
-      </column>
-      <column id="49" parent="4" name="sin_ins_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="50" parent="4" name="sin_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="51" parent="4" name="sin_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="52" parent="4" name="sin_fecha_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="53" parent="4" name="sin_usuario_utl_mod">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="54" parent="4" name="sin_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="55" parent="4" name="sin_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="56" parent="4" name="sin_fk">
-        <columns>sin_ins_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="57" parent="4" name="PRIMARY">
-        <columns>sin_id</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="58" parent="4" name="sin_fk">
-        <columns>sin_ins_id</columns>
-        <ref-key>~.insumo.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="59" parent="5" name="tin_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="60" parent="5" name="tin_nombre">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="61" parent="5" name="tin_descripcion">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="62" parent="5" name="tin_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="63" parent="5" name="tin_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="64" parent="5" name="tin_fecha_ult_mod">
-        <data-type>date</data-type>
-      </column>
-      <column id="65" parent="5" name="tin_usuario_utl_mod">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="66" parent="5" name="tin_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="67" parent="5" name="tin_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <key id="68" parent="5" name="PRIMARY">
-        <columns>tin_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="69" parent="6" name="cpa_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="70" parent="6" name="cpa_fecha_compra">
-        <data-type>date</data-type>
-      </column>
-      <column id="71" parent="6" name="cpa_monto_total">
+      <column id="47" parent="4" name="cpa_monto_total">
         <data-type>float</data-type>
       </column>
-      <column id="72" parent="6" name="cpa_cantidad_items">
+      <column id="48" parent="4" name="cpa_cantidad_items">
         <data-type>int(5)</data-type>
       </column>
-      <column id="73" parent="6" name="cpa_fecha_alta">
+      <column id="49" parent="4" name="cpa_fecha_alta">
         <data-type>date</data-type>
       </column>
-      <column id="74" parent="6" name="cpa_usuario_alta">
+      <column id="50" parent="4" name="cpa_usuario_alta">
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="75" parent="6" name="cpa_fecha_ult_mod">
+      <column id="51" parent="4" name="cpa_fecha_ult_mod">
         <data-type>date</data-type>
       </column>
-      <column id="76" parent="6" name="cpa_usuario_ult_mod">
+      <column id="52" parent="4" name="cpa_usuario_ult_mod">
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="77" parent="6" name="cpa_fecha_baja">
+      <column id="53" parent="4" name="cpa_fecha_baja">
         <data-type>date</data-type>
       </column>
-      <column id="78" parent="6" name="cpa_usuario_baja">
+      <column id="54" parent="4" name="cpa_usuario_baja">
         <data-type>varchar(10)</data-type>
       </column>
-      <key id="79" parent="6" name="PRIMARY">
+      <key id="55" parent="4" name="PRIMARY">
         <columns>cpa_id</columns>
         <primary>1</primary>
       </key>
-      <column id="80" parent="7" name="cpd_id">
+      <column id="56" parent="5" name="cpd_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="81" parent="7" name="cpd_cpa_id">
+      <column id="57" parent="5" name="cpd_cpa_id">
         <data-type>int(11)</data-type>
       </column>
-      <column id="82" parent="7" name="cpd_ins_id">
+      <column id="58" parent="5" name="cpd_ins_id">
         <data-type>int(11)</data-type>
       </column>
-      <column id="83" parent="7" name="cpd_cantidad">
+      <column id="59" parent="5" name="cpd_cantidad">
         <data-type>decimal(5,2)</data-type>
       </column>
-      <column id="84" parent="7" name="cpd_precio">
+      <column id="60" parent="5" name="cpd_precio">
         <data-type>decimal(5,2)</data-type>
       </column>
-      <column id="85" parent="7" name="cpd_observaciones">
+      <column id="61" parent="5" name="cpd_observaciones">
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="86" parent="7" name="cpd_fecha_alta">
+      <column id="62" parent="5" name="cpd_fecha_alta">
         <data-type>date</data-type>
       </column>
-      <column id="87" parent="7" name="cpd_usuario_alta">
+      <column id="63" parent="5" name="cpd_usuario_alta">
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="88" parent="7" name="cpd_fecha_ult_mod">
+      <column id="64" parent="5" name="cpd_fecha_ult_mod">
         <data-type>date</data-type>
       </column>
-      <column id="89" parent="7" name="cpd_usuario_ult_mod">
+      <column id="65" parent="5" name="cpd_usuario_ult_mod">
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="90" parent="7" name="cpd_fecha_baja">
+      <column id="66" parent="5" name="cpd_fecha_baja">
         <data-type>date</data-type>
       </column>
-      <column id="91" parent="7" name="cpd_usuario_baja">
+      <column id="67" parent="5" name="cpd_usuario_baja">
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="92" parent="7" name="idx">
+      <column id="68" parent="5" name="idx">
         <data-type>int(11)</data-type>
       </column>
-      <index id="93" parent="7" name="fk_cpa">
+      <index id="69" parent="5" name="fk_cpa">
         <columns>cpd_cpa_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="94" parent="7" name="fk_ins">
+      <index id="70" parent="5" name="fk_ins">
         <columns>cpd_ins_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="95" parent="7" name="PRIMARY">
+      <key id="71" parent="5" name="PRIMARY">
         <columns>cpd_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="96" parent="7" name="fk_cpa">
+      <foreign-key id="72" parent="5" name="fk_cpa">
         <columns>cpd_cpa_id</columns>
         <ref-key>~.compra.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="97" parent="7" name="fk_ins">
+      <foreign-key id="73" parent="5" name="fk_ins">
         <columns>cpd_ins_id</columns>
         <ref-key>~.insumo.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="98" parent="8" name="maq_id">
+      <column id="74" parent="6" name="dbo_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="99" parent="8" name="maq_anio_fabricacion">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="100" parent="8" name="maq_descripcion">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="101" parent="8" name="maq_fecha_alta">
-        <data-type>date</data-type>
-      </column>
-      <column id="102" parent="8" name="maq_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="103" parent="8" name="maq_fecha_ult_mod">
-        <data-type>date</data-type>
-      </column>
-      <column id="104" parent="8" name="maq_marca">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="105" parent="8" name="maq_modelo">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="106" parent="8" name="maq_nombre">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="107" parent="8" name="maq_usuario_alta">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="108" parent="8" name="maq_usuario_baja">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="109" parent="8" name="maq_usuario_utl_mod">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="110" parent="8" name="maq_testado_id">
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="111" parent="8" name="maq_tmaq_id">
-        <data-type>int(11)</data-type>
-      </column>
-      <index id="112" parent="8" name="FK_2jo40fi9ebum8t5vxu6osei7f">
-        <columns>maq_tmaq_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="113" parent="8" name="FK_knxb3ey62rl2h4hrk9b8uckce">
-        <columns>maq_testado_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="114" parent="8" name="PRIMARY">
-        <columns>maq_id</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="115" parent="8" name="FK_2jo40fi9ebum8t5vxu6osei7f">
-        <columns>maq_tmaq_id</columns>
-        <ref-key>~.tipo_maquinaria.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="116" parent="8" name="FK_knxb3ey62rl2h4hrk9b8uckce">
-        <columns>maq_testado_id</columns>
-        <ref-key>~.tipo_estado_maquinaria.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="117" parent="9" name="te_ma_id">
+      <column id="75" parent="6" name="dbo_ins_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="118" parent="9" name="te_ma_descripcion">
-        <data-type>varchar(255)</data-type>
+      <column id="76" parent="6" name="dbo_maq_id">
+        <data-type>int(11)</data-type>
       </column>
-      <column id="119" parent="9" name="te_ma_fecha_alta">
-        <data-type>date</data-type>
-      </column>
-      <column id="120" parent="9" name="te_ma_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="121" parent="9" name="te_ma_fecha_ult_mod">
-        <data-type>date</data-type>
-      </column>
-      <column id="122" parent="9" name="te_ma_nombre">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="123" parent="9" name="te_ma_usuario_alta">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="124" parent="9" name="te_ma_usuario_baja">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="125" parent="9" name="te_ma_usuario_utl_mod">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <key id="126" parent="9" name="PRIMARY">
-        <columns>te_ma_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="127" parent="10" name="tma_id">
+      <column id="77" parent="6" name="dbo_lbo_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="128" parent="10" name="tma_descripcion">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="129" parent="10" name="tma_fecha_alta">
-        <data-type>date</data-type>
-      </column>
-      <column id="130" parent="10" name="tma_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="131" parent="10" name="tma_fecha_ult_mod">
-        <data-type>date</data-type>
-      </column>
-      <column id="132" parent="10" name="tma_nombre">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="133" parent="10" name="tma_usuario_alta">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="134" parent="10" name="tma_usuario_baja">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="135" parent="10" name="tma_usuario_utl_mod">
-        <data-type>varchar(255)</data-type>
-      </column>
-      <key id="136" parent="10" name="PRIMARY">
-        <columns>tma_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="137" parent="11" name="cna_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="138" parent="11" name="cna_denominacion">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="139" parent="11" name="cna_fecha_inicio">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="140" parent="11" name="cna_fecha_fin_estimada">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="141" parent="11" name="cna_fecha_fin_real">
-        <data-type>date</data-type>
-      </column>
-      <column id="142" parent="11" name="cna_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="143" parent="11" name="cna_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="144" parent="11" name="cna_fecha_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="145" parent="11" name="cna_usuario_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="146" parent="11" name="cna_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="147" parent="11" name="cna_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <key id="148" parent="11" name="PRIMARY">
-        <columns>cna_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="149" parent="12" name="cpo_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="150" parent="12" name="cpo_nombre">
-        <mandatory>1</mandatory>
+      <column id="78" parent="6" name="dbo_observaciones">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="151" parent="12" name="cpo_cant_metros">
+      <column id="79" parent="6" name="dbo_cantidad">
         <mandatory>1</mandatory>
         <data-type>decimal(10)</data-type>
       </column>
-      <column id="152" parent="12" name="cpo_observaciones">
-        <data-type>varchar(200)</data-type>
-      </column>
-      <column id="153" parent="12" name="cpo_propietario">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="154" parent="12" name="cpo_ubicacion">
-        <data-type>varchar(200)</data-type>
-      </column>
-      <column id="155" parent="12" name="cpo_coordenadas">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="156" parent="12" name="cpo_fecha_alta">
+      <column id="80" parent="6" name="dbo_fecha_alta">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="157" parent="12" name="cpo_usuario_alta">
+      <column id="81" parent="6" name="dbo_usuario_alta">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="158" parent="12" name="cpo_fecha_ult_mod">
+      <column id="82" parent="6" name="dbo_fecha_ult_mod">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="159" parent="12" name="cpo_usuario_ult_mod">
+      <column id="83" parent="6" name="dbo_usuario_ult_mod">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="160" parent="12" name="cpo_fecha_baja">
+      <column id="84" parent="6" name="dbo_fecha_baja">
         <data-type>date</data-type>
       </column>
-      <column id="161" parent="12" name="cpo_usuario_baja">
+      <column id="85" parent="6" name="dbo_usuario_baja">
         <data-type>varchar(20)</data-type>
       </column>
-      <key id="162" parent="12" name="PRIMARY">
-        <columns>cpo_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="163" parent="13" name="dbo_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="164" parent="13" name="dbo_ins_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="165" parent="13" name="dbo_maq_id">
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="166" parent="13" name="dbo_lta_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="167" parent="13" name="dbo_lbo_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="168" parent="13" name="dbo_tpo_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="169" parent="13" name="dbo_observaciones">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="170" parent="13" name="dbo_cantidad">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10)</data-type>
-      </column>
-      <column id="171" parent="13" name="dbo_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="172" parent="13" name="dbo_usuario_alta">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="173" parent="13" name="dbo_fecha_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="174" parent="13" name="dbo_usuario_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="175" parent="13" name="dbo_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="176" parent="13" name="dbo_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="177" parent="13" name="dbo_ins_fk">
+      <index id="86" parent="6" name="dbo_ins_fk">
         <columns>dbo_ins_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="178" parent="13" name="dbo_lbo_fk">
+      <index id="87" parent="6" name="dbo_lbo_id">
         <columns>dbo_lbo_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="179" parent="13" name="dbo_lcp_fk">
-        <columns>dbo_lta_id</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="180" parent="13" name="dbo_maq_fk">
+      <index id="88" parent="6" name="dbo_maq_fk">
         <columns>dbo_maq_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <foreign-key id="181" parent="13" name="dbo_ins_fk">
+      <key id="89" parent="6" name="PRIMARY">
+        <columns>dbo_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="90" parent="6" name="dbo_ins_fk">
         <columns>dbo_ins_id</columns>
         <ref-key>~.insumo.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="182" parent="13" name="dbo_lbo_fk">
+      <foreign-key id="91" parent="6" name="dbo_lbo_id">
         <columns>dbo_lbo_id</columns>
         <ref-key>~.laboreo.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="183" parent="13" name="dbo_lcp_fk">
-        <columns>dbo_lta_id</columns>
-        <ref-key>~.lote_campania.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="184" parent="13" name="dbo_maq_fk">
+      <foreign-key id="92" parent="6" name="dbo_maq_fk">
         <columns>dbo_maq_id</columns>
         <ref-key>~.maquinaria.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="185" parent="14" name="sequence_name">
+      <column id="93" parent="7" name="sequence_name">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="186" parent="14" name="sequence_next_hi_value">
+      <column id="94" parent="7" name="sequence_next_hi_value">
         <data-type>int(11)</data-type>
       </column>
-      <column id="187" parent="15" name="lbo_id">
+      <column id="95" parent="8" name="ins_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
-      <column id="188" parent="15" name="lbo_fecha_hora_inicio">
+      <column id="96" parent="8" name="ins_nombre">
         <mandatory>1</mandatory>
-        <data-type>date</data-type>
+        <data-type>varchar(30)</data-type>
       </column>
-      <column id="189" parent="15" name="lbo_fecha_hora_fin">
-        <data-type>date</data-type>
-      </column>
-      <column id="190" parent="15" name="lbo_descripcion">
-        <mandatory>1</mandatory>
+      <column id="97" parent="8" name="ins_descripcion">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="191" parent="15" name="lbo_fecha_alta">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="192" parent="15" name="lbo_usuario_alta">
+      <column id="98" parent="8" name="ins_unidad_medida">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="193" parent="15" name="lbo_fecha_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="194" parent="15" name="lbo_usuario_ult_mod">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="195" parent="15" name="lbo_fecha_baja">
-        <data-type>date</data-type>
-      </column>
-      <column id="196" parent="15" name="lbo_usuario_baja">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <key id="197" parent="15" name="PRIMARY">
-        <columns>lbo_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="198" parent="16" name="lte_id">
-        <mandatory>1</mandatory>
+      <column id="99" parent="8" name="ins_tin_id">
         <data-type>int(11)</data-type>
       </column>
-      <column id="199" parent="16" name="lte_denominacion">
+      <column id="100" parent="8" name="ins_fecha_alta">
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>date</data-type>
       </column>
-      <column id="200" parent="16" name="lte_cant_metros">
+      <column id="101" parent="8" name="ins_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="102" parent="8" name="ins_fecha_ult_mod">
+        <data-type>date</data-type>
+      </column>
+      <column id="103" parent="8" name="ins_usuario_utl_mod">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="104" parent="8" name="ins_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="105" parent="8" name="ins_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="106" parent="8" name="ins_stock">
         <mandatory>1</mandatory>
         <data-type>decimal(10)</data-type>
       </column>
-      <column id="201" parent="16" name="lte_ubicacion">
+      <index id="107" parent="8" name="tin_fk">
+        <columns>ins_tin_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="108" parent="8" name="PRIMARY">
+        <columns>ins_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="109" parent="8" name="tin_fk">
+        <columns>ins_tin_id</columns>
+        <ref-key>~.tipo_insumo.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="110" parent="9" name="lbo_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="111" parent="9" name="lbo_tpo_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="112" parent="9" name="lbo_lcp_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="113" parent="9" name="lbo_fecha_hora_inicio">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="114" parent="9" name="lbo_fecha_hora_fin">
+        <data-type>date</data-type>
+      </column>
+      <column id="115" parent="9" name="lbo_descripcion">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="116" parent="9" name="lbo_fecha_alta">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="117" parent="9" name="lbo_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="118" parent="9" name="lbo_fecha_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="119" parent="9" name="lbo_usuario_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="120" parent="9" name="lbo_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="121" parent="9" name="lbo_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="122" parent="9" name="PRIMARY">
+        <columns>lbo_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="123" parent="10" name="lte_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="124" parent="10" name="lte_denominacion">
+        <mandatory>1</mandatory>
         <data-type>varchar(50)</data-type>
       </column>
-      <column id="202" parent="16" name="lte_fecha_desde">
+      <column id="125" parent="10" name="lte_cant_metros">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10)</data-type>
+      </column>
+      <column id="126" parent="10" name="lte_ubicacion">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="127" parent="10" name="lte_fecha_desde">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="203" parent="16" name="lte_fecha_hasta">
+      <column id="128" parent="10" name="lte_fecha_hasta">
         <data-type>date</data-type>
       </column>
-      <column id="204" parent="16" name="lte_fecha_alta">
+      <column id="129" parent="10" name="lte_fecha_alta">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="205" parent="16" name="lte_usuario_alta">
+      <column id="130" parent="10" name="lte_usuario_alta">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="206" parent="16" name="lte_fecha_ult_mod">
+      <column id="131" parent="10" name="lte_fecha_ult_mod">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="207" parent="16" name="lte_usuario_ult_mod">
+      <column id="132" parent="10" name="lte_usuario_ult_mod">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="208" parent="16" name="lte_fecha_baja">
+      <column id="133" parent="10" name="lte_fecha_baja">
         <data-type>date</data-type>
       </column>
-      <column id="209" parent="16" name="lte_usuario_baja">
+      <column id="134" parent="10" name="lte_usuario_baja">
         <data-type>varchar(20)</data-type>
       </column>
-      <key id="210" parent="16" name="PRIMARY">
+      <key id="135" parent="10" name="PRIMARY">
         <columns>lte_id</columns>
         <primary>1</primary>
       </key>
-      <column id="211" parent="17" name="lcp_id">
+      <column id="136" parent="11" name="lcp_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="212" parent="17" name="lcp_lte_id">
+      <column id="137" parent="11" name="lcp_lte_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="213" parent="17" name="lcp_cna_id">
+      <column id="138" parent="11" name="lcp_cna_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="214" parent="17" name="lcp_fecha_inicio">
+      <column id="139" parent="11" name="lcp_fecha_inicio">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="215" parent="17" name="lcp_fecha_fin">
+      <column id="140" parent="11" name="lcp_fecha_fin">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="216" parent="17" name="lcp_fecha_alta">
+      <column id="141" parent="11" name="lcp_fecha_alta">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="217" parent="17" name="lcp_usuario_alta">
+      <column id="142" parent="11" name="lcp_usuario_alta">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="218" parent="17" name="lcp_fecha_ult_mod">
+      <column id="143" parent="11" name="lcp_fecha_ult_mod">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="219" parent="17" name="lcp_usuario_ult_mod">
+      <column id="144" parent="11" name="lcp_usuario_ult_mod">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="220" parent="17" name="lcp_fecha_baja">
+      <column id="145" parent="11" name="lcp_fecha_baja">
         <data-type>date</data-type>
       </column>
-      <column id="221" parent="17" name="lcp_usuario_baja">
+      <column id="146" parent="11" name="lcp_usuario_baja">
         <data-type>varchar(20)</data-type>
       </column>
-      <index id="222" parent="17" name="lcp_cna_fk">
+      <index id="147" parent="11" name="lcp_cna_fk">
         <columns>lcp_cna_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="223" parent="17" name="lcp_lte_fk">
+      <index id="148" parent="11" name="lcp_lte_fk">
         <columns>lcp_lte_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="224" parent="17" name="PRIMARY">
+      <key id="149" parent="11" name="PRIMARY">
         <columns>lcp_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="225" parent="17" name="lcp_cna_fk">
+      <foreign-key id="150" parent="11" name="lcp_cna_fk">
         <columns>lcp_cna_id</columns>
         <ref-key>~.campania.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="226" parent="17" name="lcp_lte_fk">
+      <foreign-key id="151" parent="11" name="lcp_lte_fk">
         <columns>lcp_lte_id</columns>
         <ref-key>~.lote.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="227" parent="18" name="tpo_id">
+      <column id="152" parent="12" name="maq_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="228" parent="18" name="tpo_nombre">
+      <column id="153" parent="12" name="maq_anio_fabricacion">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="154" parent="12" name="maq_descripcion">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="155" parent="12" name="maq_fecha_alta">
+        <data-type>date</data-type>
+      </column>
+      <column id="156" parent="12" name="maq_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="157" parent="12" name="maq_fecha_ult_mod">
+        <data-type>date</data-type>
+      </column>
+      <column id="158" parent="12" name="maq_marca">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="159" parent="12" name="maq_modelo">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="160" parent="12" name="maq_nombre">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="161" parent="12" name="maq_usuario_alta">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="162" parent="12" name="maq_usuario_baja">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="163" parent="12" name="maq_usuario_utl_mod">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="164" parent="12" name="maq_testado_id">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="165" parent="12" name="maq_tmaq_id">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="166" parent="12" name="FK_2jo40fi9ebum8t5vxu6osei7f">
+        <columns>maq_tmaq_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="167" parent="12" name="FK_knxb3ey62rl2h4hrk9b8uckce">
+        <columns>maq_testado_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="168" parent="12" name="PRIMARY">
+        <columns>maq_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="169" parent="12" name="FK_2jo40fi9ebum8t5vxu6osei7f">
+        <columns>maq_tmaq_id</columns>
+        <ref-key>~.tipo_maquinaria.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="170" parent="12" name="FK_knxb3ey62rl2h4hrk9b8uckce">
+        <columns>maq_testado_id</columns>
+        <ref-key>~.tipo_estado_maquinaria.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="171" parent="13" name="mos_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="172" parent="13" name="mos_sin_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="173" parent="13" name="mos_tipo_movimiento">
+        <mandatory>1</mandatory>
+        <data-type>varchar(1)</data-type>
+      </column>
+      <column id="174" parent="13" name="mos_cantidad">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10)</data-type>
+      </column>
+      <column id="175" parent="13" name="mos_fecha_alta">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="176" parent="13" name="mos_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="177" parent="13" name="mos_fecha_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="178" parent="13" name="mos_usuario_utl_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="179" parent="13" name="mos_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="180" parent="13" name="mos_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <index id="181" parent="13" name="mos_fk">
+        <columns>mos_sin_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="182" parent="13" name="PRIMARY">
+        <columns>mos_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="183" parent="13" name="mos_fk">
+        <columns>mos_sin_id</columns>
+        <ref-key>~.stock_insumo.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="184" parent="14" name="sin_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="185" parent="14" name="sin_total">
+        <mandatory>1</mandatory>
+        <data-type>decimal(11)</data-type>
+      </column>
+      <column id="186" parent="14" name="sin_ins_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="187" parent="14" name="sin_fecha_alta">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="188" parent="14" name="sin_usuario_alta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="189" parent="14" name="sin_fecha_ult_mod">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="190" parent="14" name="sin_usuario_utl_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="191" parent="14" name="sin_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="192" parent="14" name="sin_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <index id="193" parent="14" name="sin_fk">
+        <columns>sin_ins_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="194" parent="14" name="PRIMARY">
+        <columns>sin_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="195" parent="14" name="sin_fk">
+        <columns>sin_ins_id</columns>
+        <ref-key>~.insumo.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="196" parent="15" name="te_ma_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="197" parent="15" name="te_ma_descripcion">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="198" parent="15" name="te_ma_fecha_alta">
+        <data-type>date</data-type>
+      </column>
+      <column id="199" parent="15" name="te_ma_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="200" parent="15" name="te_ma_fecha_ult_mod">
+        <data-type>date</data-type>
+      </column>
+      <column id="201" parent="15" name="te_ma_nombre">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="202" parent="15" name="te_ma_usuario_alta">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="203" parent="15" name="te_ma_usuario_baja">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="204" parent="15" name="te_ma_usuario_utl_mod">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="205" parent="15" name="PRIMARY">
+        <columns>te_ma_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="206" parent="16" name="tin_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="207" parent="16" name="tin_nombre">
         <mandatory>1</mandatory>
         <data-type>varchar(30)</data-type>
       </column>
-      <column id="229" parent="18" name="tpo_descripcion">
+      <column id="208" parent="16" name="tin_descripcion">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="230" parent="18" name="tpo_fecha_alta">
+      <column id="209" parent="16" name="tin_fecha_alta">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="231" parent="18" name="tpo_usuario_alta">
+      <column id="210" parent="16" name="tin_usuario_alta">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="232" parent="18" name="tpo_fecha_ult_mod">
+      <column id="211" parent="16" name="tin_fecha_ult_mod">
+        <data-type>date</data-type>
+      </column>
+      <column id="212" parent="16" name="tin_usuario_utl_mod">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="213" parent="16" name="tin_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="214" parent="16" name="tin_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="215" parent="16" name="PRIMARY">
+        <columns>tin_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="216" parent="17" name="tpo_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="217" parent="17" name="tpo_nombre">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="218" parent="17" name="tpo_descripcion">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="219" parent="17" name="tpo_fecha_alta">
         <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="233" parent="18" name="tpo_usuario_ult_mod">
+      <column id="220" parent="17" name="tpo_usuario_alta">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="234" parent="18" name="tpo_fecha_baja">
+      <column id="221" parent="17" name="tpo_fecha_ult_mod">
+        <mandatory>1</mandatory>
         <data-type>date</data-type>
       </column>
-      <column id="235" parent="18" name="tpo_usuario_baja">
+      <column id="222" parent="17" name="tpo_usuario_ult_mod">
+        <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
+      <column id="223" parent="17" name="tpo_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="224" parent="17" name="tpo_usuario_baja">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="225" parent="17" name="PRIMARY">
+        <columns>tpo_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="226" parent="18" name="tma_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="227" parent="18" name="tma_descripcion">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="228" parent="18" name="tma_fecha_alta">
+        <data-type>date</data-type>
+      </column>
+      <column id="229" parent="18" name="tma_fecha_baja">
+        <data-type>date</data-type>
+      </column>
+      <column id="230" parent="18" name="tma_fecha_ult_mod">
+        <data-type>date</data-type>
+      </column>
+      <column id="231" parent="18" name="tma_nombre">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="232" parent="18" name="tma_usuario_alta">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="233" parent="18" name="tma_usuario_baja">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="234" parent="18" name="tma_usuario_utl_mod">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="235" parent="18" name="PRIMARY">
+        <columns>tma_id</columns>
+        <primary>1</primary>
+      </key>
     </database-model>
   </data-source>
 </component>

@@ -5,13 +5,14 @@ import org.hibernate.annotations.IndexColumn;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "compra", schema = "gestar")
+@Table(name = "compra", schema = "gestar", catalog = "")
 public class CompraEntity {
     private int cpaId;
     private Date cpaFechaCompra;
@@ -24,8 +25,7 @@ public class CompraEntity {
     private Date cpaFechaBaja;
     private String cpaUsuarioBaja;
     private List<DetalleCompraEntity> detallesCompra;
-
-
+    private Collection<DetalleCompraEntity> detalleComprasByCpaId;
 
     @Id
     @GeneratedValue
@@ -182,5 +182,12 @@ public class CompraEntity {
         return result;
     }
 
+    @OneToMany(mappedBy = "compraByCpdCpaId")
+    public Collection<DetalleCompraEntity> getDetalleComprasByCpaId() {
+        return detalleComprasByCpaId;
+    }
 
+    public void setDetalleComprasByCpaId(Collection<DetalleCompraEntity> detalleComprasByCpaId) {
+        this.detalleComprasByCpaId = detalleComprasByCpaId;
+    }
 }
