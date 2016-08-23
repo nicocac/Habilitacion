@@ -22,6 +22,7 @@ public class Coneccion {
             Configuration ex = new Configuration();
             ex.configure();
             serviceRegistry = (new ServiceRegistryBuilder()).applySettings(ex.getProperties()).buildServiceRegistry();
+//            ourSessionFactory = new Configuration().configure().buildSessionFactory();
             ourSessionFactory = ex.buildSessionFactory(serviceRegistry);
         } catch (Throwable var1) {
             throw new ExceptionInInitializerError(var1);

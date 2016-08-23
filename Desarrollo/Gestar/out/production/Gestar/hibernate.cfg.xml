@@ -22,12 +22,12 @@
         </property>
 
         <property name="hbm2ddl.auto">
-            update
+            create-drop
         </property>
 
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Gestar</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestar</property>
 
         <mapping class="Datos.InsumoEntity"/>
         <mapping class="Datos.MovimientosStockEntity"/>
