@@ -1,7 +1,7 @@
 package Principal;
 
 import Insumo.PantallaAdministrarInsumo;
-import Laboreo.PantallaLaboreo;
+import Laboreo.GestorLaboreo;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
@@ -17,22 +17,22 @@ import java.awt.event.ActionListener;
 public class MenuPrincipal extends JFrame implements ActionListener {
 
     private JMenuBar mb1;
-    private JMenu menu1, menu2, menu3;
-    private JMenuItem mi1, mi2, mi3, mi4, mi5, mi6, mi7;
+    private JMenu menu1, menu2, menu3, menu4, menu5;
+    private JMenuItem mi1, mi2, mi3, mi4, mi5, mi6, mi7, mi8, mi9, mi10;
 
     public MenuPrincipal() {
 
         mb1 = new JMenuBar();
         setJMenuBar(mb1);
 
-        //MAQUINARIA
+        //OPCIONES
         menu3 = new JMenu("Opciones");
         mb1.add(menu3);
 
         //SALIR
-        mi7 = new JMenuItem("Salir");
-        mi7.addActionListener(this);
-        menu3.add(mi7);
+        mi10 = new JMenuItem("Salir");
+        mi10.addActionListener(this);
+        menu3.add(mi10);
 
         //INSUMOS
         menu1 = new JMenu("Insumos");
@@ -70,11 +70,34 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         //Procesos
         menu3 = new JMenu("Procesos");
         mb1.add(menu3);
+        //LOTE
+        menu3 = new JMenu("Lotes");
+        mb1.add(menu3);
 
         mi7 = new JMenuItem("Registrar Laboreo");
         mi7.addActionListener(this);
         menu3.add(mi7);
+        mi7 = new JMenuItem("Administrar Lotes");
+        mi7.addActionListener(this);
+        menu3.add(mi7);
 
+
+
+        mi8 = new JMenuItem("Administrar Tipo Lotes");
+        mi8.addActionListener(this);
+        menu3.add(mi8);
+
+        //COMPRAS
+        menu4 = new JMenu("Compras");
+        mb1.add(menu4);
+
+        mi9 = new JMenuItem("Administrar Compras");
+        mi9.addActionListener(this);
+        menu4.add(mi9);
+
+//        mi5 = new JMenuItem("Administrar Tipo Compra");
+//        mi5.addActionListener(this);
+//        menu2.add(mi5);
 
 
     }
@@ -118,13 +141,32 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi7) {
-            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
-            pantallaLaboreo.setVisible(true);
+//        if (e.getSource() == mi7) {
+//            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+//            pantallaLaboreo.setVisible(true);
+//            getDefaultCloseOperation();
+//        }
+//
+//        if (e.getSource() == mi7) {
+//            PantallaAdministrarLote pantallaAdministrarLote = new PantallaAdministrarLote();
+//            pantallaAdministrarLote.setVisible(true);
+//            getDefaultCloseOperation();
+//        }
+//
+//        if (e.getSource() == mi8) {
+//            PantallaAdministrarTipoLote pantallaAdministrarTipoLote = new PantallaAdministrarTipoLote();
+////            pantallaAdministrarTipoLote.setVisible(true);
+//            getDefaultCloseOperation();
+//        }
+
+        if (e.getSource() == mi9) {
+            PantallaAdministrarCompra pantallaAdministrarCompra = new PantallaAdministrarCompra();
+            pantallaAdministrarCompra.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi7) {
+
+        if (e.getSource() == mi10) {
             dispose();
         }
 
