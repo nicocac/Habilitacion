@@ -58,4 +58,9 @@ public class Insumo {
     public void setStock(double stock) {
         this.stock = stock;
     }
+
+    public String toString(){
+        return this.nombre+", "+this.observaciones;
+    }
+
 }

@@ -1,9 +1,10 @@
 package Principal;
 
 import Insumo.PantallaAdministrarInsumo;
+import Laboreo.PantallaLaboreo;
 import Maquinaria.PantallaAdministrarMaquinaria;
-import Maquinaria.TipoEstado.PantallaAdministrarEstadoMaquinaria;
-import Maquinaria.TipoMaquinaria.PantallaAdministrarTipoMaquinaria;
+import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
+import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
 import Procesos.PantallaAdministrarCompra;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 
@@ -66,6 +67,14 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi6.addActionListener(this);
         menu2.add(mi6);
 
+        //Procesos
+        menu3 = new JMenu("Procesos");
+        mb1.add(menu3);
+
+        mi7 = new JMenuItem("Registrar Laboreo");
+        mi7.addActionListener(this);
+        menu3.add(mi7);
+
 
 
     }
@@ -106,6 +115,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (e.getSource() == mi6) {
             PantallaAdministrarEstadoMaquinaria pantallaAdministrarEstadoMaquinaria = new PantallaAdministrarEstadoMaquinaria();
             pantallaAdministrarEstadoMaquinaria.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == mi7) {
+            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+            pantallaLaboreo.setVisible(true);
             getDefaultCloseOperation();
         }
 

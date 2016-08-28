@@ -1,4 +1,4 @@
-package Maquinaria.TipoMaquinaria;
+package Maquinaria.PantallaTipoMaquinaria;
 
 import Conexion.Coneccion;
 import Datos.TipoMaquinariaEntity;

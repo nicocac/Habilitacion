@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="Pantalla Compra Finalizada">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Diagramas/GA_Diag_Clases_1.0.eap" afterPath="$PROJECT_DIR$/../Diagramas/GA_Diag_Clases_1.0.eap" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+    <list default="true" id="d425128b-3746-4652-8000-5b1e02c6e520" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Campania/Campania.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Laboreo/GestorLaboreo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Lote/Lote.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Maquinaria/EstadoMaquinaria.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Maquinaria/GestorMaquinaria.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Maquinaria/Maquinaria.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TipoInsumo/GestorTipoInsumo.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Lote/TipoLote/CargaTipoLote.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Lote/TipoLote/CargaTipoLote.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Lote/TipoLote/PantallaAdministrarTipoLote.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Lote/TipoLote/PantallaAdministrarTipoLote.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoEstado/CargaEstadoMaquinaria.form" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoEstado/CargaEstadoMaquinaria.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoEstado/CargaEstadoMaquinaria.java" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoEstado/CargaEstadoMaquinaria.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoEstado/PantallaAdministrarEstadoMaquinaria.form" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoEstado/PantallaAdministrarEstadoMaquinaria.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoEstado/PantallaAdministrarEstadoMaquinaria.java" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoEstado/PantallaAdministrarEstadoMaquinaria.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria/CargaTipoMaquinaria.form" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoMaquinaria/CargaTipoMaquinaria.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria/CargaTipoMaquinaria.java" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoMaquinaria/CargaTipoMaquinaria.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria/PantallaAdministrarTipoMaquinaria.form" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoMaquinaria/PantallaAdministrarTipoMaquinaria.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria/PantallaAdministrarTipoMaquinaria.java" afterPath="$PROJECT_DIR$/src/Maquinaria/PantallaTipoMaquinaria/PantallaAdministrarTipoMaquinaria.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Conexion/Coneccion.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Conexion/Coneccion.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/CargaInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/CargaInsumo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/Insumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/Insumo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Insumo/PantallaAdministrarInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Insumo/PantallaAdministrarInsumo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Principal/MenuPrincipal.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Principal/MenuPrincipal.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra.class" afterPath="$PROJECT_DIR$/out/production/Gestar/Procesos/PantallaAdministrarCompra.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/CargaTipoInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/CargaTipoInsumo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/PantallaAdministrarTipoInsumo.class" afterPath="$PROJECT_DIR$/out/production/Gestar/TipoInsumo/PantallaAdministrarTipoInsumo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestar/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/out/production/Gestar/hibernate.cfg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/CampaniaEntity.java" afterPath="$PROJECT_DIR$/src/Datos/CampaniaEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/CampoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/CampoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/CompraEntity.java" afterPath="$PROJECT_DIR$/src/Datos/CompraEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/DetalleCompraEntity.java" afterPath="$PROJECT_DIR$/src/Datos/DetalleCompraEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/DetalleLaboreoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/DetalleLaboreoEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/InsumoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/InsumoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/LaboreoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/LaboreoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/LoteCampaniaEntity.java" afterPath="$PROJECT_DIR$/src/Datos/LoteCampaniaEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/LoteEntity.java" afterPath="$PROJECT_DIR$/src/Datos/LoteEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/MaquinariaEntity.java" afterPath="$PROJECT_DIR$/src/Datos/MaquinariaEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java" afterPath="$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/StockInsumoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/StockInsumoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/TipoEstadoMaquinariaEntity.java" afterPath="$PROJECT_DIR$/src/Datos/TipoEstadoMaquinariaEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/TipoInsumoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/TipoInsumoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Datos/TipoLaboreoEntity.java" afterPath="$PROJECT_DIR$/src/Datos/TipoLaboreoEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/hibernate.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Insumo/Insumo.java" afterPath="$PROJECT_DIR$/src/Insumo/Insumo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" afterPath="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
     </list>
     <list id="c5a94efd-4017-424e-b3dc-29d5a2f9cbfd" name="Gestar" comment="Inicio del proyecto" />
     <ignored path="Gestar.iws" />
@@ -49,16 +59,6 @@
     <option name="SORT_POSITIONED" value="false" />
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="Gestar - Gestar@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -66,41 +66,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PantallaAdministrarCompra.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form">
+      <file leaf-file-name="PantallaLaboreo.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovimientosStockEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java">
+      <file leaf-file-name="PantallaLaboreo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CampoEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Datos/CampoEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DetalleLaboreoEntity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Datos/DetalleLaboreoEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-291">
-              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+            <state relative-caret-position="283">
+              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding>
-                <element signature="e#712#713#0" expanded="true" />
-                <element signature="e#740#741#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestorLaboreo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Laboreo/GestorLaboreo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,18 +130,14 @@
         <option value="$PROJECT_DIR$/src/Insumo/ConsultarInsumo.form" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/ConsultarTipoInsumo.form" />
-        <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form" />
         <option value="$PROJECT_DIR$/src/Insumo/CargaInsumo.form" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java" />
         <option value="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form" />
         <option value="$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java" />
         <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form" />
-        <option value="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
         <option value="$PROJECT_DIR$/src/Procesos/Compra.java" />
-        <option value="$PROJECT_DIR$/src/Insumo/Insumo.java" />
         <option value="$PROJECT_DIR$/src/Insumo/CargaInsumo.java" />
-        <option value="$PROJECT_DIR$/src/Datos/InsumoEntity.java" />
         <option value="$PROJECT_DIR$/src/Procesos/DetalleCompra.java" />
         <option value="$PROJECT_DIR$/src/Datos/DetalleCompraEntity.java" />
         <option value="$PROJECT_DIR$/src/Datos/CompraEntity.java" />
@@ -165,6 +152,20 @@
         <option value="$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java" />
         <option value="$PROJECT_DIR$/src/Datos/CampoEntity.java" />
         <option value="$PROJECT_DIR$/src/Datos/DetalleLaboreoEntity.java" />
+        <option value="$PROJECT_DIR$/src/Datos/InsumoEntity.java" />
+        <option value="$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.form" />
+        <option value="$PROJECT_DIR$/src/Principal/MenuPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java" />
+        <option value="$PROJECT_DIR$/src/TipoInsumo/GestorTipoInsumo.java" />
+        <option value="$PROJECT_DIR$/src/Insumo/Insumo.java" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria.java" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/EstadoMaquinaria.java" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/GestorMaquinaria.java" />
+        <option value="$PROJECT_DIR$/src/Maquinaria/Maquinaria.java" />
+        <option value="$PROJECT_DIR$/src/Laboreo/GestorLaboreo.java" />
+        <option value="$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.java" />
+        <option value="$PROJECT_DIR$/src/Campania/Campania.java" />
+        <option value="$PROJECT_DIR$/src/Lote/Lote.java" />
       </list>
     </option>
   </component>
@@ -184,8 +185,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1376" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -247,7 +248,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -294,35 +294,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Procesos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PantallaAdministrarCompra" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gestar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gestar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Procesos" />
+              <option name="myItemId" value="Campania" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -807,7 +786,9 @@
       <workItem from="1467557048949" duration="39558000" />
       <workItem from="1470229255177" duration="1876000" />
       <workItem from="1470781880351" duration="2174000" />
-      <workItem from="1471312061595" duration="764000" />
+      <workItem from="1471312061595" duration="796000" />
+      <workItem from="1472333763755" duration="2383000" />
+      <workItem from="1472408420205" duration="6943000" />
     </task>
     <task id="LOCAL-00001" summary="Alta proyecto">
       <created>1464610037357</created>
@@ -921,7 +902,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467772891972</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="mapping">
+      <created>1471312844935</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1471312844935</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -930,7 +918,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116645000" />
+    <option name="totallyTimeSpent" value="126003000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -942,28 +930,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.0925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="84" width="164" height="660" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.495" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27715877" sideWeight="0.48375" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.495" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28668943" sideWeight="0.48375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.155527" sideWeight="0.6078838" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15525982" sideWeight="0.6078838" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.155527" sideWeight="0.3921162" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19224924" sideWeight="0.3921162" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25449872" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49776787" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24293059" sideWeight="0.43159923" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24240121" sideWeight="0.43159923" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39784947" sideWeight="0.4925" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -995,7 +983,8 @@
     <MESSAGE value="Puesta a punto Sprint 1" />
     <MESSAGE value="Pantalla Compra Primera Parte" />
     <MESSAGE value="Pantalla Compra Finalizada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pantalla Compra Finalizada" />
+    <MESSAGE value="mapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="mapping" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -1020,7 +1009,7 @@
           <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="37" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1033,138 +1022,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Imagenes/rsz_guardar.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/TipoInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/TipoInsumoEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/ConsultarInsumo.java" />
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.java" />
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/EliminarTipoInsumo.form" />
-    <entry file="file://$PROJECT_DIR$/src/Insumo/ConsultarInsumo.form" />
-    <entry file="file://$PROJECT_DIR$/src/Principal/MenuPrincipal.form">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.form">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaCompra.form" />
-    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaCompra.java" />
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/javax/swing/AbstractButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="2021" column="0" selection-start-line="2021" selection-start-column="0" selection-end-line="2021" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.form">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/java/awt/event/ActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="124" column="5" selection-start-line="122" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Principal/MenuPrincipal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/Compra.java" />
-    <entry file="jar://$PROJECT_DIR$/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar!/javax/persistence/ManyToOne.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Procesos/Compra.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/java/sql/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/PantallaAdministrarInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="163" column="48" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/CargaTipoInsumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="69" column="60" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1175,13 +1032,6 @@
     <entry file="file://$PROJECT_DIR$/src/Insumo/CargaInsumo.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Insumo/Insumo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/hibernate-core-4.2.2.Final.jar!/org/hibernate/event/spi/AbstractEvent.class">
@@ -1209,13 +1059,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/InsumoEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="224" column="8" selection-start-line="224" selection-start-column="8" selection-end-line="225" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1287,20 +1130,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="247" column="10" selection-start-line="247" selection-start-column="10" selection-end-line="247" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#6112#6127#0" expanded="false" />
-            <element signature="e#11276#11277#0" expanded="false" />
-            <element signature="e#11330#11331#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Maquinaria/TipoEstado/CargaEstadoMaquinaria.java">
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/PantallaTipoEstado/CargaEstadoMaquinaria.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1256">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
@@ -1328,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1336,7 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="ui-designer">
@@ -1347,15 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/TipoMaquinariaEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1367,7 +1186,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/CampoEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/TipoLote/PantallaAdministrarTipoLote.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Principal/MenuPrincipal.form">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1377,29 +1219,300 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Datos/CampoEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Datos/DetalleLaboreoEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-291">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state relative-caret-position="173">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
           <folding>
-            <element signature="e#712#713#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
+            <element signature="e#4895#4896#0" expanded="true" />
+            <element signature="e#4934#4935#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/InsumoEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1255">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/MovimientosStockEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="157" column="41" selection-start-line="157" selection-start-column="41" selection-end-line="157" selection-end-column="41" />
+          <folding>
+            <element signature="e#4843#4844#0" expanded="true" />
+            <element signature="e#4887#4888#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Principal/MenuPrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/TipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/TipoMaquinariaEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="13" column="34" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/MaquinariaEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="16" column="38" selection-start-line="12" selection-start-column="4" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/TipoMaquinaria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="68" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/TipoEstadoMaquinariaEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="35" selection-start-line="12" selection-start-column="3" selection-end-line="13" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/EstadoMaquinaria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding>
+            <element signature="e#333#334#0" expanded="false" />
+            <element signature="e#362#363#0" expanded="false" />
+            <element signature="e#406#407#0" expanded="false" />
+            <element signature="e#442#443#0" expanded="false" />
+            <element signature="e#480#481#0" expanded="false" />
+            <element signature="e#514#515#0" expanded="false" />
+            <element signature="e#568#569#0" expanded="false" />
+            <element signature="e#614#615#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/PantallaAdministrarTipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="185" column="13" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="13" />
+          <folding>
+            <element signature="e#3719#3720#0" expanded="true" />
+            <element signature="e#3777#3778#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/GestorMaquinaria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TipoInsumo/GestorTipoInsumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Procesos/PantallaAdministrarCompra.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="342" column="52" selection-start-line="342" selection-start-column="16" selection-end-line="342" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Maquinaria/Maquinaria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="85" column="87" selection-start-line="85" selection-start-column="87" selection-end-line="85" selection-end-column="87" />
+          <folding>
+            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="e#1706#1707#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1922#1923#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Insumo/Insumo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+          <folding>
+            <element signature="e#1372#1373#0" expanded="false" />
+            <element signature="e#1430#1431#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Laboreo/PantallaLaboreo.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/PantallaAdministrarLote.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/TipoLote/CargaTipoLote.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/TipoLote/CargaTipoLote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Campania/LoteCampania.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Campania/Campania.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-545">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#887#888#0" expanded="true" />
+            <element signature="e#943#944#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1301#1302#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1394#1395#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1483#1484#0" expanded="true" />
+            <element signature="e#1531#1532#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/CampaniaEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="16" column="33" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/Lote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="e#1047#1048#0" expanded="true" />
+            <element signature="e#1089#1090#0" expanded="true" />
+            <element signature="e#1124#1125#0" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1207#1208#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1319#1320#0" expanded="true" />
+            <element signature="e#1369#1370#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datos/LoteEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="17" column="31" selection-start-line="13" selection-start-column="4" selection-end-line="17" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lote/PantallaAdministrarLote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Laboreo/GestorLaboreo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
