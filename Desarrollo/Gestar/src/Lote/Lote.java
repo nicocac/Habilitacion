@@ -63,4 +63,8 @@ public class Lote {
     public void setFechaHasta(Date fechaHasta) {
         this.fechaHasta = fechaHasta;
     }
+
+    public String toString(){
+        return this.getDenominacion()+", Ubic: "+this.ubicacion+", Cant. Mts: "+this.cantMetros+", Desde: "+this.fechaDesde+", Hasta: "+this.fechaHasta;
+    }
 }

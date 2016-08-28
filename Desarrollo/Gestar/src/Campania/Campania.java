@@ -65,4 +65,9 @@ public class Campania {
     public void setFechaFinReal(Date fechaFinReal) {
         this.fechaFinReal = fechaFinReal;
     }
+
+    public String toString(){
+        return "Denominacion: "+denominacion+", Inicio: "+fechaInicio+", Fin Est: "+fechaFinEstimada+", Fin: "+fechaFinReal;
+    }
+
 }
