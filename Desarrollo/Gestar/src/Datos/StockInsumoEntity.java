@@ -22,6 +22,16 @@ public class StockInsumoEntity {
     private Collection<MovimientosStockEntity> movimientosStocksBySinId;
     private InsumoEntity insumoBySinInsId;
 
+    @Basic
+    @Column(name = "sin_ins_id")
+    public int getSinInsId() {
+        return sinInsId;
+    }
+
+    public void setSinInsId(int sinInsId) {
+        this.sinInsId = sinInsId;
+    }
+
     @Id
     @Column(name = "sin_id")
     public int getSinId() {

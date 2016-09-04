@@ -22,6 +22,9 @@ public class DetalleCompraEntity {
     private String cpdUsuarioBaja;
     private CompraEntity compraByCpdCpaId;
     private InsumoEntity insumoByCpdInsId;
+    private Integer cpdCpaId;
+    private Integer cpdInsId;
+    private Integer idx;
 
     @Id
     @GeneratedValue
@@ -185,4 +188,33 @@ public class DetalleCompraEntity {
         this.insumoByCpdInsId = insumoByCpdInsId;
     }
 
+    @Basic
+    @Column(name = "cpd_cpa_id")
+    public Integer getCpdCpaId() {
+        return cpdCpaId;
+    }
+
+    public void setCpdCpaId(Integer cpdCpaId) {
+        this.cpdCpaId = cpdCpaId;
+    }
+
+    @Basic
+    @Column(name = "cpd_ins_id")
+    public Integer getCpdInsId() {
+        return cpdInsId;
+    }
+
+    public void setCpdInsId(Integer cpdInsId) {
+        this.cpdInsId = cpdInsId;
+    }
+
+    @Basic
+    @Column(name = "idx")
+    public Integer getIdx() {
+        return idx;
+    }
+
+    public void setIdx(Integer idx) {
+        this.idx = idx;
+    }
 }

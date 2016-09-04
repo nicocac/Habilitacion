@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "movimientos_stock", schema = "gestar")
+@Table(name = "movimientos_stock", schema = "gestar", catalog = "")
 public class MovimientosStockEntity {
     private int mosId;
     private String mosTipoMovimiento;
@@ -19,6 +19,7 @@ public class MovimientosStockEntity {
     private Date mosFechaBaja;
     private String mosUsuarioBaja;
     private StockInsumoEntity stockInsumoByMosSinId;
+    private int mosSinId;
 
     @Id
     @Column(name = "mos_id")
@@ -157,5 +158,15 @@ public class MovimientosStockEntity {
 
     public void setStockInsumoByMosSinId(StockInsumoEntity stockInsumoByMosSinId) {
         this.stockInsumoByMosSinId = stockInsumoByMosSinId;
+    }
+
+    @Basic
+    @Column(name = "mos_sin_id")
+    public int getMosSinId() {
+        return mosSinId;
+    }
+
+    public void setMosSinId(int mosSinId) {
+        this.mosSinId = mosSinId;
     }
 }

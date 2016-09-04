@@ -2,6 +2,7 @@ package Datos;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by OWNER on 8/9/2016.
@@ -20,6 +21,9 @@ public class LoteCampaniaEntity {
     private String lcpUsuarioBaja;
     private CampaniaEntity campaniaByLcpCnaId;
     private LoteEntity loteByLcpLteId;
+    private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId;
+    private int lcpLteId;
+    private int lcpCnaId;
 
     @Id
     @Column(name = "lcp_id")
@@ -168,5 +172,34 @@ public class LoteCampaniaEntity {
 
     public void setLoteByLcpLteId(LoteEntity loteByLcpLteId) {
         this.loteByLcpLteId = loteByLcpLteId;
+    }
+
+    @OneToMany(mappedBy = "loteCampaniaByLlcLcpId")
+    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
+        return laboreoLoteCampaniasByLcpId;
+    }
+
+    public void setLaboreoLoteCampaniasByLcpId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId) {
+        this.laboreoLoteCampaniasByLcpId = laboreoLoteCampaniasByLcpId;
+    }
+
+    @Basic
+    @Column(name = "lcp_lte_id")
+    public int getLcpLteId() {
+        return lcpLteId;
+    }
+
+    public void setLcpLteId(int lcpLteId) {
+        this.lcpLteId = lcpLteId;
+    }
+
+    @Basic
+    @Column(name = "lcp_cna_id")
+    public int getLcpCnaId() {
+        return lcpCnaId;
+    }
+
+    public void setLcpCnaId(int lcpCnaId) {
+        this.lcpCnaId = lcpCnaId;
     }
 }

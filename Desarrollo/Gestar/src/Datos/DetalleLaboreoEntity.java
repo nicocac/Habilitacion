@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "detalle_laboreo", schema = "gestar")
+@Table(name = "detalle_laboreo", schema = "gestar", catalog = "")
 public class DetalleLaboreoEntity {
     private int dboId;
     private String dboObservaciones;
@@ -21,6 +21,9 @@ public class DetalleLaboreoEntity {
     private InsumoEntity insumoByDboInsId;
     private LaboreoEntity laboreoByDboLboId;
     private MaquinariaEntity maquinariaByDboMaqId;
+    private int dboInsId;
+    private Integer dboMaqId;
+    private int dboLboId;
 
     @Id
     @Column(name = "dbo_id")
@@ -179,5 +182,35 @@ public class DetalleLaboreoEntity {
 
     public void setMaquinariaByDboMaqId(MaquinariaEntity maquinariaByDboMaqId) {
         this.maquinariaByDboMaqId = maquinariaByDboMaqId;
+    }
+
+    @Basic
+    @Column(name = "dbo_ins_id")
+    public int getDboInsId() {
+        return dboInsId;
+    }
+
+    public void setDboInsId(int dboInsId) {
+        this.dboInsId = dboInsId;
+    }
+
+    @Basic
+    @Column(name = "dbo_maq_id")
+    public Integer getDboMaqId() {
+        return dboMaqId;
+    }
+
+    public void setDboMaqId(Integer dboMaqId) {
+        this.dboMaqId = dboMaqId;
+    }
+
+    @Basic
+    @Column(name = "dbo_lbo_id")
+    public int getDboLboId() {
+        return dboLboId;
+    }
+
+    public void setDboLboId(int dboLboId) {
+        this.dboLboId = dboLboId;
     }
 }

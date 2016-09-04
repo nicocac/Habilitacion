@@ -23,6 +23,7 @@ public class LaboreoEntity {
     private int lboTpoId;
     private int lboLcpId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
+    private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId;
 
     @Id
     @Column(name = "lbo_id")
@@ -194,5 +195,14 @@ public class LaboreoEntity {
 
     public void setDetalleLaboreosByLboId(Collection<DetalleLaboreoEntity> detalleLaboreosByLboId) {
         this.detalleLaboreosByLboId = detalleLaboreosByLboId;
+    }
+
+    @OneToMany(mappedBy = "laboreoByLlcLboId")
+    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLboId() {
+        return laboreoLoteCampaniasByLboId;
+    }
+
+    public void setLaboreoLoteCampaniasByLboId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId) {
+        this.laboreoLoteCampaniasByLboId = laboreoLoteCampaniasByLboId;
     }
 }

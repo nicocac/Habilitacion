@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campo", schema = "gestar")
+@Table(name = "campo", schema = "gestar", catalog = "")
 public class CampoEntity {
     private int cpoId;
     private String cpoNombre;

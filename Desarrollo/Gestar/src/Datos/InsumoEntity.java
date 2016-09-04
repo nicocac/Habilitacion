@@ -16,7 +16,7 @@ import java.util.concurrent.TransferQueue;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "insumo", schema = "gestar")
+@Table(name = "insumo", schema = "gestar", catalog = "")
 public class InsumoEntity {
     private int insId;
     private String insNombre;

@@ -27,6 +27,7 @@ public class CompraEntity {
     private List<DetalleCompraEntity> detallesCompra;
     private Collection<DetalleCompraEntity> detalleComprasByCpaId;
 
+
     @Id
     @GeneratedValue
     @Column(name = "cpa_id")

@@ -133,6 +133,31 @@ public class GestorLaboreo {
 
     }
 
+    public List getMomentos(){
+        session = Coneccion.getSession();
+        java.util.List list;
+        LinkedList retorno = new LinkedList();
+        TipoLaboreoEntity te;
+        MomentoLaboreo mom;
+        try {
+            Query query = session.createQuery("select t from TipoLaboreoEntity t where tpoFechaBaja is null");
+            list = query.list();
+            Iterator iter = list.iterator();
+            while (iter.hasNext()) {
+                te = (TipoLaboreoEntity)iter.next();
+                mom = new MomentoLaboreo(te.getTpoNombre(),te.getTpoDescripcion());
+                retorno.add(mom);
+            }
+        }finally {
+            session.close();}
+
+        return retorno;
+    }
+
+    public void registrarLaboreo(LinkedList lotes){
+
+    }
+
 
 
 }

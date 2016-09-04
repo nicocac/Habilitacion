@@ -28,6 +28,8 @@ public class MaquinariaEntity {
 
 //    private Collection<StockInsumoEntity> stockInsumosByInsId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId;
+    private Integer maqTestadoId;
+    private Integer maqTmaqId;
 
     @Id
     @Column(name = "maq_id")
@@ -205,16 +207,6 @@ public class MaquinariaEntity {
         return tipoEstadoMaquinariaByMaqTestadoId;
     }
 
-    public void setTipoEstadoMaquinariaByMaqTestadoId(TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId) {
-        this.tipoEstadoMaquinariaByMaqTestadoId = tipoEstadoMaquinariaByMaqTestadoId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id")
-    public TipoMaquinariaEntity getTipoMaquinariaByMaqTmaqId() {
-        return tipoMaquinariaByMaqTmaqId;
-    }
-
 
 //    @OneToMany(mappedBy = "insumoBySinInsId")
 //    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
@@ -224,6 +216,16 @@ public class MaquinariaEntity {
 //    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
 //        this.stockInsumosByInsId = stockInsumosByInsId;
 //    }
+
+    public void setTipoEstadoMaquinariaByMaqTestadoId(TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId) {
+        this.tipoEstadoMaquinariaByMaqTestadoId = tipoEstadoMaquinariaByMaqTestadoId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id")
+    public TipoMaquinariaEntity getTipoMaquinariaByMaqTmaqId() {
+        return tipoMaquinariaByMaqTmaqId;
+    }
 
     public void setTipoMaquinariaByMaqTmaqId(TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId) {
         this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
@@ -241,5 +243,25 @@ public class MaquinariaEntity {
 
     public void setDetalleLaboreosByMaqId(Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId) {
         this.detalleLaboreosByMaqId = detalleLaboreosByMaqId;
+    }
+
+    @Basic
+    @Column(name = "maq_testado_id")
+    public Integer getMaqTestadoId() {
+        return maqTestadoId;
+    }
+
+    public void setMaqTestadoId(Integer maqTestadoId) {
+        this.maqTestadoId = maqTestadoId;
+    }
+
+    @Basic
+    @Column(name = "maq_tmaq_id")
+    public Integer getMaqTmaqId() {
+        return maqTmaqId;
+    }
+
+    public void setMaqTmaqId(Integer maqTmaqId) {
+        this.maqTmaqId = maqTmaqId;
     }
 }

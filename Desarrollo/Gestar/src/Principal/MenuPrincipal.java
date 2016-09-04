@@ -2,6 +2,7 @@ package Principal;
 
 import Insumo.PantallaAdministrarInsumo;
 import Laboreo.GestorLaboreo;
+import Laboreo.PantallaLaboreo;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
@@ -67,9 +68,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi6.addActionListener(this);
         menu2.add(mi6);
 
-        //Procesos
-        menu3 = new JMenu("Procesos");
-        mb1.add(menu3);
         //LOTE
         menu3 = new JMenu("Lotes");
         mb1.add(menu3);
@@ -77,23 +75,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         mi7 = new JMenuItem("Registrar Laboreo");
         mi7.addActionListener(this);
         menu3.add(mi7);
-        mi7 = new JMenuItem("Administrar Lotes");
-        mi7.addActionListener(this);
-        menu3.add(mi7);
-
-
-
-        mi8 = new JMenuItem("Administrar Tipo Lotes");
+        mi8 = new JMenuItem("Administrar Lotes");
         mi8.addActionListener(this);
         menu3.add(mi8);
 
-        //COMPRAS
-        menu4 = new JMenu("Compras");
-        mb1.add(menu4);
-
-        mi9 = new JMenuItem("Administrar Compras");
-        mi9.addActionListener(this);
-        menu4.add(mi9);
 
 //        mi5 = new JMenuItem("Administrar Tipo Compra");
 //        mi5.addActionListener(this);
@@ -141,11 +126,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
 
-//        if (e.getSource() == mi7) {
-//            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
-//            pantallaLaboreo.setVisible(true);
-//            getDefaultCloseOperation();
-//        }
+        if (e.getSource() == mi7) {
+            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+            pantallaLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        }
 //
 //        if (e.getSource() == mi7) {
 //            PantallaAdministrarLote pantallaAdministrarLote = new PantallaAdministrarLote();
@@ -158,12 +143,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 ////            pantallaAdministrarTipoLote.setVisible(true);
 //            getDefaultCloseOperation();
 //        }
-
-        if (e.getSource() == mi9) {
-            PantallaAdministrarCompra pantallaAdministrarCompra = new PantallaAdministrarCompra();
-            pantallaAdministrarCompra.setVisible(true);
-            getDefaultCloseOperation();
-        }
 
 
         if (e.getSource() == mi10) {

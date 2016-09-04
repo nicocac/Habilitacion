@@ -12,6 +12,7 @@ public class LoginUsers extends JFrame {
     private JPasswordField jpassClave;
     private JButton btnIngresar;
     private JPanel panel1;
+    private JPanel panel2;
 
     public LoginUsers() {
 
@@ -31,9 +32,9 @@ public class LoginUsers extends JFrame {
 
                 if (txtUsuario.getText().equals("admin") && clavedef.equals("gestar123")){
 
-                    JOptionPane.showMessageDialog(null, "Bienvenido\n"
+                    /*JOptionPane.showMessageDialog(null, "Bienvenido\n"
                                     + "Has ingresado satisfactoriamente al sistema", "Mensaje de bienvenida",
-                            JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.INFORMATION_MESSAGE);*/
 
                     dispose();
 
@@ -48,7 +49,7 @@ public class LoginUsers extends JFrame {
 
 
                     JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                                    + "Por favor ingrese un usuario y/o contraseña correctos", "Acceso denegado",
+                                    + "Por favor ingrese un usuario y/o contraseï¿½a correctos", "Acceso denegado",
                             JOptionPane.ERROR_MESSAGE);
 
 
@@ -56,5 +57,9 @@ public class LoginUsers extends JFrame {
 
             }
         });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
