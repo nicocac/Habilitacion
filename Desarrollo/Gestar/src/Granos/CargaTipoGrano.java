@@ -1,16 +1,17 @@
-package TipoInsumo;
+package Granos;
 
 import Conexion.Coneccion;
-import Datos.TipoInsumoEntity;
+import Datos.TipoGranoEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Date;
 
-
-public class CargaTipoInsumo extends JFrame {
+/**
+ * Created by jagm on 05/09/2016.
+ */
+public class CargaTipoGrano extends JFrame {
 
     private JTextArea txtDescripcion;
     private JTextField txtNombre;
@@ -18,31 +19,31 @@ public class CargaTipoInsumo extends JFrame {
     private JButton guardarButton;
     private JPanel panel1;
     private String tipoOperacion;
-    private int tinId;
+    private int tgrId;
 
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
 
-    public CargaTipoInsumo() {
+    public CargaTipoGrano() {
     }
 
-    public CargaTipoInsumo(String operacion, String nombre, String descripcion, int id) {
+    public CargaTipoGrano(String operacion, String nombre, String descripcion, int id) {
 
         //INICIO
         setContentPane(panel1);
         pack();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
-            this.setTitle("Cargar Tipo de Insumo");
+            this.setTitle("Cargar Tipo de Grano");
         } else {
-            this.setTitle("Modificar Tipo de Insumo");
+            this.setTitle("Modificar Tipo de Grano");
         }
 
 
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo Grano");
                 dispose();
             }
         });
@@ -55,7 +56,7 @@ public class CargaTipoInsumo extends JFrame {
         if (nombre.length() > 1 && descripcion.length() > 1 && id != 0) {
             txtNombre.setText(nombre);
             txtDescripcion.setText(descripcion);
-            tinId = id;
+            tgrId = id;
         }
     }
 
@@ -66,23 +67,23 @@ public class CargaTipoInsumo extends JFrame {
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
-                TipoInsumoEntity tipo = new TipoInsumoEntity();
-                tipo.setTinNombre(txtNombre.getText());
-                tipo.setTinDescripcion(txtDescripcion.getText());
-                tipo.setTinFechaAlta(fechaActual);
-                tipo.setTinUsuarioAlta("admin");
+                TipoGranoEntity tipo = new TipoGranoEntity();
+                tipo.setTgrNombre(txtNombre.getText());
+                tipo.setTgrDescripcion(txtDescripcion.getText());
+                tipo.setTgrFechaAlta(fechaActual);
+                tipo.setTgrUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(tipo);
                 } else {
-                    tipo.setTinId(tinId);
+                    tipo.setTgrId(tgrId);
                     session.update(tipo);
                 }
                 tx.commit();
                 guardado = tx.wasCommitted();
 //            session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "OcurriÃ³ un error al guardar el tipo de insumo: " + e.toString());
+                JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de Grano: " + e.toString());
             } finally {
                 session.close();
             }
@@ -106,3 +107,4 @@ public class CargaTipoInsumo extends JFrame {
 
 
 }
+

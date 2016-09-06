@@ -1,16 +1,14 @@
 package Datos;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "login_users", schema = "gestar")
 public class LoginUsersEntity {
 
     @Id
+    @GeneratedValue
     @Column(name = "tpo_id")
     private int loginId;
 

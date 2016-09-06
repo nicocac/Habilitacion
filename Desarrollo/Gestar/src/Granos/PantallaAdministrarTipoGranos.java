@@ -1,11 +1,7 @@
-package Lote;
+package Granos;
 
 import Conexion.Coneccion;
-import Datos.LoteEntity;
-import Datos.MaquinariaEntity;
-import Datos.TipoEstadoMaquinariaEntity;
-import Datos.TipoMaquinariaEntity;
-import Maquinaria.CargaMaquinaria;
+import Datos.TipoGranoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,41 +12,39 @@ import java.sql.Date;
 import java.util.Iterator;
 
 /**
- * Created by jagm on 8/22/2016.
+ * Created by jagm on 05/09/2016.
  */
-public class PantallaAdministrarLote extends JFrame {
-    private JPanel panel1;
+public class PantallaAdministrarTipoGranos extends JFrame {
     private JTextField txtBuscar;
+    private JPanel panel1;
     private JButton btnBuscar;
-    private JButton btnEliminar;
     private JButton btnLimpiar;
-    private JButton btnNuevo;
     private JButton btnEditar;
-    private JTable tblLote;
     private JButton btnCancelar;
-
-    private JTable table1;
-    private LoteEntity lote;
+    private JTable tblTipos;
+    private JButton btnEliminar;
+    private JButton btnNuevo;
+    private TipoGranoEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
-    public PantallaAdministrarLote() {
+    public PantallaAdministrarTipoGranos() {
 
 
         //INICIO
         setContentPane(panel1);
         pack();
-        this.setTitle("Consultar Lote");
+        this.setTitle("Consultar Tipo de Grano");
         inicializaTabla();
 
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Coneccion.getSession();
-            buscarLotes();
+            buscarTiposGrano();
         });
 
 
@@ -60,32 +54,32 @@ public class PantallaAdministrarLote extends JFrame {
             txtBuscar.setText("");
         });
 
-
         //EDITAR
         btnEditar.addActionListener(e -> {
-            int fila = tblLote.getSelectedRow();
+            int fila = tblTipos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return;
             }
-            int lotId = (int) tblLote.getModel().getValueAt(fila, 0);
-            String nombre = (String) tblLote.getModel().getValueAt(fila, 1);
-            Integer metros = (Integer) tblLote.getModel().getValueAt(fila, 3);
-
-            CargaLote carga = new CargaLote("Modificacion", nombre, metros, lotId);
+            int tinId = (int) tblTipos.getModel().getValueAt(fila, 0);
+            String nombre = (String) tblTipos.getModel().getValueAt(fila, 1);
+            String descripcion = (String) tblTipos.getModel().getValueAt(fila, 2);
+            CargaTipoGrano carga = new CargaTipoGrano("Modificacion", nombre, descripcion, tinId);
             carga.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
-
-
         });
+
+
+        //CANCELAR
+        btnCancelar.addActionListener(e -> dispose());
 
 
         //BAJA
         btnEliminar.addActionListener(e -> {
             switch (darBaja()) {
                 case 0: {
-                    showMessage("Se dio de baja exitosamente el Lote.");
+                    showMessage("Se dio de baja exitosamente el tipo de Grano.");
                     inicializaTabla();
                     break;
                 }
@@ -94,7 +88,7 @@ public class PantallaAdministrarLote extends JFrame {
                     break;
                 }
                 case 2: {
-                    showMessage("No se pudo dar de baja el Lote.");
+                    showMessage("No se pudo dar de baja el tipo de Grano.");
                     break;
                 }
             }
@@ -104,72 +98,65 @@ public class PantallaAdministrarLote extends JFrame {
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-            CargaLote cargaLote = new CargaLote("Carga", "", 0, 0);
-            cargaLote.setVisible(true);
+            CargaTipoGrano cargaTipoGrano = new CargaTipoGrano("Carga", "", "", 0);
+            cargaTipoGrano.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
         });
-
-
-        //CANCELAR
-        btnCancelar.addActionListener(e -> dispose());
-
     }
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Metros"};
+        String[] columnNames = {"Cod", "Nombre", "Descripcion"};
         Object[][] data = new Object[1][3];
-        setModel(columnNames, data, tblLote);
+        setModel(columnNames, data, tblTipos);
     }
 
     private void setModel(String[] columnames, Object[][] data, JTable tabla) {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
-        tblLote.setModel(model);
-        tblLote.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tblLote.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblLote.getColumnModel().getColumn(1).setPreferredWidth(180);
-        tblLote.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tblTipos.setModel(model);
+        tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblTipos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblTipos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(500);
     }
 
     private void showMessage(String error) {
         JOptionPane.showMessageDialog(this, error);
     }
 
-
     //METODO DAR BAJA
     public int darBaja() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
         try {
-            lote = new LoteEntity();
-            int fila = tblLote.getSelectedRow();
+            tipo = new TipoGranoEntity();
+            int fila = tblTipos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            lote.setLteId((int) tblLote.getModel().getValueAt(fila, 0));
-            lote.setLteDenominacion((String) tblLote.getModel().getValueAt(fila, 1));
-            lote.setLteCantMetros((int) tblLote.getModel().getValueAt(fila, 4));
-
-            lote.setLteFechaAlta(fechaActual);
-            lote.setLteUsuarioBaja("adminBajaLOTE");
-            lote.setLteFechaUltMod(fechaActual);
-            lote.setLteUsuarioUltMod("adminBajaLLOTE");
-            lote.setLteFechaBaja(fechaActual);
-            lote.setLteUsuarioBaja("adminBajaLOTE");
-            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del lote: " + tblLote.getModel().getValueAt(fila, 1));
+            tipo.setTgrId((int) tblTipos.getModel().getValueAt(fila, 0));
+            tipo.setTgrNombre((String) tblTipos.getModel().getValueAt(fila, 1));
+            tipo.setTgrDescripcion((String) tblTipos.getModel().getValueAt(fila, 2));
+            tipo.setTgrFechaAlta(fechaActual);
+            tipo.setTgrUsuarioAlta("adminBAJA");
+            tipo.setTgrFechaUltMod(fechaActual);
+            tipo.setTgrUsuarioUtlMod("adminBAJA");
+            tipo.setTgrFechaBaja(fechaActual);
+            tipo.setTgrUsuarioBaja("adminBAJA");
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del tipo de Grano: " + tblTipos.getModel().getValueAt(fila, 1));
             if (i == 0) {
                 tx = session.beginTransaction();
-                session.update(lote);
+                session.update(tipo);
                 tx.commit();
                 guardado = tx.wasCommitted();
             } else {
                 return 1;
             }
         } catch (Exception e) {
-            showMessage("Ocurrio un error al dar de baja el lote: " + e.toString());
+            showMessage("Ocurrio un error al dar de baja el tipo de Grano: " + e.toString());
             return 2;
         } finally {
             session.close();
@@ -179,30 +166,35 @@ public class PantallaAdministrarLote extends JFrame {
     }
 
 
-    //METODO BUSCAR Lotes
-    public void buscarLotes() {
+    //METODO BUSCAR TIPOS
+    public void buscarTiposGrano() {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            lote = new LoteEntity();
-            Query query = session.createQuery("select t from LoteEntity t where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
+            tipo = new TipoGranoEntity();
+            Query query = session.createQuery("select t from TipoGranoEntity t where ucase(tgrNombre) like ucase(:pNombre) and tgrFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Metros"};
-            Object[][] data = new Object[list.size()][8];
+            String[] columnNames = {"Cod", "Nombre", "Descripcion"};
+            Object[][] data = new Object[list.size()][3];
 
             while (iter.hasNext()) {
-                lote = (LoteEntity) iter.next();
-                data[i][0] = lote.getLteId();
-                data[i][1] = lote.getLteDenominacion();
-                data[i][2] = lote.getLteCantMetros();
+                tipo = (TipoGranoEntity) iter.next();
+                data[i][0] = tipo.getTgrId();
+                data[i][1] = tipo.getTgrNombre();
+                data[i][2] = tipo.getTgrDescripcion();
                 i++;
             }
-            setModel(columnNames, data, tblLote);
+            setModel(columnNames, data, tblTipos);
         } finally {
             session.close();
         }
 
+    }
+
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

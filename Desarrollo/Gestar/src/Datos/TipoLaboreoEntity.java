@@ -3,9 +3,7 @@ package Datos;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * Created by OWNER on 8/9/2016.
- */
+
 @Entity
 @Table(name = "tipo_laboreo", schema = "gestar", catalog = "")
 public class TipoLaboreoEntity {
@@ -20,6 +18,7 @@ public class TipoLaboreoEntity {
     private String tpoUsuarioBaja;
 
     @Id
+    @GeneratedValue
     @Column(name = "tpo_id")
     public int getTpoId() {
         return tpoId;

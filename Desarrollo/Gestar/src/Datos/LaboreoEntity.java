@@ -26,6 +26,7 @@ public class LaboreoEntity {
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId;
 
     @Id
+    @GeneratedValue
     @Column(name = "lbo_id")
     public int getLboId() {
         return lboId;

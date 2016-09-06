@@ -3,11 +3,15 @@ package Insumo;
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
 import Datos.TipoInsumoEntity;
+import TipoInsumo.CargaTipoInsumo;
+import TipoInsumo.PantallaAdministrarTipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -22,6 +26,7 @@ public class CargaInsumo extends JFrame {
     private JPanel alta;
     private JComboBox textUnidadMedida;
     private JTextField txtStock;
+    private JButton nuevoTipoInsumoButton;
 
     private String tipoOperacion;
     private int insId;
@@ -65,6 +70,11 @@ public class CargaInsumo extends JFrame {
             insId = id;
         }
 
+        nuevoTipoInsumoButton.addActionListener(e -> {
+            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
+            cargaTipoInsumo.setVisible(true);
+            getDefaultCloseOperation();
+        });
     }
 
 

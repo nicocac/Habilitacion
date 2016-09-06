@@ -26,6 +26,7 @@ public class LoteCampaniaEntity {
     private int lcpCnaId;
 
     @Id
+    @GeneratedValue
     @Column(name = "lcp_id")
     public int getLcpId() {
         return lcpId;
@@ -155,7 +156,7 @@ public class LoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "lcp_cna_id", referencedColumnName = "cna_id", nullable = false)
+    @JoinColumn(name = "lcp_cna_id", referencedColumnName = "cna_id", nullable = false, insertable=false, updatable=false)
     public CampaniaEntity getCampaniaByLcpCnaId() {
         return campaniaByLcpCnaId;
     }
@@ -165,7 +166,7 @@ public class LoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "lcp_lte_id", referencedColumnName = "lte_id", nullable = false)
+    @JoinColumn(name = "lcp_lte_id", referencedColumnName = "lte_id", nullable = false, insertable=false, updatable=false)
     public LoteEntity getLoteByLcpLteId() {
         return loteByLcpLteId;
     }

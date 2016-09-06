@@ -32,6 +32,7 @@ public class MaquinariaEntity {
     private Integer maqTmaqId;
 
     @Id
+    @GeneratedValue
     @Column(name = "maq_id")
     public int getMaqId() {
         return maqId;
@@ -202,7 +203,7 @@ public class MaquinariaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "maq_testado_id", referencedColumnName = "te_ma_id")
+    @JoinColumn(name = "maq_testado_id", referencedColumnName = "te_ma_id", insertable=false, updatable=false)
     public TipoEstadoMaquinariaEntity getTipoEstadoMaquinariaByMaqTestadoId() {
         return tipoEstadoMaquinariaByMaqTestadoId;
     }
@@ -222,7 +223,7 @@ public class MaquinariaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id")
+    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id", insertable=false, updatable=false)
     public TipoMaquinariaEntity getTipoMaquinariaByMaqTmaqId() {
         return tipoMaquinariaByMaqTmaqId;
     }

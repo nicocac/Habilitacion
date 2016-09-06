@@ -169,7 +169,7 @@ public class DetalleCompraEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "cpd_cpa_id", referencedColumnName = "cpa_id")
+    @JoinColumn(name = "cpd_cpa_id", referencedColumnName = "cpa_id", insertable=false, updatable=false)
     public CompraEntity getCompraByCpdCpaId() {
         return compraByCpdCpaId;
     }
@@ -179,7 +179,7 @@ public class DetalleCompraEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "cpd_ins_id", referencedColumnName = "ins_id")
+    @JoinColumn(name = "cpd_ins_id", referencedColumnName = "ins_id", insertable=false, updatable=false)
     public InsumoEntity getInsumoByCpdInsId() {
         return insumoByCpdInsId;
     }

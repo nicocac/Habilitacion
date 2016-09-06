@@ -26,6 +26,7 @@ public class DetalleLaboreoEntity {
     private int dboLboId;
 
     @Id
+    @GeneratedValue
     @Column(name = "dbo_id")
     public int getDboId() {
         return dboId;
@@ -155,7 +156,7 @@ public class DetalleLaboreoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false)
+    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
     public InsumoEntity getInsumoByDboInsId() {
         return insumoByDboInsId;
     }
@@ -165,7 +166,7 @@ public class DetalleLaboreoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
     public LaboreoEntity getLaboreoByDboLboId() {
         return laboreoByDboLboId;
     }
@@ -175,7 +176,7 @@ public class DetalleLaboreoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dbo_maq_id", referencedColumnName = "maq_id")
+    @JoinColumn(name = "dbo_maq_id", referencedColumnName = "maq_id", insertable=false, updatable=false)
     public MaquinariaEntity getMaquinariaByDboMaqId() {
         return maquinariaByDboMaqId;
     }

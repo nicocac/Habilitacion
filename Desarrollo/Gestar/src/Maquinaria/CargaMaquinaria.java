@@ -25,6 +25,8 @@ public class CargaMaquinaria extends JFrame {
     private JComboBox cbxTipoMaquinaria;
     private JTextField jtfMarca;
     private JTextField jtfModelo;
+    private JButton nuevoEstadoMaquinariaButton;
+    private JButton nuevoTipoMaquinariaButton;
 
     private String tipoOperacion;
     private int maqId;

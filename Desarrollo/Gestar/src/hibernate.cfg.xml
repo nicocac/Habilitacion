@@ -5,6 +5,14 @@
 <hibernate-configuration>
     <session-factory>
 
+        <property name="connection.username">
+            root
+        </property>
+
+        <property name="connection.password">
+            horacioaa
+        </property>
+
         <property name="show_sql">
             true
         </property>
@@ -19,7 +27,7 @@
 
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Gestar</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestar</property>
 
         <mapping class="Datos.InsumoEntity"/>
         <mapping class="Datos.MovimientosStockEntity"/>
@@ -37,8 +45,8 @@
         <mapping class="Datos.LoteEntity"/>
         <mapping class="Datos.LoteCampaniaEntity"/>
         <mapping class="Datos.TipoLaboreoEntity"/>
-        <mapping class="Datos.TipoLaboreoEntity"/>
         <mapping class="Datos.LaboreoLoteCampaniaEntity"/>
+        <mapping class="Datos.TipoGranoEntity"/>
 
         <!-- DB schema will be updated if needed -->
          <!--<property name="hbm2ddl.auto">create-drop</property>-->

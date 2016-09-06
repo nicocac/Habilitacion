@@ -24,6 +24,7 @@ public class CampaniaEntity {
     private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
     @Id
+    @GeneratedValue
     @Column(name = "cna_id")
     public int getCnaId() {
         return cnaId;

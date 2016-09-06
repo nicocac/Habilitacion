@@ -22,6 +22,7 @@ public class TipoEstadoMaquinariaEntity {
     private Collection<MaquinariaEntity> maquinariasByTeMaId;
 
     @Id
+    @GeneratedValue
     @Column(name = "te_ma_id")
     public int getTeMaId() {
         return teMaId;

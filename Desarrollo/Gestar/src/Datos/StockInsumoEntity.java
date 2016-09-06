@@ -33,6 +33,7 @@ public class StockInsumoEntity {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "sin_id")
     public int getSinId() {
         return sinId;
@@ -170,7 +171,7 @@ public class StockInsumoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "sin_ins_id", referencedColumnName = "ins_id", nullable = false)
+    @JoinColumn(name = "sin_ins_id", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
     public InsumoEntity getInsumoBySinInsId() {
         return insumoBySinInsId;
     }

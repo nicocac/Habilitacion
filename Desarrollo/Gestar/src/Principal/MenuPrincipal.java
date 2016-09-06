@@ -1,8 +1,11 @@
 package Principal;
 
+import Campania.PantallaAdministrarCampania;
+import Granos.PantallaAdministrarTipoGranos;
 import Insumo.PantallaAdministrarInsumo;
-import Laboreo.GestorLaboreo;
+import Laboreo.PantallaAdministrarLaboreos;
 import Laboreo.PantallaLaboreo;
+import Lote.PantallaAdministrarLote;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
@@ -17,68 +20,88 @@ import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
-    private JMenuBar mb1;
-    private JMenu menu1, menu2, menu3, menu4, menu5;
-    private JMenuItem mi1, mi2, mi3, mi4, mi5, mi6, mi7, mi8, mi9, mi10;
+    private JMenuBar menuPrincipal;
+    private JMenu opciones, insumos, maquinarias, procesos, lotes, tipoGranos,campanias;
+    private JMenuItem laboreoTemp, laboreo, lote, compra, salir, insumo, tipoInsumo,compraInsumo, maquinaria, tipoMaquinaria, estadoMaquinaria, tipoGrano, campania;
 
     public MenuPrincipal() {
 
-        mb1 = new JMenuBar();
-        setJMenuBar(mb1);
+        menuPrincipal = new JMenuBar();
+        setJMenuBar(menuPrincipal);
 
         //OPCIONES
-        menu3 = new JMenu("Opciones");
-        mb1.add(menu3);
+        opciones = new JMenu("Opciones");
+        menuPrincipal.add(opciones);
 
         //SALIR
-        mi10 = new JMenuItem("Salir");
-        mi10.addActionListener(this);
-        menu3.add(mi10);
+        salir = new JMenuItem("Salir");
+        salir.addActionListener(this);
+        opciones.add(salir);
 
         //INSUMOS
-        menu1 = new JMenu("Insumos");
-        mb1.add(menu1);
+        insumos = new JMenu("Insumos");
+        menuPrincipal.add(insumos);
 
-        mi1 = new JMenuItem("Administrar Insumo");
-        mi1.addActionListener(this);
-        menu1.add(mi1);
+        insumo = new JMenuItem("Administrar Insumo");
+        insumo.addActionListener(this);
+        insumos.add(insumo);
 
-        mi2 = new JMenuItem("Administrar Tipo de Insumo");
-        mi2.addActionListener(this);
-        menu1.add(mi2);
+        tipoInsumo = new JMenuItem("Administrar Tipo de Insumo");
+        tipoInsumo.addActionListener(this);
+        insumos.add(tipoInsumo);
 
-        mi3 = new JMenuItem("Comprar Insumos");
-        mi3.addActionListener(this);
-        menu1.add(mi3);
+        compraInsumo = new JMenuItem("Comprar Insumos");
+        compraInsumo.addActionListener(this);
+        insumos.add(compraInsumo);
 
 
         //MAQUINARIA
-        menu2 = new JMenu("Maquinarias");
-        mb1.add(menu2);
+        maquinarias = new JMenu("Maquinarias");
+        menuPrincipal.add(maquinarias);
 
-        mi4 = new JMenuItem("Administrar Maquinaria");
-        mi4.addActionListener(this);
-        menu2.add(mi4);
+        maquinaria = new JMenuItem("Administrar Maquinaria");
+        maquinaria.addActionListener(this);
+        maquinarias.add(maquinaria);
 
-        mi5 = new JMenuItem("Administrar Tipo Maquinaria");
-        mi5.addActionListener(this);
-        menu2.add(mi5);
+        tipoMaquinaria = new JMenuItem("Administrar Tipo Maquinaria");
+        tipoMaquinaria.addActionListener(this);
+        maquinarias.add(tipoMaquinaria);
 
-        mi6 = new JMenuItem("Administrar Estado");
-        mi6.addActionListener(this);
-        menu2.add(mi6);
+        estadoMaquinaria = new JMenuItem("Administrar Estado");
+        estadoMaquinaria.addActionListener(this);
+        maquinarias.add(estadoMaquinaria);
 
         //LOTE
-        menu3 = new JMenu("Lotes");
-        mb1.add(menu3);
+        lotes = new JMenu("Lotes");
+        menuPrincipal.add(lotes);
 
-        mi7 = new JMenuItem("Registrar Laboreo");
-        mi7.addActionListener(this);
-        menu3.add(mi7);
-        mi8 = new JMenuItem("Administrar Lotes");
-        mi8.addActionListener(this);
-        menu3.add(mi8);
+        laboreoTemp = new JMenuItem("Registrar Laboreo");
+        laboreoTemp.addActionListener(this);
+        lotes.add(laboreoTemp);
 
+        laboreo = new JMenuItem("Administrar Laboreo");
+        laboreo.addActionListener(this);
+        lotes.add(laboreo);
+
+        lote = new JMenuItem("Administrar Lotes");
+        lote.addActionListener(this);
+        lotes.add(lote);
+
+        //GRANOS
+        tipoGranos = new JMenu("Granos");
+        menuPrincipal.add(tipoGranos);
+
+        tipoGrano = new JMenuItem("Administrar Tipo Granos");
+        tipoGrano.addActionListener(this);
+        tipoGranos.add(tipoGrano);
+
+        //CAMPANIAS
+        campanias = new JMenu("Campaña");
+        menuPrincipal.add(campanias);
+
+        campania = new JMenuItem("Administrar Campañas");
+        campania.addActionListener(this);
+        campanias.add(campania);
 
 //        mi5 = new JMenuItem("Administrar Tipo Compra");
 //        mi5.addActionListener(this);
@@ -89,63 +112,76 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         Container f = this.getContentPane();
-        if (e.getSource() == mi1) {
+        if (e.getSource() == insumo) {
             PantallaAdministrarInsumo pantallaAdministrarInsumo = new PantallaAdministrarInsumo();
             pantallaAdministrarInsumo.setVisible(true);
             getDefaultCloseOperation();
 
         }
 
-        if (e.getSource() == mi2) {
+        if (e.getSource() == tipoInsumo) {
             PantallaAdministrarTipoInsumo pantallaAdministrarTipoInsumo = new PantallaAdministrarTipoInsumo();
             pantallaAdministrarTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi3) {
+        if (e.getSource() == compraInsumo) {
             PantallaAdministrarCompra pantallaAdministrarCompra = new PantallaAdministrarCompra();
             pantallaAdministrarCompra.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi4) {
+        if (e.getSource() == maquinaria) {
             PantallaAdministrarMaquinaria pantallaAdministrarMaquinaria = new PantallaAdministrarMaquinaria();
             pantallaAdministrarMaquinaria.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi5) {
+        if (e.getSource() == tipoMaquinaria) {
             PantallaAdministrarTipoMaquinaria pantallaAdministrarTipoMaquinaria = new PantallaAdministrarTipoMaquinaria();
             pantallaAdministrarTipoMaquinaria.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi6) {
+        if (e.getSource() == estadoMaquinaria) {
             PantallaAdministrarEstadoMaquinaria pantallaAdministrarEstadoMaquinaria = new PantallaAdministrarEstadoMaquinaria();
             pantallaAdministrarEstadoMaquinaria.setVisible(true);
             getDefaultCloseOperation();
         }
 
-        if (e.getSource() == mi7) {
+        if (e.getSource() == laboreoTemp) {
             PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
             pantallaLaboreo.setVisible(true);
             getDefaultCloseOperation();
         }
+
+        if (e.getSource() == laboreo) {
+            PantallaAdministrarLaboreos pantallaAdministrarLaboreos = new PantallaAdministrarLaboreos();
+            pantallaAdministrarLaboreos.setVisible(true);
+            getDefaultCloseOperation();
+        }
 //
-//        if (e.getSource() == mi7) {
-//            PantallaAdministrarLote pantallaAdministrarLote = new PantallaAdministrarLote();
-//            pantallaAdministrarLote.setVisible(true);
-//            getDefaultCloseOperation();
-//        }
 //
-//        if (e.getSource() == mi8) {
-//            PantallaAdministrarTipoLote pantallaAdministrarTipoLote = new PantallaAdministrarTipoLote();
-////            pantallaAdministrarTipoLote.setVisible(true);
-//            getDefaultCloseOperation();
-//        }
+        if (e.getSource() == lote) {
+            PantallaAdministrarLote pantallaAdministrarLote = new PantallaAdministrarLote();
+            pantallaAdministrarLote.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == tipoGrano) {
+            PantallaAdministrarTipoGranos pantallaAdministrarTipoGranos = new PantallaAdministrarTipoGranos();
+            pantallaAdministrarTipoGranos.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == campania) {
+            PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
+            pantallaAdministrarCampania.setVisible(true);
+            getDefaultCloseOperation();
+        }
 
 
-        if (e.getSource() == mi10) {
+        if (e.getSource() == salir) {
             dispose();
         }
 

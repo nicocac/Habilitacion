@@ -10,6 +10,7 @@ import java.sql.Date;
 @Table(name = "laboreo_lote_campania", schema = "gestar", catalog = "")
 @IdClass(LaboreoLoteCampaniaEntityPK.class)
 public class LaboreoLoteCampaniaEntity {
+    private int llc_id;
     private int llcLcpId;
     private int llcLboId;
     private Date llcFechaAlta;
@@ -20,6 +21,17 @@ public class LaboreoLoteCampaniaEntity {
     private String llcUsuarioBaja;
     private LaboreoEntity laboreoByLlcLboId;
     private LoteCampaniaEntity loteCampaniaByLlcLcpId;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "llc_id")
+    public int getLlc_id() {
+        return llc_id;
+    }
+
+    public void setLlc_id(int llc_id) {
+        this.llc_id = llc_id;
+    }
 
     @Id
     @Column(name = "llc_lcp_id")
@@ -138,7 +150,7 @@ public class LaboreoLoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "llc_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    @JoinColumn(name = "llc_lbo_id", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
     public LaboreoEntity getLaboreoByLlcLboId() {
         return laboreoByLlcLboId;
     }
@@ -148,7 +160,7 @@ public class LaboreoLoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "llc_lcp_id", referencedColumnName = "lcp_id", nullable = false)
+    @JoinColumn(name = "llc_lcp_id", referencedColumnName = "lcp_id", nullable = false, insertable=false, updatable=false)
     public LoteCampaniaEntity getLoteCampaniaByLlcLcpId() {
         return loteCampaniaByLlcLcpId;
     }

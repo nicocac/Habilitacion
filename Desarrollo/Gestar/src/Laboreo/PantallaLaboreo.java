@@ -50,7 +50,7 @@ public class PantallaLaboreo extends JFrame {
         //INICIO
         setContentPane(panel1);
         pack();
-        this.setTitle("Registrar Compra Insumos");
+        this.setTitle("Registrar Laboreo");
         inicializaTabla();
         cargarItems();
         cargarMaquinas();

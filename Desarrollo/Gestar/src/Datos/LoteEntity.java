@@ -25,6 +25,7 @@ public class LoteEntity {
     private Collection<LoteCampaniaEntity> loteCampaniasByLteId;
 
     @Id
+    @GeneratedValue
     @Column(name = "lte_id")
     public int getLteId() {
         return lteId;

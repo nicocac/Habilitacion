@@ -24,6 +24,7 @@ public class CampoEntity {
     private String cpoUsuarioBaja;
 
     @Id
+    @GeneratedValue
     @Column(name = "cpo_id")
     public int getCpoId() {
         return cpoId;

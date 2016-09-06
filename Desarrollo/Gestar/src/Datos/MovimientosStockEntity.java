@@ -22,6 +22,7 @@ public class MovimientosStockEntity {
     private int mosSinId;
 
     @Id
+    @GeneratedValue
     @Column(name = "mos_id")
     public int getMosId() {
         return mosId;
@@ -151,7 +152,7 @@ public class MovimientosStockEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "mos_sin_id", referencedColumnName = "sin_id", nullable = false)
+    @JoinColumn(name = "mos_sin_id", referencedColumnName = "sin_id", nullable = false, insertable=false, updatable=false)
     public StockInsumoEntity getStockInsumoByMosSinId() {
         return stockInsumoByMosSinId;
     }

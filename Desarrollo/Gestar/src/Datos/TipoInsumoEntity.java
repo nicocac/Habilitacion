@@ -22,6 +22,7 @@ public class TipoInsumoEntity {
     private Collection<InsumoEntity> insumosByTinId;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "tin_id")
     public int getTinId() {
         return tinId;

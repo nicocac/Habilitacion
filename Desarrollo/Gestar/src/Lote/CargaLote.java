@@ -1,48 +1,48 @@
-package TipoInsumo;
+package Lote;
 
 import Conexion.Coneccion;
-import Datos.TipoInsumoEntity;
+import Datos.LoteEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Date;
 
-
-public class CargaTipoInsumo extends JFrame {
-
-    private JTextArea txtDescripcion;
+/**
+ * Created by jagm on 05/09/2016.
+ */
+public class CargaLote extends JFrame{
+    private JPanel panel1;
     private JTextField txtNombre;
+    private JTextArea txtMetros;
     private JButton cancelarButton;
     private JButton guardarButton;
-    private JPanel panel1;
+    private JTextField textField1;
+
+
     private String tipoOperacion;
-    private int tinId;
+    private int lotId;
 
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
 
-    public CargaTipoInsumo() {
-    }
-
-    public CargaTipoInsumo(String operacion, String nombre, String descripcion, int id) {
+    public CargaLote(String operacion, String nombre, int metros, int id) {
 
         //INICIO
         setContentPane(panel1);
         pack();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
-            this.setTitle("Cargar Tipo de Insumo");
+            this.setTitle("Cargar Lote");
         } else {
-            this.setTitle("Modificar Tipo de Insumo");
+            this.setTitle("Modificar Lote");
         }
 
 
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
+                JOptionPane.showMessageDialog(null, "Se guarda la alta del lote con exito.");
                 dispose();
             }
         });
@@ -52,11 +52,13 @@ public class CargaTipoInsumo extends JFrame {
         cancelarButton.addActionListener(e -> dispose());
 
 
-        if (nombre.length() > 1 && descripcion.length() > 1 && id != 0) {
+        if (nombre.length() > 1  && id != 0) {
             txtNombre.setText(nombre);
-            txtDescripcion.setText(descripcion);
-            tinId = id;
+            txtMetros.setText(String.valueOf(metros));
+
+            lotId = id;
         }
+
     }
 
 
@@ -64,25 +66,27 @@ public class CargaTipoInsumo extends JFrame {
     private Boolean save() {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
+        LoteEntity lote = new LoteEntity();
         if (validaCarga().equals("S")) {
             try {
-                TipoInsumoEntity tipo = new TipoInsumoEntity();
-                tipo.setTinNombre(txtNombre.getText());
-                tipo.setTinDescripcion(txtDescripcion.getText());
-                tipo.setTinFechaAlta(fechaActual);
-                tipo.setTinUsuarioAlta("admin");
+
+                lote.setLteDenominacion(txtNombre.getText());
+                lote.setLteCantMetros(Integer.parseInt(txtMetros.getText()));
+                lote.setLteFechaAlta(fechaActual);
+                lote.setLteUsuarioAlta("admin");
+
                 Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
-                    session.save(tipo);
+                    session.save(lote);
                 } else {
-                    tipo.setTinId(tinId);
-                    session.update(tipo);
+                    lote.setLteId(lotId);
+                    session.update(lote);
                 }
                 tx.commit();
                 guardado = tx.wasCommitted();
-//            session.close();
+//                session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo: " + e.toString());
+                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el lote: " + e.toString());
             } finally {
                 session.close();
             }
@@ -94,14 +98,13 @@ public class CargaTipoInsumo extends JFrame {
     }
 
 
-    //METODO VALIDAR DATOS
+    //METODO VALIDAR CARGA
     private String validaCarga() {
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 
-        if (txtDescripcion.getText().replaceAll(" ", "").length() == 0) return "N";
+        if (txtMetros.getText().replaceAll(" ", "").length() == 0) return "N";
 
         return "S";
-
     }
 
 

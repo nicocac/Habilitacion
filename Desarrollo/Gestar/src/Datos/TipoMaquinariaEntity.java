@@ -22,6 +22,7 @@ public class TipoMaquinariaEntity {
 
 
     @Id
+    @GeneratedValue
     @Column(name = "tma_id")
     public int getTmaId() {
         return tmaId;

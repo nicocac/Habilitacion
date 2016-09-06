@@ -35,6 +35,7 @@ public class InsumoEntity {
     private Collection<DetalleLaboreoEntity> detalleLaboreosByInsId;
 
     @Id
+    @GeneratedValue
     @Column(name = "ins_id")
     public int getInsId() {
         return insId;
