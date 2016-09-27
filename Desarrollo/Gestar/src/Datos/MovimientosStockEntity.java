@@ -152,7 +152,7 @@ public class MovimientosStockEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "mos_sin_id", referencedColumnName = "sin_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "stockInsumoByMosSinId", referencedColumnName = "sin_id", nullable = false, insertable=false, updatable=false)
     public StockInsumoEntity getStockInsumoByMosSinId() {
         return stockInsumoByMosSinId;
     }

@@ -188,8 +188,8 @@ public class DetalleCompraEntity {
         this.insumoByCpdInsId = insumoByCpdInsId;
     }
 
-    @Basic
-    @Column(name = "cpd_cpa_id")
+//    @Basic
+//    @Column(name = "cpd_cpa_id")
     public Integer getCpdCpaId() {
         return cpdCpaId;
     }
@@ -198,8 +198,8 @@ public class DetalleCompraEntity {
         this.cpdCpaId = cpdCpaId;
     }
 
-    @Basic
-    @Column(name = "cpd_ins_id")
+//    @Basic
+//    @Column(name = "cpd_ins_id")
     public Integer getCpdInsId() {
         return cpdInsId;
     }
@@ -208,8 +208,8 @@ public class DetalleCompraEntity {
         this.cpdInsId = cpdInsId;
     }
 
-    @Basic
-    @Column(name = "idx")
+//    @Basic
+//    @Column(name = "idx")
     public Integer getIdx() {
         return idx;
     }

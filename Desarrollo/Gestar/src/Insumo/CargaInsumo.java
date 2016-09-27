@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -74,6 +76,17 @@ public class CargaInsumo extends JFrame {
             CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
             cargaTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
+        });
+
+
+        cbxTipoInsumo.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipo();
+                cargaComboBoxTipo();
+
+            }
         });
     }
 
@@ -183,6 +196,10 @@ public class CargaInsumo extends JFrame {
             cbxTipoInsumo.addItem(tipoInsumo);
         }
 
+    }
+
+    private void borrarComboBoxTipo() {
+            cbxTipoInsumo.removeAllItems();
     }
 
 }

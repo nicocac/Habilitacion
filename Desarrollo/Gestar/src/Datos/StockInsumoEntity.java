@@ -171,7 +171,7 @@ public class StockInsumoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "sin_ins_id", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "insumoBySinInsId", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
     public InsumoEntity getInsumoBySinInsId() {
         return insumoBySinInsId;
     }

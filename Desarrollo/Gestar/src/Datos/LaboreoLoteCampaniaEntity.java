@@ -150,7 +150,7 @@ public class LaboreoLoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "llc_lbo_id", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "laboreoByLlcLboId", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
     public LaboreoEntity getLaboreoByLlcLboId() {
         return laboreoByLlcLboId;
     }
@@ -160,7 +160,7 @@ public class LaboreoLoteCampaniaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "llc_lcp_id", referencedColumnName = "lcp_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "loteCampaniaByLlcLcpId", referencedColumnName = "lcp_id", nullable = false, insertable=false, updatable=false)
     public LoteCampaniaEntity getLoteCampaniaByLlcLcpId() {
         return loteCampaniaByLlcLcpId;
     }

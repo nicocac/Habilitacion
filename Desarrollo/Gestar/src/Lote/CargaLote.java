@@ -14,10 +14,9 @@ import java.sql.Date;
 public class CargaLote extends JFrame{
     private JPanel panel1;
     private JTextField txtNombre;
-    private JTextArea txtMetros;
+    private JTextField txtMetros;
     private JButton cancelarButton;
     private JButton guardarButton;
-    private JTextField textField1;
 
 
     private String tipoOperacion;
@@ -42,7 +41,7 @@ public class CargaLote extends JFrame{
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guarda la alta del lote con exito.");
+                JOptionPane.showMessageDialog(null, "Se guardo el alta del lote con exito.");
                 dispose();
             }
         });
@@ -86,7 +85,7 @@ public class CargaLote extends JFrame{
                 guardado = tx.wasCommitted();
 //                session.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el lote: " + e.toString());
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el lote: " + e.toString());
             } finally {
                 session.close();
             }

@@ -4,11 +4,17 @@ import Conexion.Coneccion;
 import Datos.MaquinariaEntity;
 import Datos.TipoEstadoMaquinariaEntity;
 import Datos.TipoMaquinariaEntity;
+import Maquinaria.PantallaTipoEstado.CargaEstadoMaquinaria;
+import Maquinaria.PantallaTipoMaquinaria.CargaTipoMaquinaria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -74,6 +80,38 @@ public class CargaMaquinaria extends JFrame {
             maqId = id;
         }
 
+        nuevoEstadoMaquinariaButton.addActionListener(e -> {
+            CargaEstadoMaquinaria cargaEstadoMaquinaria = new CargaEstadoMaquinaria("Carga", "", "", 0);
+            cargaEstadoMaquinaria.setVisible(true);
+            getDefaultCloseOperation();
+
+
+        });
+
+        nuevoTipoMaquinariaButton.addActionListener(e -> {
+            CargaTipoMaquinaria cargaTipoMaquinaria = new CargaTipoMaquinaria("Carga", "", "", 0);
+            cargaTipoMaquinaria.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
+        cbxTipoMaquinaria.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoMaquinaria();
+                cargaComboBoxTipoMaquinaria();
+            }
+        });
+
+        cbxEstado.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoEstado();
+                cargaComboBoxTipoEstado();
+            }
+        });
     }
 
 
@@ -151,6 +189,16 @@ public class CargaMaquinaria extends JFrame {
         }
 
     }
+
+    private void borrarComboBoxTipoMaquinaria() {
+            cbxTipoMaquinaria.removeAllItems();
+    }
+
+
+    private void borrarComboBoxTipoEstado() {
+        cbxEstado.removeAllItems();
+    }
+
 
     //METODO CARGA COMBO TIPO ESTADO MAQUINARIA
     private void cargaComboBoxTipoEstado() {

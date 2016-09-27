@@ -115,5 +115,28 @@ public class GestorCampania {
 
     }
 
+
+    public List getLotes(){
+        session = Coneccion.getSession();
+        java.util.List list;
+        LoteEntity loteEntity ;
+        Lote lote;
+        LinkedList retorno = new LinkedList();
+        try {
+            Query query = session.createQuery("select t from LoteEntity t where lteFechaBaja is null");
+            list = query.list();
+            Iterator iter = list.iterator();
+            while (iter.hasNext()) {
+                loteEntity=(LoteEntity)iter.next();
+                lote= new Lote(loteEntity.getLteDenominacion(), loteEntity.getLteCantMetros(), loteEntity.getLteUbicacion(), loteEntity.getLteFechaDesde(), loteEntity.getLteFechaHasta());
+                retorno.add(lote);
+            }
+        } finally {
+            session.close();}
+
+        return retorno;
+    }
+
+
 }
 

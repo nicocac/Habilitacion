@@ -2,6 +2,7 @@ package Principal;
 
 import Campania.PantallaAdministrarCampania;
 import Granos.PantallaAdministrarTipoGranos;
+import Imagenes.ImageFondo;
 import Insumo.PantallaAdministrarInsumo;
 import Laboreo.PantallaAdministrarLaboreos;
 import Laboreo.PantallaLaboreo;
@@ -25,6 +26,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuItem laboreoTemp, laboreo, lote, compra, salir, insumo, tipoInsumo,compraInsumo, maquinaria, tipoMaquinaria, estadoMaquinaria, tipoGrano, campania;
 
     public MenuPrincipal() {
+
+        ImageFondo image=new ImageFondo();
+        image.setImage("/Imagenes/gestion.png");
+        setContentPane(image);
 
         menuPrincipal = new JMenuBar();
         setJMenuBar(menuPrincipal);
@@ -96,10 +101,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         tipoGranos.add(tipoGrano);
 
         //CAMPANIAS
-        campanias = new JMenu("Campaña");
+        campanias = new JMenu("Campa\u00f1a");
         menuPrincipal.add(campanias);
 
-        campania = new JMenuItem("Administrar Campañas");
+        campania = new JMenuItem("Administrar Campa\u00f1as");
         campania.addActionListener(this);
         campanias.add(campania);
 

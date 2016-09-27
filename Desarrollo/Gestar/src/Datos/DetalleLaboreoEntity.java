@@ -185,8 +185,8 @@ public class DetalleLaboreoEntity {
         this.maquinariaByDboMaqId = maquinariaByDboMaqId;
     }
 
-    @Basic
-    @Column(name = "dbo_ins_id")
+//    @Basic
+//    @Column(name = "dbo_ins_id")
     public int getDboInsId() {
         return dboInsId;
     }
@@ -195,8 +195,8 @@ public class DetalleLaboreoEntity {
         this.dboInsId = dboInsId;
     }
 
-    @Basic
-    @Column(name = "dbo_maq_id")
+//    @Basic
+//    @Column(name = "dbo_maq_id")
     public Integer getDboMaqId() {
         return dboMaqId;
     }
@@ -205,8 +205,8 @@ public class DetalleLaboreoEntity {
         this.dboMaqId = dboMaqId;
     }
 
-    @Basic
-    @Column(name = "dbo_lbo_id")
+//    @Basic
+//    @Column(name = "dbo_lbo_id")
     public int getDboLboId() {
         return dboLboId;
     }
