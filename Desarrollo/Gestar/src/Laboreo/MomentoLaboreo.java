@@ -28,4 +28,8 @@ public class MomentoLaboreo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String toString(){
+        return this.nombre +" - "+this.descripcion;
+    }
 }

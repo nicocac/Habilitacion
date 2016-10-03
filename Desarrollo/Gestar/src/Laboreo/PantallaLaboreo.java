@@ -15,6 +15,10 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import TipoInsumo.TipoInsumo;
@@ -50,11 +54,13 @@ public class PantallaLaboreo extends JFrame {
         //INICIO
         setContentPane(panel1);
         pack();
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Laboreo");
         inicializaTabla();
         cargarItems();
         cargarMaquinas();
         cargarCampanias();
+        cargarMomentos();
         cboCampania.addActionListener(e -> cargarLotes((Campania)cboCampania.getSelectedItem()));
         lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
         btnAgregarItem.addActionListener(e -> {
@@ -116,7 +122,7 @@ public class PantallaLaboreo extends JFrame {
                         fila++;
                     } else {
                         modelDetalle.addRow(new Object[]{"Maquinaria"
-                                , maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
+                                , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
                                 , "-"
                                 , "-"});
                         fila++;
@@ -143,7 +149,38 @@ public class PantallaLaboreo extends JFrame {
         btnLimpiar.addActionListener(e -> limpiarPantalla());
         btnCancelar.addActionListener(e -> dispose());
         btnFinalizar.addActionListener(e -> {
-
+            GestorLaboreo gest = new GestorLaboreo();
+            Campania camp = (Campania)cboCampania.getSelectedItem();
+            ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
+            ArrayList <DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+            for (int i=0;i<tblDetalles.getModel().getRowCount();i++){
+                DetalleLaboreo det = new DetalleLaboreo();
+                if (tblDetalles.getValueAt(i,0).equals("Insumo")) {
+                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+                    det.setInsumo(ins);
+                    det.setCantidad(Integer.parseInt((String)tblDetalles.getValueAt(i, 3)));
+                }else{
+                    Maquinaria maq = new Maquinaria();
+                    maq.setDescripcion((String)tblDetalles.getValueAt(i, 1));
+                    det.setMaquinaria(maq);
+                }
+                detalles.add(det);
+            }
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            java.util.Date date = new java.util.Date();
+            java.util.Calendar cal= Calendar.getInstance();
+            try{
+                date = formatter.parse(txtFecha.getText());
+            }catch(Exception exe){
+                showMessage(exe.getMessage());
+            }
+            cal.setTime(date);
+            cal.set(Calendar.HOUR_OF_DAY,0);
+            cal.set(Calendar.MINUTE,0);
+            cal.set(Calendar.SECOND,0);
+            cal.set(Calendar.MILLISECOND,0);
+            Date fecha = new Date(cal.getTime().getTime());
+            gest.registrarLaboreo(camp,lotes,detalles,(MomentoLaboreo)cboMomentos.getSelectedItem(),fecha,null,txtDescripcion.getText());
         });
     }
 

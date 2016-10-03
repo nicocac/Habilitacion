@@ -23,7 +23,7 @@
           </grid>
         </constraints>
         <properties/>
-        <border type="line">
+        <border type="none">
           <font/>
           <color color="-14907371"/>
         </border>

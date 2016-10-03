@@ -190,6 +190,7 @@
           <forms/>
         </constraints>
         <properties>
+          <icon value="Imagenes/item.png"/>
           <text value="Agregar Item"/>
         </properties>
       </component>
@@ -213,25 +214,13 @@
           <text value="Insumos"/>
         </properties>
       </component>
-      <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
-        <constraints>
-          <grid row="24" column="2" row-span="1" col-span="9" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/login_out_48.png"/>
-          <inheritsPopupMenu value="true"/>
-          <label value="Salir"/>
-          <text value="Salir"/>
-        </properties>
-      </component>
       <component id="2d756" class="javax.swing.JButton" binding="btnFinalizar">
         <constraints>
           <grid row="24" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
-          <icon value="Imagenes/rsz_guardar.png"/>
+          <icon value="Imagenes/Guardar48.png"/>
           <text value="Guardar"/>
         </properties>
       </component>
@@ -264,6 +253,8 @@
           <forms/>
         </constraints>
         <properties>
+          <hideActionText value="false"/>
+          <icon value="Imagenes/cosechadora.png"/>
           <text value="Agregar Maquinaria"/>
         </properties>
       </component>
@@ -317,6 +308,18 @@
           <forms/>
         </constraints>
         <properties/>
+      </component>
+      <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
+        <constraints>
+          <grid row="24" column="2" row-span="1" col-span="9" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <icon value="Imagenes/login_out_48.png"/>
+          <inheritsPopupMenu value="true"/>
+          <label value="Salir"/>
+          <text value="Salir"/>
+        </properties>
       </component>
     </children>
   </grid>

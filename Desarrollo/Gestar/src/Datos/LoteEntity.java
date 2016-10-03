@@ -24,6 +24,15 @@ public class LoteEntity {
     private String lteUsuarioBaja;
     private Collection<LoteCampaniaEntity> loteCampaniasByLteId;
 
+    @OneToMany(mappedBy = "loteByLcpLteId")
+    public Collection<LoteCampaniaEntity> getLoteCampaniasByLteId() {
+        return loteCampaniasByLteId;
+    }
+
+    public void setLoteCampaniasByLteId(Collection<LoteCampaniaEntity> loteCampaniasByLteId) {
+        this.loteCampaniasByLteId = loteCampaniasByLteId;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "lte_id")
@@ -190,14 +199,5 @@ public class LoteEntity {
         result = 31 * result + (lteFechaBaja != null ? lteFechaBaja.hashCode() : 0);
         result = 31 * result + (lteUsuarioBaja != null ? lteUsuarioBaja.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "loteByLcpLteId")
-    public Collection<LoteCampaniaEntity> getLoteCampaniasByLteId() {
-        return loteCampaniasByLteId;
-    }
-
-    public void setLoteCampaniasByLteId(Collection<LoteCampaniaEntity> loteCampaniasByLteId) {
-        this.loteCampaniasByLteId = loteCampaniasByLteId;
     }
 }

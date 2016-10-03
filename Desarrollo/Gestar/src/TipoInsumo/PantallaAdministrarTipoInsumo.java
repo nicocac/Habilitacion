@@ -34,6 +34,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Tipo de Insumo");
         inicializaTabla();

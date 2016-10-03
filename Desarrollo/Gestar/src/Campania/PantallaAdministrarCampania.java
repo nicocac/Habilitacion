@@ -42,6 +42,7 @@ public class PantallaAdministrarCampania extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Campania");
         inicializaTabla();
@@ -132,8 +133,8 @@ public class PantallaAdministrarCampania extends JFrame {
         tblCampania.setModel(model);
         tblCampania.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCampania.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblCampania.getColumnModel().getColumn(1).setPreferredWidth(180);
-        tblCampania.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tblCampania.getColumnModel().getColumn(1).setPreferredWidth(500);
+        tblCampania.getColumnModel().getColumn(2).setPreferredWidth(150);
     }
 
     private void showMessage(String error) {

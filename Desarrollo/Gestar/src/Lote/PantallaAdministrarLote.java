@@ -42,6 +42,7 @@ public class PantallaAdministrarLote extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Lote");
         inicializaTabla();
@@ -129,7 +130,7 @@ public class PantallaAdministrarLote extends JFrame {
         tblLote.setModel(model);
         tblLote.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblLote.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblLote.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tblLote.getColumnModel().getColumn(1).setPreferredWidth(450);
         tblLote.getColumnModel().getColumn(2).setPreferredWidth(200);
     }
 

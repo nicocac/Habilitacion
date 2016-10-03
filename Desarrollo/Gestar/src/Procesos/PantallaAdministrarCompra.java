@@ -59,6 +59,7 @@ public class PantallaAdministrarCompra extends JFrame {
         //INICIO
         setContentPane(panel1);
         pack();
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Compra Insumos");
         inicializaTabla(0);
 

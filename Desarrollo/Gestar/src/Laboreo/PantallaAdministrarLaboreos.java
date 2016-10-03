@@ -40,6 +40,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Laboreos");
         inicializaTabla();
@@ -117,7 +118,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campaña", "Momento"};
+        String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campaï¿½a", "Momento"};
         Object[][] data = new Object[1][5];
         setModel(columnNames, data, tblInsumos);
     }
@@ -191,7 +192,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campaña", "Momento"};
+            String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campaï¿½a", "Momento"};
             Object[][] data = new Object[list.size()][6];
 
             while (iter.hasNext()) {

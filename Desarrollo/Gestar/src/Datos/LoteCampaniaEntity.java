@@ -22,8 +22,6 @@ public class LoteCampaniaEntity {
     private CampaniaEntity campaniaByLcpCnaId;
     private LoteEntity loteByLcpLteId;
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId;
-    private int lcpLteId;
-    private int lcpCnaId;
 
     @Id
     @GeneratedValue
@@ -155,25 +153,6 @@ public class LoteCampaniaEntity {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "campaniaByLcpCnaId", referencedColumnName = "cna_id", nullable = false, insertable=false, updatable=false)
-    public CampaniaEntity getCampaniaByLcpCnaId() {
-        return campaniaByLcpCnaId;
-    }
-
-    public void setCampaniaByLcpCnaId(CampaniaEntity campaniaByLcpCnaId) {
-        this.campaniaByLcpCnaId = campaniaByLcpCnaId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "loteByLcpLteId", referencedColumnName = "lte_id", nullable = false, insertable=false, updatable=false)
-    public LoteEntity getLoteByLcpLteId() {
-        return loteByLcpLteId;
-    }
-
-    public void setLoteByLcpLteId(LoteEntity loteByLcpLteId) {
-        this.loteByLcpLteId = loteByLcpLteId;
-    }
 
     @OneToMany(mappedBy = "loteCampaniaByLlcLcpId")
     public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
@@ -184,23 +163,23 @@ public class LoteCampaniaEntity {
         this.laboreoLoteCampaniasByLcpId = laboreoLoteCampaniasByLcpId;
     }
 
-    @Basic
-    @Column(name = "lcp_lte_id")
-    public int getLcpLteId() {
-        return lcpLteId;
+    @ManyToOne
+    @JoinColumn(name = "lcp_cna_id", referencedColumnName = "cna_id", nullable = false)
+    public CampaniaEntity getCampaniaByLcpCnaId() {
+        return campaniaByLcpCnaId;
     }
 
-    public void setLcpLteId(int lcpLteId) {
-        this.lcpLteId = lcpLteId;
+    public void setCampaniaByLcpCnaId(CampaniaEntity campaniaByLcpCnaId) {
+        this.campaniaByLcpCnaId = campaniaByLcpCnaId;
     }
 
-    @Basic
-    @Column(name = "lcp_cna_id")
-    public int getLcpCnaId() {
-        return lcpCnaId;
+    @ManyToOne
+    @JoinColumn(name = "lcp_lte_id", referencedColumnName = "lte_id", nullable = false)
+    public LoteEntity getLoteByLcpLteId() {
+        return loteByLcpLteId;
     }
 
-    public void setLcpCnaId(int lcpCnaId) {
-        this.lcpCnaId = lcpCnaId;
+    public void setLoteByLcpLteId(LoteEntity loteByLcpLteId) {
+        this.loteByLcpLteId = loteByLcpLteId;
     }
 }

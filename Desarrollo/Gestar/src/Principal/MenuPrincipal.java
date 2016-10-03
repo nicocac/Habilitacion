@@ -27,9 +27,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     public MenuPrincipal() {
 
-        ImageFondo image=new ImageFondo();
-        image.setImage("/Imagenes/gestion.png");
-        setContentPane(image);
+        //ImageFondo image=new ImageFondo();
+        //image.setImage("/Imagenes/gestion.png");
+        //setContentPane(image);
+
+        this.setExtendedState(MAXIMIZED_BOTH);
 
         menuPrincipal = new JMenuBar();
         setJMenuBar(menuPrincipal);

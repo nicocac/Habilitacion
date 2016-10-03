@@ -22,6 +22,24 @@ public class GestorCampania {
 
     Session session;
 
+    public CampaniaEntity getCampaniaByCnaName(String cnaName){
+        session = Coneccion.getSession();
+        java.util.List list;
+        CampaniaEntity camp = new CampaniaEntity();
+        try {
+            Query query = session.createQuery("select t from CampaniaEntity t where  t.cnaDenominacion= :pCnaName and  cnaFechaBaja is null");
+            query.setParameter("pCnaName", cnaName);
+            list = query.list();
+        } finally {
+            session.close();
+        }
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            camp = (CampaniaEntity) iter.next();
+        }
+        return camp;
+    }
+
     public List getCampanias(){
         session = Coneccion.getSession();
         java.util.List list;
@@ -110,11 +128,6 @@ public class GestorCampania {
 
         return retorno;
     }
-
-    public void registrarLaboreo(LinkedList lotes){
-
-    }
-
 
     public List getLotes(){
         session = Coneccion.getSession();

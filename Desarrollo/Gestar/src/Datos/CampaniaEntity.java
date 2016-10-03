@@ -23,6 +23,15 @@ public class CampaniaEntity {
     private String cnaUsuarioBaja;
     private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
+    @OneToMany(mappedBy = "campaniaByLcpCnaId")
+    public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {
+        return loteCampaniasByCnaId;
+    }
+
+    public void setLoteCampaniasByCnaId(Collection<LoteCampaniaEntity> loteCampaniasByCnaId) {
+        this.loteCampaniasByCnaId = loteCampaniasByCnaId;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "cna_id")
@@ -180,12 +189,4 @@ public class CampaniaEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "campaniaByLcpCnaId")
-    public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {
-        return loteCampaniasByCnaId;
-    }
-
-    public void setLoteCampaniasByCnaId(Collection<LoteCampaniaEntity> loteCampaniasByCnaId) {
-        this.loteCampaniasByCnaId = loteCampaniasByCnaId;
-    }
 }

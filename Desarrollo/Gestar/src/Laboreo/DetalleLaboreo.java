@@ -12,6 +12,13 @@ public class DetalleLaboreo {
     private Insumo insumo;
     private Maquinaria maquinaria;
 
+    public DetalleLaboreo(){
+        this.setObservaciones(null);
+        this.setCantidad(0);
+        this.setInsumo(null);
+        this.setMaquinaria(null);
+    }
+
     public DetalleLaboreo(String observaciones, int cantidad, Insumo insumo, Maquinaria maquinaria) {
         this.setObservaciones(observaciones);
         this.setCantidad(cantidad);

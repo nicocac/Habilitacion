@@ -38,6 +38,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Maquinaria");
         inicializaTabla();
