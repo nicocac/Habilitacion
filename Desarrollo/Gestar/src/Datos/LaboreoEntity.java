@@ -23,6 +23,8 @@ public class LaboreoEntity {
     private String lboUsuarioBaja;
 //
 
+    private TipoLaboreoEntity tipoLaboreoEntity;
+
     private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId;
 
@@ -147,6 +149,16 @@ public class LaboreoEntity {
 
     public void setLaboreoLoteCampaniasByLboId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId) {
         this.laboreoLoteCampaniasByLboId = laboreoLoteCampaniasByLboId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "lbo_tlbo_id", referencedColumnName = "tpo_id")
+    public TipoLaboreoEntity getTipoLaboreoEntity() {
+        return tipoLaboreoEntity;
+    }
+
+    public void setTipoLaboreoEntity(TipoLaboreoEntity tipoLaboreoEntity) {
+        this.tipoLaboreoEntity = tipoLaboreoEntity;
     }
 
     //=================================================================
