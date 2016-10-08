@@ -228,7 +228,7 @@ public class GestorLaboreo {
         }
         laboreo.setLaboreoLoteCampaniasByLboId(arrayLaboreoLote);
         laboreo.setDetalleLaboreosByLboId(detallesEntity);
-        laboreo.setLboTpoId(this.getMomentoByNombre(momento.getDescripcion()).getTpoId());
+//        laboreo.setLboTpoId(this.getMomentoByNombre(momento.getDescripcion()).getTpoId());
         laboreo.setLboFechaHoraInicio(fecahInicio);
         laboreo.setLboFechaHoraFin(fechaFin);
         laboreo.setLboDescripcion(descripcion);

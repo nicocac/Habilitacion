@@ -204,23 +204,24 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="4a430" class="javax.swing.JComboBox" binding="cbxTipoInsumo">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <model/>
-                </properties>
-              </component>
               <component id="18b83" class="javax.swing.JButton" binding="nuevoTipoInsumoButton" default-binding="true">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="15" height="15"/>
                   </grid>
                 </constraints>
                 <properties>
                   <horizontalAlignment value="4"/>
-                  <text value="Nuevo Tipo Insumo"/>
+                  <icon value="Imagenes/rsz_new.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="4a430" class="javax.swing.JComboBox" binding="cbxTipoInsumo">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model/>
                 </properties>
               </component>
             </children>

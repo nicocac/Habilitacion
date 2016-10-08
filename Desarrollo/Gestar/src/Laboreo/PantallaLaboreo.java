@@ -290,7 +290,7 @@ public class PantallaLaboreo extends JFrame {
         while (iter.hasNext()) {
             cboMomentos.addItem(iter.next());
         }
-        cboMomentos.setSelectedIndex(0);
+//        cboMomentos.setSelectedIndex(0);
     }
 
     private void showMessage(String mensaje){
