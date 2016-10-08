@@ -3,6 +3,7 @@ package Insumo;
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
 import Datos.TipoInsumoEntity;
+import Repository.TipoInsumoRepository;
 import TipoInsumo.CargaTipoInsumo;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 import org.hibernate.Query;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.Date;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -35,6 +37,9 @@ public class CargaInsumo extends JFrame {
 
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
+
+    TipoInsumoRepository tipoInsumoRepository = new TipoInsumoRepository();
+
 
     public CargaInsumo(String operacion, String nombre, String descripcion, String unidadMedida, TipoInsumoEntity tipoInsumo, String stock, int id) {
 
@@ -104,9 +109,9 @@ public class CargaInsumo extends JFrame {
                 insumo.setInsFechaAlta(fechaActual);
                 insumo.setInsUsuarioAlta("admin");
                 insumo.setInsUnidadMedida(textUnidadMedida.getSelectedItem().toString());
+
                 String tipoInsumo = cbxTipoInsumo.getSelectedItem().toString();
-//                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.get(TipoInsumoEntity.class, 7);
-                TipoInsumoEntity tipoInsumoEntity = (TipoInsumoEntity) session.createQuery("select x from TipoInsumoEntity x where x.tinNombre = :pNombre").setParameter("pNombre", tipoInsumo).uniqueResult();
+                TipoInsumoEntity tipoInsumoEntity = tipoInsumoRepository.getTipoInsumoByNombre(tipoInsumo);
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
 
                 Transaction tx = session.beginTransaction();
@@ -144,54 +149,16 @@ public class CargaInsumo extends JFrame {
     }
 
 
-    //METODO GUARDAR STOCK
-    /*private void guardaStock(InsumoEntity insumo) {
-        //Carga Stock
-        Session session = Coneccion.getSession();
-        try {
-            int stockInsId = 0;
-            StockInsumoEntity stockInsumo = (StockInsumoEntity) session.createQuery("select x from StockInsumoEntity x where x.insumoBySinInsId = :pNombre").setParameter("pNombre", insumo).uniqueResult();
-            if (stockInsumo != null) {
-                stockInsId = stockInsumo.getSinId();
-            } else {
-                stockInsumo = new StockInsumoEntity();
-            }
-            if (insumo.getInsId() == 0) {
-                insumo = (InsumoEntity) session.createQuery("select x from InsumoEntity x where x.insNombre = :pNombre").setParameter("pNombre", insumo.getInsNombre()).uniqueResult();
-            }
-            stockInsumo.setInsumoBySinInsId(insumo);
-            stockInsumo.setSinFechaAlta(fechaActual);
-            stockInsumo.setSinFechaUltMod(fechaActual);
-            stockInsumo.setSinUsuarioAlta("admin");
-            stockInsumo.setSinUsuarioUtlMod("admin");
-            stockInsumo.setSinTotal(Integer.parseInt(txtStock.getText()));
 
-            Transaction tx = session.beginTransaction();
-            if (stockInsId == 0) {
-                session.save(stockInsumo);
-            } else {
-                stockInsumo.setSinId(stockInsId);
-                session.update(stockInsumo);
-            }
-            tx.commit();
-        } catch (Exception e) {
-            //JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo.");
-        } finally {
-            session.close();
-
-        }
-    }*/
 
 
     //METODO CARGA COMBO
     private void cargaComboBoxTipo() {
-        Session session = Coneccion.getSession();
-        Query query = session.createQuery("SELECT p FROM TipoInsumoEntity p");
-        java.util.List<TipoInsumoEntity> listaTipoInsumo = query.list();
+
+        List<TipoInsumoEntity> listaTipoInsumo = tipoInsumoRepository.getAllTipoInsumos();
 
         Vector<String> mivector = new Vector<>();
         for (TipoInsumoEntity tipoInsumo : listaTipoInsumo) {
-            //System.out.println(tipoInsumo.getTinNombre());
             mivector.add(tipoInsumo.getTinNombre());
             cbxTipoInsumo.addItem(tipoInsumo);
         }

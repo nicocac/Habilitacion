@@ -8,54 +8,34 @@ import java.util.Collection;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "tipo_grano", schema = "gestar", catalog = "")
+@Table(name = "tipo_grano", schema = "", catalog = "gestar")
 public class TipoGranoEntity {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "tgr_id")
-    private int tgrId;
-
-    @Basic
-    @Column(name = "tgr_nombre")
+    private Integer tgrId;
     private String tgrNombre;
-
-    @Basic
-    @Column(name = "tgr_descripcion")
     private String tgrDescripcion;
-
-    @Basic
-    @Column(name = "tgr_fecha_alta")
     private Date tgrFechaAlta;
-
-    @Basic
-    @Column(name = "tgr_usuario_alta")
     private String tgrUsuarioAlta;
-
-    @Basic
-    @Column(name = "tgr_fecha_ult_mod")
     private Date tgrFechaUltMod;
-
-    @Basic
-    @Column(name = "tgr_usuario_utl_mod")
     private String tgrUsuarioUtlMod;
-
-    @Basic
-    @Column(name = "tgr_fecha_baja")
     private Date tgrFechaBaja;
-
-    @Basic
-    @Column(name = "tgr_usuario_baja")
     private String tgrUsuarioBaja;
 
+    //=============================================================================================
 
-    public int getTgrId() {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "tgr_id")
+    public Integer getTgrId() {
         return tgrId;
     }
 
-    public void setTgrId(int tgrId) {
+    public void setTgrId(Integer tgrId) {
         this.tgrId = tgrId;
     }
 
+    @Basic
+    @Column(name = "tgr_nombre")
     public String getTgrNombre() {
         return tgrNombre;
     }
@@ -64,6 +44,8 @@ public class TipoGranoEntity {
         this.tgrNombre = tgrNombre;
     }
 
+    @Basic
+    @Column(name = "tgr_descripcion")
     public String getTgrDescripcion() {
         return tgrDescripcion;
     }
@@ -72,6 +54,8 @@ public class TipoGranoEntity {
         this.tgrDescripcion = tgrDescripcion;
     }
 
+    @Basic
+    @Column(name = "tgr_fecha_alta")
     public Date getTgrFechaAlta() {
         return tgrFechaAlta;
     }
@@ -80,6 +64,8 @@ public class TipoGranoEntity {
         this.tgrFechaAlta = tgrFechaAlta;
     }
 
+    @Basic
+    @Column(name = "tgr_usuario_alta")
     public String getTgrUsuarioAlta() {
         return tgrUsuarioAlta;
     }
@@ -88,6 +74,8 @@ public class TipoGranoEntity {
         this.tgrUsuarioAlta = tgrUsuarioAlta;
     }
 
+    @Basic
+    @Column(name = "tgr_fecha_ult_mod")
     public Date getTgrFechaUltMod() {
         return tgrFechaUltMod;
     }
@@ -96,6 +84,8 @@ public class TipoGranoEntity {
         this.tgrFechaUltMod = tgrFechaUltMod;
     }
 
+    @Basic
+    @Column(name = "tgr_usuario_utl_mod")
     public String getTgrUsuarioUtlMod() {
         return tgrUsuarioUtlMod;
     }
@@ -104,6 +94,8 @@ public class TipoGranoEntity {
         this.tgrUsuarioUtlMod = tgrUsuarioUtlMod;
     }
 
+    @Basic
+    @Column(name = "tgr_fecha_baja")
     public Date getTgrFechaBaja() {
         return tgrFechaBaja;
     }
@@ -112,6 +104,8 @@ public class TipoGranoEntity {
         this.tgrFechaBaja = tgrFechaBaja;
     }
 
+    @Basic
+    @Column(name = "tgr_usuario_baja")
     public String getTgrUsuarioBaja() {
         return tgrUsuarioBaja;
     }
@@ -120,6 +114,15 @@ public class TipoGranoEntity {
         this.tgrUsuarioBaja = tgrUsuarioBaja;
     }
 
+    //=================================================================
+    @Override
+    public String toString() {
+        return "TipoGranoEntity{" +
+                "tgrNombre='" + tgrNombre + '\'' +
+                '}';
+    }
+
+    //=============================================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -148,20 +151,14 @@ public class TipoGranoEntity {
     @Override
     public int hashCode() {
         int result = tgrId;
-        result = 31 * result + (tgrNombre != null ? tgrNombre.hashCode() : 0);
         result = 31 * result + (tgrDescripcion != null ? tgrDescripcion.hashCode() : 0);
         result = 31 * result + (tgrFechaAlta != null ? tgrFechaAlta.hashCode() : 0);
-        result = 31 * result + (tgrUsuarioAlta != null ? tgrUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (tgrFechaUltMod != null ? tgrFechaUltMod.hashCode() : 0);
-        result = 31 * result + (tgrUsuarioUtlMod != null ? tgrUsuarioUtlMod.hashCode() : 0);
         result = 31 * result + (tgrFechaBaja != null ? tgrFechaBaja.hashCode() : 0);
+        result = 31 * result + (tgrFechaUltMod != null ? tgrFechaUltMod.hashCode() : 0);
+        result = 31 * result + (tgrNombre != null ? tgrNombre.hashCode() : 0);
+        result = 31 * result + (tgrUsuarioAlta != null ? tgrUsuarioAlta.hashCode() : 0);
         result = 31 * result + (tgrUsuarioBaja != null ? tgrUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (tgrUsuarioUtlMod != null ? tgrUsuarioUtlMod.hashCode() : 0);
         return result;
     }
-
-    @Override
-    public String toString() {
-        return this.tgrNombre;
-    }
-
 }

@@ -6,10 +6,10 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "tipo_estado_maquinaria", schema = "gestar", catalog = "")
+@Table(name = "tipo_estado_maquinaria", schema = "", catalog = "gestar")
 public class TipoEstadoMaquinariaEntity {
 
-    private int teMaId;
+    private Integer teMaId;
     private String teMaNombre;
     private String teMaDescripcion;
     private Date teMaFechaAlta;
@@ -18,17 +18,20 @@ public class TipoEstadoMaquinariaEntity {
     private String teMaUsuarioUtlMod;
     private Date teMaFechaBaja;
     private String teMaUsuarioBaja;
-//    private Collection<InsumoEntity> insumosByTinId;
+
+    private Collection<InsumoEntity> insumosByTinId;
     private Collection<MaquinariaEntity> maquinariasByTeMaId;
+
+    //=================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "te_ma_id")
-    public int getTeMaId() {
+    public Integer getTeMaId() {
         return teMaId;
     }
 
-    public void setTeMaId(int teMaId) {
+    public void setTeMaId(Integer teMaId) {
         this.teMaId = teMaId;
     }
 
@@ -111,7 +114,26 @@ public class TipoEstadoMaquinariaEntity {
     public void setTeMaUsuarioBaja(String teMaUsuarioBaja) {
         this.teMaUsuarioBaja = teMaUsuarioBaja;
     }
+    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
+    public Collection<InsumoEntity> getInsumosByTinId() {
+        return insumosByTinId;
+    }
 
+    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
+        this.insumosByTinId = insumosByTinId;
+    }
+
+    @OneToMany(mappedBy = "tipoEstadoMaquinariaByMaqTestadoId")
+    public Collection<MaquinariaEntity> getMaquinariasByTeMaId() {
+        return maquinariasByTeMaId;
+    }
+
+    public void setMaquinariasByTeMaId(Collection<MaquinariaEntity> maquinariasByTeMaId) {
+        this.maquinariasByTeMaId = maquinariasByTeMaId;
+    }
+
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,14 +159,6 @@ public class TipoEstadoMaquinariaEntity {
 
     }
 
-//    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
-//    public Collection<InsumoEntity> getInsumosByTinId() {
-//        return insumosByTinId;
-//    }
-
-//    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
-//        this.insumosByTinId = insumosByTinId;
-//    }
 
     @Override
     public int hashCode() {
@@ -160,17 +174,13 @@ public class TipoEstadoMaquinariaEntity {
         return result;
     }
 
+    //=================================================================
+
+
     @Override
     public String toString() {
-        return this.teMaNombre;
-    }
-
-    @OneToMany(mappedBy = "tipoEstadoMaquinariaByMaqTestadoId")
-    public Collection<MaquinariaEntity> getMaquinariasByTeMaId() {
-        return maquinariasByTeMaId;
-    }
-
-    public void setMaquinariasByTeMaId(Collection<MaquinariaEntity> maquinariasByTeMaId) {
-        this.maquinariasByTeMaId = maquinariasByTeMaId;
+        return "TipoEstadoMaquinariaEntity{" +
+                "teMaNombre='" + teMaNombre + '\'' +
+                '}';
     }
 }

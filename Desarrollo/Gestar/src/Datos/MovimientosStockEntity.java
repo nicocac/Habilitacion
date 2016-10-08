@@ -7,9 +7,10 @@ import java.sql.Date;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "movimientos_stock", schema = "gestar", catalog = "")
+@Table(name = "movimientos_stock", schema = "", catalog = "gestar")
 public class MovimientosStockEntity {
-    private int mosId;
+
+    private Integer mosId;
     private String mosTipoMovimiento;
     private int mosCantidad;
     private Date mosFechaAlta;
@@ -18,17 +19,20 @@ public class MovimientosStockEntity {
     private String mosUsuarioUtlMod;
     private Date mosFechaBaja;
     private String mosUsuarioBaja;
-    private StockInsumoEntity stockInsumoByMosSinId;
-    private int mosSinId;
+
+    private StockInsumoEntity stockInsumoByMosSInsId;
+
+    //======================================================================================
+
 
     @Id
     @GeneratedValue
     @Column(name = "mos_id")
-    public int getMosId() {
+    public Integer getMosId() {
         return mosId;
     }
 
-    public void setMosId(int mosId) {
+    public void setMosId(Integer mosId) {
         this.mosId = mosId;
     }
 
@@ -112,6 +116,26 @@ public class MovimientosStockEntity {
         this.mosUsuarioBaja = mosUsuarioBaja;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "mos_s_ins_id", referencedColumnName = "s_ins_id")
+    public StockInsumoEntity getStockInsumoByMosSInsId() {
+        return stockInsumoByMosSInsId;
+    }
+    public void setStockInsumoByMosSInsId(StockInsumoEntity stockInsumoByMosSInsId) {
+        this.stockInsumoByMosSInsId = stockInsumoByMosSInsId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "MovimientosStockEntity{" +
+                "mosCantidad=" + mosCantidad +
+                '}';
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,6 +157,8 @@ public class MovimientosStockEntity {
         if (mosFechaBaja != null ? !mosFechaBaja.equals(that.mosFechaBaja) : that.mosFechaBaja != null) return false;
         if (mosUsuarioBaja != null ? !mosUsuarioBaja.equals(that.mosUsuarioBaja) : that.mosUsuarioBaja != null)
             return false;
+        if (stockInsumoByMosSInsId != null ? !stockInsumoByMosSInsId.equals(that.stockInsumoByMosSInsId) : that.stockInsumoByMosSInsId != null)
+            return false;
 
         return true;
     }
@@ -140,34 +166,15 @@ public class MovimientosStockEntity {
     @Override
     public int hashCode() {
         int result = mosId;
-        result = 31 * result + (mosTipoMovimiento != null ? mosTipoMovimiento.hashCode() : 0);
         result = 31 * result + mosCantidad;
         result = 31 * result + (mosFechaAlta != null ? mosFechaAlta.hashCode() : 0);
-        result = 31 * result + (mosUsuarioAlta != null ? mosUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (mosFechaUltMod != null ? mosFechaUltMod.hashCode() : 0);
-        result = 31 * result + (mosUsuarioUtlMod != null ? mosUsuarioUtlMod.hashCode() : 0);
         result = 31 * result + (mosFechaBaja != null ? mosFechaBaja.hashCode() : 0);
+        result = 31 * result + (mosFechaUltMod != null ? mosFechaUltMod.hashCode() : 0);
+        result = 31 * result + (mosTipoMovimiento != null ? mosTipoMovimiento.hashCode() : 0);
+        result = 31 * result + (mosUsuarioAlta != null ? mosUsuarioAlta.hashCode() : 0);
         result = 31 * result + (mosUsuarioBaja != null ? mosUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (mosUsuarioUtlMod != null ? mosUsuarioUtlMod.hashCode() : 0);
+        result = 31 * result + (stockInsumoByMosSInsId != null ? stockInsumoByMosSInsId.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "stockInsumoByMosSinId", referencedColumnName = "sin_id", nullable = false, insertable=false, updatable=false)
-    public StockInsumoEntity getStockInsumoByMosSinId() {
-        return stockInsumoByMosSinId;
-    }
-
-    public void setStockInsumoByMosSinId(StockInsumoEntity stockInsumoByMosSinId) {
-        this.stockInsumoByMosSinId = stockInsumoByMosSinId;
-    }
-
-    @Basic
-    @Column(name = "mos_sin_id")
-    public int getMosSinId() {
-        return mosSinId;
-    }
-
-    public void setMosSinId(int mosSinId) {
-        this.mosSinId = mosSinId;
     }
 }

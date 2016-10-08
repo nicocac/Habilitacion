@@ -4,28 +4,30 @@ package Datos;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "login_users", schema = "gestar")
+@Table(name = "login_users", schema = "", catalog = "gestar")
 public class LoginUsersEntity {
+
+
+    private Integer loginId;
+    private String loginNombre;
+    private String loginDescripcion;
+
+
+    //======================================================================================
 
     @Id
     @GeneratedValue
-    @Column(name = "tpo_id")
-    private int loginId;
-
-    @Column(name = "login_nombre")
-    private String loginNombre;
-
-    @Column(name = "login_descripcion")
-    private String loginDescripcion;
-
-    public int getLoginId() {
+    @Column(name = "login_id")
+    public Integer getLoginId() {
         return loginId;
     }
 
-    public void setLoginId(int loginId) {
+    public void setLoginId(Integer loginId) {
         this.loginId = loginId;
     }
 
+    @Basic
+    @Column(name = "login_nombre")
     public String getLoginNombre() {
         return loginNombre;
     }
@@ -34,6 +36,8 @@ public class LoginUsersEntity {
         this.loginNombre = loginNombre;
     }
 
+    @Basic
+    @Column(name = "login_descripcion")
     public String getLoginDescripcion() {
         return loginDescripcion;
     }
@@ -42,26 +46,16 @@ public class LoginUsersEntity {
         this.loginDescripcion = loginDescripcion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LoginUsersEntity that = (LoginUsersEntity) o;
-
-        if (loginId != that.loginId) return false;
-        if (loginNombre != null ? !loginNombre.equals(that.loginNombre) : that.loginNombre != null) return false;
-        if (loginDescripcion != null ? !loginDescripcion.equals(that.loginDescripcion) : that.loginDescripcion != null)
-            return false;
-
-        return true;
-    }
+    //=================================================================
 
     @Override
-    public int hashCode() {
-        int result = loginId;
-        result = 31 * result + (loginNombre != null ? loginNombre.hashCode() : 0);
-        result = 31 * result + (loginDescripcion != null ? loginDescripcion.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "LoginUsersEntity{" +
+                "loginNombre='" + loginNombre + '\'' +
+                '}';
     }
+
+
+
+
 }

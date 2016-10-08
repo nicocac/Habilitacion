@@ -5,9 +5,10 @@ import java.sql.Date;
 
 
 @Entity
-@Table(name = "tipo_laboreo", schema = "gestar", catalog = "")
+@Table(name = "tipo_laboreo", schema = "", catalog = "gestar")
 public class TipoLaboreoEntity {
-    private int tpoId;
+
+    private Integer tpoId;
     private String tpoNombre;
     private String tpoDescripcion;
     private Date tpoFechaAlta;
@@ -17,14 +18,18 @@ public class TipoLaboreoEntity {
     private Date tpoFechaBaja;
     private String tpoUsuarioBaja;
 
+
+  //===============================================================
+
+
     @Id
     @GeneratedValue
     @Column(name = "tpo_id")
-    public int getTpoId() {
+    public Integer getTpoId() {
         return tpoId;
     }
 
-    public void setTpoId(int tpoId) {
+    public void setTpoId(Integer tpoId) {
         this.tpoId = tpoId;
     }
 
@@ -108,6 +113,15 @@ public class TipoLaboreoEntity {
         this.tpoUsuarioBaja = tpoUsuarioBaja;
     }
 
+    //=================================================================
+    @Override
+    public String toString() {
+        return "TipoLaboreoEntity{" +
+                "tpoNombre='" + tpoNombre + '\'' +
+                '}';
+    }
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,14 +150,14 @@ public class TipoLaboreoEntity {
     @Override
     public int hashCode() {
         int result = tpoId;
-        result = 31 * result + (tpoNombre != null ? tpoNombre.hashCode() : 0);
         result = 31 * result + (tpoDescripcion != null ? tpoDescripcion.hashCode() : 0);
         result = 31 * result + (tpoFechaAlta != null ? tpoFechaAlta.hashCode() : 0);
-        result = 31 * result + (tpoUsuarioAlta != null ? tpoUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (tpoFechaUltMod != null ? tpoFechaUltMod.hashCode() : 0);
-        result = 31 * result + (tpoUsuarioUltMod != null ? tpoUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (tpoFechaBaja != null ? tpoFechaBaja.hashCode() : 0);
+        result = 31 * result + (tpoFechaUltMod != null ? tpoFechaUltMod.hashCode() : 0);
+        result = 31 * result + (tpoNombre != null ? tpoNombre.hashCode() : 0);
+        result = 31 * result + (tpoUsuarioAlta != null ? tpoUsuarioAlta.hashCode() : 0);
         result = 31 * result + (tpoUsuarioBaja != null ? tpoUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (tpoUsuarioUltMod != null ? tpoUsuarioUltMod.hashCode() : 0);
         return result;
     }
 }

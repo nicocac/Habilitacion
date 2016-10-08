@@ -6,10 +6,10 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "maquinaria", schema = "gestar", catalog = "")
+@Table(name = "maquinaria", schema = "", catalog = "gestar")
 public class MaquinariaEntity {
 
-    private int maqId;
+    private Integer maqId;
     private String maqNombre;
     private String maqDescripcion;
     private String maqMarca;
@@ -26,19 +26,22 @@ public class MaquinariaEntity {
     private TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId;
     private TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId;
 
-//    private Collection<StockInsumoEntity> stockInsumosByInsId;
+    private Collection<StockInsumoEntity> stockInsumosByInsId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId;
+
+    //======================================================================================
     private Integer maqTestadoId;
     private Integer maqTmaqId;
+    //======================================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "maq_id")
-    public int getMaqId() {
+    public Integer getMaqId() {
         return maqId;
     }
 
-    public void setMaqId(int maqId) {
+    public void setMaqId(Integer maqId) {
         this.maqId = maqId;
     }
 
@@ -127,7 +130,6 @@ public class MaquinariaEntity {
     public String getMaqUsuarioUtlMod() {
         return maqUsuarioUtlMod;
     }
-
     public void setMaqUsuarioUtlMod(String maqUsuarioUtlMod) {
         this.maqUsuarioUtlMod = maqUsuarioUtlMod;
     }
@@ -151,6 +153,56 @@ public class MaquinariaEntity {
     public void setMaqUsuarioBaja(String maqUsuarioBaja) {
         this.maqUsuarioBaja = maqUsuarioBaja;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "maq_testado_id", referencedColumnName = "te_ma_id")
+    public TipoEstadoMaquinariaEntity getTipoEstadoMaquinariaByMaqTestadoId() {
+        return tipoEstadoMaquinariaByMaqTestadoId;
+    }
+
+    public void setTipoEstadoMaquinariaByMaqTestadoId(TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId) {
+        this.tipoEstadoMaquinariaByMaqTestadoId = tipoEstadoMaquinariaByMaqTestadoId;
+    }
+//
+
+    @ManyToOne
+    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id")
+    public TipoMaquinariaEntity getTipoMaquinariaByMaqTmaqId() {
+        return tipoMaquinariaByMaqTmaqId;
+    }
+
+    public void setTipoMaquinariaByMaqTmaqId(TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId) {
+        this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
+    }
+
+    @OneToMany(mappedBy = "insumoBySInsInsId")
+    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
+        return stockInsumosByInsId;
+    }
+
+    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
+        this.stockInsumosByInsId = stockInsumosByInsId;
+    }
+
+    @OneToMany(mappedBy = "maquinariaByDboMaqId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByMaqId() {
+        return detalleLaboreosByMaqId;
+    }
+
+    public void setDetalleLaboreosByMaqId(Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId) {
+        this.detalleLaboreosByMaqId = detalleLaboreosByMaqId;
+    }
+
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "MaquinariaEntity{" +
+                "maqId=" + maqId +
+                '}';
+    }
+    //=================================================================
+
 
     @Override
     public boolean equals(Object o) {
@@ -177,77 +229,35 @@ public class MaquinariaEntity {
         if (maqFechaBaja != null ? !maqFechaBaja.equals(that.maqFechaBaja) : that.maqFechaBaja != null) return false;
         if (maqUsuarioBaja != null ? !maqUsuarioBaja.equals(that.maqUsuarioBaja) : that.maqUsuarioBaja != null)
             return false;
-        if (tipoEstadoMaquinariaByMaqTestadoId != null ? !tipoEstadoMaquinariaByMaqTestadoId.equals(that.tipoEstadoMaquinariaByMaqTestadoId) : that.tipoEstadoMaquinariaByMaqTestadoId != null)
-            return false;
-        return !(tipoMaquinariaByMaqTmaqId != null ? !tipoMaquinariaByMaqTmaqId.equals(that.tipoMaquinariaByMaqTmaqId) : that.tipoMaquinariaByMaqTmaqId != null);
+        if (maqTestadoId != null ? !maqTestadoId.equals(that.maqTestadoId) : that.maqTestadoId != null) return false;
+        if (maqTmaqId != null ? !maqTmaqId.equals(that.maqTmaqId) : that.maqTmaqId != null) return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = maqId;
-        result = 31 * result + (maqNombre != null ? maqNombre.hashCode() : 0);
+        result = 31 * result + (maqAnioFabricacion != null ? maqAnioFabricacion.hashCode() : 0);
         result = 31 * result + (maqDescripcion != null ? maqDescripcion.hashCode() : 0);
+        result = 31 * result + (maqFechaAlta != null ? maqFechaAlta.hashCode() : 0);
+        result = 31 * result + (maqFechaBaja != null ? maqFechaBaja.hashCode() : 0);
+        result = 31 * result + (maqFechaUltMod != null ? maqFechaUltMod.hashCode() : 0);
         result = 31 * result + (maqMarca != null ? maqMarca.hashCode() : 0);
         result = 31 * result + (maqModelo != null ? maqModelo.hashCode() : 0);
-        result = 31 * result + (maqAnioFabricacion != null ? maqAnioFabricacion.hashCode() : 0);
-        result = 31 * result + (maqFechaAlta != null ? maqFechaAlta.hashCode() : 0);
+        result = 31 * result + (maqNombre != null ? maqNombre.hashCode() : 0);
         result = 31 * result + (maqUsuarioAlta != null ? maqUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (maqFechaUltMod != null ? maqFechaUltMod.hashCode() : 0);
-        result = 31 * result + (maqUsuarioUtlMod != null ? maqUsuarioUtlMod.hashCode() : 0);
-        result = 31 * result + (maqFechaBaja != null ? maqFechaBaja.hashCode() : 0);
         result = 31 * result + (maqUsuarioBaja != null ? maqUsuarioBaja.hashCode() : 0);
-        result = 31 * result + (tipoEstadoMaquinariaByMaqTestadoId != null ? tipoEstadoMaquinariaByMaqTestadoId.hashCode() : 0);
-        result = 31 * result + (tipoMaquinariaByMaqTmaqId != null ? tipoMaquinariaByMaqTmaqId.hashCode() : 0);
+        result = 31 * result + (maqUsuarioUtlMod != null ? maqUsuarioUtlMod.hashCode() : 0);
+        result = 31 * result + (maqTestadoId != null ? maqTestadoId.hashCode() : 0);
+        result = 31 * result + (maqTmaqId != null ? maqTmaqId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "maq_testado_id", referencedColumnName = "te_ma_id", insertable=true, updatable=true)
-    public TipoEstadoMaquinariaEntity getTipoEstadoMaquinariaByMaqTestadoId() {
-        return tipoEstadoMaquinariaByMaqTestadoId;
-    }
 
+    ///////////////////////////////
+    //=================================================================
 
-//    @OneToMany(mappedBy = "insumoBySinInsId")
-//    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
-//        return stockInsumosByInsId;
-//    }
-
-//    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
-//        this.stockInsumosByInsId = stockInsumosByInsId;
-//    }
-
-    public void setTipoEstadoMaquinariaByMaqTestadoId(TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId) {
-        this.tipoEstadoMaquinariaByMaqTestadoId = tipoEstadoMaquinariaByMaqTestadoId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "maq_tmaq_id", referencedColumnName = "tma_id", insertable=true, updatable=true)
-    public TipoMaquinariaEntity getTipoMaquinariaByMaqTmaqId() {
-        return tipoMaquinariaByMaqTmaqId;
-    }
-
-    public void setTipoMaquinariaByMaqTmaqId(TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId) {
-        this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
-    }
-
-    @Override
-    public String toString() {
-        return this.maqNombre;
-    }
-
-    @OneToMany(mappedBy = "maquinariaByDboMaqId")
-    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByMaqId() {
-        return detalleLaboreosByMaqId;
-    }
-
-    public void setDetalleLaboreosByMaqId(Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId) {
-        this.detalleLaboreosByMaqId = detalleLaboreosByMaqId;
-    }
-
-    @Basic
-//    @Column(name = "maq_testado_id")
     public Integer getMaqTestadoId() {
         return maqTestadoId;
     }
@@ -256,8 +266,6 @@ public class MaquinariaEntity {
         this.maqTestadoId = maqTestadoId;
     }
 
-//    @Basic
-//    @Column(name = "maq_tmaq_id")
     public Integer getMaqTmaqId() {
         return maqTmaqId;
     }
@@ -265,4 +273,7 @@ public class MaquinariaEntity {
     public void setMaqTmaqId(Integer maqTmaqId) {
         this.maqTmaqId = maqTmaqId;
     }
+
+
+
 }

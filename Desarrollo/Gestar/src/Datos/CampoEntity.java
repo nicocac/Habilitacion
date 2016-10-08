@@ -7,11 +7,13 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campo", schema = "gestar", catalog = "")
+@Table(name = "campo", schema = "", catalog = "gestar")
 public class CampoEntity {
-    private int cpoId;
+
+
+    private Integer cpoId;
     private String cpoNombre;
-    private int cpoCantMetros;
+    private Integer cpoCantMetros;
     private String cpoObservaciones;
     private String cpoPropietario;
     private String cpoUbicacion;
@@ -23,14 +25,17 @@ public class CampoEntity {
     private Date cpoFechaBaja;
     private String cpoUsuarioBaja;
 
+
+    //======================================================================================
+
     @Id
     @GeneratedValue
     @Column(name = "cpo_id")
-    public int getCpoId() {
+    public Integer getCpoId() {
         return cpoId;
     }
 
-    public void setCpoId(int cpoId) {
+    public void setCpoId(Integer cpoId) {
         this.cpoId = cpoId;
     }
 
@@ -46,11 +51,11 @@ public class CampoEntity {
 
     @Basic
     @Column(name = "cpo_cant_metros")
-    public int getCpoCantMetros() {
+    public Integer getCpoCantMetros() {
         return cpoCantMetros;
     }
 
-    public void setCpoCantMetros(int cpoCantMetros) {
+    public void setCpoCantMetros(Integer cpoCantMetros) {
         this.cpoCantMetros = cpoCantMetros;
     }
 
@@ -154,6 +159,15 @@ public class CampoEntity {
         this.cpoUsuarioBaja = cpoUsuarioBaja;
     }
 
+    //=================================================================
+    @Override
+    public String toString() {
+        return "CampoEntity{" +
+                "cpoNombre='" + cpoNombre + '\'' +
+                '}';
+    }
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -188,18 +202,18 @@ public class CampoEntity {
     @Override
     public int hashCode() {
         int result = cpoId;
-        result = 31 * result + (cpoNombre != null ? cpoNombre.hashCode() : 0);
         result = 31 * result + cpoCantMetros;
+        result = 31 * result + (cpoCoordenadas != null ? cpoCoordenadas.hashCode() : 0);
+        result = 31 * result + (cpoFechaAlta != null ? cpoFechaAlta.hashCode() : 0);
+        result = 31 * result + (cpoFechaBaja != null ? cpoFechaBaja.hashCode() : 0);
+        result = 31 * result + (cpoFechaUltMod != null ? cpoFechaUltMod.hashCode() : 0);
+        result = 31 * result + (cpoNombre != null ? cpoNombre.hashCode() : 0);
         result = 31 * result + (cpoObservaciones != null ? cpoObservaciones.hashCode() : 0);
         result = 31 * result + (cpoPropietario != null ? cpoPropietario.hashCode() : 0);
         result = 31 * result + (cpoUbicacion != null ? cpoUbicacion.hashCode() : 0);
-        result = 31 * result + (cpoCoordenadas != null ? cpoCoordenadas.hashCode() : 0);
-        result = 31 * result + (cpoFechaAlta != null ? cpoFechaAlta.hashCode() : 0);
         result = 31 * result + (cpoUsuarioAlta != null ? cpoUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (cpoFechaUltMod != null ? cpoFechaUltMod.hashCode() : 0);
-        result = 31 * result + (cpoUsuarioUltMod != null ? cpoUsuarioUltMod.hashCode() : 0);
-        result = 31 * result + (cpoFechaBaja != null ? cpoFechaBaja.hashCode() : 0);
         result = 31 * result + (cpoUsuarioBaja != null ? cpoUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (cpoUsuarioUltMod != null ? cpoUsuarioUltMod.hashCode() : 0);
         return result;
     }
 }

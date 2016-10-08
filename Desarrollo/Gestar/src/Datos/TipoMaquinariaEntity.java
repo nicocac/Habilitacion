@@ -6,10 +6,10 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "tipo_maquinaria", schema = "gestar", catalog = "")
+@Table(name = "tipo_maquinaria", schema = "", catalog = "gestar")
 public class TipoMaquinariaEntity {
 
-    private int tmaId;
+    private Integer tmaId;
     private String tmaNombre;
     private String tmaDescripcion;
     private Date tmaFechaAlta;
@@ -18,20 +18,22 @@ public class TipoMaquinariaEntity {
     private String tmaUsuarioUtlMod;
     private Date tmaFechaBaja;
     private String tmaUsuarioBaja;
+
     private Collection<MaquinariaEntity> maquinariasByTmaId;
+
+//======================================================================
 
 
     @Id
     @GeneratedValue
     @Column(name = "tma_id")
-    public int getTmaId() {
+    public Integer getTmaId() {
         return tmaId;
     }
 
-    public void setTmaId(int tmaId) {
+    public void setTmaId(Integer tmaId) {
         this.tmaId = tmaId;
     }
-
 
     @Basic
     @Column(name = "tma_nombre")
@@ -63,7 +65,6 @@ public class TipoMaquinariaEntity {
         this.tmaFechaAlta = tmaFechaAlta;
     }
 
-
     @Basic
     @Column(name = "tma_usuario_alta")
     public String getTmaUsuarioAlta() {
@@ -84,7 +85,6 @@ public class TipoMaquinariaEntity {
         this.tmaFechaUltMod = tmaFechaUltMod;
     }
 
-
     @Basic
     @Column(name = "tma_usuario_utl_mod")
     public String getTmaUsuarioUtlMod() {
@@ -94,7 +94,6 @@ public class TipoMaquinariaEntity {
     public void setTmaUsuarioUtlMod(String tmaUsuarioUtlMod) {
         this.tmaUsuarioUtlMod = tmaUsuarioUtlMod;
     }
-
 
     @Basic
     @Column(name = "tma_fecha_baja")
@@ -125,6 +124,17 @@ public class TipoMaquinariaEntity {
         this.maquinariasByTmaId = maquinariasByTmaId;
     }
 
+    //=================================================================
+
+
+    @Override
+    public String toString() {
+        return "TipoMaquinariaEntity{" +
+                "tmaNombre='" + tmaNombre + '\'' +
+                '}';
+    }
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -146,29 +156,21 @@ public class TipoMaquinariaEntity {
         if (tmaFechaBaja != null ? !tmaFechaBaja.equals(that.tmaFechaBaja) : that.tmaFechaBaja != null) return false;
         if (tmaUsuarioBaja != null ? !tmaUsuarioBaja.equals(that.tmaUsuarioBaja) : that.tmaUsuarioBaja != null)
             return false;
-        return !(maquinariasByTmaId != null ? !maquinariasByTmaId.equals(that.maquinariasByTmaId) : that.maquinariasByTmaId != null);
 
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = tmaId;
-        result = 31 * result + (tmaNombre != null ? tmaNombre.hashCode() : 0);
         result = 31 * result + (tmaDescripcion != null ? tmaDescripcion.hashCode() : 0);
         result = 31 * result + (tmaFechaAlta != null ? tmaFechaAlta.hashCode() : 0);
-        result = 31 * result + (tmaUsuarioAlta != null ? tmaUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (tmaFechaUltMod != null ? tmaFechaUltMod.hashCode() : 0);
-        result = 31 * result + (tmaUsuarioUtlMod != null ? tmaUsuarioUtlMod.hashCode() : 0);
         result = 31 * result + (tmaFechaBaja != null ? tmaFechaBaja.hashCode() : 0);
+        result = 31 * result + (tmaFechaUltMod != null ? tmaFechaUltMod.hashCode() : 0);
+        result = 31 * result + (tmaNombre != null ? tmaNombre.hashCode() : 0);
+        result = 31 * result + (tmaUsuarioAlta != null ? tmaUsuarioAlta.hashCode() : 0);
         result = 31 * result + (tmaUsuarioBaja != null ? tmaUsuarioBaja.hashCode() : 0);
-        result = 31 * result + (maquinariasByTmaId != null ? maquinariasByTmaId.hashCode() : 0);
+        result = 31 * result + (tmaUsuarioUtlMod != null ? tmaUsuarioUtlMod.hashCode() : 0);
         return result;
     }
-
-
-    @Override
-    public String toString() {
-        return this.tmaNombre;
-    }
-
 }

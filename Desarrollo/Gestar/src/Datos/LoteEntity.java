@@ -4,13 +4,12 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 
-/**
- * Created by OWNER on 8/9/2016.
- */
+
 @Entity
-@Table(name = "lote", schema = "gestar", catalog = "")
+@Table(name = "lote", schema = "", catalog = "gestar")
 public class LoteEntity {
-    private int lteId;
+
+    private Integer lteId;
     private String lteDenominacion;
     private int lteCantMetros;
     private String lteUbicacion;
@@ -22,16 +21,19 @@ public class LoteEntity {
     private String lteUsuarioUltMod;
     private Date lteFechaBaja;
     private String lteUsuarioBaja;
+
     private Collection<LoteCampaniaEntity> loteCampaniasByLteId;
+
+    //=================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "lte_id")
-    public int getLteId() {
+    public Integer getLteId() {
         return lteId;
     }
 
-    public void setLteId(int lteId) {
+    public void setLteId(Integer lteId) {
         this.lteId = lteId;
     }
 
@@ -47,11 +49,11 @@ public class LoteEntity {
 
     @Basic
     @Column(name = "lte_cant_metros")
-    public int getLteCantMetros() {
+    public Integer getLteCantMetros() {
         return lteCantMetros;
     }
 
-    public void setLteCantMetros(int lteCantMetros) {
+    public void setLteCantMetros(Integer lteCantMetros) {
         this.lteCantMetros = lteCantMetros;
     }
 
@@ -145,6 +147,17 @@ public class LoteEntity {
         this.lteUsuarioBaja = lteUsuarioBaja;
     }
 
+    @OneToMany(mappedBy = "loteByLcpLteId")
+    public Collection<LoteCampaniaEntity> getLoteCampaniasByLteId() {
+        return loteCampaniasByLteId;
+    }
+
+    public void setLoteCampaniasByLteId(Collection<LoteCampaniaEntity> loteCampaniasByLteId) {
+        this.loteCampaniasByLteId = loteCampaniasByLteId;
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,26 +191,28 @@ public class LoteEntity {
     @Override
     public int hashCode() {
         int result = lteId;
-        result = 31 * result + (lteDenominacion != null ? lteDenominacion.hashCode() : 0);
         result = 31 * result + lteCantMetros;
-        result = 31 * result + (lteUbicacion != null ? lteUbicacion.hashCode() : 0);
+        result = 31 * result + (lteDenominacion != null ? lteDenominacion.hashCode() : 0);
+        result = 31 * result + (lteFechaAlta != null ? lteFechaAlta.hashCode() : 0);
+        result = 31 * result + (lteFechaBaja != null ? lteFechaBaja.hashCode() : 0);
         result = 31 * result + (lteFechaDesde != null ? lteFechaDesde.hashCode() : 0);
         result = 31 * result + (lteFechaHasta != null ? lteFechaHasta.hashCode() : 0);
-        result = 31 * result + (lteFechaAlta != null ? lteFechaAlta.hashCode() : 0);
-        result = 31 * result + (lteUsuarioAlta != null ? lteUsuarioAlta.hashCode() : 0);
         result = 31 * result + (lteFechaUltMod != null ? lteFechaUltMod.hashCode() : 0);
-        result = 31 * result + (lteUsuarioUltMod != null ? lteUsuarioUltMod.hashCode() : 0);
-        result = 31 * result + (lteFechaBaja != null ? lteFechaBaja.hashCode() : 0);
+        result = 31 * result + (lteUbicacion != null ? lteUbicacion.hashCode() : 0);
+        result = 31 * result + (lteUsuarioAlta != null ? lteUsuarioAlta.hashCode() : 0);
         result = 31 * result + (lteUsuarioBaja != null ? lteUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (lteUsuarioUltMod != null ? lteUsuarioUltMod.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "loteByLcpLteId")
-    public Collection<LoteCampaniaEntity> getLoteCampaniasByLteId() {
-        return loteCampaniasByLteId;
-    }
 
-    public void setLoteCampaniasByLteId(Collection<LoteCampaniaEntity> loteCampaniasByLteId) {
-        this.loteCampaniasByLteId = loteCampaniasByLteId;
+    //=================================================================
+
+    @Override
+    public String toString() {
+        return "LoteEntity{" +
+                "lteDenominacion='" + lteDenominacion + '\'' +
+                '}';
     }
+    //=================================================================
 }

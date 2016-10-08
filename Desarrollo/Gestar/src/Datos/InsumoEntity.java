@@ -16,9 +16,11 @@ import java.util.concurrent.TransferQueue;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "insumo", schema = "gestar", catalog = "")
+@Table(name = "insumo", schema = "", catalog = "gestar")
 public class InsumoEntity {
-    private int insId;
+
+
+    private Integer insId;
     private String insNombre;
     private String insDescripcion;
     private String insUnidadMedida;
@@ -29,19 +31,52 @@ public class InsumoEntity {
     private Date insFechaBaja;
     private String insUsuarioBaja;
     private BigDecimal insStock;
+
     private TipoInsumoEntity tipoInsumoByInsTinId;
+
     private Collection<StockInsumoEntity> stockInsumosByInsId;
     private Collection<DetalleCompraEntity> detalleComprasByInsId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByInsId;
 
+    //=================================================================
+
+    private Integer insTinId;
+    //=================================================================
+
+//
+//    public InsumoEntity getByNombre(String nombre){
+//        Session session = Coneccion.getSession();
+//        InsumoEntity insumo = new InsumoEntity();
+//        Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+//        query.setParameter("pNombre", nombre);
+//        List list = query.list();
+//        Iterator iter = list.iterator();
+//        while (iter.hasNext()) {
+//            insumo = (InsumoEntity) iter.next();
+//        }
+//        session.close();
+//        return insumo;
+//    }
+
+
+    //======================================================================================
+
+    public boolean updateStock(Session ses, BigDecimal insStock){
+        Session session = ses;
+        this.setInsStock(insStock);
+        session.update(this);
+        return true;
+    }
+    //=================================================================
+
     @Id
     @GeneratedValue
     @Column(name = "ins_id")
-    public int getInsId() {
+    public Integer getInsId() {
         return insId;
     }
 
-    public void setInsId(int insId) {
+    public void setInsId(Integer insId) {
         this.insId = insId;
     }
 
@@ -63,16 +98,6 @@ public class InsumoEntity {
 
     public void setInsDescripcion(String insDescripcion) {
         this.insDescripcion = insDescripcion;
-    }
-
-    @Basic
-    @Column(name = "ins_stock")
-    public BigDecimal getInsStock() {
-        return insStock;
-    }
-
-    public void setInsStock(BigDecimal insStock) {
-        this.insStock = insStock;
     }
 
     @Basic
@@ -145,6 +170,63 @@ public class InsumoEntity {
         this.insUsuarioBaja = insUsuarioBaja;
     }
 
+    @Basic
+    @Column(name = "ins_stock")
+    public BigDecimal getInsStock() {
+        return insStock;
+    }
+
+    public void setInsStock(BigDecimal insStock) {
+        this.insStock = insStock;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ins_tin_id", referencedColumnName = "tin_id")
+    public TipoInsumoEntity getTipoInsumoByInsTinId() {
+        return tipoInsumoByInsTinId;
+    }
+
+    public void setTipoInsumoByInsTinId(TipoInsumoEntity tipoInsumoByInsTinId) {
+        this.tipoInsumoByInsTinId = tipoInsumoByInsTinId;
+    }
+
+    @OneToMany(mappedBy = "insumoBySInsInsId")
+    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
+        return stockInsumosByInsId;
+    }
+
+    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
+        this.stockInsumosByInsId = stockInsumosByInsId;
+    }
+
+    @OneToMany(mappedBy = "insumoByCpdInsId")
+    public Collection<DetalleCompraEntity> getDetalleComprasByInsId() {
+        return detalleComprasByInsId;
+    }
+
+    public void setDetalleComprasByInsId(Collection<DetalleCompraEntity> detalleComprasByInsId) {
+        this.detalleComprasByInsId = detalleComprasByInsId;
+    }
+
+    @OneToMany(mappedBy = "insumoByDboInsId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByInsId() {
+        return detalleLaboreosByInsId;
+    }
+
+    public void setDetalleLaboreosByInsId(Collection<DetalleLaboreoEntity> detalleLaboreosByInsId) {
+        this.detalleLaboreosByInsId = detalleLaboreosByInsId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "InsumoEntity{" +
+                "insNombre='" + insNombre + '\'' +
+                '}';
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,6 +250,8 @@ public class InsumoEntity {
         if (insFechaBaja != null ? !insFechaBaja.equals(that.insFechaBaja) : that.insFechaBaja != null) return false;
         if (insUsuarioBaja != null ? !insUsuarioBaja.equals(that.insUsuarioBaja) : that.insUsuarioBaja != null)
             return false;
+        if (insStock != null ? !insStock.equals(that.insStock) : that.insStock != null) return false;
+        if (insTinId != null ? !insTinId.equals(that.insTinId) : that.insTinId != null) return false;
 
         return true;
     }
@@ -175,78 +259,28 @@ public class InsumoEntity {
     @Override
     public int hashCode() {
         int result = insId;
-        result = 31 * result + (insNombre != null ? insNombre.hashCode() : 0);
         result = 31 * result + (insDescripcion != null ? insDescripcion.hashCode() : 0);
-        result = 31 * result + (insUnidadMedida != null ? insUnidadMedida.hashCode() : 0);
         result = 31 * result + (insFechaAlta != null ? insFechaAlta.hashCode() : 0);
-        result = 31 * result + (insUsuarioAlta != null ? insUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (insFechaUltMod != null ? insFechaUltMod.hashCode() : 0);
-        result = 31 * result + (insUsuarioUtlMod != null ? insUsuarioUtlMod.hashCode() : 0);
         result = 31 * result + (insFechaBaja != null ? insFechaBaja.hashCode() : 0);
+        result = 31 * result + (insFechaUltMod != null ? insFechaUltMod.hashCode() : 0);
+        result = 31 * result + (insNombre != null ? insNombre.hashCode() : 0);
+        result = 31 * result + (insStock != null ? insStock.hashCode() : 0);
+        result = 31 * result + (insUnidadMedida != null ? insUnidadMedida.hashCode() : 0);
+        result = 31 * result + (insUsuarioAlta != null ? insUsuarioAlta.hashCode() : 0);
         result = 31 * result + (insUsuarioBaja != null ? insUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (insUsuarioUtlMod != null ? insUsuarioUtlMod.hashCode() : 0);
+        result = 31 * result + (insTinId != null ? insTinId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ins_tin_id", referencedColumnName = "tin_id")
-    public TipoInsumoEntity getTipoInsumoByInsTinId() {
-        return tipoInsumoByInsTinId;
+    ////////////////////
+    //=================================================================
+
+    public Integer getInsTinId() {
+        return insTinId;
     }
 
-    public void setTipoInsumoByInsTinId(TipoInsumoEntity tipoInsumoByInsTinId) {
-        this.tipoInsumoByInsTinId = tipoInsumoByInsTinId;
-    }
-
-    @OneToMany(mappedBy = "insumoBySinInsId")
-    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
-        return stockInsumosByInsId;
-    }
-
-    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
-        this.stockInsumosByInsId = stockInsumosByInsId;
-    }
-
-    @Override
-    public String toString() {
-        return this.insNombre;
-    }
-
-    public InsumoEntity getByNombre(String nombre){
-        Session session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
-        query.setParameter("pNombre", nombre);
-        List list = query.list();
-        Iterator iter = list.iterator();
-        while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
-        }
-        session.close();
-        return insumo;
-    }
-
-    public boolean updateStock(Session ses, BigDecimal insStock){
-        Session session = ses;
-        this.setInsStock(insStock);
-        session.update(this);
-        return true;
-    }
-
-    @OneToMany(mappedBy = "insumoByCpdInsId")
-    public Collection<DetalleCompraEntity> getDetalleComprasByInsId() {
-        return detalleComprasByInsId;
-    }
-
-    public void setDetalleComprasByInsId(Collection<DetalleCompraEntity> detalleComprasByInsId) {
-        this.detalleComprasByInsId = detalleComprasByInsId;
-    }
-
-    @OneToMany(mappedBy = "insumoByDboInsId")
-    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByInsId() {
-        return detalleLaboreosByInsId;
-    }
-
-    public void setDetalleLaboreosByInsId(Collection<DetalleLaboreoEntity> detalleLaboreosByInsId) {
-        this.detalleLaboreosByInsId = detalleLaboreosByInsId;
+    public void setInsTinId(Integer insTinId) {
+        this.insTinId = insTinId;
     }
 }

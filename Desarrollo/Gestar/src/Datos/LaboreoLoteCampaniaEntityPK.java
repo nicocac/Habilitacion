@@ -7,27 +7,28 @@ import java.io.Serializable;
 /**
  * Created by OWNER on 9/4/2016.
  */
+//TODO BORRAR
 public class LaboreoLoteCampaniaEntityPK implements Serializable {
-    private int llcLcpId;
-    private int llcLboId;
+    private Integer llcLcpId;
+    private Integer llcLboId;
 
     @Column(name = "llc_lcp_id")
     @Id
-    public int getLlcLcpId() {
+    public Integer getLlcLcpId() {
         return llcLcpId;
     }
 
-    public void setLlcLcpId(int llcLcpId) {
+    public void setLlcLcpId(Integer llcLcpId) {
         this.llcLcpId = llcLcpId;
     }
 
     @Column(name = "llc_lbo_id")
     @Id
-    public int getLlcLboId() {
+    public Integer getLlcLboId() {
         return llcLboId;
     }
 
-    public void setLlcLboId(int llcLboId) {
+    public void setLlcLboId(Integer llcLboId) {
         this.llcLboId = llcLboId;
     }
 
@@ -46,7 +47,7 @@ public class LaboreoLoteCampaniaEntityPK implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = llcLcpId;
+        Integer result = llcLcpId;
         result = 31 * result + llcLboId;
         return result;
     }

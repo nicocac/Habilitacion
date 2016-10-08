@@ -67,14 +67,14 @@ public class CargaCampania extends JFrame{
 
 
     private void cargarLotes(){
-        java.util.List lista;
-        lista = gestor.getLotes();
-        DefaultListModel modelo = new DefaultListModel();
-
-        Iterator iter = lista.iterator();
-        while (iter.hasNext()) {
-            modelo.addElement(iter.next());
-        }
-        lstLotes.setModel(modelo);
+//        java.util.List lista;
+//        lista = gestor.getLotes();
+//        DefaultListModel modelo = new DefaultListModel();
+//
+//        Iterator iter = lista.iterator();
+//        while (iter.hasNext()) {
+//            modelo.addElement(iter.next());
+//        }
+//        lstLotes.setModel(modelo);
     }
 }

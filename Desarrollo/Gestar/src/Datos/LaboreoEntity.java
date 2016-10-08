@@ -8,9 +8,10 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "laboreo", schema = "gestar", catalog = "")
+@Table(name = "laboreo", schema = "", catalog = "gestar")
 public class LaboreoEntity {
-    private int lboId;
+
+    private Integer lboId;
     private Date lboFechaHoraInicio;
     private Date lboFechaHoraFin;
     private String lboDescripcion;
@@ -20,19 +21,23 @@ public class LaboreoEntity {
     private String lboUsuarioUltMod;
     private Date lboFechaBaja;
     private String lboUsuarioBaja;
-    private int lboTpoId;
-    private int lboLcpId;
+//
+
     private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId;
+
+    //======================================================================================
+
+
 
     @Id
     @GeneratedValue
     @Column(name = "lbo_id")
-    public int getLboId() {
+    public Integer getLboId() {
         return lboId;
     }
 
-    public void setLboId(int lboId) {
+    public void setLboId(Integer lboId) {
         this.lboId = lboId;
     }
 
@@ -126,6 +131,34 @@ public class LaboreoEntity {
         this.lboUsuarioBaja = lboUsuarioBaja;
     }
 
+    @OneToMany(mappedBy = "laboreoByDboLboId")
+    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByLboId() {
+        return detalleLaboreosByLboId;
+    }
+
+    public void setDetalleLaboreosByLboId(Collection<DetalleLaboreoEntity> detalleLaboreosByLboId) {
+        this.detalleLaboreosByLboId = detalleLaboreosByLboId;
+    }
+
+    @OneToMany(mappedBy = "laboreoByLlcLboId")
+    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLboId() {
+        return laboreoLoteCampaniasByLboId;
+    }
+
+    public void setLaboreoLoteCampaniasByLboId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId) {
+        this.laboreoLoteCampaniasByLboId = laboreoLoteCampaniasByLboId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "LaboreoEntity{" +
+                "lboId=" + lboId +
+                '}';
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -157,53 +190,15 @@ public class LaboreoEntity {
     @Override
     public int hashCode() {
         int result = lboId;
-        result = 31 * result + (lboFechaHoraInicio != null ? lboFechaHoraInicio.hashCode() : 0);
-        result = 31 * result + (lboFechaHoraFin != null ? lboFechaHoraFin.hashCode() : 0);
         result = 31 * result + (lboDescripcion != null ? lboDescripcion.hashCode() : 0);
         result = 31 * result + (lboFechaAlta != null ? lboFechaAlta.hashCode() : 0);
-        result = 31 * result + (lboUsuarioAlta != null ? lboUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (lboFechaUltMod != null ? lboFechaUltMod.hashCode() : 0);
-        result = 31 * result + (lboUsuarioUltMod != null ? lboUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (lboFechaBaja != null ? lboFechaBaja.hashCode() : 0);
+        result = 31 * result + (lboFechaHoraFin != null ? lboFechaHoraFin.hashCode() : 0);
+        result = 31 * result + (lboFechaHoraInicio != null ? lboFechaHoraInicio.hashCode() : 0);
+        result = 31 * result + (lboFechaUltMod != null ? lboFechaUltMod.hashCode() : 0);
+        result = 31 * result + (lboUsuarioAlta != null ? lboUsuarioAlta.hashCode() : 0);
         result = 31 * result + (lboUsuarioBaja != null ? lboUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (lboUsuarioUltMod != null ? lboUsuarioUltMod.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "lbo_tpo_id")
-    public int getLboTpoId() {
-        return lboTpoId;
-    }
-
-    public void setLboTpoId(int lboTpoId) {
-        this.lboTpoId = lboTpoId;
-    }
-
-    @Basic
-    @Column(name = "lbo_lcp_id")
-    public int getLboLcpId() {
-        return lboLcpId;
-    }
-
-    public void setLboLcpId(int lboLcpId) {
-        this.lboLcpId = lboLcpId;
-    }
-
-    @OneToMany(mappedBy = "laboreoByDboLboId")
-    public Collection<DetalleLaboreoEntity> getDetalleLaboreosByLboId() {
-        return detalleLaboreosByLboId;
-    }
-
-    public void setDetalleLaboreosByLboId(Collection<DetalleLaboreoEntity> detalleLaboreosByLboId) {
-        this.detalleLaboreosByLboId = detalleLaboreosByLboId;
-    }
-
-    @OneToMany(mappedBy = "laboreoByLlcLboId")
-    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLboId() {
-        return laboreoLoteCampaniasByLboId;
-    }
-
-    public void setLaboreoLoteCampaniasByLboId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId) {
-        this.laboreoLoteCampaniasByLboId = laboreoLoteCampaniasByLboId;
     }
 }

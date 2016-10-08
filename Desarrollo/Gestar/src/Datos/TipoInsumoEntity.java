@@ -8,9 +8,10 @@ import java.util.Collection;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "tipo_insumo", schema = "gestar", catalog = "")
+@Table(name = "tipo_insumo", schema = "", catalog = "gestar")
 public class TipoInsumoEntity {
-    private int tinId;
+
+    private Integer tinId;
     private String tinNombre;
     private String tinDescripcion;
     private Date tinFechaAlta;
@@ -19,16 +20,21 @@ public class TipoInsumoEntity {
     private String tinUsuarioUtlMod;
     private Date tinFechaBaja;
     private String tinUsuarioBaja;
+
     private Collection<InsumoEntity> insumosByTinId;
 
+
+    //=================================================================
+
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "tin_id")
-    public int getTinId() {
+    public Integer getTinId() {
         return tinId;
     }
 
-    public void setTinId(int tinId) {
+    public void setTinId(Integer tinId) {
         this.tinId = tinId;
     }
 
@@ -112,6 +118,26 @@ public class TipoInsumoEntity {
         this.tinUsuarioBaja = tinUsuarioBaja;
     }
 
+
+    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
+    public Collection<InsumoEntity> getInsumosByTinId() {
+        return insumosByTinId;
+    }
+
+    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
+        this.insumosByTinId = insumosByTinId;
+    }
+
+
+    //=================================================================
+
+
+    @Override
+    public String toString() {
+        return tinNombre;
+    }
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -140,29 +166,17 @@ public class TipoInsumoEntity {
     @Override
     public int hashCode() {
         int result = tinId;
-        result = 31 * result + (tinNombre != null ? tinNombre.hashCode() : 0);
         result = 31 * result + (tinDescripcion != null ? tinDescripcion.hashCode() : 0);
         result = 31 * result + (tinFechaAlta != null ? tinFechaAlta.hashCode() : 0);
-        result = 31 * result + (tinUsuarioAlta != null ? tinUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (tinFechaUltMod != null ? tinFechaUltMod.hashCode() : 0);
-        result = 31 * result + (tinUsuarioUtlMod != null ? tinUsuarioUtlMod.hashCode() : 0);
         result = 31 * result + (tinFechaBaja != null ? tinFechaBaja.hashCode() : 0);
+        result = 31 * result + (tinFechaUltMod != null ? tinFechaUltMod.hashCode() : 0);
+        result = 31 * result + (tinNombre != null ? tinNombre.hashCode() : 0);
+        result = 31 * result + (tinUsuarioAlta != null ? tinUsuarioAlta.hashCode() : 0);
         result = 31 * result + (tinUsuarioBaja != null ? tinUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (tinUsuarioUtlMod != null ? tinUsuarioUtlMod.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "tipoInsumoByInsTinId")
-    public Collection<InsumoEntity> getInsumosByTinId() {
-        return insumosByTinId;
-    }
 
-    public void setInsumosByTinId(Collection<InsumoEntity> insumosByTinId) {
-        this.insumosByTinId = insumosByTinId;
-    }
-
-    @Override
-    public String toString() {
-        return this.tinNombre;
-    }
 
 }
