@@ -8,9 +8,11 @@ import java.sql.Date;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "detalle_compra", schema = "gestar", catalog = "")
+@Table(name = "detalle_compra", schema = "", catalog = "gestar")
 public class DetalleCompraEntity {
-    private int cpdId;
+
+
+    private Integer cpdId;
     private BigDecimal cpdCantidad;
     private BigDecimal cpdPrecio;
     private String cpdObservaciones;
@@ -20,20 +22,24 @@ public class DetalleCompraEntity {
     private String cpdUsuarioUltMod;
     private Date cpdFechaBaja;
     private String cpdUsuarioBaja;
+
     private CompraEntity compraByCpdCpaId;
     private InsumoEntity insumoByCpdInsId;
+
+    //======================================================================================
     private Integer cpdCpaId;
     private Integer cpdInsId;
-    private Integer idx;
+
+    //=================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "cpd_id")
-    public int getCpdId() {
+    public Integer getCpdId() {
         return cpdId;
     }
 
-    public void setCpdId(int cpdId) {
+    public void setCpdId(Integer cpdId) {
         this.cpdId = cpdId;
     }
 
@@ -127,6 +133,36 @@ public class DetalleCompraEntity {
         this.cpdUsuarioBaja = cpdUsuarioBaja;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "cpd_cpa_id", referencedColumnName = "cpa_id")
+    public CompraEntity getCompraByCpdCpaId() {
+        return compraByCpdCpaId;
+    }
+
+    public void setCompraByCpdCpaId(CompraEntity compraByCpdCpaId) {
+        this.compraByCpdCpaId = compraByCpdCpaId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "cpd_ins_id", referencedColumnName = "ins_id")
+    public InsumoEntity getInsumoByCpdInsId() {
+        return insumoByCpdInsId;
+    }
+
+    public void setInsumoByCpdInsId(InsumoEntity insumoByCpdInsId) {
+        this.insumoByCpdInsId = insumoByCpdInsId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "DetalleCompraEntity{" +
+                "cpdId=" + cpdId +
+                '}';
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,6 +185,8 @@ public class DetalleCompraEntity {
         if (cpdFechaBaja != null ? !cpdFechaBaja.equals(that.cpdFechaBaja) : that.cpdFechaBaja != null) return false;
         if (cpdUsuarioBaja != null ? !cpdUsuarioBaja.equals(that.cpdUsuarioBaja) : that.cpdUsuarioBaja != null)
             return false;
+        if (cpdCpaId != null ? !cpdCpaId.equals(that.cpdCpaId) : that.cpdCpaId != null) return false;
+        if (cpdInsId != null ? !cpdInsId.equals(that.cpdInsId) : that.cpdInsId != null) return false;
 
         return true;
     }
@@ -157,39 +195,22 @@ public class DetalleCompraEntity {
     public int hashCode() {
         int result = cpdId;
         result = 31 * result + (cpdCantidad != null ? cpdCantidad.hashCode() : 0);
-        result = 31 * result + (cpdPrecio != null ? cpdPrecio.hashCode() : 0);
-        result = 31 * result + (cpdObservaciones != null ? cpdObservaciones.hashCode() : 0);
         result = 31 * result + (cpdFechaAlta != null ? cpdFechaAlta.hashCode() : 0);
-        result = 31 * result + (cpdUsuarioAlta != null ? cpdUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (cpdFechaUltMod != null ? cpdFechaUltMod.hashCode() : 0);
-        result = 31 * result + (cpdUsuarioUltMod != null ? cpdUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (cpdFechaBaja != null ? cpdFechaBaja.hashCode() : 0);
+        result = 31 * result + (cpdFechaUltMod != null ? cpdFechaUltMod.hashCode() : 0);
+        result = 31 * result + (cpdObservaciones != null ? cpdObservaciones.hashCode() : 0);
+        result = 31 * result + (cpdPrecio != null ? cpdPrecio.hashCode() : 0);
+        result = 31 * result + (cpdUsuarioAlta != null ? cpdUsuarioAlta.hashCode() : 0);
         result = 31 * result + (cpdUsuarioBaja != null ? cpdUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (cpdUsuarioUltMod != null ? cpdUsuarioUltMod.hashCode() : 0);
+        result = 31 * result + (cpdCpaId != null ? cpdCpaId.hashCode() : 0);
+        result = 31 * result + (cpdInsId != null ? cpdInsId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "cpd_cpa_id", referencedColumnName = "cpa_id", insertable=false, updatable=false)
-    public CompraEntity getCompraByCpdCpaId() {
-        return compraByCpdCpaId;
-    }
+    ////////////////////////
+    //=================================================================
 
-    public void setCompraByCpdCpaId(CompraEntity compraByCpdCpaId) {
-        this.compraByCpdCpaId = compraByCpdCpaId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "cpd_ins_id", referencedColumnName = "ins_id", insertable=false, updatable=false)
-    public InsumoEntity getInsumoByCpdInsId() {
-        return insumoByCpdInsId;
-    }
-
-    public void setInsumoByCpdInsId(InsumoEntity insumoByCpdInsId) {
-        this.insumoByCpdInsId = insumoByCpdInsId;
-    }
-
-//    @Basic
-//    @Column(name = "cpd_cpa_id")
     public Integer getCpdCpaId() {
         return cpdCpaId;
     }
@@ -198,23 +219,11 @@ public class DetalleCompraEntity {
         this.cpdCpaId = cpdCpaId;
     }
 
-//    @Basic
-//    @Column(name = "cpd_ins_id")
     public Integer getCpdInsId() {
         return cpdInsId;
     }
 
     public void setCpdInsId(Integer cpdInsId) {
         this.cpdInsId = cpdInsId;
-    }
-
-//    @Basic
-//    @Column(name = "idx")
-    public Integer getIdx() {
-        return idx;
-    }
-
-    public void setIdx(Integer idx) {
-        this.idx = idx;
     }
 }

@@ -8,9 +8,10 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "lote_campania", schema = "gestar", catalog = "")
+@Table(name = "lote_campania", schema = "", catalog = "gestar")
 public class LoteCampaniaEntity {
-    private int lcpId;
+
+    private Integer lcpId;
     private Date lcpFechaInicio;
     private Date lcpFechaFin;
     private Date lcpFechaAlta;
@@ -19,18 +20,26 @@ public class LoteCampaniaEntity {
     private String lcpUsuarioUltMod;
     private Date lcpFechaBaja;
     private String lcpUsuarioBaja;
+
     private CampaniaEntity campaniaByLcpCnaId;
     private LoteEntity loteByLcpLteId;
+
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId;
+
+    //=================================================================
+    private int lcpLteId;
+    private int lcpCnaId;
+    //=================================================================
+
 
     @Id
     @GeneratedValue
     @Column(name = "lcp_id")
-    public int getLcpId() {
+    public Integer getLcpId() {
         return lcpId;
     }
 
-    public void setLcpId(int lcpId) {
+    public void setLcpId(Integer lcpId) {
         this.lcpId = lcpId;
     }
 
@@ -114,6 +123,48 @@ public class LoteCampaniaEntity {
         this.lcpUsuarioBaja = lcpUsuarioBaja;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "lcp_cna_id", referencedColumnName = "cna_id")
+    public CampaniaEntity getCampaniaByLcpCnaId() {
+        return campaniaByLcpCnaId;
+    }
+
+    public void setCampaniaByLcpCnaId(CampaniaEntity campaniaByLcpCnaId) {
+        this.campaniaByLcpCnaId = campaniaByLcpCnaId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "lcp_lte_id", referencedColumnName = "lte_id")
+    public LoteEntity getLoteByLcpLteId() {
+        return loteByLcpLteId;
+    }
+
+    public void setLoteByLcpLteId(LoteEntity loteByLcpLteId) {
+        this.loteByLcpLteId = loteByLcpLteId;
+    }
+
+    @OneToMany(mappedBy = "loteCampaniaByLlcLcpId")
+    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
+        return laboreoLoteCampaniasByLcpId;
+    }
+
+    public void setLaboreoLoteCampaniasByLcpId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId) {
+        this.laboreoLoteCampaniasByLcpId = laboreoLoteCampaniasByLcpId;
+    }
+
+
+    //=================================================================
+
+
+    @Override
+    public String toString() {
+        return "LoteCampaniaEntity{" +
+                "lcpId=" + lcpId +
+                '}';
+    }
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,32 +205,23 @@ public class LoteCampaniaEntity {
     }
 
 
-    @OneToMany(mappedBy = "loteCampaniaByLlcLcpId")
-    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
-        return laboreoLoteCampaniasByLcpId;
+
+
+    ////////////////
+    //=================================================================
+    public int getLcpLteId() {
+        return lcpLteId;
     }
 
-    public void setLaboreoLoteCampaniasByLcpId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId) {
-        this.laboreoLoteCampaniasByLcpId = laboreoLoteCampaniasByLcpId;
+    public void setLcpLteId(int lcpLteId) {
+        this.lcpLteId = lcpLteId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "lcp_cna_id", referencedColumnName = "cna_id", nullable = false)
-    public CampaniaEntity getCampaniaByLcpCnaId() {
-        return campaniaByLcpCnaId;
+    public int getLcpCnaId() {
+        return lcpCnaId;
     }
 
-    public void setCampaniaByLcpCnaId(CampaniaEntity campaniaByLcpCnaId) {
-        this.campaniaByLcpCnaId = campaniaByLcpCnaId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "lcp_lte_id", referencedColumnName = "lte_id", nullable = false)
-    public LoteEntity getLoteByLcpLteId() {
-        return loteByLcpLteId;
-    }
-
-    public void setLoteByLcpLteId(LoteEntity loteByLcpLteId) {
-        this.loteByLcpLteId = loteByLcpLteId;
+    public void setLcpCnaId(int lcpCnaId) {
+        this.lcpCnaId = lcpCnaId;
     }
 }

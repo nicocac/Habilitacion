@@ -199,14 +199,20 @@ public class PantallaAdministrarInsumo extends JFrame {
                 data[i][1] = insumo.getInsNombre();
                 data[i][2] = insumo.getInsDescripcion();
                 data[i][3] = insumo.getInsUnidadMedida();
-                data[i][4] = insumo.getTipoInsumoByInsTinId();
-                //TODO verificar como manejamos el stock
-                StockInsumoEntity stockInsumoEntity = (StockInsumoEntity) session.createQuery("select x from StockInsumoEntity x where x.insumoBySinInsId = :pNombre").setParameter("pNombre", insumo).uniqueResult();
-                if (stockInsumoEntity != null) {
-                    data[i][5] = stockInsumoEntity.getSinTotal();
+                if(insumo.getTipoInsumoByInsTinId() == null){
+                    data[i][4] = null;
                 } else {
-                    data[i][5] = 0;
+                    data[i][4] = insumo.getTipoInsumoByInsTinId().getTinNombre();
                 }
+
+                //TODO verificar como manejamos el stock
+//                StockInsumoEntity stockInsumoEntity = (StockInsumoEntity) session.createQuery("select x from StockInsumoEntity x where x.insumoBySinInsId = :pNombre").setParameter("pNombre", insumo).uniqueResult();
+//                if (stockInsumoEntity != null) {
+//                    data[i][5] = stockInsumoEntity.getSinTotal();
+//                } else {
+//                    data[i][5] = 0;
+//                }
+                data[i][5] = insumo.getInsStock();
                 i++;
             }
             setModel(columnNames, data, tblInsumos);

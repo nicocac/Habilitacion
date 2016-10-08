@@ -1,7 +1,5 @@
 package Datos;
 
-import org.hibernate.annotations.IndexColumn;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -12,42 +10,39 @@ import java.util.List;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "compra", schema = "gestar", catalog = "")
+@Table(name = "compra", schema = "", catalog = "gestar")
 public class CompraEntity {
-    private int cpaId;
+
+
+    private Integer cpaId;
     private Date cpaFechaCompra;
     private BigDecimal cpaMontoTotal;
     private Integer cpaCantidadItems;
+
     private Date cpaFechaAlta;
     private String cpaUsuarioAlta;
     private Date cpaFechaUltMod;
     private String cpaUsuarioUltMod;
     private Date cpaFechaBaja;
     private String cpaUsuarioBaja;
+
+
     private List<DetalleCompraEntity> detallesCompra;
+
     private Collection<DetalleCompraEntity> detalleComprasByCpaId;
 
+
+    //======================================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "cpa_id")
-    public int getCpaId() {
+    public Integer getCpaId() {
         return cpaId;
     }
 
-    public void setCpaId(int cpaId) {
+    public void setCpaId(Integer cpaId) {
         this.cpaId = cpaId;
-    }
-
-    @OneToMany(cascade= CascadeType.ALL)
-    @JoinColumn(name = "cpd_cpa_id", referencedColumnName = "cpa_id")
-    @IndexColumn(name="cpd_id")
-    public List<DetalleCompraEntity> getDetallesCompra() {
-        return detallesCompra;
-    }
-
-    public void setDetallesCompra(List<DetalleCompraEntity> detallesCompra) {
-        this.detallesCompra = detallesCompra;
     }
 
     @Basic
@@ -140,6 +135,36 @@ public class CompraEntity {
         this.cpaUsuarioBaja = cpaUsuarioBaja;
     }
 
+
+    @OneToMany(mappedBy = "compraByCpdCpaId")
+    public List<DetalleCompraEntity> getDetallesCompra() {
+        return detallesCompra;
+    }
+
+    public void setDetallesCompra(List<DetalleCompraEntity> detallesCompra) {
+        this.detallesCompra = detallesCompra;
+    }
+
+
+    @OneToMany(mappedBy = "compraByCpdCpaId")
+    public Collection<DetalleCompraEntity> getDetalleComprasByCpaId() {
+        return detalleComprasByCpaId;
+    }
+
+    public void setDetalleComprasByCpaId(Collection<DetalleCompraEntity> detalleComprasByCpaId) {
+        this.detalleComprasByCpaId = detalleComprasByCpaId;
+    }
+
+    //=================================================================
+
+    @Override
+    public String toString() {
+        return "CompraEntity{" +
+                "cpaId=" + cpaId +
+                '}';
+    }
+
+    //=================================================================
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,24 +196,17 @@ public class CompraEntity {
     @Override
     public int hashCode() {
         int result = cpaId;
-        result = 31 * result + (cpaFechaCompra != null ? cpaFechaCompra.hashCode() : 0);
-        result = 31 * result + (cpaMontoTotal != null ? cpaMontoTotal.hashCode() : 0);
         result = 31 * result + (cpaCantidadItems != null ? cpaCantidadItems.hashCode() : 0);
         result = 31 * result + (cpaFechaAlta != null ? cpaFechaAlta.hashCode() : 0);
-        result = 31 * result + (cpaUsuarioAlta != null ? cpaUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (cpaFechaUltMod != null ? cpaFechaUltMod.hashCode() : 0);
-        result = 31 * result + (cpaUsuarioUltMod != null ? cpaUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (cpaFechaBaja != null ? cpaFechaBaja.hashCode() : 0);
+        result = 31 * result + (cpaFechaCompra != null ? cpaFechaCompra.hashCode() : 0);
+        result = 31 * result + (cpaFechaUltMod != null ? cpaFechaUltMod.hashCode() : 0);
+        result = 31 * result + (cpaMontoTotal != null ? cpaMontoTotal.hashCode() : 0);
+        result = 31 * result + (cpaUsuarioAlta != null ? cpaUsuarioAlta.hashCode() : 0);
         result = 31 * result + (cpaUsuarioBaja != null ? cpaUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (cpaUsuarioUltMod != null ? cpaUsuarioUltMod.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "compraByCpdCpaId")
-    public Collection<DetalleCompraEntity> getDetalleComprasByCpaId() {
-        return detalleComprasByCpaId;
-    }
 
-    public void setDetalleComprasByCpaId(Collection<DetalleCompraEntity> detalleComprasByCpaId) {
-        this.detalleComprasByCpaId = detalleComprasByCpaId;
-    }
 }

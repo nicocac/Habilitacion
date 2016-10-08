@@ -8,175 +8,137 @@ import java.util.Collection;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "stock_insumo", schema = "gestar", catalog = "")
+@Table(name = "stock_insumo", schema = "", catalog = "gestar")
 public class StockInsumoEntity {
-    private int sinId;
-    private int sinTotal;
-    private int sinInsId;
-    private Date sinFechaAlta;
-    private String sinUsuarioAlta;
-    private Date sinFechaUltMod;
-    private String sinUsuarioUtlMod;
-    private Date sinFechaBaja;
-    private String sinUsuarioBaja;
-    private Collection<MovimientosStockEntity> movimientosStocksBySinId;
-    private InsumoEntity insumoBySinInsId;
 
-    @Basic
-    @Column(name = "sin_ins_id")
-    public int getSinInsId() {
-        return sinInsId;
-    }
+    private Integer sInsId;
+    private Integer sInsTotal;
 
-    public void setSinInsId(int sinInsId) {
-        this.sinInsId = sinInsId;
-    }
+    private Date sInsFechaAlta;
+    private String sInsUsuarioAlta;
+    private Date sInsFechaUltMod;
+    private String sInsUsuarioUtlMod;
+    private Date sInsFechaBaja;
+    private String sInsUsuarioBaja;
+
+    private InsumoEntity insumoBySInsInsId;
+
+    private Collection<MovimientosStockEntity> movimientosStocksBySInsId;
+
+    //==================================================================================================
+    private Integer sInsInsId;
+    //==================================================================================================
+
 
     @Id
     @GeneratedValue
-    @Column(name = "sin_id")
-    public int getSinId() {
-        return sinId;
+    @Column(name = "s_ins_id")
+    public Integer getsInsId() {
+        return sInsId;
     }
 
-    public void setSinId(int sinId) {
-        this.sinId = sinId;
+    public void setsInsId(Integer sInsId) {
+        this.sInsId = sInsId;
     }
 
-    @Basic
-    @Column(name = "sin_total")
-    public int getSinTotal() {
-        return sinTotal;
+    @Column(name = "s_ins_total")
+    public Integer getsInsTotal() {
+        return sInsTotal;
     }
 
-    public void setSinTotal(int sinTotal) {
-        this.sinTotal = sinTotal;
+    public void setsInsTotal(Integer sInsTotal) {
+        this.sInsTotal = sInsTotal;
     }
 
-    /*@Basic
-    @Column(name = "sin_ins_id")
-    public int getSinInsId() {
-        return sinInsId;
+
+
+    @Column(name = "s_ins_fecha_alta")
+    public Date getsInsFechaAlta() {
+        return sInsFechaAlta;
     }
 
-    public void setSinInsId(int sinInsId) {
-        this.sinInsId = sinInsId;
-    }*/
-
-    @Basic
-    @Column(name = "sin_fecha_alta")
-    public Date getSinFechaAlta() {
-        return sinFechaAlta;
+    public void setsInsFechaAlta(Date sInsFechaAlta) {
+        this.sInsFechaAlta = sInsFechaAlta;
     }
 
-    public void setSinFechaAlta(Date sinFechaAlta) {
-        this.sinFechaAlta = sinFechaAlta;
+    @Column(name = "s_ins_usuario_alta")
+    public String getsInsUsuarioAlta() {
+        return sInsUsuarioAlta;
     }
 
-    @Basic
-    @Column(name = "sin_usuario_alta")
-    public String getSinUsuarioAlta() {
-        return sinUsuarioAlta;
+    public void setsInsUsuarioAlta(String sInsUsuarioAlta) {
+        this.sInsUsuarioAlta = sInsUsuarioAlta;
     }
 
-    public void setSinUsuarioAlta(String sinUsuarioAlta) {
-        this.sinUsuarioAlta = sinUsuarioAlta;
+    @Column(name = "s_ins_fecha_ult_mod")
+    public Date getsInsFechaUltMod() {
+        return sInsFechaUltMod;
     }
 
-    @Basic
-    @Column(name = "sin_fecha_ult_mod")
-    public Date getSinFechaUltMod() {
-        return sinFechaUltMod;
+    public void setsInsFechaUltMod(Date sInsFechaUltMod) {
+        this.sInsFechaUltMod = sInsFechaUltMod;
     }
 
-    public void setSinFechaUltMod(Date sinFechaUltMod) {
-        this.sinFechaUltMod = sinFechaUltMod;
+    @Column(name = "s_ins_usuario_ult_mod")
+    public String getsInsUsuarioUtlMod() {
+        return sInsUsuarioUtlMod;
     }
 
-    @Basic
-    @Column(name = "sin_usuario_utl_mod")
-    public String getSinUsuarioUtlMod() {
-        return sinUsuarioUtlMod;
+    public void setsInsUsuarioUtlMod(String sInsUsuarioUtlMod) {
+        this.sInsUsuarioUtlMod = sInsUsuarioUtlMod;
     }
 
-    public void setSinUsuarioUtlMod(String sinUsuarioUtlMod) {
-        this.sinUsuarioUtlMod = sinUsuarioUtlMod;
+    @Column(name = "s_ins_fecha_baja")
+    public Date getsInsFechaBaja() {
+        return sInsFechaBaja;
     }
 
-    @Basic
-    @Column(name = "sin_fecha_baja")
-    public Date getSinFechaBaja() {
-        return sinFechaBaja;
+    public void setsInsFechaBaja(Date sInsFechaBaja) {
+        this.sInsFechaBaja = sInsFechaBaja;
     }
 
-    public void setSinFechaBaja(Date sinFechaBaja) {
-        this.sinFechaBaja = sinFechaBaja;
+    @Column(name = "s_ins_usuario_baja")
+    public String getsInsUsuarioBaja() {
+        return sInsUsuarioBaja;
     }
 
-    @Basic
-    @Column(name = "sin_usuario_baja")
-    public String getSinUsuarioBaja() {
-        return sinUsuarioBaja;
-    }
-
-    public void setSinUsuarioBaja(String sinUsuarioBaja) {
-        this.sinUsuarioBaja = sinUsuarioBaja;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StockInsumoEntity that = (StockInsumoEntity) o;
-
-        if (sinId != that.sinId) return false;
-        if (sinTotal != that.sinTotal) return false;
-        if (sinInsId != that.sinInsId) return false;
-        if (sinFechaAlta != null ? !sinFechaAlta.equals(that.sinFechaAlta) : that.sinFechaAlta != null) return false;
-        if (sinUsuarioAlta != null ? !sinUsuarioAlta.equals(that.sinUsuarioAlta) : that.sinUsuarioAlta != null)
-            return false;
-        if (sinFechaUltMod != null ? !sinFechaUltMod.equals(that.sinFechaUltMod) : that.sinFechaUltMod != null)
-            return false;
-        if (sinUsuarioUtlMod != null ? !sinUsuarioUtlMod.equals(that.sinUsuarioUtlMod) : that.sinUsuarioUtlMod != null)
-            return false;
-        if (sinFechaBaja != null ? !sinFechaBaja.equals(that.sinFechaBaja) : that.sinFechaBaja != null) return false;
-        if (sinUsuarioBaja != null ? !sinUsuarioBaja.equals(that.sinUsuarioBaja) : that.sinUsuarioBaja != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = sinId;
-        result = 31 * result + sinTotal;
-        result = 31 * result + sinInsId;
-        result = 31 * result + (sinFechaAlta != null ? sinFechaAlta.hashCode() : 0);
-        result = 31 * result + (sinUsuarioAlta != null ? sinUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (sinFechaUltMod != null ? sinFechaUltMod.hashCode() : 0);
-        result = 31 * result + (sinUsuarioUtlMod != null ? sinUsuarioUtlMod.hashCode() : 0);
-        result = 31 * result + (sinFechaBaja != null ? sinFechaBaja.hashCode() : 0);
-        result = 31 * result + (sinUsuarioBaja != null ? sinUsuarioBaja.hashCode() : 0);
-        return result;
-    }
-
-    @OneToMany(mappedBy = "stockInsumoByMosSinId")
-    public Collection<MovimientosStockEntity> getMovimientosStocksBySinId() {
-        return movimientosStocksBySinId;
-    }
-
-    public void setMovimientosStocksBySinId(Collection<MovimientosStockEntity> movimientosStocksBySinId) {
-        this.movimientosStocksBySinId = movimientosStocksBySinId;
+    public void setsInsUsuarioBaja(String sInsUsuarioBaja) {
+        this.sInsUsuarioBaja = sInsUsuarioBaja;
     }
 
     @ManyToOne
-    @JoinColumn(name = "insumoBySinInsId", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
-    public InsumoEntity getInsumoBySinInsId() {
-        return insumoBySinInsId;
+    @JoinColumn(name = "s_ins_ins_id", referencedColumnName = "ins_id")
+    public InsumoEntity getInsumoBySInsInsId() {
+        return insumoBySInsInsId;
     }
 
-    public void setInsumoBySinInsId(InsumoEntity insumoBySinInsId) {
-        this.insumoBySinInsId = insumoBySinInsId;
+    public void setInsumoBySInsInsId(InsumoEntity insumoBySInsInsId) {
+        this.insumoBySInsInsId = insumoBySInsInsId;
+    }
+
+    @OneToMany(mappedBy = "stockInsumoByMosSInsId")
+    public Collection<MovimientosStockEntity> getMovimientosStocksBySInsId() {
+        return movimientosStocksBySInsId;
+    }
+
+    public void setMovimientosStocksBySInsId(Collection<MovimientosStockEntity> movimientosStocksBySInsId) {
+        this.movimientosStocksBySInsId = movimientosStocksBySInsId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "StockInsumoEntity{" +
+                "sInsId=" + sInsId +
+                '}';
+    }
+    //=================================================================
+
+    public Integer getsInsInsId() {
+        return sInsInsId;
+    }
+
+    public void setsInsInsId(Integer sInsInsId) {
+        this.sInsInsId = sInsInsId;
     }
 }

@@ -7,9 +7,11 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "detalle_laboreo", schema = "gestar", catalog = "")
+@Table(name = "detalle_laboreo", schema = "", catalog = "gestar")
 public class DetalleLaboreoEntity {
-    private int dboId;
+
+
+    private Integer dboId;
     private String dboObservaciones;
     private int dboCantidad;
     private Date dboFechaAlta;
@@ -18,21 +20,27 @@ public class DetalleLaboreoEntity {
     private String dboUsuarioUltMod;
     private Date dboFechaBaja;
     private String dboUsuarioBaja;
+
+
     private InsumoEntity insumoByDboInsId;
     private LaboreoEntity laboreoByDboLboId;
     private MaquinariaEntity maquinariaByDboMaqId;
-    private int dboInsId;
+
+    //=================================================================
+    private Integer dboInsId;
+    private Integer dboLboId;
     private Integer dboMaqId;
-    private int dboLboId;
+    //======================================================================================
+
 
     @Id
     @GeneratedValue
     @Column(name = "dbo_id")
-    public int getDboId() {
+    public Integer getDboId() {
         return dboId;
     }
 
-    public void setDboId(int dboId) {
+    public void setDboId(Integer dboId) {
         this.dboId = dboId;
     }
 
@@ -116,6 +124,47 @@ public class DetalleLaboreoEntity {
         this.dboUsuarioBaja = dboUsuarioBaja;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false)
+    public InsumoEntity getInsumoByDboInsId() {
+        return insumoByDboInsId;
+    }
+
+    public void setInsumoByDboInsId(InsumoEntity insumoByDboInsId) {
+        this.insumoByDboInsId = insumoByDboInsId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    public LaboreoEntity getLaboreoByDboLboId() {
+        return laboreoByDboLboId;
+    }
+
+    public void setLaboreoByDboLboId(LaboreoEntity laboreoByDboLboId) {
+        this.laboreoByDboLboId = laboreoByDboLboId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_maq_id", referencedColumnName = "maq_id")
+    public MaquinariaEntity getMaquinariaByDboMaqId() {
+        return maquinariaByDboMaqId;
+    }
+
+    public void setMaquinariaByDboMaqId(MaquinariaEntity maquinariaByDboMaqId) {
+        this.maquinariaByDboMaqId = maquinariaByDboMaqId;
+    }
+
+    //=================================================================
+
+    @Override
+    public String toString() {
+        return "DetalleLaboreoEntity{" +
+                "dboObservaciones='" + dboObservaciones + '\'' +
+                '}';
+    }
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,6 +186,9 @@ public class DetalleLaboreoEntity {
         if (dboFechaBaja != null ? !dboFechaBaja.equals(that.dboFechaBaja) : that.dboFechaBaja != null) return false;
         if (dboUsuarioBaja != null ? !dboUsuarioBaja.equals(that.dboUsuarioBaja) : that.dboUsuarioBaja != null)
             return false;
+        if (dboInsId != null ? !dboInsId.equals(that.dboInsId) : that.dboInsId != null) return false;
+        if (dboLboId != null ? !dboLboId.equals(that.dboLboId) : that.dboLboId != null) return false;
+        if (dboMaqId != null ? !dboMaqId.equals(that.dboMaqId) : that.dboMaqId != null) return false;
 
         return true;
     }
@@ -144,74 +196,45 @@ public class DetalleLaboreoEntity {
     @Override
     public int hashCode() {
         int result = dboId;
-        result = 31 * result + (dboObservaciones != null ? dboObservaciones.hashCode() : 0);
         result = 31 * result + dboCantidad;
         result = 31 * result + (dboFechaAlta != null ? dboFechaAlta.hashCode() : 0);
-        result = 31 * result + (dboUsuarioAlta != null ? dboUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (dboFechaUltMod != null ? dboFechaUltMod.hashCode() : 0);
-        result = 31 * result + (dboUsuarioUltMod != null ? dboUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (dboFechaBaja != null ? dboFechaBaja.hashCode() : 0);
+        result = 31 * result + (dboFechaUltMod != null ? dboFechaUltMod.hashCode() : 0);
+        result = 31 * result + (dboObservaciones != null ? dboObservaciones.hashCode() : 0);
+        result = 31 * result + (dboUsuarioAlta != null ? dboUsuarioAlta.hashCode() : 0);
         result = 31 * result + (dboUsuarioBaja != null ? dboUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (dboUsuarioUltMod != null ? dboUsuarioUltMod.hashCode() : 0);
+        result = 31 * result + (dboInsId != null ? dboInsId.hashCode() : 0);
+        result = 31 * result + (dboLboId != null ? dboLboId.hashCode() : 0);
+        result = 31 * result + (dboMaqId != null ? dboMaqId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false, insertable=false, updatable=false)
-    public InsumoEntity getInsumoByDboInsId() {
-        return insumoByDboInsId;
-    }
 
-    public void setInsumoByDboInsId(InsumoEntity insumoByDboInsId) {
-        this.insumoByDboInsId = insumoByDboInsId;
-    }
+    //////////////////////////////
+    //=================================================================
 
-    @ManyToOne
-    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
-    public LaboreoEntity getLaboreoByDboLboId() {
-        return laboreoByDboLboId;
-    }
-
-    public void setLaboreoByDboLboId(LaboreoEntity laboreoByDboLboId) {
-        this.laboreoByDboLboId = laboreoByDboLboId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "dbo_maq_id", referencedColumnName = "maq_id", insertable=false, updatable=false)
-    public MaquinariaEntity getMaquinariaByDboMaqId() {
-        return maquinariaByDboMaqId;
-    }
-
-    public void setMaquinariaByDboMaqId(MaquinariaEntity maquinariaByDboMaqId) {
-        this.maquinariaByDboMaqId = maquinariaByDboMaqId;
-    }
-
-//    @Basic
-//    @Column(name = "dbo_ins_id")
-    public int getDboInsId() {
+    public Integer getDboInsId() {
         return dboInsId;
     }
 
-    public void setDboInsId(int dboInsId) {
+    public void setDboInsId(Integer dboInsId) {
         this.dboInsId = dboInsId;
     }
 
-//    @Basic
-//    @Column(name = "dbo_maq_id")
+    public Integer getDboLboId() {
+        return dboLboId;
+    }
+
+    public void setDboLboId(Integer dboLboId) {
+        this.dboLboId = dboLboId;
+    }
+
     public Integer getDboMaqId() {
         return dboMaqId;
     }
 
     public void setDboMaqId(Integer dboMaqId) {
         this.dboMaqId = dboMaqId;
-    }
-
-//    @Basic
-//    @Column(name = "dbo_lbo_id")
-    public int getDboLboId() {
-        return dboLboId;
-    }
-
-    public void setDboLboId(int dboLboId) {
-        this.dboLboId = dboLboId;
     }
 }

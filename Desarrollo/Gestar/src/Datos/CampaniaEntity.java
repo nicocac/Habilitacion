@@ -8,9 +8,9 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campania", schema = "gestar", catalog = "")
+@Table(name = "campania", schema = "", catalog = "gestar")
 public class CampaniaEntity {
-    private int cnaId;
+    private Integer cnaId;
     private String cnaDenominacion;
     private Date cnaFechaInicio;
     private Date cnaFechaFinEstimada;
@@ -21,25 +21,17 @@ public class CampaniaEntity {
     private String cnaUsuarioUltMod;
     private Date cnaFechaBaja;
     private String cnaUsuarioBaja;
+
     private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
-    @OneToMany(mappedBy = "campaniaByLcpCnaId")
-    public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {
-        return loteCampaniasByCnaId;
-    }
-
-    public void setLoteCampaniasByCnaId(Collection<LoteCampaniaEntity> loteCampaniasByCnaId) {
-        this.loteCampaniasByCnaId = loteCampaniasByCnaId;
-    }
-
+    //=================================================================
     @Id
     @GeneratedValue
     @Column(name = "cna_id")
-    public int getCnaId() {
+    public Integer getCnaId() {
         return cnaId;
     }
-
-    public void setCnaId(int cnaId) {
+    public void setCnaId(Integer cnaId) {
         this.cnaId = cnaId;
     }
 
@@ -48,7 +40,6 @@ public class CampaniaEntity {
     public String getCnaDenominacion() {
         return cnaDenominacion;
     }
-
     public void setCnaDenominacion(String cnaDenominacion) {
         this.cnaDenominacion = cnaDenominacion;
     }
@@ -143,6 +134,18 @@ public class CampaniaEntity {
         this.cnaUsuarioBaja = cnaUsuarioBaja;
     }
 
+
+    @OneToMany(mappedBy = "campaniaByLcpCnaId")
+    public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {
+        return loteCampaniasByCnaId;
+    }
+
+    public void setLoteCampaniasByCnaId(Collection<LoteCampaniaEntity> loteCampaniasByCnaId) {
+        this.loteCampaniasByCnaId = loteCampaniasByCnaId;
+    }
+
+//=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,7 +153,7 @@ public class CampaniaEntity {
 
         CampaniaEntity that = (CampaniaEntity) o;
 
-        if (cnaId != that.cnaId) return false;
+        if (cnaId != null ? !cnaId.equals(that.cnaId) : that.cnaId != null) return false;
         if (cnaDenominacion != null ? !cnaDenominacion.equals(that.cnaDenominacion) : that.cnaDenominacion != null)
             return false;
         if (cnaFechaInicio != null ? !cnaFechaInicio.equals(that.cnaFechaInicio) : that.cnaFechaInicio != null)
@@ -175,18 +178,25 @@ public class CampaniaEntity {
 
     @Override
     public int hashCode() {
-        int result = cnaId;
+        int result = cnaId != null ? cnaId.hashCode() : 0;
         result = 31 * result + (cnaDenominacion != null ? cnaDenominacion.hashCode() : 0);
-        result = 31 * result + (cnaFechaInicio != null ? cnaFechaInicio.hashCode() : 0);
+        result = 31 * result + (cnaFechaAlta != null ? cnaFechaAlta.hashCode() : 0);
+        result = 31 * result + (cnaFechaBaja != null ? cnaFechaBaja.hashCode() : 0);
         result = 31 * result + (cnaFechaFinEstimada != null ? cnaFechaFinEstimada.hashCode() : 0);
         result = 31 * result + (cnaFechaFinReal != null ? cnaFechaFinReal.hashCode() : 0);
-        result = 31 * result + (cnaFechaAlta != null ? cnaFechaAlta.hashCode() : 0);
-        result = 31 * result + (cnaUsuarioAlta != null ? cnaUsuarioAlta.hashCode() : 0);
+        result = 31 * result + (cnaFechaInicio != null ? cnaFechaInicio.hashCode() : 0);
         result = 31 * result + (cnaFechaUltMod != null ? cnaFechaUltMod.hashCode() : 0);
-        result = 31 * result + (cnaUsuarioUltMod != null ? cnaUsuarioUltMod.hashCode() : 0);
-        result = 31 * result + (cnaFechaBaja != null ? cnaFechaBaja.hashCode() : 0);
+        result = 31 * result + (cnaUsuarioAlta != null ? cnaUsuarioAlta.hashCode() : 0);
         result = 31 * result + (cnaUsuarioBaja != null ? cnaUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (cnaUsuarioUltMod != null ? cnaUsuarioUltMod.hashCode() : 0);
         return result;
     }
 
+    //=================================================================
+    @Override
+    public String toString() {
+        return "CampaniaEntity{" +
+                "cnaDenominacion='" + cnaDenominacion + '\'' +
+                '}';
+    }
 }

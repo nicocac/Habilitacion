@@ -7,50 +7,36 @@ import java.sql.Date;
  * Created by OWNER on 9/4/2016.
  */
 @Entity
-@Table(name = "laboreo_lote_campania", schema = "gestar", catalog = "")
-@IdClass(LaboreoLoteCampaniaEntityPK.class)
+@Table(name = "laboreo_lote_campania", schema = "", catalog = "gestar")
 public class LaboreoLoteCampaniaEntity {
-    private int llc_id;
-    private int llcLcpId;
-    private int llcLboId;
+    private Integer llcId;
     private Date llcFechaAlta;
     private String llcUsuarioAlta;
     private Date llcFechaUltMod;
     private String llcUsuarioUltMod;
     private Date llcFechaBaja;
     private String llcUsuarioBaja;
+
     private LaboreoEntity laboreoByLlcLboId;
     private LoteCampaniaEntity loteCampaniaByLlcLcpId;
+
+    //=================================================================
+
+    private int llcLcpId;
+    private int llcLboId;
+
+
+    //======================================================================================
 
     @Id
     @GeneratedValue
     @Column(name = "llc_id")
-    public int getLlc_id() {
-        return llc_id;
+    public Integer getLlcId() {
+        return llcId;
     }
 
-    public void setLlc_id(int llc_id) {
-        this.llc_id = llc_id;
-    }
-
-    @Id
-    @Column(name = "llc_lcp_id")
-    public int getLlcLcpId() {
-        return llcLcpId;
-    }
-
-    public void setLlcLcpId(int llcLcpId) {
-        this.llcLcpId = llcLcpId;
-    }
-
-    @Id
-    @Column(name = "llc_lbo_id")
-    public int getLlcLboId() {
-        return llcLboId;
-    }
-
-    public void setLlcLboId(int llcLboId) {
-        this.llcLboId = llcLboId;
+    public void setLlcId(Integer llcId) {
+        this.llcId = llcId;
     }
 
     @Basic
@@ -113,6 +99,37 @@ public class LaboreoLoteCampaniaEntity {
         this.llcUsuarioBaja = llcUsuarioBaja;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "llc_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    public LaboreoEntity getLaboreoByLlcLboId() {
+        return laboreoByLlcLboId;
+    }
+
+    public void setLaboreoByLlcLboId(LaboreoEntity laboreoByLlcLboId) {
+        this.laboreoByLlcLboId = laboreoByLlcLboId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "llc_lcp_id", referencedColumnName = "lcp_id", nullable = false)
+    public LoteCampaniaEntity getLoteCampaniaByLlcLcpId() {
+        return loteCampaniaByLlcLcpId;
+    }
+
+    public void setLoteCampaniaByLlcLcpId(LoteCampaniaEntity loteCampaniaByLlcLcpId) {
+        this.loteCampaniaByLlcLcpId = loteCampaniaByLlcLcpId;
+    }
+
+    //=================================================================
+    @Override
+    public String toString() {
+        return "LaboreoLoteCampaniaEntity{" +
+                "llc_id=" + llcId +
+                '}';
+    }
+
+
+    //=================================================================
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -120,8 +137,6 @@ public class LaboreoLoteCampaniaEntity {
 
         LaboreoLoteCampaniaEntity that = (LaboreoLoteCampaniaEntity) o;
 
-        if (llcLcpId != that.llcLcpId) return false;
-        if (llcLboId != that.llcLboId) return false;
         if (llcFechaAlta != null ? !llcFechaAlta.equals(that.llcFechaAlta) : that.llcFechaAlta != null) return false;
         if (llcUsuarioAlta != null ? !llcUsuarioAlta.equals(that.llcUsuarioAlta) : that.llcUsuarioAlta != null)
             return false;
@@ -132,40 +147,49 @@ public class LaboreoLoteCampaniaEntity {
         if (llcFechaBaja != null ? !llcFechaBaja.equals(that.llcFechaBaja) : that.llcFechaBaja != null) return false;
         if (llcUsuarioBaja != null ? !llcUsuarioBaja.equals(that.llcUsuarioBaja) : that.llcUsuarioBaja != null)
             return false;
+        if (laboreoByLlcLboId != null ? !laboreoByLlcLboId.equals(that.laboreoByLlcLboId) : that.laboreoByLlcLboId != null)
+            return false;
+        if (loteCampaniaByLlcLcpId != null ? !loteCampaniaByLlcLcpId.equals(that.loteCampaniaByLlcLcpId) : that.loteCampaniaByLlcLcpId != null)
+            return false;
+        if (llcId != null ? !llcId.equals(that.llcId) : that.llcId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = llcLcpId;
-        result = 31 * result + llcLboId;
+        int result = llcId != null ? llcId.hashCode() : 0;
         result = 31 * result + (llcFechaAlta != null ? llcFechaAlta.hashCode() : 0);
-        result = 31 * result + (llcUsuarioAlta != null ? llcUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (llcFechaUltMod != null ? llcFechaUltMod.hashCode() : 0);
-        result = 31 * result + (llcUsuarioUltMod != null ? llcUsuarioUltMod.hashCode() : 0);
         result = 31 * result + (llcFechaBaja != null ? llcFechaBaja.hashCode() : 0);
+        result = 31 * result + (llcFechaUltMod != null ? llcFechaUltMod.hashCode() : 0);
+        result = 31 * result + (llcUsuarioAlta != null ? llcUsuarioAlta.hashCode() : 0);
         result = 31 * result + (llcUsuarioBaja != null ? llcUsuarioBaja.hashCode() : 0);
+        result = 31 * result + (llcUsuarioUltMod != null ? llcUsuarioUltMod.hashCode() : 0);
+        result = 31 * result + (laboreoByLlcLboId != null ? laboreoByLlcLboId.hashCode() : 0);
+        result = 31 * result + (loteCampaniaByLlcLcpId != null ? loteCampaniaByLlcLcpId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "laboreoByLlcLboId", referencedColumnName = "lbo_id", nullable = false, insertable=false, updatable=false)
-    public LaboreoEntity getLaboreoByLlcLboId() {
-        return laboreoByLlcLboId;
+
+    ////////////////////////////////
+
+    //=================================================================
+
+
+    public int getLlcLcpId() {
+        return llcLcpId;
     }
 
-    public void setLaboreoByLlcLboId(LaboreoEntity laboreoByLlcLboId) {
-        this.laboreoByLlcLboId = laboreoByLlcLboId;
+    public void setLlcLcpId(int llcLcpId) {
+        this.llcLcpId = llcLcpId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "loteCampaniaByLlcLcpId", referencedColumnName = "lcp_id", nullable = false, insertable=false, updatable=false)
-    public LoteCampaniaEntity getLoteCampaniaByLlcLcpId() {
-        return loteCampaniaByLlcLcpId;
+    public int getLlcLboId() {
+        return llcLboId;
     }
 
-    public void setLoteCampaniaByLlcLcpId(LoteCampaniaEntity loteCampaniaByLlcLcpId) {
-        this.loteCampaniaByLlcLcpId = loteCampaniaByLlcLcpId;
+    public void setLlcLboId(int llcLboId) {
+        this.llcLboId = llcLboId;
     }
+
 }
