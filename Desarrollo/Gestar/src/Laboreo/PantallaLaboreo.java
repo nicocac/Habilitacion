@@ -146,8 +146,14 @@ public class PantallaLaboreo extends JFrame {
                 modelo.removeRow(tblDetalles.getSelectedRow());
             }
         });
+
+        //LIMPIAR
         btnLimpiar.addActionListener(e -> limpiarPantalla());
+
+       //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
+
+        //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
             Campania camp = (Campania)cboCampania.getSelectedItem();

@@ -6,6 +6,7 @@ import Datos.*;
 import Insumo.*;
 import Lote.*;
 import Maquinaria.Maquinaria;
+import Repository.*;
 import TipoInsumo.TipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,23 +19,27 @@ import java.util.*;
  * Created by OWNER on 8/28/2016.
  */
 public class GestorLaboreo {
-
-
+    CampaniaRepository campaniaRepository = new CampaniaRepository();
+    InsumoRepository insumoRepository = new InsumoRepository();
+    MaquinariaRepository maquinariaRepository = new MaquinariaRepository();
+    LoteRepository loteRepository = new LoteRepository();
+    TipoLaboreoRepository tipoLaboreoRepository = new TipoLaboreoRepository();
     Session session;
-    public List getInsumos(){
+
+    public List getInsumos() {
         session = Coneccion.getSession();
         java.util.List list;
         InsumoEntity insumo;
         Insumo ins;
-        LinkedList retorno = new LinkedList() ;
+        LinkedList retorno = new LinkedList();
         try {
             Query query = session.createQuery("select t from InsumoEntity t where insFechaBaja is null");
             list = query.list();
             Iterator iter = list.iterator();
             while (iter.hasNext()) {
                 insumo = (InsumoEntity) iter.next();
-                ins = new Insumo(insumo.getInsNombre(),insumo.getInsDescripcion(),new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(),insumo.getTipoInsumoByInsTinId().getTinDescripcion()),insumo.getInsUnidadMedida());
-               retorno.add(ins);
+                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida());
+                retorno.add(ins);
             }
         } finally {
             session.close();
@@ -42,7 +47,7 @@ public class GestorLaboreo {
         return retorno;
     }
 
-    public List getMaquinaria(){
+    public List getMaquinaria() {
         session = Coneccion.getSession();
         java.util.List list;
         MaquinariaEntity maq;
@@ -57,41 +62,41 @@ public class GestorLaboreo {
                 maquinaria = new Maquinaria(maq.getMaqNombre(), maq.getMaqDescripcion(), maq.getMaqMarca(), maq.getMaqModelo(), maq.getMaqAnioFabricacion(), new TipoMaquinaria(maq.getTipoMaquinariaByMaqTmaqId().getTmaNombre(), maq.getTipoMaquinariaByMaqTmaqId().getTmaDescripcion()), new EstadoMaquinaria(maq.getTipoEstadoMaquinariaByMaqTestadoId().getTeMaNombre(), maq.getTipoEstadoMaquinariaByMaqTestadoId().getTeMaDescripcion()));
                 retorno.add(maquinaria);
             }
-            } finally {
+        } finally {
             session.close();
         }
         return retorno;
     }
 
-    public List getCampanias(){
+    public List getCampanias() {
         session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
         LinkedList lkLotes;
-        CampaniaEntity camp ;
+        CampaniaEntity camp;
         Campania campania = new Campania();
         try {
             Query query = session.createQuery("select t from CampaniaEntity t where cnaFechaBaja is null");
             list = query.list();
             Iterator iter = list.iterator();
-                while (iter.hasNext()) {
-                    camp = (CampaniaEntity) iter.next();
-                    Collection lotes = camp.getLoteCampaniasByCnaId();
-                    Iterator iterLotes = lotes.iterator();
-                    lkLotes = new LinkedList();
-                    while (iterLotes.hasNext()) {
-                        // busco por cada lote de campania suy lote correspondiente
-                        LoteCampaniaEntity loteCamp = (LoteCampaniaEntity) iterLotes.next();
-                        // busco el lote correspondinte a ese lote de campania
-                        LoteEntity lote = loteCamp.getLoteByLcpLteId();
-                        // genero el lote
-                        lkLotes.add(new Lote(lote.getLteDenominacion(), lote.getLteCantMetros(), lote.getLteUbicacion(), lote.getLteFechaDesde(), lote.getLteFechaHasta()));
+            while (iter.hasNext()) {
+                camp = (CampaniaEntity) iter.next();
+                Collection lotes = camp.getLoteCampaniasByCnaId();
+                Iterator iterLotes = lotes.iterator();
+                lkLotes = new LinkedList();
+                while (iterLotes.hasNext()) {
+                    // busco por cada lote de campania suy lote correspondiente
+                    LoteCampaniaEntity loteCamp = (LoteCampaniaEntity) iterLotes.next();
+                    // busco el lote correspondinte a ese lote de campania
+                    LoteEntity lote = loteCamp.getLoteByLcpLteId();
+                    // genero el lote
+                    lkLotes.add(new Lote(lote.getLteDenominacion(), lote.getLteCantMetros(), lote.getLteUbicacion(), lote.getLteFechaDesde(), lote.getLteFechaHasta()));
 
-                    }
-                    campania = new Campania(camp.getCnaDenominacion(), camp.getCnaFechaInicio(), camp.getCnaFechaFinEstimada(), camp.getCnaFechaFinReal(), lkLotes);
-                    retorno.add(campania);
                 }
-            } finally {
+                campania = new Campania(camp.getCnaDenominacion(), camp.getCnaFechaInicio(), camp.getCnaFechaFinEstimada(), camp.getCnaFechaFinReal(), lkLotes);
+                retorno.add(campania);
+            }
+        } finally {
             session.close();
         }
         return retorno;
@@ -126,15 +131,17 @@ public class GestorLaboreo {
                 retorno.add(lote);
             }
 
-        }catch(Exception e){System.out.print(e.toString());
-    }finally {
-            session.close();}
+        } catch (Exception e) {
+            System.out.print(e.toString());
+        } finally {
+            session.close();
+        }
 
         return retorno;
 
     }
 
-    public List getMomentos(){
+    public List getMomentos() {
         session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
@@ -145,17 +152,18 @@ public class GestorLaboreo {
             list = query.list();
             Iterator iter = list.iterator();
             while (iter.hasNext()) {
-                te = (TipoLaboreoEntity)iter.next();
-                mom = new MomentoLaboreo(te.getTpoNombre(),te.getTpoDescripcion());
+                te = (TipoLaboreoEntity) iter.next();
+                mom = new MomentoLaboreo(te.getTpoNombre(), te.getTpoDescripcion());
                 retorno.add(mom);
             }
-        }finally {
-            session.close();}
+        } finally {
+            session.close();
+        }
 
         return retorno;
     }
 
-    public TipoLaboreoEntity getMomentoByNombre(String pMomento){
+    public TipoLaboreoEntity getMomentoByNombre(String pMomento) {
         session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
@@ -167,74 +175,83 @@ public class GestorLaboreo {
             list = query.list();
             Iterator iter = list.iterator();
             while (iter.hasNext()) {
-                te = (TipoLaboreoEntity)iter.next();
+                te = (TipoLaboreoEntity) iter.next();
             }
-        }finally {
-            session.close();}
+        } finally {
+            session.close();
+        }
 
         return te;
     }
 
-    public void registrarLaboreo(Campania campania, ArrayList<Lote> lotes, ArrayList<DetalleLaboreo>  detalles, MomentoLaboreo momento, Date fecahInicio, Date fechaFin, String descripcion){
+    public void registrarLaboreo(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo, MomentoLaboreo tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion) {
         session = Coneccion.getSession();
-        LoteCampaniaEntity loteCampaniaEnt;
-        CampaniaEntity campEntity;
-        TipoLaboreoEntity tipoLaboreo;
-        LaboreoLoteCampaniaEntity laboreoLote;
-        DetalleLaboreoEntity detalleEntity;
-        MaquinariaEntity maquina;
-        InsumoEntity insumo;
-        ArrayList<DetalleLaboreoEntity> detallesEntity = new ArrayList<DetalleLaboreoEntity>();
-        ArrayList<LaboreoLoteCampaniaEntity> arrayLaboreoLote = new ArrayList<LaboreoLoteCampaniaEntity>();
-        LaboreoEntity laboreo = new LaboreoEntity();
-        GestorCampania gestCamp = new GestorCampania();
-        campEntity = gestCamp.getCampaniaByCnaName(campania.getDenominacion());
-        for (int i=0; i <detalles.size();i++ ) {
-            detalleEntity = new DetalleLaboreoEntity();
+
+        LoteCampaniaEntity loteCampaniaEntity;
+        CampaniaEntity campaniaEntity;
+        TipoLaboreoEntity tipoLaboreoEntity = new TipoLaboreoEntity();
+        LaboreoLoteCampaniaEntity laboreoLoteCampaniaEntity;
+        DetalleLaboreoEntity detalleLaboreoEntity;
+        MaquinariaEntity maquinariaEntity;
+        InsumoEntity insumoEntity;
+        LaboreoEntity laboreoEntity;
+
+
+        ArrayList<DetalleLaboreoEntity> listaDetallesLaboreoEntity = new ArrayList<>();
+        for (int i = 0; i < detallesLaboreo.size(); i++) {
+            detalleLaboreoEntity = new DetalleLaboreoEntity();
             try {
-                    String nombre = detalles.get(i).getInsumo().getNombre();
-                    GestorInsumo gest = new GestorInsumo();
-                    insumo = gest.getInsumoByName(detalles.get(i).getInsumo().getNombre());
-                    detalleEntity.setDboInsId(insumo.getInsId());
-            }catch(NullPointerException npe){
-                GestorMaquinaria gest = new GestorMaquinaria();
-                maquina = gest.getMaquinariaByName(detalles.get(i).getMaquinaria().getNombre());
-                detalleEntity.setDboMaqId(maquina.getMaqId());
+                String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
+                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                detalleLaboreoEntity.setInsumoByDboInsId(insumoEntity);
+
+            } catch (NullPointerException npe) {
+                String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
+                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
             }
-            detalleEntity.setDboCantidad(detalles.get(i).getCantidad());
-            detallesEntity.add(detalleEntity);
+            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
+            listaDetallesLaboreoEntity.add(detalleLaboreoEntity);
         }
 
-        for (int i=0; i <lotes.size();i++ ) {
-            laboreoLote = new LaboreoLoteCampaniaEntity();
-            GestorLote gestLote = new GestorLote();
-            LoteEntity lote = gestLote.getLoteByDenominacion(lotes.get(i).getDenominacion());
+
+        ArrayList<LaboreoLoteCampaniaEntity> listaLaboreoLoteCampaniaEntity = new ArrayList<>();
+        campaniaEntity = campaniaRepository.getCampaniaByNombre(campania.getDenominacion());
+
+        for (int i = 0; i < listaLotes.size(); i++) {
+            laboreoLoteCampaniaEntity = new LaboreoLoteCampaniaEntity();
+
+            LoteEntity loteEntity = loteRepository.getLoteByDenominacion(listaLotes.get(i).getDenominacion());
             List list = this.getLotesCampania(campania);
+
             Iterator iter = list.iterator();
+
             while (iter.hasNext()) {
                 Lote lot = (Lote) iter.next();
-                LoteEntity loteCamp = gestLote.getLoteByDenominacion(lot.getDenominacion());
-                if (loteCamp.getLteId()==lote.getLteId()){
+                LoteEntity loteCamp = loteRepository.getLoteByDenominacion(lot.getDenominacion());
+                if (loteCamp.getLteId() == loteEntity.getLteId()) {
                     Iterator it = loteCamp.getLoteCampaniasByLteId().iterator();
                     while (it.hasNext()) {
-                        LoteCampaniaEntity ltc = (LoteCampaniaEntity)iter.next();
-                        if(ltc.getCampaniaByLcpCnaId().equals(campEntity)) {
-                            laboreoLote.setLoteCampaniaByLlcLcpId(ltc);
+                        LoteCampaniaEntity ltc = (LoteCampaniaEntity) iter.next();
+                        if (ltc.getCampaniaByLcpCnaId().equals(campaniaEntity)) {
+                            laboreoLoteCampaniaEntity.setLoteCampaniaByLlcLcpId(ltc);
                         }
                     }
-                    arrayLaboreoLote.add(laboreoLote);
+                    listaLaboreoLoteCampaniaEntity.add(laboreoLoteCampaniaEntity);
                 }
             }
         }
-        laboreo.setLaboreoLoteCampaniasByLboId(arrayLaboreoLote);
-        laboreo.setDetalleLaboreosByLboId(detallesEntity);
-//        laboreo.setLboTpoId(this.getMomentoByNombre(momento.getDescripcion()).getTpoId());
-        laboreo.setLboFechaHoraInicio(fecahInicio);
-        laboreo.setLboFechaHoraFin(fechaFin);
-        laboreo.setLboDescripcion(descripcion);
-        session.save(laboreo);
-    }
 
+        laboreoEntity = new LaboreoEntity();
+        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getNombre());
+        laboreoEntity.setLaboreoLoteCampaniasByLboId(listaLaboreoLoteCampaniaEntity);
+        laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
+        laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
+        laboreoEntity.setLboFechaHoraInicio(fechaInicio);
+        laboreoEntity.setLboFechaHoraFin(fechaFin);
+        laboreoEntity.setLboDescripcion(descripcion);
+        session.save(laboreoEntity);
+    }
 
 
 }

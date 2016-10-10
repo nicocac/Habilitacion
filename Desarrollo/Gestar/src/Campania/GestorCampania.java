@@ -6,6 +6,7 @@ import Insumo.Insumo;
 import Laboreo.MomentoLaboreo;
 import Lote.Lote;
 import Maquinaria.Maquinaria;
+import Repository.CampaniaRepository;
 import TipoInsumo.TipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,6 +22,7 @@ import java.util.List;
 public class GestorCampania {
 
     Session session;
+    CampaniaRepository campaniaRepository = new CampaniaRepository();
 
     public CampaniaEntity getCampaniaByCnaName(String cnaName){
         session = Coneccion.getSession();

@@ -2,6 +2,8 @@ package Repository;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
+import Datos.LoteEntity;
+import Laboreo.MomentoLaboreo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -12,12 +14,12 @@ import java.util.List;
 /**
  * Created by jagm on 07/10/2016.
  */
-public class InsumoRepository {
+public class LoteRepository {
     Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+         session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -31,19 +33,21 @@ public class InsumoRepository {
     }
 
 
-    public InsumoEntity getInsumoByNombre(String nombre){
+    public LoteEntity getLoteByDenominacion(String denominacion){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
-        query.setParameter("pNombre", nombre);
+        LoteEntity lote = new LoteEntity();
+        Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
+        query.setParameter("pNombre", denominacion);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            lote = (LoteEntity) iter.next();
         }
         session.close();
-        return insumo;
+        return lote;
     }
+
+
 
 
     public InsumoEntity getInsumoById(Long id){

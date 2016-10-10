@@ -116,9 +116,7 @@ public class TipoLaboreoEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "TipoLaboreoEntity{" +
-                "tpoNombre='" + tpoNombre + '\'' +
-                '}';
+        return this.getTpoNombre();
     }
 
     //=================================================================

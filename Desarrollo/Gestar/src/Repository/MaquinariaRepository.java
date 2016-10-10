@@ -2,6 +2,7 @@ package Repository;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
+import Datos.MaquinariaEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -12,12 +13,12 @@ import java.util.List;
 /**
  * Created by jagm on 07/10/2016.
  */
-public class InsumoRepository {
+public class MaquinariaRepository {
     Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+         session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -31,19 +32,20 @@ public class InsumoRepository {
     }
 
 
-    public InsumoEntity getInsumoByNombre(String nombre){
+    public MaquinariaEntity getMaquinariaByNombre(String nombre){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+        MaquinariaEntity maquinaria = new MaquinariaEntity();
+        Query query = session.createQuery("select x from MaquinariaEntity x where ucase(maqNombre) like ucase(:pNombre) and maqFechaBaja is null");
         query.setParameter("pNombre", nombre);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            maquinaria = (MaquinariaEntity) iter.next();
         }
         session.close();
-        return insumo;
+        return maquinaria;
     }
+
 
 
     public InsumoEntity getInsumoById(Long id){

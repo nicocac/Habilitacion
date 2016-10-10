@@ -11,6 +11,7 @@ import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
 import Procesos.PantallaAdministrarCompra;
+import Procesos.PantallaAdministrarNotaDeCompra;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 
 import javax.swing.*;
@@ -57,7 +58,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         tipoInsumo.addActionListener(this);
         insumos.add(tipoInsumo);
 
-        compraInsumo = new JMenuItem("Comprar Insumos");
+        compraInsumo = new JMenuItem("Administrar Notas de Compra de Insumos");
         compraInsumo.addActionListener(this);
         insumos.add(compraInsumo);
 
@@ -133,8 +134,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == compraInsumo) {
-            PantallaAdministrarCompra pantallaAdministrarCompra = new PantallaAdministrarCompra();
-            pantallaAdministrarCompra.setVisible(true);
+            PantallaAdministrarNotaDeCompra pantallaAdministrarNotaDeCompra = new PantallaAdministrarNotaDeCompra();
+            pantallaAdministrarNotaDeCompra.setVisible(true);
             getDefaultCloseOperation();
         }
 

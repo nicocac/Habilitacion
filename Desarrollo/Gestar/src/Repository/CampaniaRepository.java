@@ -1,6 +1,7 @@
 package Repository;
 
 import Conexion.Coneccion;
+import Datos.CampaniaEntity;
 import Datos.InsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,7 +13,8 @@ import java.util.List;
 /**
  * Created by jagm on 07/10/2016.
  */
-public class InsumoRepository {
+public class CampaniaRepository {
+
     Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
@@ -31,23 +33,27 @@ public class InsumoRepository {
     }
 
 
-    public InsumoEntity getInsumoByNombre(String nombre){
-         session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
-        query.setParameter("pNombre", nombre);
-        List list = query.list();
+    public CampaniaEntity getCampaniaByNombre (String nombre){
+        session = Coneccion.getSession();
+        java.util.List list;
+        CampaniaEntity camp = new CampaniaEntity();
+        try {
+            Query query = session.createQuery("select t from CampaniaEntity t where  t.cnaDenominacion= :pCnaName and  cnaFechaBaja is null");
+            query.setParameter("pCnaName", nombre);
+            list = query.list();
+        } finally {
+            session.close();
+        }
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            camp = (CampaniaEntity) iter.next();
         }
-        session.close();
-        return insumo;
+        return camp;
     }
 
 
     public InsumoEntity getInsumoById(Long id){
-         session = Coneccion.getSession();
+        session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);
