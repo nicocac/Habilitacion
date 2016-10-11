@@ -21,9 +21,9 @@ import java.util.List;
 public class LoteCampaniaRepository {
     Session session = Coneccion.getSession();
 
-    public List<InsumoEntity> getAllInsumos(){
+    public List<InsumoEntity> getAllInsumos() {
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -37,8 +37,8 @@ public class LoteCampaniaRepository {
     }
 
 
-    public LoteEntity getLoteByDenominacion(String denominacion){
-         session = Coneccion.getSession();
+    public LoteEntity getLoteByDenominacion(String denominacion) {
+        session = Coneccion.getSession();
         LoteEntity lote = new LoteEntity();
         Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
         query.setParameter("pNombre", denominacion);
@@ -52,60 +52,70 @@ public class LoteCampaniaRepository {
     }
 
 
+    public void deleteAllByCampania(int id) {
+        session = Coneccion.getSession();
+
+        LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
+        Query query = session.createQuery("DELETE FROM LoteCampaniaEntity where ucase(lcpCnaId) like ucase(:pId)");
+        query.setParameter("pId", id);
+        query.executeUpdate();
+        session.close();
+    }
 
 
-    public InsumoEntity getInsumoById(Long id){
-         session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
+    public LoteCampaniaEntity getLoteCampaniaById(Long id) {
+        session = Coneccion.getSession();
+        LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
+        Query query = session.createQuery("select x from LoteCampaniaEntity x where ucase(lcpCnaId) like ucase(:pId) and lcpFechaBaja is null");
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            loteCampania = (LoteCampaniaEntity) iter.next();
         }
         session.close();
-        return insumo;
+        return loteCampania;
     }
 
 
-    public List getLotesCampania(Campania camp) {
+    public List<LoteEntity> getLotesByCampaniaId(int id) {
         session = Coneccion.getSession();
         java.util.List list;
-        java.util.Collection col;
-        LinkedList retorno = new LinkedList();
-        CampaniaEntity campEnt = new CampaniaEntity();
-        LoteCampaniaEntity lcp;
-        LoteEntity loteEnt;
-        Lote lote;
-        try {
-            Query queryCamp = session.createQuery("select t from CampaniaEntity t where cnaDenominacion = :pNombre");
-            queryCamp.setParameter("pNombre", camp.getDenominacion());
-            list = queryCamp.list();
-            Iterator iter = list.iterator();
-            while (iter.hasNext()) {
-                campEnt = (CampaniaEntity) iter.next();
-            }
+        LoteEntity lote;
 
-            col = campEnt.getLoteCampaniasByCnaId();
-            //Query queryLcp = session.createQuery("select t from LoteCampaniaEntity t where t.lcpFechaBaja is null ");
-            //queryLcp.setParameter("pCnaId", campEnt.getCnaId());
-            //col = queryLcp.list();
-            iter = col.iterator();
-            while (iter.hasNext()) {
-                lcp = (LoteCampaniaEntity) iter.next();
-                lote = new Lote(lcp.getLoteByLcpLteId().getLteDenominacion(), lcp.getLoteByLcpLteId().getLteCantMetros(), lcp.getLoteByLcpLteId().getLteUbicacion(), lcp.getLoteByLcpLteId().getLteFechaDesde(), lcp.getLoteByLcpLteId().getLteFechaHasta());
-                retorno.add(lote);
-            }
+        List<LoteEntity> listaLotes = new ArrayList<>();
+        Query queryLoteByCampania = session.createQuery("select t.loteByLcpLteId from LoteCampaniaEntity t where t.campaniaByLcpCnaId.cnaId = :pId");
+        queryLoteByCampania.setParameter("pId", id);
+        list = queryLoteByCampania.list();
 
-        } catch (Exception e) {
-            System.out.print(e.toString());
-        } finally {
-            session.close();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            lote = (LoteEntity) iter.next();
+            listaLotes.add(lote);
         }
-
-        return retorno;
-
+        session.close();
+        return  listaLotes;
     }
+
+
+    public List<LoteCampaniaEntity> getLotesCampaniasByLote(int id) {
+        session = Coneccion.getSession();
+        java.util.List list;
+        LoteCampaniaEntity loteCampania;
+
+        List<LoteCampaniaEntity> listaLotesCampania = new ArrayList<>();
+        Query queryLoteByCampania = session.createQuery("select t from LoteCampaniaEntity t where t.loteByLcpLteId.lteId = :pId");
+        queryLoteByCampania.setParameter("pId", id);
+        list = queryLoteByCampania.list();
+
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            loteCampania = (LoteCampaniaEntity) iter.next();
+            listaLotesCampania.add(loteCampania);
+        }
+        session.close();
+        return  listaLotesCampania;
+    }
+
 
 }

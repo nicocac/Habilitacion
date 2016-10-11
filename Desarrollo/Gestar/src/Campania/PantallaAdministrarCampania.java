@@ -70,48 +70,48 @@ public class PantallaAdministrarCampania extends JFrame {
                 return;
             }
             int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
-            String nombre = (String) tblCampania.getModel().getValueAt(fila, 1);
-            String fechaAlta = (String) tblCampania.getModel().getValueAt(fila, 2);
+            String denominacion = (String) tblCampania.getModel().getValueAt(fila, 1);
+            Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 2);
+            Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 3);
+            Date fechaFinReal = (Date) tblCampania.getModel().getValueAt(fila, 4);
 
-//            CargaCampania carga = new CargaCampania("Modificacion", nombre, fechaAlta, camId);
-            CargaCampania carga = new CargaCampania();
+            CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
             carga.setVisible(true);
             getDefaultCloseOperation();
-//            inicializaTabla();
+            inicializaTabla();
 
 
         });
 
 
         //BAJA
-//        btnEliminar.addActionListener(e -> {
-//            switch (darBaja()) {
-//                case 0: {
-//                    showMessage("Se dio de baja exitosamente la campania.");
-//                    inicializaTabla();
-//                    break;
-//                }
-//                case 1: {
-//                    showMessage("Operacion Cancelada.");
-//                    break;
-//                }
-//                case 2: {
-//                    showMessage("No se pudo dar de baja la campania.");
-//                    break;
-//                }
-//            }
-//
-//        });
+        btnEliminar.addActionListener(e -> {
+            switch (darBaja()) {
+                case 0: {
+                    showMessage("Se dio de baja exitosamente la campania.");
+                    inicializaTabla();
+                    break;
+                }
+                case 1: {
+                    showMessage("Operacion Cancelada.");
+                    break;
+                }
+                case 2: {
+                    showMessage("No se pudo dar de baja la campania.");
+                    break;
+                }
+            }
+
+        });
 
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-//            CargaCampania cargaCampania = new CargaCampania("Carga", "", "", null, "", "", null, "", 0);
-            CargaCampania cargaCampania = new CargaCampania();
+            CargaCampania cargaCampania = new CargaCampania("Carga",0, "", null, null, null);
 
             cargaCampania.setVisible(true);
             getDefaultCloseOperation();
-//            inicializaTabla();
+            inicializaTabla();
         });
 
 
@@ -122,7 +122,7 @@ public class PantallaAdministrarCampania extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Fecha Alta"};
+        String[] columnNames = {"Cod", "Nombre", "Fecha Inicio", "Fecha Fin Estimada", "Fecha Fin Real", "Cantidad de lotes"};
         Object[][] data = new Object[1][3];
         setModel(columnNames, data, tblCampania);
     }
@@ -143,49 +143,46 @@ public class PantallaAdministrarCampania extends JFrame {
 
 
 //    //METODO DAR BAJA
-//    public int darBaja() {
-//        Session session = Coneccion.getSession();
-//        Boolean guardado = false;
-//        try {
-//            maquinaria = new MaquinariaEntity();
-//            int fila = tblCampania.getSelectedRow();
-//            if (fila == -1) {
-//                showMessage("Debe seleccionar una fila para continuar.");
-//                return -1;
-//            }
-//            maquinaria.setMaqId((int) tblCampania.getModel().getValueAt(fila, 0));
-//            maquinaria.setMaqNombre((String) tblCampania.getModel().getValueAt(fila, 1));
-//            maquinaria.setMaqDescripcion((String) tblCampania.getModel().getValueAt(fila, 2));
-//            maquinaria.setTipoEstadoMaquinariaByMaqTestadoId((TipoEstadoMaquinariaEntity) tblCampania.getModel().getValueAt(fila, 3));
-//            maquinaria.setMaqMarca((String) tblCampania.getModel().getValueAt(fila, 4));
-//            maquinaria.setMaqModelo((String) tblCampania.getModel().getValueAt(fila, 5));
-//            maquinaria.setTipoMaquinariaByMaqTmaqId((TipoMaquinariaEntity) tblCampania.getModel().getValueAt(fila, 6));
-//            maquinaria.setMaqAnioFabricacion((String) tblCampania.getModel().getValueAt(fila, 7));
-//
-//            maquinaria.setMaqFechaAlta(fechaActual);
-//            maquinaria.setMaqUsuarioAlta("adminBajaMAQUINARIA");
-//            maquinaria.setMaqFechaUltMod(fechaActual);
-//            maquinaria.setMaqUsuarioUtlMod("adminBajaMAQUINARIA");
-//            maquinaria.setMaqFechaBaja(fechaActual);
-//            maquinaria.setMaqUsuarioBaja("adminBajaMAQUINARIA");
-//            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja de la maquinaria: " + tblCampania.getModel().getValueAt(fila, 1));
-//            if (i == 0) {
-//                tx = session.beginTransaction();
-//                session.update(maquinaria);
-//                tx.commit();
-//                guardado = tx.wasCommitted();
-//            } else {
-//                return 1;
-//            }
-//        } catch (Exception e) {
-//            showMessage("Ocurrio un error al dar de baja la maquinaria: " + e.toString());
-//            return 2;
-//        } finally {
-//            session.close();
-//        }
-//
-//        return 0;
-//    }
+    public int darBaja() {
+        Session session = Coneccion.getSession();
+        Boolean guardado = false;
+        try {
+            campania = new CampaniaEntity();
+            int fila = tblCampania.getSelectedRow();
+            if (fila == -1) {
+                showMessage("Debe seleccionar una fila para continuar.");
+                return -1;
+            }
+            campania.setCnaId((int) tblCampania.getModel().getValueAt(fila, 0));
+            campania.setCnaDenominacion((String) tblCampania.getModel().getValueAt(fila, 1));
+            campania.setCnaFechaInicio((Date) tblCampania.getModel().getValueAt(fila, 2));
+            campania.setCnaFechaFinEstimada((Date) tblCampania.getModel().getValueAt(fila, 3));
+            campania.setCnaFechaFinReal((Date) tblCampania.getModel().getValueAt(fila, 4));
+//            campania.set((String) tblCampania.getModel().getValueAt(fila, 5));
+
+            campania.setCnaFechaAlta(fechaActual);
+            campania.setCnaUsuarioBaja("adminBajaMAQUINARIA");
+            campania.setCnaFechaUltMod(fechaActual);
+            campania.setCnaUsuarioUltMod("adminBajaMAQUINARIA");
+            campania.setCnaFechaBaja(fechaActual);
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja de la campania: " + tblCampania.getModel().getValueAt(fila, 1));
+            if (i == 0) {
+                tx = session.beginTransaction();
+                session.update(campania);
+                tx.commit();
+                guardado = tx.wasCommitted();
+            } else {
+                return 1;
+            }
+        } catch (Exception e) {
+            showMessage("Ocurrio un error al dar de baja la campania: " + e.toString());
+            return 2;
+        } finally {
+            session.close();
+        }
+        return 0;
+    }
+
 
 
     //METODO BUSCAR Campanias
@@ -198,14 +195,16 @@ public class PantallaAdministrarCampania extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Fecha Alta"};
-            Object[][] data = new Object[list.size()][3];
-
+            String[] columnNames = {"Cod", "Nombre", "Fecha Inicio", "Fecha Fin Estimada", "Fecha Fin Real", "Cantidad de lotes"};
+            Object[][] data = new Object[list.size()][6];
             while (iter.hasNext()) {
                 campania = (CampaniaEntity) iter.next();
                 data[i][0] = campania.getCnaId();
                 data[i][1] = campania.getCnaDenominacion();
-                data[i][2] = campania.getCnaFechaAlta();
+                data[i][2] = campania.getCnaFechaInicio();
+                data[i][3] = campania.getCnaFechaFinEstimada();
+                data[i][4] = campania.getCnaFechaFinReal();
+                data[i][5] = campania.getLoteCampaniasByCnaId().size();
                 i++;
             }
             setModel(columnNames, data, tblCampania);

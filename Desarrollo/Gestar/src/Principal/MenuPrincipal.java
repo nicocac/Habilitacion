@@ -1,11 +1,14 @@
 package Principal;
 
+import Acopio.PantallaCargaAcopio;
 import Campania.PantallaAdministrarCampania;
+import Cliente.PantallaAdministrarCliente;
 import Granos.PantallaAdministrarTipoGranos;
 import Imagenes.ImageFondo;
 import Insumo.PantallaAdministrarInsumo;
 import Laboreo.PantallaAdministrarLaboreos;
 import Laboreo.PantallaLaboreo;
+import Laboreo.TipoLaboreo.PantallaAdministrarTipoLaboreo;
 import Lote.PantallaAdministrarLote;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
@@ -13,6 +16,7 @@ import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
 import Procesos.PantallaAdministrarCompra;
 import Procesos.PantallaAdministrarNotaDeCompra;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
+import TipoMedioAlmacenamiento.PantallaAdministrarMedios;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,12 +27,16 @@ import java.awt.event.ActionListener;
 public class MenuPrincipal extends JFrame implements ActionListener {
 
     private JMenuBar menuPrincipal;
-    private JMenu opciones, insumos, maquinarias, procesos, lotes, tipoGranos,campanias;
-    private JMenuItem laboreoTemp, laboreo, lote, compra, salir, insumo, tipoInsumo,compraInsumo, maquinaria, tipoMaquinaria, estadoMaquinaria, tipoGrano, campania;
+    private JMenu opciones, insumos, maquinarias, procesos, lotes, tipoGranos, campanias, clientes,
+            mediosAlmacenamientos, acopios;
+    private JMenuItem laboreoTemp, laboreo, tipoLaboreo, lote, compra,
+            salir, insumo, tipoInsumo, compraInsumo, maquinaria, tipoMaquinaria,
+            estadoMaquinaria, tipoGrano, campania, cliente, medioAlmacenamiento,
+            acopio;
 
     public MenuPrincipal() {
 
-        ImageFondo image=new ImageFondo();
+        ImageFondo image = new ImageFondo();
         image.setImage("/Imagenes/MenuPrincipalFondo2.jpg");
         setContentPane(image);
 
@@ -91,6 +99,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         laboreo.addActionListener(this);
         lotes.add(laboreo);
 
+        tipoLaboreo = new JMenuItem("Administrar Tipo Laboreo");
+        tipoLaboreo.addActionListener(this);
+        lotes.add(tipoLaboreo);
+
         lote = new JMenuItem("Administrar Lotes");
         lote.addActionListener(this);
         lotes.add(lote);
@@ -115,6 +127,29 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 //        mi5.addActionListener(this);
 //        menu2.add(mi5);
 
+        //CLIENTES
+        clientes = new JMenu("Clientes");
+        menuPrincipal.add(clientes);
+
+        cliente = new JMenuItem("Administrar cliente");
+        cliente.addActionListener(this);
+        clientes.add(cliente);
+
+        //MEDIOS
+        mediosAlmacenamientos = new JMenu("Medios de Almacenamiento");
+        menuPrincipal.add(mediosAlmacenamientos);
+
+        medioAlmacenamiento = new JMenuItem("Administrar Medios");
+        medioAlmacenamiento.addActionListener(this);
+        mediosAlmacenamientos.add(medioAlmacenamiento);
+
+         //ACOPIO
+        acopios = new JMenu("Acopio");
+        menuPrincipal.add(acopios);
+
+        acopio = new JMenuItem("Registrar Ingreso de Granos");
+        acopio.addActionListener(this);
+        acopios.add(acopio);
 
     }
 
@@ -168,6 +203,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             pantallaAdministrarLaboreos.setVisible(true);
             getDefaultCloseOperation();
         }
+
+        if (e.getSource() == tipoLaboreo) {
+            PantallaAdministrarTipoLaboreo pantallaAdministrarTipoLaboreo = new PantallaAdministrarTipoLaboreo();
+            pantallaAdministrarTipoLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        }
 //
 //
         if (e.getSource() == lote) {
@@ -185,6 +226,25 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (e.getSource() == campania) {
             PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
             pantallaAdministrarCampania.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == cliente) {
+            PantallaAdministrarCliente pantallaAdministrarCliente = new PantallaAdministrarCliente();
+            pantallaAdministrarCliente.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == medioAlmacenamiento) {
+            PantallaAdministrarMedios pantallaAdministrarMedios = new PantallaAdministrarMedios();
+            pantallaAdministrarMedios.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == acopio) {
+            PantallaCargaAcopio pantallaCargaAcopio = new PantallaCargaAcopio("Carga", "","",null,
+                    "", "", null, "", 0);
+            pantallaCargaAcopio.setVisible(true);
             getDefaultCloseOperation();
         }
 

@@ -47,6 +47,8 @@
         <mapping class="Datos.TipoLaboreoEntity"/>
         <mapping class="Datos.LaboreoLoteCampaniaEntity"/>
         <mapping class="Datos.TipoGranoEntity"/>
+        <mapping class="Datos.ClienteEntity"/>
+        <mapping class="Datos.TipoMedioEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

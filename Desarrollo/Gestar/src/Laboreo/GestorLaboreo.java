@@ -11,6 +11,7 @@ import TipoInsumo.TipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import Maquinaria.*;
+import org.hibernate.Transaction;
 
 import java.sql.Date;
 import java.util.*;
@@ -24,6 +25,7 @@ public class GestorLaboreo {
     MaquinariaRepository maquinariaRepository = new MaquinariaRepository();
     LoteRepository loteRepository = new LoteRepository();
     TipoLaboreoRepository tipoLaboreoRepository = new TipoLaboreoRepository();
+    LoteCampaniaRepository loteCampaniaRepository = new LoteCampaniaRepository();
     Session session;
 
     public List getInsumos() {
@@ -184,8 +186,12 @@ public class GestorLaboreo {
         return te;
     }
 
+
+
     public void registrarLaboreo(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo, MomentoLaboreo tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion) {
-        session = Coneccion.getSession();
+
+        Session session = Coneccion.getSession();
+        Transaction tx = session.beginTransaction();
 
         LoteCampaniaEntity loteCampaniaEntity;
         CampaniaEntity campaniaEntity;
@@ -194,7 +200,7 @@ public class GestorLaboreo {
         DetalleLaboreoEntity detalleLaboreoEntity;
         MaquinariaEntity maquinariaEntity;
         InsumoEntity insumoEntity;
-        LaboreoEntity laboreoEntity;
+        LaboreoEntity laboreoEntity = new LaboreoEntity();
 
 
         ArrayList<DetalleLaboreoEntity> listaDetallesLaboreoEntity = new ArrayList<>();
@@ -215,6 +221,15 @@ public class GestorLaboreo {
         }
 
 
+        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getNombre());
+        laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
+        laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
+        laboreoEntity.setLboFechaHoraInicio(fechaInicio);
+        laboreoEntity.setLboFechaHoraFin(fechaFin);
+        laboreoEntity.setLboDescripcion(descripcion);
+        session.save(laboreoEntity);
+
+
         ArrayList<LaboreoLoteCampaniaEntity> listaLaboreoLoteCampaniaEntity = new ArrayList<>();
         campaniaEntity = campaniaRepository.getCampaniaByNombre(campania.getDenominacion());
 
@@ -229,28 +244,34 @@ public class GestorLaboreo {
             while (iter.hasNext()) {
                 Lote lot = (Lote) iter.next();
                 LoteEntity loteCamp = loteRepository.getLoteByDenominacion(lot.getDenominacion());
+
                 if (loteCamp.getLteId() == loteEntity.getLteId()) {
-                    Iterator it = loteCamp.getLoteCampaniasByLteId().iterator();
-                    while (it.hasNext()) {
-                        LoteCampaniaEntity ltc = (LoteCampaniaEntity) iter.next();
+
+//                    Iterator it = loteCamp.getLoteCampaniasByLteId().iterator();
+                    List<LoteCampaniaEntity> it = loteCampaniaRepository.getLotesCampaniasByLote(loteCamp.getLteId());
+
+                    for(LoteCampaniaEntity lce: it){
+                        LoteCampaniaEntity ltc = (LoteCampaniaEntity) lce;
                         if (ltc.getCampaniaByLcpCnaId().equals(campaniaEntity)) {
                             laboreoLoteCampaniaEntity.setLoteCampaniaByLlcLcpId(ltc);
+                            laboreoLoteCampaniaEntity.setLaboreoByLlcLboId(laboreoEntity);
                         }
                     }
+
                     listaLaboreoLoteCampaniaEntity.add(laboreoLoteCampaniaEntity);
+                    session.save(laboreoLoteCampaniaEntity);
                 }
             }
         }
 
-        laboreoEntity = new LaboreoEntity();
-        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getNombre());
         laboreoEntity.setLaboreoLoteCampaniasByLboId(listaLaboreoLoteCampaniaEntity);
-        laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
-        laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
-        laboreoEntity.setLboFechaHoraInicio(fechaInicio);
-        laboreoEntity.setLboFechaHoraFin(fechaFin);
-        laboreoEntity.setLboDescripcion(descripcion);
-        session.save(laboreoEntity);
+        session.update(laboreoEntity);
+        try {
+            tx.commit();
+        }catch(Exception ex){
+            tx.rollback();
+        }
+        session.close();
     }
 
 

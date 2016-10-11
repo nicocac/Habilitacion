@@ -1,15 +1,11 @@
-package Datos;
+package Cliente;
 
-import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
 
 /**
- * Created by OWNER on 8/9/2016.
+ * Created by jagm on 10/10/2016.
  */
-@Entity
-@Table(name = "cliente", schema = "", catalog = "gestar")
-public class ClienteEntity {
+public class Cliente {
 
     private Integer clienteId;
     private String clienteDescripcion;
@@ -24,11 +20,6 @@ public class ClienteEntity {
     private Date clienteFechaBaja;
     private String clienteUsuarioBaja;
 
-    //=================================================================
-
-    @Id
-    @GeneratedValue
-    @Column(name = "cliente_id")
     public Integer getClienteId() {
         return clienteId;
     }
@@ -37,7 +28,6 @@ public class ClienteEntity {
         this.clienteId = clienteId;
     }
 
-    @Column(name = "cliente_descripcion")
     public String getClienteDescripcion() {
         return clienteDescripcion;
     }
@@ -46,25 +36,6 @@ public class ClienteEntity {
         this.clienteDescripcion = clienteDescripcion;
     }
 
-    @Column(name = "cliente_nombre")
-    public String getClienteNombre() {
-        return clienteNombre;
-    }
-
-    public void setClienteNombre(String clienteNombre) {
-        this.clienteNombre = clienteNombre;
-    }
-
-    @Column(name = "cliente_apellido")
-    public String getClienteApellido() {
-        return clienteApellido;
-    }
-
-    public void setClienteApellido(String clienteApellido) {
-        this.clienteApellido = clienteApellido;
-    }
-
-    @Column(name = "cliente_cuit_cuil")
     public String getClienteCuitCuil() {
         return clienteCuitCuil;
     }
@@ -73,7 +44,22 @@ public class ClienteEntity {
         this.clienteCuitCuil = clienteCuitCuil;
     }
 
-    @Column(name = "cliente_fecha_alta")
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
+    }
+
+    public String getClienteApellido() {
+        return clienteApellido;
+    }
+
+    public void setClienteApellido(String clienteApellido) {
+        this.clienteApellido = clienteApellido;
+    }
+
     public Date getClienteFechaAlta() {
         return clienteFechaAlta;
     }
@@ -82,7 +68,6 @@ public class ClienteEntity {
         this.clienteFechaAlta = clienteFechaAlta;
     }
 
-    @Column(name = "cliente_usuario_alta")
     public String getClienteUsuarioAlta() {
         return clienteUsuarioAlta;
     }
@@ -91,7 +76,6 @@ public class ClienteEntity {
         this.clienteUsuarioAlta = clienteUsuarioAlta;
     }
 
-    @Column(name = "cliente_fecha_ult_mod")
     public Date getClienteFechaUltMod() {
         return clienteFechaUltMod;
     }
@@ -100,7 +84,6 @@ public class ClienteEntity {
         this.clienteFechaUltMod = clienteFechaUltMod;
     }
 
-    @Column(name = "cliente_usuario_ult_mod")
     public String getClienteUsuarioUltMod() {
         return clienteUsuarioUltMod;
     }
@@ -109,7 +92,6 @@ public class ClienteEntity {
         this.clienteUsuarioUltMod = clienteUsuarioUltMod;
     }
 
-    @Column(name = "cliente_fecha_baja")
     public Date getClienteFechaBaja() {
         return clienteFechaBaja;
     }
@@ -118,7 +100,6 @@ public class ClienteEntity {
         this.clienteFechaBaja = clienteFechaBaja;
     }
 
-    @Column(name = "cliente_usuario_baja")
     public String getClienteUsuarioBaja() {
         return clienteUsuarioBaja;
     }
@@ -126,13 +107,4 @@ public class ClienteEntity {
     public void setClienteUsuarioBaja(String clienteUsuarioBaja) {
         this.clienteUsuarioBaja = clienteUsuarioBaja;
     }
-
-    //=================================================================
-
-
-    @Override
-    public String toString() {
-        return this.getClienteNombre();
-    }
 }
-

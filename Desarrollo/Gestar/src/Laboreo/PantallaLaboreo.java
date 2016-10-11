@@ -46,7 +46,7 @@ public class PantallaLaboreo extends JFrame {
     private JComboBox cboMomentos;
     private JTextField txtSeleccion;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
-    private GestorLaboreo gestor= new GestorLaboreo();
+    private GestorLaboreo gestor = new GestorLaboreo();
 
     public PantallaLaboreo() {
 
@@ -61,25 +61,25 @@ public class PantallaLaboreo extends JFrame {
         cargarMaquinas();
         cargarCampanias();
         cargarMomentos();
-        cboCampania.addActionListener(e -> cargarLotes((Campania)cboCampania.getSelectedItem()));
+        cboCampania.addActionListener(e -> cargarLotes((Campania) cboCampania.getSelectedItem()));
         lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
         btnAgregarItem.addActionListener(e -> {
-            if (!existeLote()){
+            if (!existeLote()) {
                 showMessage("Debe seleccionar al menos un lote para continuar.");
                 return;
             }
             java.util.List listaSeleccion;
             listaSeleccion = lstInsumos.getSelectedValuesList();
             Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount()-1;
-            if (tblDetalles.getValueAt(fila,1) != null){
-                if (!tblDetalles.getValueAt(fila,1).equals("")){
-                    fila ++;
+            int fila = tblDetalles.getRowCount() - 1;
+            if (tblDetalles.getValueAt(fila, 1) != null) {
+                if (!tblDetalles.getValueAt(fila, 1).equals("")) {
+                    fila++;
                 }
             }
-            while (iter.hasNext()){
-                Insumo ins = (Insumo)iter.next();
-                if (permiteSeleccion("Insumo",ins.getNombre())) {
+            while (iter.hasNext()) {
+                Insumo ins = (Insumo) iter.next();
+                if (permiteSeleccion("Insumo", ins.getNombre())) {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Insumo", fila, 0);
                         tblDetalles.setValueAt(ins.getNombre(), fila, 1);
@@ -97,23 +97,23 @@ public class PantallaLaboreo extends JFrame {
             }
         });
         btnAgregarMaquinaria.addActionListener(e -> {
-            if (!existeLote()){
+            if (!existeLote()) {
                 showMessage("Debe seleccionar al menos un lote para continuar.");
                 return;
             }
             java.util.List listaSeleccion;
             listaSeleccion = lstMaquinarias.getSelectedValuesList();
             Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount()-1;
-            if (tblDetalles.getValueAt(fila,1) != null){
-                if (!tblDetalles.getValueAt(fila,1).equals("")){
-                    fila ++;
+            int fila = tblDetalles.getRowCount() - 1;
+            if (tblDetalles.getValueAt(fila, 1) != null) {
+                if (!tblDetalles.getValueAt(fila, 1).equals("")) {
+                    fila++;
                 }
 
             }
-            while (iter.hasNext()){
-                Maquinaria maq = (Maquinaria)iter.next();
-                if (permiteSeleccion("Maquinaria",maq.getNombre())) {
+            while (iter.hasNext()) {
+                Maquinaria maq = (Maquinaria) iter.next();
+                if (permiteSeleccion("Maquinaria", maq.getNombre())) {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Maquinaria", fila, 0);
                         tblDetalles.setValueAt(maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio(), fila, 1);
@@ -131,18 +131,18 @@ public class PantallaLaboreo extends JFrame {
             }
         });
         btnEliminar.addActionListener(e -> {
-            if (!isCellSelected(tblDetalles)){
+            if (!isCellSelected(tblDetalles)) {
                 showMessage("Debe seleccionar un item para continuar.");
                 return;
             }
             int fila = tblDetalles.getSelectedRow();
-            if (fila == 0){
-                tblDetalles.setValueAt("",0,0);
-                tblDetalles.setValueAt("",0,1);
-                tblDetalles.setValueAt("",0,2);
-                tblDetalles.setValueAt("",0,3);
-            }else{
-                DefaultTableModel modelo = (DefaultTableModel)tblDetalles.getModel();
+            if (fila == 0) {
+                tblDetalles.setValueAt("", 0, 0);
+                tblDetalles.setValueAt("", 0, 1);
+                tblDetalles.setValueAt("", 0, 2);
+                tblDetalles.setValueAt("", 0, 3);
+            } else {
+                DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
                 modelo.removeRow(tblDetalles.getSelectedRow());
             }
         });
@@ -150,49 +150,56 @@ public class PantallaLaboreo extends JFrame {
         //LIMPIAR
         btnLimpiar.addActionListener(e -> limpiarPantalla());
 
-       //CANCELAR
+        //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
 
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
-            Campania camp = (Campania)cboCampania.getSelectedItem();
+            Campania camp = (Campania) cboCampania.getSelectedItem();
             ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
-            ArrayList <DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-            for (int i=0;i<tblDetalles.getModel().getRowCount();i++){
+            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                 DetalleLaboreo det = new DetalleLaboreo();
-                if (tblDetalles.getValueAt(i,0).equals("Insumo")) {
+                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
                     Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
                     det.setInsumo(ins);
-                    det.setCantidad(Integer.parseInt((String)tblDetalles.getValueAt(i, 3)));
-                }else{
+                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                } else {
                     Maquinaria maq = new Maquinaria();
-                    maq.setDescripcion((String)tblDetalles.getValueAt(i, 1));
+                    maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
                     det.setMaquinaria(maq);
                 }
                 detalles.add(det);
             }
             SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
             java.util.Date date = new java.util.Date();
-            java.util.Calendar cal= Calendar.getInstance();
-            try{
+            java.util.Calendar cal = Calendar.getInstance();
+            try {
                 date = formatter.parse(txtFecha.getText());
-            }catch(Exception exe){
+            } catch (Exception exe) {
                 showMessage(exe.getMessage());
             }
             cal.setTime(date);
-            cal.set(Calendar.HOUR_OF_DAY,0);
-            cal.set(Calendar.MINUTE,0);
-            cal.set(Calendar.SECOND,0);
-            cal.set(Calendar.MILLISECOND,0);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
             Date fecha = new Date(cal.getTime().getTime());
-            gest.registrarLaboreo(camp,lotes,detalles,(MomentoLaboreo)cboMomentos.getSelectedItem(),fecha,null,txtDescripcion.getText());
+            try {
+                gest.registrarLaboreo(camp, lotes, detalles, (MomentoLaboreo) cboMomentos.getSelectedItem(), fecha, null, txtDescripcion.getText());
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el laboreo: " + e1.toString());
+            } finally {
+                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                dispose();
+            }
         });
     }
 
-    private boolean isCellSelected(JTable tabla){
+    private boolean isCellSelected(JTable tabla) {
         int fila = tabla.getSelectedRow();
-        if (fila == -1){
+        if (fila == -1) {
             return false;
         }
         return true;
@@ -205,18 +212,19 @@ public class PantallaLaboreo extends JFrame {
 
     }
 
-    private boolean permiteSeleccion(String tipo, String descripcion){
-        for (int i=0;i<=tblDetalles.getRowCount()-1;i++){
+    private boolean permiteSeleccion(String tipo, String descripcion) {
+        for (int i = 0; i <= tblDetalles.getRowCount() - 1; i++) {
             String str;
 
             try {
                 str = new String((String) tblDetalles.getValueAt(i, 1));
-                if (tipo.equals("Maquinaria") && tipo.equals(tblDetalles.getValueAt(i,0))) str = str.substring(0, descripcion.length());
+                if (tipo.equals("Maquinaria") && tipo.equals(tblDetalles.getValueAt(i, 0)))
+                    str = str.substring(0, descripcion.length());
             } catch (NullPointerException np) {
                 str = "aaaaaaaaaaaaa";
             }
 
-            if (tipo.equals(tblDetalles.getValueAt(i,0))&& descripcion.equals(str)){
+            if (tipo.equals(tblDetalles.getValueAt(i, 0)) && descripcion.equals(str)) {
                 return false;
             }
         }
@@ -236,11 +244,11 @@ public class PantallaLaboreo extends JFrame {
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
         //  tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        }
+    }
 
-    private void cargarItems(){
+    private void cargarItems() {
         DefaultListModel modelo = new DefaultListModel();
-        java.util.List listaItems ;
+        java.util.List listaItems;
         listaItems = gestor.getInsumos();
 
         Iterator iter = listaItems.iterator();
@@ -250,9 +258,9 @@ public class PantallaLaboreo extends JFrame {
         lstInsumos.setModel(modelo);
     }
 
-    private void cargarMaquinas(){
+    private void cargarMaquinas() {
         DefaultListModel modelo = new DefaultListModel();
-        java.util.List listaItems ;
+        java.util.List listaItems;
         listaItems = gestor.getMaquinaria();
 
         Iterator iter = listaItems.iterator();
@@ -262,21 +270,21 @@ public class PantallaLaboreo extends JFrame {
         lstMaquinarias.setModel(modelo);
     }
 
-    private boolean existeLote(){
-        if (lstLotes.getSelectedValuesList().size()==0){
+    private boolean existeLote() {
+        if (lstLotes.getSelectedValuesList().size() == 0) {
             return false;
         }
         return true;
     }
 
-    private void limpiarPantalla(){
+    private void limpiarPantalla() {
         inicializaTabla();
     }
 
-    private void cargarCampanias(){
-        CampaniaEntity camp ;
+    private void cargarCampanias() {
+        CampaniaEntity camp;
         Campania campania = new Campania();
-        java.util.List listaItems ;
+        java.util.List listaItems;
         listaItems = gestor.getCampanias();
 
         Iterator iter = listaItems.iterator();
@@ -288,8 +296,8 @@ public class PantallaLaboreo extends JFrame {
 
     }
 
-    private void cargarMomentos(){
-        java.util.List listaItems ;
+    private void cargarMomentos() {
+        java.util.List listaItems;
         listaItems = gestor.getMomentos();
 
         Iterator iter = listaItems.iterator();
@@ -299,11 +307,11 @@ public class PantallaLaboreo extends JFrame {
 //        cboMomentos.setSelectedIndex(0);
     }
 
-    private void showMessage(String mensaje){
-        JOptionPane.showMessageDialog(null,mensaje);
+    private void showMessage(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
-    private void cargarLotes(Campania camp){
+    private void cargarLotes(Campania camp) {
         java.util.List lista;
         lista = gestor.getLotesCampania(camp);
         DefaultListModel modelo = new DefaultListModel();
@@ -315,23 +323,23 @@ public class PantallaLaboreo extends JFrame {
         lstLotes.setModel(modelo);
     }
 
+}
+
+class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
+
+    private JComponent component = new JTextField();
+
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
+                                                 int rowIndex, int vColIndex) {
+
+        ((JTextField) component).setText(String.valueOf(value));
+
+        return component;
     }
 
-    class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-
-        private JComponent component = new JTextField();
-
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-                                                     int rowIndex, int vColIndex) {
-
-            ((JTextField) component).setText(String.valueOf(value));
-
-            return component;
-        }
-
-        public Object getCellEditorValue() {
-            return ((JTextField) component).getText();
-        }
+    public Object getCellEditorValue() {
+        return ((JTextField) component).getText();
     }
+}
 
 
