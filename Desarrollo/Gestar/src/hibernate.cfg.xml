@@ -30,14 +30,14 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestar</property>
 
         <mapping class="Datos.InsumoEntity"/>
-        <mapping class="Datos.MovimientosStockEntity"/>
-        <mapping class="Datos.StockInsumoEntity"/>
+        <!--<mapping class="Datos.MovimientosStockEntity"/>-->
+        <!--<mapping class="Datos.StockInsumoEntity"/>-->
         <mapping class="Datos.TipoInsumoEntity"/>
         <mapping class="Datos.MaquinariaEntity"/>
         <mapping class="Datos.TipoEstadoMaquinariaEntity"/>
         <mapping class="Datos.TipoMaquinariaEntity"/>
-        <mapping class="Datos.CompraEntity"/>
-        <mapping class="Datos.DetalleCompraEntity"/>
+        <mapping class="Datos.SolicitudInsumoEntity"/>
+        <mapping class="Datos.DetalleSolicitudInsumoEntity"/>
         <mapping class="Datos.CampaniaEntity"/>
         <mapping class="Datos.CampoEntity"/>
         <mapping class="Datos.DetalleLaboreoEntity"/>
@@ -49,6 +49,16 @@
         <mapping class="Datos.TipoGranoEntity"/>
         <mapping class="Datos.ClienteEntity"/>
         <mapping class="Datos.TipoMedioEntity"/>
+        <mapping class="Datos.DetalleIngresoInsumoEntity"/>
+        <mapping class="Datos.IngresoInsumoEntity"/>
+        <mapping class="Datos.AcopioEntity"/>
+        <mapping class="Datos.TipoAcopioEntity"/>
+        <mapping class="Datos.IngresoAcopioEntity"/>
+        <mapping class="Datos.EgresoAcopioEntity"/>
+        <mapping class="Datos.DetalleEgresoAcopioEntity"/>
+        <mapping class="Datos.TipoEstadoGranoEntity"/>
+        <mapping class="Datos.TransporteEntity"/>
+        <mapping class="Datos.EmpresaEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

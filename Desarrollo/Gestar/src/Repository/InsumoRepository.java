@@ -46,7 +46,7 @@ public class InsumoRepository {
     }
 
 
-    public InsumoEntity getInsumoById(Long id){
+    public InsumoEntity getInsumoById(Integer id){
          session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");

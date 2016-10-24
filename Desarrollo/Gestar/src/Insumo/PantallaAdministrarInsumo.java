@@ -4,6 +4,7 @@ import Conexion.Coneccion;
 import Datos.InsumoEntity;
 import Datos.StockInsumoEntity;
 import Datos.TipoInsumoEntity;
+import Repository.InsumoRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,6 +32,8 @@ public class PantallaAdministrarInsumo extends JFrame {
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
+    InsumoRepository insumoRepository = new InsumoRepository();
+
 
     public PantallaAdministrarInsumo() {
 
@@ -143,19 +146,21 @@ public class PantallaAdministrarInsumo extends JFrame {
         Session session = Coneccion.getSession();
         Boolean guardado = false;
         try {
-            insumo = new InsumoEntity();
+//            insumo = new InsumoEntity();
             int fila = tblInsumos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            insumo.setInsId((int) tblInsumos.getModel().getValueAt(fila, 0));
-            insumo.setInsNombre((String) tblInsumos.getModel().getValueAt(fila, 1));
-            insumo.setInsDescripcion((String) tblInsumos.getModel().getValueAt(fila, 2));
-            insumo.setInsUnidadMedida((String) tblInsumos.getModel().getValueAt(fila, 3));
-            insumo.setTipoInsumoByInsTinId((TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4));
-            insumo.setInsFechaAlta(fechaActual);
-            insumo.setInsUsuarioAlta("adminBajaINSUMO");
+            insumo = insumoRepository.getInsumoById((Integer) tblInsumos.getModel().getValueAt(fila, 0));
+
+//            insumo.setInsId((int) tblInsumos.getModel().getValueAt(fila, 0));
+//            insumo.setInsNombre((String) tblInsumos.getModel().getValueAt(fila, 1));
+//            insumo.setInsDescripcion((String) tblInsumos.getModel().getValueAt(fila, 2));
+//            insumo.setInsUnidadMedida((String) tblInsumos.getModel().getValueAt(fila, 3));
+//            insumo.setTipoInsumoByInsTinId((TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4));
+//            insumo.setInsFechaAlta(fechaActual);
+//            insumo.setInsUsuarioAlta("adminBajaINSUMO");
             insumo.setInsFechaUltMod(fechaActual);
             insumo.setInsUsuarioUtlMod("adminBajaINSUMO");
             insumo.setInsFechaBaja(fechaActual);

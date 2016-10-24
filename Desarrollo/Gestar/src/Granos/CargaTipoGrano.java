@@ -43,7 +43,7 @@ public class CargaTipoGrano extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo Grano");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo Grano: " +txtNombre.getText());
                 dispose();
             }
         });

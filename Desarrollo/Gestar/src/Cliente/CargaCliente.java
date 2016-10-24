@@ -55,7 +55,7 @@ public class CargaCliente extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                JOptionPane.showMessageDialog(null, "El Cliente : "+txtNombre.getText()+"fue guardado con exito.");
                 dispose();
             }
         });

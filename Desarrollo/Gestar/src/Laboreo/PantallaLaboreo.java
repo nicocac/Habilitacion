@@ -1,34 +1,44 @@
 package Laboreo;
 
-import Datos.*;
-import Insumo.Insumo;
-import Maquinaria.Maquinaria;
+import Campania.CargaCampania;
 import Campania.Campania;
-import Lote.Lote;
+import Conexion.Coneccion;
+import Date.DateLabelFormatter;
+import Datos.CampaniaEntity;
+import Datos.InsumoEntity;
+import Datos.TipoEstadoMaquinariaEntity;
+import Datos.TipoLaboreoEntity;
+import Granos.TipoGrano;
+import Insumo.Insumo;
+import Insumo.CargaInsumo;
+import Laboreo.TipoLaboreo.CargaTipoLaboreo;
+import Maquinaria.Maquinaria;
+import Maquinaria.CargaMaquinaria;
+import Procesos.PantallaAdministrarSolicitudInsumos;
+import Repository.InsumoRepository;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-
-import TipoInsumo.TipoInsumo;
+import java.util.*;
 
 
 /**
  * Created by OWNER on 8/15/2016.
  */
 public class PantallaLaboreo extends JFrame {
-    private JTextField txtFecha;
     private JPanel panel1;
     private JTextField txtDescripcion;
     private JTable tblDetalles;
@@ -44,9 +54,18 @@ public class PantallaLaboreo extends JFrame {
     private JList lstLotes;
     private JLabel lblLotes;
     private JComboBox cboMomentos;
-    private JTextField txtSeleccion;
+    public JButton buttonFecha;
+    public JButton nuevaCampaniaBtn;
+    public JButton nuevoTipoLaboreoBtn;
+    public JButton nuevoInsumoBtn;
+    public JButton nuevaMaquinariaBtn;
+    public JButton actualizarInsumosBtn;
+    public JButton actualizarMaqBtn;
+    public JComboBox cbxSemillas;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
+
+    InsumoRepository insumoRepository = new InsumoRepository();
 
     public PantallaLaboreo() {
 
@@ -60,9 +79,12 @@ public class PantallaLaboreo extends JFrame {
         cargarItems();
         cargarMaquinas();
         cargarCampanias();
-        cargarMomentos();
+//        cargarMomentos();
+        cargaComboBoxTipoLaboreo();
         cboCampania.addActionListener(e -> cargarLotes((Campania) cboCampania.getSelectedItem()));
         lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
+
+        //AGREGAR INSUMO
         btnAgregarItem.addActionListener(e -> {
             if (!existeLote()) {
                 showMessage("Debe seleccionar al menos un lote para continuar.");
@@ -96,6 +118,23 @@ public class PantallaLaboreo extends JFrame {
                 }
             }
         });
+
+        //BUTTON FECHA
+        SqlDateModel modelIni = new SqlDateModel();
+        modelIni.setDate(2016, 04, 20);
+        // Need this...
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl datePanelIni = new JDatePanelImpl(modelIni, p);
+        //the formatter,  there it is...
+        JDatePickerImpl datePickerIni = new JDatePickerImpl(datePanelIni, new DateLabelFormatter());
+
+        buttonFecha.add(datePickerIni);
+        //
+
+        //AGREGAR MAQUINARIA
         btnAgregarMaquinaria.addActionListener(e -> {
             if (!existeLote()) {
                 showMessage("Debe seleccionar al menos un lote para continuar.");
@@ -130,6 +169,8 @@ public class PantallaLaboreo extends JFrame {
                 }
             }
         });
+
+        //ELIMINAR ITEM
         btnEliminar.addActionListener(e -> {
             if (!isCellSelected(tblDetalles)) {
                 showMessage("Debe seleccionar un item para continuar.");
@@ -153,6 +194,77 @@ public class PantallaLaboreo extends JFrame {
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
 
+
+        //NUEVA CAMPANIA
+        nuevaCampaniaBtn.addActionListener(e -> {
+            CargaCampania cargaCampania = new CargaCampania("Carga", 0, "", null, null, null);
+            cargaCampania.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+//        cboCampania.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                super.focusGained(e);
+//                borrarComboBoxCampania();
+//                cargaComboBoxCampania();
+//            }
+//        });
+
+        cboMomentos.addMouseListener(new MouseAdapter() {
+        });
+
+
+        cboCampania.addMouseMotionListener(new MouseMotionAdapter() {
+
+        });
+        cboCampania.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                borrarComboBoxCampania();
+                cargarCampanias();
+            }
+        });
+
+
+        //NUEVA ACTIVIDAD
+        nuevoTipoLaboreoBtn.addActionListener(e -> {
+            CargaTipoLaboreo cargaTipoLaboreo = new CargaTipoLaboreo("Carga", "", "", 0);
+            cargaTipoLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+        cboMomentos.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoLaboreo();
+                cargaComboBoxTipoLaboreo();
+            }
+        });
+
+        //NUEVO INSUMO
+        nuevoInsumoBtn.addActionListener(e -> {
+            CargaInsumo cargaInsumo = new CargaInsumo("Carga", "", "", "", null, "", 0);
+            cargaInsumo.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+        actualizarInsumosBtn.addActionListener(e -> {
+            cargarItems();
+        });
+
+        //NUEVA MAQUINARIA
+        nuevaMaquinariaBtn.addActionListener(e -> {
+            CargaMaquinaria cargaMaquinaria = new CargaMaquinaria("Carga", "", "", null, "", "", null, "", 0);
+            cargaMaquinaria.setVisible(true);
+            getDefaultCloseOperation();
+        });
+        actualizarMaqBtn.addActionListener(e -> {
+           cargarMaquinas();
+        });
+
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
@@ -162,6 +274,20 @@ public class PantallaLaboreo extends JFrame {
             for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                 DetalleLaboreo det = new DetalleLaboreo();
                 if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
+                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String)tblDetalles.getValueAt(i, 1));
+                    if(insumoEntity.getInsStock() == null){
+//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                        int respuesta =JOptionPane.showConfirmDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                        if(respuesta == 0){
+                            PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+                            pantallaAdministrarSolicitudInsumos.setVisible(true);
+                            getDefaultCloseOperation();
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+
                     Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
                     det.setInsumo(ins);
                     det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
@@ -176,7 +302,7 @@ public class PantallaLaboreo extends JFrame {
             java.util.Date date = new java.util.Date();
             java.util.Calendar cal = Calendar.getInstance();
             try {
-                date = formatter.parse(txtFecha.getText());
+//                date = formatter.parse(txtFecha.getText());
             } catch (Exception exe) {
                 showMessage(exe.getMessage());
             }
@@ -185,9 +311,15 @@ public class PantallaLaboreo extends JFrame {
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MILLISECOND, 0);
-            Date fecha = new Date(cal.getTime().getTime());
+//            Date fecha = new Date(cal.getTime().getTime());
+
+            Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
-                gest.registrarLaboreo(camp, lotes, detalles, (MomentoLaboreo) cboMomentos.getSelectedItem(), fecha, null, txtDescripcion.getText());
+                gest.registrarLaboreo(camp, lotes, detalles, (MomentoLaboreo) cboMomentos.getSelectedItem(),
+                        fecha, null, txtDescripcion.getText(), (TipoGrano) cbxSemillas.getSelectedItem());
+
+
+
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el laboreo: " + e1.toString());
             } finally {
@@ -195,6 +327,8 @@ public class PantallaLaboreo extends JFrame {
                 dispose();
             }
         });
+
+
     }
 
     private boolean isCellSelected(JTable tabla) {
@@ -311,6 +445,8 @@ public class PantallaLaboreo extends JFrame {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
+
+
     private void cargarLotes(Campania camp) {
         java.util.List lista;
         lista = gestor.getLotesCampania(camp);
@@ -321,6 +457,57 @@ public class PantallaLaboreo extends JFrame {
             modelo.addElement(iter.next());
         }
         lstLotes.setModel(modelo);
+    }
+
+
+
+    private void borrarComboBoxCampania() {
+        cboCampania.removeAllItems();
+    }
+    private void borrarComboBoxTipoLaboreo() {
+        cboMomentos.removeAllItems();
+    }
+
+
+    //METODO CARGA COMBO CAMPANIA
+    private void cargaComboBoxCampania() {
+        Session session = Coneccion.getSession();
+        Query query = session.createQuery("SELECT p FROM CampaniaEntity p");
+        java.util.List<CampaniaEntity> listaCampaniaEntity = query.list();
+
+//        Vector<String> miVectorcampania = new Vector<>();
+
+//        Iterator iter = listaItems.iterator();
+//        while (iter.hasNext()) {
+//            cboCampania.addItem(iter.next());
+//        }
+
+        cboCampania.setSelectedItem(null);
+
+        for (CampaniaEntity campania : listaCampaniaEntity) {
+            //System.out.println(tipoEstado.getTeMaNombre());
+//            miVectorcampania.add(campania.getCnaDenominacion());
+            cboCampania.addItem(campania);
+            cboCampania.setSelectedItem(null);
+        }
+
+    }
+
+
+
+    //METODO CARGA COMBO TIPO LABOREO
+    private void cargaComboBoxTipoLaboreo() {
+        Session session = Coneccion.getSession();
+        Query query = session.createQuery("SELECT p FROM TipoLaboreoEntity p");
+        java.util.List<TipoLaboreoEntity> listaTipoLaboreoEntity = query.list();
+
+        Vector<String> miVectorTipoLaboreo = new Vector<>();
+        for (TipoLaboreoEntity tipoLaboreo : listaTipoLaboreoEntity) {
+            miVectorTipoLaboreo.add(tipoLaboreo.getTpoNombre());
+            cboMomentos.addItem(tipoLaboreo);
+            cboCampania.setSelectedItem(null);
+        }
+
     }
 
 }

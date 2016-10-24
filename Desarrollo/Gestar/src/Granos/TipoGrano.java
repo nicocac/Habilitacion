@@ -50,8 +50,12 @@ public class TipoGrano {
         this.usuarioAlta = usuarioAlta;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+//    @Override
+//    public String toString() {
+//        return nombre;
+//    }
+
+    public String toString(){
+        return this.nombre +" - "+this.descripcion;
     }
 }

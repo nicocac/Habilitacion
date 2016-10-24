@@ -26,7 +26,6 @@ public class MaquinariaEntity {
     private TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId;
     private TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId;
 
-    private Collection<StockInsumoEntity> stockInsumosByInsId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId;
 
     //======================================================================================
@@ -175,14 +174,7 @@ public class MaquinariaEntity {
         this.tipoMaquinariaByMaqTmaqId = tipoMaquinariaByMaqTmaqId;
     }
 
-    @OneToMany(mappedBy = "insumoBySInsInsId")
-    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
-        return stockInsumosByInsId;
-    }
 
-    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
-        this.stockInsumosByInsId = stockInsumosByInsId;
-    }
 
     @OneToMany(mappedBy = "maquinariaByDboMaqId")
     public Collection<DetalleLaboreoEntity> getDetalleLaboreosByMaqId() {
@@ -197,9 +189,7 @@ public class MaquinariaEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "MaquinariaEntity{" +
-                "maqId=" + maqId +
-                '}';
+        return getMaqNombre();
     }
     //=================================================================
 

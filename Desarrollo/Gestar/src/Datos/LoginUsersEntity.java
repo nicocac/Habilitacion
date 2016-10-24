@@ -50,9 +50,7 @@ public class LoginUsersEntity {
 
     @Override
     public String toString() {
-        return "LoginUsersEntity{" +
-                "loginNombre='" + loginNombre + '\'' +
-                '}';
+        return getLoginNombre();
     }
 
 

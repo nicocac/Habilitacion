@@ -58,8 +58,14 @@ public class CargaInsumo extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
-                dispose();
+                if (tipoOperacion.equals("Carga")) {
+                    JOptionPane.showMessageDialog(null, "El Insumo: " + txtNombre.getText() + "fue dado de alta con exito.");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El Insumo: " + txtNombre.getText() + "fue modificado con exito.");
+                    dispose();
+                }
+
             }
         });
 

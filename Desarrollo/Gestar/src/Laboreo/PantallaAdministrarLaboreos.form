@@ -146,7 +146,7 @@
                         </constraints>
                         <properties>
                           <icon value="Imagenes/rsz_new.png"/>
-                          <text value="Nuevo"/>
+                          <text value="Nuevo "/>
                         </properties>
                       </component>
                       <component id="82db2" class="javax.swing.JButton" binding="btnEditar">

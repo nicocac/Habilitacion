@@ -159,9 +159,7 @@ public class LoteCampaniaEntity {
 
     @Override
     public String toString() {
-        return "LoteCampaniaEntity{" +
-                "lcpId=" + lcpId +
-                '}';
+        return getLcpId().toString();
     }
     //=================================================================
 

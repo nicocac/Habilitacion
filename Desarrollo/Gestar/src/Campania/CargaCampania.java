@@ -1,17 +1,20 @@
 package Campania;
 
 import Date.DateLabelFormatter;
+import Lote.CargaLote;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
-//import java.sql.Date;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.Properties;
+
+//import java.sql.Date;
 
 /**
  * Created by jagm on 05/09/2016.
@@ -26,6 +29,8 @@ public class CargaCampania extends JFrame {
     public JTextField txtFechaFin;
     public JButton BtnFechaFin;
     public JButton BtnFechaIni;
+    public JButton nuevoLoteBtn;
+    public JButton actualizarLotesBtn;
 
     private String tipoOperacion;
     private int cnaId;
@@ -36,6 +41,7 @@ public class CargaCampania extends JFrame {
         //INICIO
         setContentPane(panel1);
         pack();
+        setBounds(200,300,900,500);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Cargar Campania");
@@ -104,16 +110,16 @@ public class CargaCampania extends JFrame {
                     Date selectedDateIni = (Date) datePickerIni.getModel().getValue();
                     Date selectedDateFin = (Date) datePickerFin.getModel().getValue();
                     Date selectedDateFinReal = (Date) datePickerFin.getModel().getValue();
-                    campania.setFechaInicio((java.sql.Date)selectedDateIni);
-                    campania.setFechaFinEstimada((java.sql.Date)selectedDateFin);
-                    campania.setFechaFinReal((java.sql.Date)selectedDateFinReal);
+                    campania.setFechaInicio((java.sql.Date) selectedDateIni);
+                    campania.setFechaFinEstimada((java.sql.Date) selectedDateFin);
+                    campania.setFechaFinReal((java.sql.Date) selectedDateFinReal);
 
                     gestor.registrarCampania(campania, tipoOperacion, cnaId);
 
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el insumo: " + e1.toString());
                 } finally {
-                    JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                    JOptionPane.showMessageDialog(null, "La Campania: " + txtCampania.getText() + " fue guardada con exito.");
                     dispose();
                 }
             } else {
@@ -125,6 +131,23 @@ public class CargaCampania extends JFrame {
         cancelarButton.addActionListener(e -> {
             dispose();
         });
+
+        //NUEVO LOTE
+        nuevoLoteBtn.addActionListener(e -> {
+            CargaLote cargaLote = new CargaLote("Carga", "", 0, 0);
+            cargaLote.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+        lstLotes.addMouseMotionListener(new MouseMotionAdapter() {
+
+        });
+
+        //ACTUALIZAR LOTES
+        actualizarLotesBtn.addActionListener(e -> {
+            cargarLotes(0);
+        });
+
     }
 
     private boolean isCellSelected(JTable tabla) {

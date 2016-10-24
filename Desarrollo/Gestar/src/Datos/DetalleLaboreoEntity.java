@@ -14,6 +14,7 @@ public class DetalleLaboreoEntity {
     private Integer dboId;
     private String dboObservaciones;
     private int dboCantidad;
+
     private Date dboFechaAlta;
     private String dboUsuarioAlta;
     private Date dboFechaUltMod;
@@ -26,6 +27,7 @@ public class DetalleLaboreoEntity {
     private LaboreoEntity laboreoByDboLboId;
     private MaquinariaEntity maquinariaByDboMaqId;
 
+    private TipoGranoEntity tipoGrano;
     //=================================================================
     private Integer dboInsId;
     private Integer dboLboId;
@@ -154,13 +156,21 @@ public class DetalleLaboreoEntity {
         this.maquinariaByDboMaqId = maquinariaByDboMaqId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "dbo_tipo_grano_id", referencedColumnName = "tgr_id")
+    public TipoGranoEntity getTipoGrano() {
+        return tipoGrano;
+    }
+
+    public void setTipoGrano(TipoGranoEntity tipoGrano) {
+        this.tipoGrano = tipoGrano;
+    }
+
     //=================================================================
 
     @Override
     public String toString() {
-        return "DetalleLaboreoEntity{" +
-                "dboObservaciones='" + dboObservaciones + '\'' +
-                '}';
+        return this.dboId.toString();
     }
 
     //=================================================================

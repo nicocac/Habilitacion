@@ -162,9 +162,7 @@ public class CampoEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "CampoEntity{" +
-                "cpoNombre='" + cpoNombre + '\'' +
-                '}';
+        return getCpoNombre();
     }
 
     //=================================================================

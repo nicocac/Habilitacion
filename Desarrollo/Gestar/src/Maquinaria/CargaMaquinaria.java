@@ -59,7 +59,7 @@ public class CargaMaquinaria extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guarda la alta de maquinaria con exito.");
+                JOptionPane.showMessageDialog(null, "La Maquinaria: " + txtNombre.getText() + " fue dada de alta con exito.");
                 dispose();
             }
         });

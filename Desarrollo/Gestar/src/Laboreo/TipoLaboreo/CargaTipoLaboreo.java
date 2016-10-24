@@ -43,7 +43,7 @@ public class CargaTipoLaboreo extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo Laboreo");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo Laboreo: " + txtNombre.getText());
                 dispose();
             }
         });

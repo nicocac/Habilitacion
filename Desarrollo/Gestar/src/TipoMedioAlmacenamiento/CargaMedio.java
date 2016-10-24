@@ -44,7 +44,7 @@ public class CargaMedio extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo de Medio Almacenamiento");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo de Medio Almacenamiento: " +txtNombre.getText() );
                 dispose();
             }
         });

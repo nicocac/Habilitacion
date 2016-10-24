@@ -55,7 +55,7 @@ public class DetalleCompra {
         int max = 0;
         try {
             InsumoEntity insumo = new InsumoEntity();
-            Query query = session.createQuery("select max(t.cpdId) from DetalleCompraEntity t ");
+            Query query = session.createQuery("select max(t.cpdId) from DetalleSolicitudInsumoEntity t ");
             java.util.List list = query.list();
             for (i = 0; i < list.size(); i++) {
                 max = (Integer) list.get(i);

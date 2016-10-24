@@ -1,5 +1,7 @@
 package Laboreo;
 
+import Granos.TipoGrano;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -13,14 +15,16 @@ public class Laboreo {
     private List detalles;
     private List lotes;
     private MomentoLaboreo momento;
+    private TipoGrano tipoGrano;
 
-    public Laboreo(Date lboFechaHoraInicio, Date lboFechaHoraFin, String lboDescripcion, List detalles, List lotes, MomentoLaboreo momento) {
+    public Laboreo(Date lboFechaHoraInicio, Date lboFechaHoraFin, String lboDescripcion, List detalles, List lotes, MomentoLaboreo momento, TipoGrano tipoGrano) {
         this.setLboFechaHoraInicio(lboFechaHoraInicio);
         this.setLboFechaHoraFin(lboFechaHoraFin);
         this.setLboDescripcion(lboDescripcion);
         this.setDetalles(detalles);
         this.setLotes(lotes);
         this.setMomento(momento);
+        this.setTipoGrano(tipoGrano);
     }
 
 
@@ -68,7 +72,16 @@ public class Laboreo {
         return momento;
     }
 
+
     public void setMomento(MomentoLaboreo momento) {
         this.momento = momento;
+    }
+
+    public TipoGrano getTipoGrano() {
+        return tipoGrano;
+    }
+
+    public void setTipoGrano(TipoGrano tipoGrano) {
+        this.tipoGrano = tipoGrano;
     }
 }

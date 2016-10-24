@@ -7,8 +7,8 @@ import java.util.Collection;
 /**
  * Created by OWNER on 5/30/2016.
  */
-@Entity
-@Table(name = "stock_insumo", schema = "", catalog = "gestar")
+//@Entity
+//@Table(name = "stock_insumo", schema = "", catalog = "gestar")
 public class StockInsumoEntity {
 
     private Integer sInsId;

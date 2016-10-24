@@ -13,8 +13,9 @@ import Lote.PantallaAdministrarLote;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
-import Procesos.PantallaAdministrarCompra;
-import Procesos.PantallaAdministrarNotaDeCompra;
+import Procesos.PantallaRegistrarIngresoInsumo;
+import Procesos.PantallaSolicitudInsumos;
+import Procesos.PantallaAdministrarSolicitudInsumos;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 import TipoMedioAlmacenamiento.PantallaAdministrarMedios;
 
@@ -26,25 +27,74 @@ import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
+    public JPanel panel1;
+    public JButton button1;
+    public JButton button2;
+    public JButton button3;
+    public JButton button4;
     private JMenuBar menuPrincipal;
     private JMenu opciones, insumos, maquinarias, procesos, lotes, tipoGranos, campanias, clientes,
             mediosAlmacenamientos, acopios;
     private JMenuItem laboreoTemp, laboreo, tipoLaboreo, lote, compra,
-            salir, insumo, tipoInsumo, compraInsumo, maquinaria, tipoMaquinaria,
+            salir, insumo, tipoInsumo,solicitudInsumo,ingresoInsumo, compraInsumo, compraInsumo2, maquinaria, tipoMaquinaria,
             estadoMaquinaria, tipoGrano, campania, cliente, medioAlmacenamiento,
             acopio;
 
     public MenuPrincipal() {
+        this.setExtendedState(MAXIMIZED_BOTH);
 
         ImageFondo image = new ImageFondo();
         image.setImage("/Imagenes/MenuPrincipalFondo2.jpg");
         setContentPane(image);
+        setTitle("Sistema de Administracion");
 
-        this.setExtendedState(MAXIMIZED_BOTH);
 
+
+        //BUTTONS
+
+        //BUTTON REGISTRAR LABOREO
+        JButton btnRegistrarLaboreo = new JButton("Registrar Laboreo");
+        btnRegistrarLaboreo.setBounds(950, 300, 215, 100);
+        image.add(btnRegistrarLaboreo);
+
+        btnRegistrarLaboreo.addActionListener(e -> {
+            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+            pantallaLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
+        //BUTTON REGISTRAR AVANCE
+        JButton btnRegistrarAvance = new JButton("Registrar Avance de Campa\u00f1a");
+        btnRegistrarAvance.setBounds(1250, 300, 215, 100);
+        image.add(btnRegistrarAvance);
+
+        //BUTTON REGISTRAR EGRESO
+        JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
+        btnAdministrarAcopios.setBounds(950, 500, 215, 100);
+        image.add(btnAdministrarAcopios);
+
+        //BUTTON EXIT
+        JButton btnExit = new JButton("Exit");
+        btnExit.setBounds(1250, 500, 215, 100);
+        ImageIcon exitIcon = new ImageIcon("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\exit5.jpg");
+        Image img = exitIcon.getImage() ;
+        Image newimg = img.getScaledInstance( 230, 100,  java.awt.Image.SCALE_SMOOTH ) ;
+        exitIcon = new ImageIcon(newimg );
+        btnExit.setIcon(exitIcon);
+        image.add(btnExit);
+
+        btnExit.addActionListener(e -> {
+            dispose();
+        });
+
+
+        image.setLayout(null);
+
+
+        //MENUS
         menuPrincipal = new JMenuBar();
         setJMenuBar(menuPrincipal);
-
         //OPCIONES
         opciones = new JMenu("Opciones");
         menuPrincipal.add(opciones);
@@ -66,9 +116,17 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         tipoInsumo.addActionListener(this);
         insumos.add(tipoInsumo);
 
-        compraInsumo = new JMenuItem("Administrar Notas de Compra de Insumos");
+        solicitudInsumo = new JMenuItem("Solicitar pedido de Insumos");
+        solicitudInsumo.addActionListener(this);
+        insumos.add(solicitudInsumo);
+
+        compraInsumo = new JMenuItem("Administrar pedidos de Insumos");
         compraInsumo.addActionListener(this);
         insumos.add(compraInsumo);
+
+        ingresoInsumo = new JMenuItem("Registrar Ingreso de Insumos");
+        ingresoInsumo.addActionListener(this);
+        insumos.add(ingresoInsumo);
 
 
         //MAQUINARIA
@@ -143,7 +201,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         medioAlmacenamiento.addActionListener(this);
         mediosAlmacenamientos.add(medioAlmacenamiento);
 
-         //ACOPIO
+        //ACOPIO
         acopios = new JMenu("Acopio");
         menuPrincipal.add(acopios);
 
@@ -168,9 +226,21 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         }
 
+        if (e.getSource() == solicitudInsumo) {
+            PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos();
+            pantallaSolicitudInsumos.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
         if (e.getSource() == compraInsumo) {
-            PantallaAdministrarNotaDeCompra pantallaAdministrarNotaDeCompra = new PantallaAdministrarNotaDeCompra();
-            pantallaAdministrarNotaDeCompra.setVisible(true);
+            PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+            pantallaAdministrarSolicitudInsumos.setVisible(true);
+            getDefaultCloseOperation();
+        }
+
+        if (e.getSource() == ingresoInsumo) {
+            PantallaRegistrarIngresoInsumo pantallaRegistrarIngresoInsumo = new PantallaRegistrarIngresoInsumo();
+            pantallaRegistrarIngresoInsumo.setVisible(true);
             getDefaultCloseOperation();
         }
 
@@ -242,7 +312,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == acopio) {
-            PantallaCargaAcopio pantallaCargaAcopio = new PantallaCargaAcopio("Carga", "","",null,
+            PantallaCargaAcopio pantallaCargaAcopio = new PantallaCargaAcopio("Carga", "", "", null,
                     "", "", null, "", 0);
             pantallaCargaAcopio.setVisible(true);
             getDefaultCloseOperation();
@@ -256,4 +326,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     }
 
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

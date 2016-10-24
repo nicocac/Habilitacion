@@ -8,10 +8,19 @@ import java.util.ArrayList;
  * Created by OWNER on 7/3/2016.
  */
 public class Compra {
+    private Integer nroSolicitud;
     private Date fechaOperacion;
     private BigDecimal montoTotal;
     private int cantidadItems;
     private ArrayList<DetalleCompra> detalles;
+
+    public Integer getNroSolicitud() {
+        return nroSolicitud;
+    }
+
+    public void setNroSolicitud(Integer nroSolicitud) {
+        this.nroSolicitud = nroSolicitud;
+    }
 
     public Date getFechaOperacion() {
         return fechaOperacion;

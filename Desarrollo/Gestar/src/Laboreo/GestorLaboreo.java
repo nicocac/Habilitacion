@@ -3,6 +3,7 @@ package Laboreo;
 import Campania.*;
 import Conexion.Coneccion;
 import Datos.*;
+import Granos.TipoGrano;
 import Insumo.*;
 import Lote.*;
 import Maquinaria.Maquinaria;
@@ -26,6 +27,7 @@ public class GestorLaboreo {
     LoteRepository loteRepository = new LoteRepository();
     TipoLaboreoRepository tipoLaboreoRepository = new TipoLaboreoRepository();
     LoteCampaniaRepository loteCampaniaRepository = new LoteCampaniaRepository();
+    TipoGranoRepository tipoGranoRepository = new TipoGranoRepository();
     Session session;
 
     public List getInsumos() {
@@ -188,7 +190,9 @@ public class GestorLaboreo {
 
 
 
-    public void registrarLaboreo(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo, MomentoLaboreo tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion) {
+    public void registrarLaboreo(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo,
+                                 MomentoLaboreo tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion,
+                                 TipoGrano tipoGrano) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
@@ -196,6 +200,7 @@ public class GestorLaboreo {
         LoteCampaniaEntity loteCampaniaEntity;
         CampaniaEntity campaniaEntity;
         TipoLaboreoEntity tipoLaboreoEntity = new TipoLaboreoEntity();
+        TipoGranoEntity tipoGranoEntity;
         LaboreoLoteCampaniaEntity laboreoLoteCampaniaEntity;
         DetalleLaboreoEntity detalleLaboreoEntity;
         MaquinariaEntity maquinariaEntity;
@@ -222,6 +227,8 @@ public class GestorLaboreo {
 
 
         tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getNombre());
+        tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombre(tipoGrano.getNombre());
+        laboreoEntity.setTipoGrano(tipoGranoEntity);
         laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
         laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
         laboreoEntity.setLboFechaHoraInicio(fechaInicio);

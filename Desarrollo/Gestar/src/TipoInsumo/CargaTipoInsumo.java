@@ -42,7 +42,7 @@ public class CargaTipoInsumo extends JFrame {
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo");
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente el tipo insumo: " + txtNombre.getText());
                 dispose();
             }
         });

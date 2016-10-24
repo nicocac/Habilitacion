@@ -1,16 +1,11 @@
 package Datos;
 
-import Conexion.Coneccion;
 import org.hibernate.*;
-import org.hibernate.Query;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.TransferQueue;
 
 /**
  * Created by OWNER on 5/30/2016.
@@ -35,7 +30,7 @@ public class InsumoEntity {
     private TipoInsumoEntity tipoInsumoByInsTinId;
 
     private Collection<StockInsumoEntity> stockInsumosByInsId;
-    private Collection<DetalleCompraEntity> detalleComprasByInsId;
+    private Collection<DetalleSolicitudInsumoEntity> detalleComprasByInsId;
     private Collection<DetalleLaboreoEntity> detalleLaboreosByInsId;
 
     //=================================================================
@@ -190,21 +185,14 @@ public class InsumoEntity {
         this.tipoInsumoByInsTinId = tipoInsumoByInsTinId;
     }
 
-    @OneToMany(mappedBy = "insumoBySInsInsId")
-    public Collection<StockInsumoEntity> getStockInsumosByInsId() {
-        return stockInsumosByInsId;
-    }
 
-    public void setStockInsumosByInsId(Collection<StockInsumoEntity> stockInsumosByInsId) {
-        this.stockInsumosByInsId = stockInsumosByInsId;
-    }
 
-    @OneToMany(mappedBy = "insumoByCpdInsId")
-    public Collection<DetalleCompraEntity> getDetalleComprasByInsId() {
+    @OneToMany(mappedBy = "solicitudInsumo")
+    public Collection<DetalleSolicitudInsumoEntity> getDetalleComprasByInsId() {
         return detalleComprasByInsId;
     }
 
-    public void setDetalleComprasByInsId(Collection<DetalleCompraEntity> detalleComprasByInsId) {
+    public void setDetalleComprasByInsId(Collection<DetalleSolicitudInsumoEntity> detalleComprasByInsId) {
         this.detalleComprasByInsId = detalleComprasByInsId;
     }
 
@@ -220,9 +208,7 @@ public class InsumoEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "InsumoEntity{" +
-                "insNombre='" + insNombre + '\'' +
-                '}';
+        return getInsNombre();
     }
 
     //=================================================================

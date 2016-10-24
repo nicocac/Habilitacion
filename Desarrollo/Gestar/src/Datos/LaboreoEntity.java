@@ -28,6 +28,7 @@ public class LaboreoEntity {
     private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
     private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLboId;
 
+    private TipoGranoEntity tipoGrano;
     //======================================================================================
 
 
@@ -161,12 +162,20 @@ public class LaboreoEntity {
         this.tipoLaboreoEntity = tipoLaboreoEntity;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "tipo_grano_id", referencedColumnName = "tgr_id")
+    public TipoGranoEntity getTipoGrano() {
+        return tipoGrano;
+    }
+
+    public void setTipoGrano(TipoGranoEntity tipoGrano) {
+        this.tipoGrano = tipoGrano;
+    }
+
     //=================================================================
     @Override
     public String toString() {
-        return "LaboreoEntity{" +
-                "lboId=" + lboId +
-                '}';
+        return getLboId().toString();
     }
 
     //=================================================================

@@ -122,9 +122,8 @@ public class LaboreoLoteCampaniaEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "LaboreoLoteCampaniaEntity{" +
-                "llc_id=" + llcId +
-                '}';
+        return this.getLlcId().toString()
+                ;
     }
 
 

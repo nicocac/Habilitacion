@@ -17,6 +17,8 @@ public class CargaLote extends JFrame{
     private JTextField txtMetros;
     private JButton cancelarButton;
     private JButton guardarButton;
+    public JTextField txtUbicacion;
+    public JTextField txtFechaDesde;
 
 
     private String tipoOperacion;
@@ -30,6 +32,7 @@ public class CargaLote extends JFrame{
         //INICIO
         setContentPane(panel1);
         pack();
+        setBounds(200,300,450,500);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Cargar Lote");
@@ -41,7 +44,7 @@ public class CargaLote extends JFrame{
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo el alta del lote con exito.");
+                JOptionPane.showMessageDialog(null, "Se guardo el alta del lote: "+txtNombre.getText()+" con exito.");
                 dispose();
             }
         });
@@ -70,8 +73,11 @@ public class CargaLote extends JFrame{
             try {
 
                 lote.setLteDenominacion(txtNombre.getText());
+                lote.setLteUbicacion(txtUbicacion.getText());
                 lote.setLteCantMetros(Integer.parseInt(txtMetros.getText()));
                 lote.setLteFechaAlta(fechaActual);
+                lote.setLteFechaDesde(fechaActual);
+                lote.setLteFechaHasta(fechaActual);
                 lote.setLteUsuarioAlta("admin");
 
                 Transaction tx = session.beginTransaction();

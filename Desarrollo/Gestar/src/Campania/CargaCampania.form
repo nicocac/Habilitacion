@@ -15,9 +15,13 @@
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:d:grow"/>
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:d:grow"/>
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
@@ -52,7 +56,7 @@
         <children>
           <component id="e7243" class="javax.swing.JLabel">
             <constraints>
-              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -72,10 +76,13 @@
           </component>
           <component id="4c919" class="javax.swing.JLabel">
             <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="2" row-span="3" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
+              <maximumSize width="90" height="50"/>
+              <minimumSize width="90" height="50"/>
+              <preferredSize width="90" height="50"/>
               <text value="Lotes"/>
             </properties>
           </component>
@@ -114,7 +121,7 @@
           </grid>
           <scrollpane id="57a4c">
             <constraints>
-              <grid row="4" column="4" row-span="1" col-span="14" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="4" row-span="3" col-span="9" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <forms defaultalign-horz="false" defaultalign-vert="false"/>
             </constraints>
             <properties/>
@@ -128,7 +135,7 @@
           </scrollpane>
           <component id="ad174" class="javax.swing.JLabel" binding="lblLotes">
             <constraints>
-              <grid row="6" column="14" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="14" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -139,7 +146,7 @@
           </component>
           <component id="9c364" class="javax.swing.JLabel">
             <constraints>
-              <grid row="6" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -149,7 +156,7 @@
           </component>
           <component id="a8864" class="javax.swing.JButton" binding="btnFinalizar">
             <constraints>
-              <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -168,7 +175,7 @@
           </component>
           <component id="427d7" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
             <constraints>
-              <grid row="12" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="16" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -176,7 +183,54 @@
               <text value="Cancelar"/>
             </properties>
           </component>
-          <component id="623b6" class="javax.swing.JLabel">
+          <component id="10e65" class="javax.swing.JButton" binding="BtnFechaIni">
+            <constraints>
+              <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <text value="FechaInicio"/>
+            </properties>
+          </component>
+          <hspacer id="8af36">
+            <constraints>
+              <grid row="16" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="30ca1">
+            <constraints>
+              <grid row="18" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+          </hspacer>
+          <component id="4b623" class="javax.swing.JButton" binding="nuevoLoteBtn">
+            <constraints>
+              <grid row="4" column="17" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <maximum-size width="50" height="25"/>
+              </grid>
+              <forms/>
+            </constraints>
+            <properties>
+              <icon value="Imagenes/rsz_new.png"/>
+              <text value=""/>
+              <toolTipText value="Nuevo Lote"/>
+            </properties>
+          </component>
+          <component id="4803f" class="javax.swing.JButton" binding="actualizarLotesBtn">
+            <constraints>
+              <grid row="6" column="17" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <maximum-size width="50" height="25"/>
+              </grid>
+              <forms/>
+            </constraints>
+            <properties>
+              <icon value="Imagenes/rsz_clean.png"/>
+              <text value=""/>
+              <toolTipText value="Actualizar"/>
+            </properties>
+          </component>
+          <component id="e4df3" class="javax.swing.JLabel">
             <constraints>
               <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
@@ -186,7 +240,7 @@
               <text value="Fecha Fin"/>
             </properties>
           </component>
-          <component id="70ebb" class="javax.swing.JButton" binding="BtnFechaFin">
+          <component id="b521c" class="javax.swing.JButton" binding="BtnFechaFin">
             <constraints>
               <grid row="10" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
@@ -195,27 +249,12 @@
               <text value="FechaFin"/>
             </properties>
           </component>
-          <component id="10e65" class="javax.swing.JButton" binding="BtnFechaIni">
+          <vspacer id="7f688">
             <constraints>
-              <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <forms/>
+              <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-vert="false"/>
             </constraints>
-            <properties>
-              <text value="FechaInicio"/>
-            </properties>
-          </component>
-          <hspacer id="8af36">
-            <constraints>
-              <grid row="12" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-          </hspacer>
-          <hspacer id="30ca1">
-            <constraints>
-              <grid row="14" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-          </hspacer>
+          </vspacer>
         </children>
       </grid>
     </children>

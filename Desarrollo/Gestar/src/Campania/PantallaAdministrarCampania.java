@@ -1,11 +1,9 @@
 package Campania;
 
 import Conexion.Coneccion;
-import Datos.CampaniaEntity;
-import Datos.MaquinariaEntity;
-import Datos.TipoEstadoMaquinariaEntity;
-import Datos.TipoMaquinariaEntity;
+import Datos.*;
 import Maquinaria.CargaMaquinaria;
+import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

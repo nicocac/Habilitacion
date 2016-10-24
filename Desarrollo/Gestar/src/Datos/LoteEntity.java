@@ -24,6 +24,7 @@ public class LoteEntity {
 
     private Collection<LoteCampaniaEntity> loteCampaniasByLteId;
 
+    private CampoEntity campo;
     //=================================================================
 
     @Id
@@ -156,6 +157,20 @@ public class LoteEntity {
         this.loteCampaniasByLteId = loteCampaniasByLteId;
     }
 
+    public void setLteCantMetros(int lteCantMetros) {
+        this.lteCantMetros = lteCantMetros;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "campo_id", referencedColumnName = "cpo_id")
+    public CampoEntity getCampo() {
+        return campo;
+    }
+
+    public void setCampo(CampoEntity campo) {
+        this.campo = campo;
+    }
+
     //=================================================================
 
     @Override
@@ -210,9 +225,7 @@ public class LoteEntity {
 
     @Override
     public String toString() {
-        return "LoteEntity{" +
-                "lteDenominacion='" + lteDenominacion + '\'' +
-                '}';
+        return this.getLteDenominacion();
     }
     //=================================================================
 }

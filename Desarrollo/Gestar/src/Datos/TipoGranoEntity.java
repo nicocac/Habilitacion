@@ -117,9 +117,7 @@ public class TipoGranoEntity {
     //=================================================================
     @Override
     public String toString() {
-        return "TipoGranoEntity{" +
-                "tgrNombre='" + tgrNombre + '\'' +
-                '}';
+        return getTgrNombre();
     }
 
     //=============================================================================================

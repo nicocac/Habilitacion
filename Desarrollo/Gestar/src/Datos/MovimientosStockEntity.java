@@ -6,8 +6,8 @@ import java.sql.Date;
 /**
  * Created by OWNER on 5/30/2016.
  */
-@Entity
-@Table(name = "movimientos_stock", schema = "", catalog = "gestar")
+//@Entity
+//@Table(name = "movimientos_stock", schema = "", catalog = "gestar")
 public class MovimientosStockEntity {
 
     private Integer mosId;

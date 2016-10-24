@@ -179,8 +179,6 @@ public class TipoEstadoMaquinariaEntity {
 
     @Override
     public String toString() {
-        return "TipoEstadoMaquinariaEntity{" +
-                "teMaNombre='" + teMaNombre + '\'' +
-                '}';
+        return getTeMaNombre();
     }
 }
