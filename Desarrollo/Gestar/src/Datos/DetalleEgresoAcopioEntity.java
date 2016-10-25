@@ -154,8 +154,4 @@ public class DetalleEgresoAcopioEntity {
 
 
 
-    @Override
-    public String toString() {
-        return this.getDetalleEgresoId().toString();
-    }
 }

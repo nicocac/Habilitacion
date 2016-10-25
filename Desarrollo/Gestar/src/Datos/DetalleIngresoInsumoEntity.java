@@ -146,9 +146,4 @@ public class DetalleIngresoInsumoEntity {
 
 
 
-    @Override
-    public String toString() {
-        return this.getDetalleIngresoId().toString();
-    }
-
 }

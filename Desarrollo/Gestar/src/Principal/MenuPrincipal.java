@@ -69,6 +69,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         btnRegistrarAvance.setBounds(1250, 300, 215, 100);
         image.add(btnRegistrarAvance);
 
+        btnRegistrarAvance.addActionListener(e -> {
+            PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
+            pantallaAdministrarCampania.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
         //BUTTON REGISTRAR EGRESO
         JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
         btnAdministrarAcopios.setBounds(950, 500, 215, 100);

@@ -17,6 +17,7 @@ public class IngresoAcopioEntity {
     private Integer ingresoId;
     private Date ingresoFecha;
     private Integer ingresoCantidadTotal;
+    private String estadoSemilla;
 
     private Date ingresoFechaAlta;
     private String ingresoUsuarioAlta;
@@ -28,6 +29,7 @@ public class IngresoAcopioEntity {
 //    private List<DetalleIngresoAcopioEntity> listaDetalleAcopioEntity;
 
     private TipoAcopioEntity tipoAcopio;
+    private TipoLaboreoEntity tipoLaboreo;
     private LoteEntity lote;
     private CampaniaEntity campania;
     private TipoGranoEntity tipoGrano;
@@ -147,6 +149,7 @@ public class IngresoAcopioEntity {
     public void setTipoGrano(TipoGranoEntity tipoGrano) {
         this.tipoGrano = tipoGrano;
     }
+
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "empresa_id")
     public EmpresaEntity getEmpresa() {
@@ -157,9 +160,22 @@ public class IngresoAcopioEntity {
         this.empresa = empresa;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "tipo_laboreo_id", referencedColumnName = "tpo_id")
+    public TipoLaboreoEntity getTipoLaboreo() {
+        return tipoLaboreo;
+    }
 
-    @Override
-    public String toString() {
-        return this.getIngresoId().toString();
+    public void setTipoLaboreo(TipoLaboreoEntity tipoLaboreo) {
+        this.tipoLaboreo = tipoLaboreo;
+    }
+
+    @Column(name = "ingreso_estado")
+    public String getEstadoSemilla() {
+        return estadoSemilla;
+    }
+
+    public void setEstadoSemilla(String estadoSemilla) {
+        this.estadoSemilla = estadoSemilla;
     }
 }

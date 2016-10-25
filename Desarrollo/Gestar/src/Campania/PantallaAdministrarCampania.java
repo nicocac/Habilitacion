@@ -2,6 +2,7 @@ package Campania;
 
 import Conexion.Coneccion;
 import Datos.*;
+import Laboreo.RegistrarAvanceCampania;
 import Maquinaria.CargaMaquinaria;
 import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Query;
@@ -10,6 +11,8 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Iterator;
 
@@ -26,6 +29,7 @@ public class PantallaAdministrarCampania extends JFrame {
     private JButton btnEditar;
     private JTable tblCampania;
     private JButton btnCancelar;
+    public JButton btnRegistrarAvance;
 
     private JTable table1;
     private CampaniaEntity campania;
@@ -116,6 +120,37 @@ public class PantallaAdministrarCampania extends JFrame {
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
 
+        //REGISTRAR AVANCE
+        btnRegistrarAvance.addActionListener(e -> {
+
+
+            int fila = tblCampania.getSelectedRow();
+            if (fila == -1) {
+                showMessage("Debe seleccionar una fila para continuar.");
+                return;
+            }
+            int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
+            String denominacion = (String) tblCampania.getModel().getValueAt(fila, 1);
+            Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 2);
+            Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 3);
+            Date fechaFinReal = (Date) tblCampania.getModel().getValueAt(fila, 4);
+
+//            CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
+
+
+
+
+            RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga",camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
+            avanceCampania.setVisible(true);
+            getDefaultCloseOperation();
+
+            inicializaTabla();
+
+
+
+
+
+        });
     }
 
     //METODOS

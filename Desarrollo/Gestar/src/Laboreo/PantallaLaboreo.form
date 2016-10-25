@@ -432,6 +432,19 @@
         </constraints>
         <properties/>
       </component>
+      <component id="9ae9f" class="javax.swing.JButton" binding="nuevaSemillaBtn">
+        <constraints>
+          <grid row="8" column="13" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <maximum-size width="50" height="25"/>
+          </grid>
+          <forms/>
+        </constraints>
+        <properties>
+          <icon value="Imagenes/rsz_new.png"/>
+          <text value=""/>
+          <toolTipText value="Nueva Semilla"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

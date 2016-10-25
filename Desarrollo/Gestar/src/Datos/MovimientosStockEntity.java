@@ -127,12 +127,6 @@ public class MovimientosStockEntity {
     }
 
     //=================================================================
-    @Override
-    public String toString() {
-        return "MovimientosStockEntity{" +
-                "mosCantidad=" + mosCantidad +
-                '}';
-    }
 
     //=================================================================
 

@@ -4,10 +4,8 @@ import Campania.CargaCampania;
 import Campania.Campania;
 import Conexion.Coneccion;
 import Date.DateLabelFormatter;
-import Datos.CampaniaEntity;
-import Datos.InsumoEntity;
-import Datos.TipoEstadoMaquinariaEntity;
-import Datos.TipoLaboreoEntity;
+import Datos.*;
+import Granos.CargaTipoGrano;
 import Granos.TipoGrano;
 import Insumo.Insumo;
 import Insumo.CargaInsumo;
@@ -62,6 +60,7 @@ public class PantallaLaboreo extends JFrame {
     public JButton actualizarInsumosBtn;
     public JButton actualizarMaqBtn;
     public JComboBox cbxSemillas;
+    public JButton nuevaSemillaBtn;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
 
@@ -265,28 +264,46 @@ public class PantallaLaboreo extends JFrame {
            cargarMaquinas();
         });
 
+
+        //NUEVA SEMILLA
+        nuevaSemillaBtn.addActionListener(e -> {
+            CargaTipoGrano cargaTipoGrano = new CargaTipoGrano("Carga", "", "", 0);
+            cargaTipoGrano.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+        cbxSemillas.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoGrano();
+                cargaComboBoxTipoGrano();
+            }
+        });
+
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
             Campania camp = (Campania) cboCampania.getSelectedItem();
             ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
             ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+            Boolean sinStock = false;
+            String insumosSinStock= "";
+
             for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                 DetalleLaboreo det = new DetalleLaboreo();
                 if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
                     InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String)tblDetalles.getValueAt(i, 1));
-                    if(insumoEntity.getInsStock() == null){
-//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-                        int respuesta =JOptionPane.showConfirmDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                        if(respuesta == 0){
-                            PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-                            pantallaAdministrarSolicitudInsumos.setVisible(true);
-                            getDefaultCloseOperation();
-                            return;
+
+                    if(insumoEntity.getInsStock() == null) {
+                        sinStock = true;
+                        if(insumosSinStock.equals("")){
+                            insumosSinStock = insumoEntity.getInsNombre();
                         } else {
-                            return;
+                            insumosSinStock = insumosSinStock + ", "+ insumoEntity.getInsNombre();
                         }
                     }
+
 
                     Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
                     det.setInsumo(ins);
@@ -298,6 +315,22 @@ public class PantallaLaboreo extends JFrame {
                 }
                 detalles.add(det);
             }
+
+            if (sinStock){
+//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                if(respuesta == 0){
+                    dispose();
+                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+                    getDefaultCloseOperation();
+                    return;
+                }
+//                          else {
+//                            return;
+//                        }
+            }
+
             SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
             java.util.Date date = new java.util.Date();
             java.util.Calendar cal = Calendar.getInstance();
@@ -315,8 +348,8 @@ public class PantallaLaboreo extends JFrame {
 
             Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
-                gest.registrarLaboreo(camp, lotes, detalles, (MomentoLaboreo) cboMomentos.getSelectedItem(),
-                        fecha, null, txtDescripcion.getText(), (TipoGrano) cbxSemillas.getSelectedItem());
+                gest.registrarLaboreo(camp, lotes, detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
+                        fecha, null, txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem());
 
 
 
@@ -468,6 +501,10 @@ public class PantallaLaboreo extends JFrame {
         cboMomentos.removeAllItems();
     }
 
+    private void borrarComboBoxTipoGrano() {
+        cbxSemillas.removeAllItems();
+    }
+
 
     //METODO CARGA COMBO CAMPANIA
     private void cargaComboBoxCampania() {
@@ -505,7 +542,25 @@ public class PantallaLaboreo extends JFrame {
         for (TipoLaboreoEntity tipoLaboreo : listaTipoLaboreoEntity) {
             miVectorTipoLaboreo.add(tipoLaboreo.getTpoNombre());
             cboMomentos.addItem(tipoLaboreo);
-            cboCampania.setSelectedItem(null);
+
+//            cboCampania.setSelectedItem(null);
+        }
+
+    }
+
+
+    //METODO CARGA COMBO TIPO GRANO
+    private void cargaComboBoxTipoGrano() {
+        Session session = Coneccion.getSession();
+        Query query = session.createQuery("SELECT p FROM TipoGranoEntity p");
+        java.util.List<TipoGranoEntity> listaTipoGranoEntity = query.list();
+
+        Vector<String> miVectorTipoLaboreo = new Vector<>();
+        for (TipoGranoEntity tipoGrano : listaTipoGranoEntity) {
+            miVectorTipoLaboreo.add(tipoGrano.getTgrNombre());
+            cbxSemillas.addItem(tipoGrano);
+
+//            cboCampania.setSelectedItem(null);
         }
 
     }

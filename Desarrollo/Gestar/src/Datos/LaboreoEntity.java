@@ -173,10 +173,7 @@ public class LaboreoEntity {
     }
 
     //=================================================================
-    @Override
-    public String toString() {
-        return getLboId().toString();
-    }
+
 
     //=================================================================
 

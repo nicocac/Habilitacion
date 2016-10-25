@@ -160,10 +160,7 @@ public class DetalleSolicitudInsumoEntity {
 
 
     //=================================================================
-    @Override
-    public String toString() {
-        return dsiId.toString();
-    }
+
 
     //=================================================================
 

@@ -116,8 +116,5 @@ public class AcopioEntity {
         this.tipoEstadoGrano = tipoEstadoGrano;
     }
 
-    @Override
-    public String toString() {
-        return this.getAcopioId().toString();
-    }
+
 }

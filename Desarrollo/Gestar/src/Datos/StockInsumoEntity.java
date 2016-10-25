@@ -126,12 +126,7 @@ public class StockInsumoEntity {
     }
 
     //=================================================================
-    @Override
-    public String toString() {
-        return "StockInsumoEntity{" +
-                "sInsId=" + sInsId +
-                '}';
-    }
+
     //=================================================================
 
     public Integer getsInsInsId() {

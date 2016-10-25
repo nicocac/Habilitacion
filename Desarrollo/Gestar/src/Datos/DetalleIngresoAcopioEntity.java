@@ -145,8 +145,4 @@ public class DetalleIngresoAcopioEntity {
 
 
 
-    @Override
-    public String toString() {
-        return this.getDetalleIngresoId().toString();
-    }
 }

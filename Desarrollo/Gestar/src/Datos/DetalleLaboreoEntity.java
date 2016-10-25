@@ -168,10 +168,7 @@ public class DetalleLaboreoEntity {
 
     //=================================================================
 
-    @Override
-    public String toString() {
-        return this.dboId.toString();
-    }
+
 
     //=================================================================
 
