@@ -1,6 +1,7 @@
 package Principal;
 
 import Acopio.PantallaCargaAcopio;
+import Acopio.PantallaEgresoAcopio;
 import Campania.PantallaAdministrarCampania;
 import Cliente.PantallaAdministrarCliente;
 import Granos.PantallaAdministrarTipoGranos;
@@ -75,10 +76,19 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             getDefaultCloseOperation();
         });
 
+
         //BUTTON REGISTRAR EGRESO
         JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
         btnAdministrarAcopios.setBounds(950, 500, 215, 100);
         image.add(btnAdministrarAcopios);
+
+        btnAdministrarAcopios.addActionListener(e -> {
+            PantallaEgresoAcopio pantallaEgresoAcopio = new PantallaEgresoAcopio("Carga", 0 , "Egreso");
+            pantallaEgresoAcopio.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
 
         //BUTTON EXIT
         JButton btnExit = new JButton("Exit");
