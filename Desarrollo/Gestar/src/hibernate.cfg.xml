@@ -59,6 +59,7 @@
         <mapping class="Datos.TipoEstadoGranoEntity"/>
         <mapping class="Datos.TransporteEntity"/>
         <mapping class="Datos.EmpresaEntity"/>
+        <mapping class="Datos.LaboreoInsumoMaqEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

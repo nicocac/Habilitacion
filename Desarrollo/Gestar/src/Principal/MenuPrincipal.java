@@ -54,7 +54,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         //BUTTONS
 
         //BUTTON REGISTRAR LABOREO
-        JButton btnRegistrarLaboreo = new JButton("Registrar Laboreo");
+        JButton btnRegistrarLaboreo = new JButton("Planificar Campa\u00f1a");
         btnRegistrarLaboreo.setBounds(950, 300, 215, 100);
         image.add(btnRegistrarLaboreo);
 
