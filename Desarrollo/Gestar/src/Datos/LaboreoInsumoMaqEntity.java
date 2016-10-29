@@ -1,5 +1,7 @@
 package Datos;
 
+import Granos.TipoGrano;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -11,6 +13,7 @@ public class LaboreoInsumoMaqEntity {
     private Integer id;
     private InsumoEntity insumo;
     private MaquinariaEntity maquinaria;
+    private TipoGranoEntity tipoGrano;
     private Integer tiempo;
     private Integer cantidadInsumo;
     private Integer cantidadMaquinaria;
@@ -79,6 +82,16 @@ public class LaboreoInsumoMaqEntity {
 
     public void setMaquinaria(MaquinariaEntity maquinaria) {
         this.maquinaria = maquinaria;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_grano_id", referencedColumnName = "tgr_id")
+    public TipoGranoEntity getTipoGrano() {
+        return tipoGrano;
+    }
+
+    public void setTipoGrano(TipoGranoEntity tipoGrano) {
+        this.tipoGrano = tipoGrano;
     }
 
     @Basic

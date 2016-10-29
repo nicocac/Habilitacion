@@ -73,7 +73,7 @@ public class PantallaLaboreo extends JFrame {
         setContentPane(panel1);
         pack();
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.setTitle("Registrar Laboreo");
+        this.setTitle("Planificar Campaña");
         inicializaTabla();
         cargarItems();
         cargarMaquinas();
@@ -307,7 +307,7 @@ public class PantallaLaboreo extends JFrame {
 
                     Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
                     det.setInsumo(ins);
-                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+//                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                 } else {
                     Maquinaria maq = new Maquinaria();
                     maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
@@ -354,7 +354,7 @@ public class PantallaLaboreo extends JFrame {
 
 
             } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el laboreo: " + e1.toString());
+                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la Planificacion de Campaña: " + e1.toString());
             } finally {
                 JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
                 dispose();

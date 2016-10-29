@@ -13,7 +13,8 @@ public class DetalleLaboreoEntity {
 
     private Integer dboId;
     private String dboObservaciones;
-    private int dboCantidad;
+    private int dboCantidadInsumo;
+    private int dboCantidadMaquinaria;
 
     private Date dboFechaAlta;
     private String dboUsuarioAlta;
@@ -29,9 +30,9 @@ public class DetalleLaboreoEntity {
 
     private TipoGranoEntity tipoGrano;
     //=================================================================
-    private Integer dboInsId;
-    private Integer dboLboId;
-    private Integer dboMaqId;
+//    private Integer dboInsId;
+//    private Integer dboLboId;
+//    private Integer dboMaqId;
     //======================================================================================
 
 
@@ -57,14 +58,28 @@ public class DetalleLaboreoEntity {
     }
 
     @Basic
-    @Column(name = "dbo_cantidad")
-    public int getDboCantidad() {
-        return dboCantidad;
+    @Column(name = "dbo_cantidad_insumo")
+
+    public int getDboCantidadInsumo() {
+        return dboCantidadInsumo;
     }
 
-    public void setDboCantidad(int dboCantidad) {
-        this.dboCantidad = dboCantidad;
+    public void setDboCantidadInsumo(int dboCantidadInsumo) {
+        this.dboCantidadInsumo = dboCantidadInsumo;
     }
+
+    @Basic
+    @Column(name = "dbo_cantidad_maquinaria")
+
+    public int getDboCantidadMaquinaria() {
+        return dboCantidadMaquinaria;
+    }
+
+    public void setDboCantidadMaquinaria(int dboCantidadMaquinaria) {
+        this.dboCantidadMaquinaria = dboCantidadMaquinaria;
+    }
+
+
 
     @Basic
     @Column(name = "dbo_fecha_alta")
@@ -127,7 +142,7 @@ public class DetalleLaboreoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id", nullable = false)
+    @JoinColumn(name = "dbo_ins_id", referencedColumnName = "ins_id")
     public InsumoEntity getInsumoByDboInsId() {
         return insumoByDboInsId;
     }
@@ -169,79 +184,4 @@ public class DetalleLaboreoEntity {
     //=================================================================
 
 
-
-    //=================================================================
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DetalleLaboreoEntity that = (DetalleLaboreoEntity) o;
-
-        if (dboId != that.dboId) return false;
-        if (dboCantidad != that.dboCantidad) return false;
-        if (dboObservaciones != null ? !dboObservaciones.equals(that.dboObservaciones) : that.dboObservaciones != null)
-            return false;
-        if (dboFechaAlta != null ? !dboFechaAlta.equals(that.dboFechaAlta) : that.dboFechaAlta != null) return false;
-        if (dboUsuarioAlta != null ? !dboUsuarioAlta.equals(that.dboUsuarioAlta) : that.dboUsuarioAlta != null)
-            return false;
-        if (dboFechaUltMod != null ? !dboFechaUltMod.equals(that.dboFechaUltMod) : that.dboFechaUltMod != null)
-            return false;
-        if (dboUsuarioUltMod != null ? !dboUsuarioUltMod.equals(that.dboUsuarioUltMod) : that.dboUsuarioUltMod != null)
-            return false;
-        if (dboFechaBaja != null ? !dboFechaBaja.equals(that.dboFechaBaja) : that.dboFechaBaja != null) return false;
-        if (dboUsuarioBaja != null ? !dboUsuarioBaja.equals(that.dboUsuarioBaja) : that.dboUsuarioBaja != null)
-            return false;
-        if (dboInsId != null ? !dboInsId.equals(that.dboInsId) : that.dboInsId != null) return false;
-        if (dboLboId != null ? !dboLboId.equals(that.dboLboId) : that.dboLboId != null) return false;
-        if (dboMaqId != null ? !dboMaqId.equals(that.dboMaqId) : that.dboMaqId != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = dboId;
-        result = 31 * result + dboCantidad;
-        result = 31 * result + (dboFechaAlta != null ? dboFechaAlta.hashCode() : 0);
-        result = 31 * result + (dboFechaBaja != null ? dboFechaBaja.hashCode() : 0);
-        result = 31 * result + (dboFechaUltMod != null ? dboFechaUltMod.hashCode() : 0);
-        result = 31 * result + (dboObservaciones != null ? dboObservaciones.hashCode() : 0);
-        result = 31 * result + (dboUsuarioAlta != null ? dboUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (dboUsuarioBaja != null ? dboUsuarioBaja.hashCode() : 0);
-        result = 31 * result + (dboUsuarioUltMod != null ? dboUsuarioUltMod.hashCode() : 0);
-        result = 31 * result + (dboInsId != null ? dboInsId.hashCode() : 0);
-        result = 31 * result + (dboLboId != null ? dboLboId.hashCode() : 0);
-        result = 31 * result + (dboMaqId != null ? dboMaqId.hashCode() : 0);
-        return result;
-    }
-
-
-    //////////////////////////////
-    //=================================================================
-
-    public Integer getDboInsId() {
-        return dboInsId;
-    }
-
-    public void setDboInsId(Integer dboInsId) {
-        this.dboInsId = dboInsId;
-    }
-
-    public Integer getDboLboId() {
-        return dboLboId;
-    }
-
-    public void setDboLboId(Integer dboLboId) {
-        this.dboLboId = dboLboId;
-    }
-
-    public Integer getDboMaqId() {
-        return dboMaqId;
-    }
-
-    public void setDboMaqId(Integer dboMaqId) {
-        this.dboMaqId = dboMaqId;
-    }
 }

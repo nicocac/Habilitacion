@@ -60,6 +60,8 @@ public class PantallaLaboreoCargado extends JFrame {
     public JButton actualizarMaqBtn;
     public JComboBox cbxSemillas;
     public JButton nuevaSemillaBtn;
+    public JTextField txtMetrica;
+    public JComboBox cbxMedida;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
 
@@ -155,7 +157,7 @@ public class PantallaLaboreoCargado extends JFrame {
                         tblDetalles.setValueAt("Maquinaria", fila, 0);
                         tblDetalles.setValueAt(maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio(), fila, 1);
                         tblDetalles.setValueAt("-", fila, 2);
-                        tblDetalles.setValueAt("-", fila, 3);
+                        tblDetalles.setValueAt("0", fila, 3);
                         fila++;
                     } else {
                         modelDetalle.addRow(new Object[]{"Maquinaria"
@@ -283,8 +285,6 @@ public class PantallaLaboreoCargado extends JFrame {
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
-            Campania camp = (Campania) cboCampania.getSelectedItem();
-            ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
             ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
             Boolean sinStock = false;
             String insumosSinStock= "";
@@ -306,29 +306,31 @@ public class PantallaLaboreoCargado extends JFrame {
 
                     Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
                     det.setInsumo(ins);
-                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                    det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                 } else {
                     Maquinaria maq = new Maquinaria();
-                    maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
+                    maq.setNombre((String) tblDetalles.getValueAt(i, 1));
                     det.setMaquinaria(maq);
+                    det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+
                 }
                 detalles.add(det);
             }
 
-            if (sinStock){
-//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                if(respuesta == 0){
-                    dispose();
-                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-                    pantallaAdministrarSolicitudInsumos.setVisible(true);
-                    getDefaultCloseOperation();
-                    return;
-                }
-//                          else {
-//                            return;
-//                        }
-            }
+//            if (sinStock){
+////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+//                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
+//                if(respuesta == 0){
+//                    dispose();
+//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+//                    getDefaultCloseOperation();
+//                    return;
+//                }
+////                          else {
+////                            return;
+////                        }
+//            }
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
             java.util.Date date = new java.util.Date();
@@ -347,8 +349,8 @@ public class PantallaLaboreoCargado extends JFrame {
 
 //            Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
-//                gest.registrarLaboreo(camp, lotes, detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-//                        fecha, null, txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem());
+                gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
+                        txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(), (String)cbxMedida.getSelectedItem());
 
 
 
@@ -372,7 +374,7 @@ public class PantallaLaboreoCargado extends JFrame {
     }
 
     private void inicializaTabla() {
-        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad"};
+        String[] columnNamesCompra = {"Tipo", "Nombre", "Unidad de Medida", "Cantidad Necesaria"};
         Object[][] data = new Object[1][5];
         setModelDetalles(columnNamesCompra, data);
 
@@ -564,6 +566,9 @@ public class PantallaLaboreoCargado extends JFrame {
 
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
 //
 //class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {

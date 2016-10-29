@@ -221,7 +221,7 @@ public class GestorLaboreo {
                 maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
                 detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
             }
-            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
+//            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
             listaDetallesLaboreoEntity.add(detalleLaboreoEntity);
 
 //            session.save(detalleLaboreoEntity);
@@ -317,7 +317,7 @@ public class GestorLaboreo {
                 maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
                 detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
             }
-            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
+//            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
             listaDetallesLaboreoEntity.add(detalleLaboreoEntity);
 
 //            session.save(detalleLaboreoEntity);
@@ -379,6 +379,71 @@ public class GestorLaboreo {
         }
         session.close();
     }
+
+
+
+    public void registrarLaboreoPrecargado(ArrayList<DetalleLaboreo> detallesLaboreo,
+                                 TipoLaboreoEntity tipoLaboreo, String descripcion,
+                                 TipoGranoEntity tipoGrano, String metrica, String medida) {
+
+        Session session = Coneccion.getSession();
+        Transaction tx = session.beginTransaction();
+
+        TipoLaboreoEntity tipoLaboreoEntity = new TipoLaboreoEntity();
+        TipoGranoEntity tipoGranoEntity;
+        DetalleLaboreoEntity detalleLaboreoEntity=null;
+        MaquinariaEntity maquinariaEntity;
+        InsumoEntity insumoEntity;
+        LaboreoEntity laboreoEntity = new LaboreoEntity();
+
+
+        ArrayList<DetalleLaboreoEntity> listaDetallesLaboreoEntity = new ArrayList<>();
+        for (int i = 0; i < detallesLaboreo.size(); i++) {
+            detalleLaboreoEntity = new DetalleLaboreoEntity();
+            try {
+                String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
+                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                detalleLaboreoEntity.setInsumoByDboInsId(insumoEntity);
+                detalleLaboreoEntity.setDboCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
+
+
+            } catch (NullPointerException npe) {
+                String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
+                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
+                detalleLaboreoEntity.setDboCantidadMaquinaria(detallesLaboreo.get(i).getCantidadMaquinaria());
+                session.update(maquinariaEntity);
+
+            }
+            listaDetallesLaboreoEntity.add(detalleLaboreoEntity);
+
+//            session.save(detalleLaboreoEntity);
+
+        }
+
+        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getTpoNombre());
+        tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombre(tipoGrano.getTgrNombre());
+        laboreoEntity.setTipoGrano(tipoGranoEntity);
+        laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
+        laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
+//        laboreoEntity.setLboFechaHoraInicio(fechaInicio);
+//        laboreoEntity.setLboFechaHoraFin(fechaFin);
+        laboreoEntity.setLboDescripcion(descripcion);
+        session.save(laboreoEntity);
+
+        for(DetalleLaboreoEntity detalleLaboreo: listaDetallesLaboreoEntity){
+            detalleLaboreo.setLaboreoByDboLboId(laboreoEntity);
+            session.save(detalleLaboreo);
+        }
+
+        try {
+            tx.commit();
+        }catch(Exception ex){
+            tx.rollback();
+        }
+        session.close();
+    }
+
 
 
 }

@@ -8,24 +8,22 @@ import Maquinaria.Maquinaria;
  */
 public class DetalleLaboreo {
     private String observaciones;
-    private int cantidad;
+    private int cantidadIsumo;
+    private int cantidadMaquinaria;
     private Insumo insumo;
     private Maquinaria maquinaria;
 
-    public DetalleLaboreo(){
-        this.setObservaciones(null);
-        this.setCantidad(0);
-        this.setInsumo(null);
-        this.setMaquinaria(null);
+
+    public DetalleLaboreo() {
     }
 
-    public DetalleLaboreo(String observaciones, int cantidad, Insumo insumo, Maquinaria maquinaria) {
-        this.setObservaciones(observaciones);
-        this.setCantidad(cantidad);
-        this.setInsumo(insumo);
-        this.setMaquinaria(maquinaria);
+    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria) {
+        this.observaciones = observaciones;
+        this.cantidadIsumo = cantidadIsumo;
+        this.cantidadMaquinaria = cantidadMaquinaria;
+        this.insumo = insumo;
+        this.maquinaria = maquinaria;
     }
-
 
     public String getObservaciones() {
         return observaciones;
@@ -35,13 +33,22 @@ public class DetalleLaboreo {
         this.observaciones = observaciones;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidadIsumo() {
+        return cantidadIsumo;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadIsumo(int cantidadIsumo) {
+        this.cantidadIsumo = cantidadIsumo;
     }
+
+    public int getCantidadMaquinaria() {
+        return cantidadMaquinaria;
+    }
+
+    public void setCantidadMaquinaria(int cantidadMaquinaria) {
+        this.cantidadMaquinaria = cantidadMaquinaria;
+    }
+
 
     public Insumo getInsumo() {
         return insumo;
