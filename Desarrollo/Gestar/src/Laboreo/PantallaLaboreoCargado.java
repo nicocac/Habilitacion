@@ -3,10 +3,7 @@ package Laboreo;
 import Campania.Campania;
 import Conexion.Coneccion;
 import Date.DateLabelFormatter;
-import Datos.CampaniaEntity;
-import Datos.InsumoEntity;
-import Datos.TipoGranoEntity;
-import Datos.TipoLaboreoEntity;
+import Datos.*;
 import Granos.CargaTipoGrano;
 import Insumo.Insumo;
 import Insumo.CargaInsumo;
@@ -15,6 +12,7 @@ import Maquinaria.Maquinaria;
 import Maquinaria.CargaMaquinaria;
 import Procesos.PantallaAdministrarSolicitudInsumos;
 import Repository.InsumoRepository;
+import Repository.LaboreoRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -62,25 +60,94 @@ public class PantallaLaboreoCargado extends JFrame {
     public JButton nuevaSemillaBtn;
     public JTextField txtMetrica;
     public JComboBox cbxMedida;
+    public JTextField txtNombre;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
+    private String tipoOperacion;
 
     InsumoRepository insumoRepository = new InsumoRepository();
+    LaboreoRepository laboreoRepository = new LaboreoRepository();
 
-    public PantallaLaboreoCargado() {
+    public PantallaLaboreoCargado(String operacion, Long laboreoId) {
 
 
         //INICIO
         setContentPane(panel1);
         pack();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        this.setTitle("Registrar Laboreo");
         inicializaTabla();
         cargarItems();
         cargarMaquinas();
+        cargaComboBoxTipoLaboreo();
+        cargaComboBoxTipoGrano();
+        tipoOperacion = operacion;
+        if (tipoOperacion.equals("Carga")) {
+            this.setTitle("Registrar Laboreo");
+
+        } else {
+            this.setTitle("Modificar Laboreo");
+
+            LaboreoEntity laboreoEntity = laboreoRepository.getLaboreoById(laboreoId);
+            txtNombre.setText(laboreoEntity.getLboNombre());
+            txtMetrica.setText(laboreoEntity.getMetrica());
+            cboMomentos.setSelectedItem(laboreoEntity.getTipoLaboreoEntity());
+            cbxSemillas.setSelectedItem(laboreoEntity.getTipoGrano());
+
+            //Carga insumos
+            List<Object[]> listaIns;
+            //getInsumos por laboreo
+            listaIns = gestor.getInsumosByLaboreo(laboreoId);
+
+            //Carga maquinarias
+            List<Object[]> listaMaq;
+            //getMaquinaria por laboreo
+            listaMaq = gestor.getMaquinariasByLaboreo(laboreoId);
+
+
+            Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
+            int i = 0;
+            if (listaIns.size() != 0) {
+                for (Object[] row: listaIns) {
+                    InsumoEntity insumoEntity = (InsumoEntity)row[0];
+                    Integer cantidad = (Integer) row[1];
+
+                    data[i][0] = "Insumo";
+                    data[i][1] = insumoEntity.getInsNombre();
+                    data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
+                    data[i][3] = String.valueOf(cantidad);
+                    i++;
+                }
+            }
+
+            if (listaMaq.size() != 0) {
+                for (Object[] row: listaMaq) {
+                    MaquinariaEntity maquinariaEntity = (MaquinariaEntity)row[0];
+                    Integer cantidad = (Integer) row[1];
+
+                    data[i][0] =  "Maquinaria";
+                    data[i][1] = maquinariaEntity.getMaqNombre();
+                    data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
+                    data[i][3] = String.valueOf(cantidad);
+                    i++;
+                }
+            }
+
+//                }
+//            }
+
+            String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
+            DefaultTableModel model = new DefaultTableModel();
+            model.setDataVector(data, columnNames);
+            tblDetalles.setModel(model);
+
+//            return;
+        }
+
+        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setTitle("Registrar Laboreo");
+
+
 //        cargarCampanias();
 //        cargarMomentos();
-        cargaComboBoxTipoLaboreo();
 //        cboCampania.addActionListener(e -> cargarLotes((Campania) cboCampania.getSelectedItem()));
 //        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
 
@@ -282,24 +349,25 @@ public class PantallaLaboreoCargado extends JFrame {
             }
         });
 
+
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
             GestorLaboreo gest = new GestorLaboreo();
             ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
             Boolean sinStock = false;
-            String insumosSinStock= "";
+            String insumosSinStock = "";
 
             for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                 DetalleLaboreo det = new DetalleLaboreo();
                 if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String)tblDetalles.getValueAt(i, 1));
+                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
 
-                    if(insumoEntity.getInsStock() == null) {
+                    if (insumoEntity.getInsStock() == null) {
                         sinStock = true;
-                        if(insumosSinStock.equals("")){
+                        if (insumosSinStock.equals("")) {
                             insumosSinStock = insumoEntity.getInsNombre();
                         } else {
-                            insumosSinStock = insumosSinStock + ", "+ insumoEntity.getInsNombre();
+                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
                         }
                     }
 
@@ -350,8 +418,8 @@ public class PantallaLaboreoCargado extends JFrame {
 //            Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
                 gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(), (String)cbxMedida.getSelectedItem());
-
+                        txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
+                        (String) cbxMedida.getSelectedItem(), txtNombre.getText());
 
 
             } catch (Exception e1) {
@@ -480,7 +548,6 @@ public class PantallaLaboreoCargado extends JFrame {
     }
 
 
-
 //    private void cargarLotes(Campania camp) {
 //        java.util.List lista;
 //        lista = gestor.getLotesCampania(camp);
@@ -494,10 +561,10 @@ public class PantallaLaboreoCargado extends JFrame {
 //    }
 
 
-
     private void borrarComboBoxCampania() {
 //        cboCampania.removeAllItems();
     }
+
     private void borrarComboBoxTipoLaboreo() {
         cboMomentos.removeAllItems();
     }
@@ -530,7 +597,6 @@ public class PantallaLaboreoCargado extends JFrame {
 //        }
 //
 //    }
-
 
 
     //METODO CARGA COMBO TIPO LABOREO

@@ -183,7 +183,7 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <component id="1e6d0" class="javax.swing.JTable" binding="tblInsumos">
+                          <component id="1e6d0" class="javax.swing.JTable" binding="tblLaboreos">
                             <constraints/>
                             <properties>
                               <autoCreateRowSorter value="true"/>

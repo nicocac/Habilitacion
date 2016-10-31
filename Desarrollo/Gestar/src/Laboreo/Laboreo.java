@@ -9,6 +9,7 @@ import java.util.List;
  * Created by OWNER on 9/4/2016.
  */
 public class Laboreo {
+    private String nombre;
     private Date lboFechaHoraInicio;
     private Date lboFechaHoraFin;
     private String lboDescripcion;
@@ -27,6 +28,13 @@ public class Laboreo {
         this.setTipoGrano(tipoGrano);
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Date getLboFechaHoraInicio() {
         return lboFechaHoraInicio;

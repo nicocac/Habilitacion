@@ -2,7 +2,7 @@ package Laboreo;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
-import Datos.StockInsumoEntity;
+import Datos.LaboreoEntity;
 import Datos.TipoInsumoEntity;
 import Insumo.CargaInsumo;
 import org.hibernate.Query;
@@ -25,7 +25,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
     private JButton btnLimpiar;
     private JButton btnEditar;
     private JButton btnNuevo;
-    private JTable tblInsumos;
+    private JTable tblLaboreos;
     private JButton btnCancelar;
     private JTable table1;
     private InsumoEntity insumo;
@@ -62,19 +62,19 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
         //EDITAR
         btnEditar.addActionListener(e -> {
-            int fila = tblInsumos.getSelectedRow();
+            int fila = tblLaboreos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return;
             }
-            int insId = (int) tblInsumos.getModel().getValueAt(fila, 0);
-            String nombre = (String) tblInsumos.getModel().getValueAt(fila, 1);
-            String descripcion = (String) tblInsumos.getModel().getValueAt(fila, 2);
-            String unidadMedida = (String) tblInsumos.getModel().getValueAt(fila, 3);
-            TipoInsumoEntity tipoInsumo = (TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4);
-            String stock = String.valueOf(tblInsumos.getModel().getValueAt(fila, 5));
+            Long laboreoId = (Long) tblLaboreos.getModel().getValueAt(fila, 0);
+//            String nombre = (String) tblLaboreos.getModel().getValueAt(fila, 1);
+//            String descripcion = (String) tblLaboreos.getModel().getValueAt(fila, 2);
+//            String unidadMedida = (String) tblLaboreos.getModel().getValueAt(fila, 3);
+//            TipoInsumoEntity tipoInsumo = (TipoInsumoEntity) tblLaboreos.getModel().getValueAt(fila, 4);
+//            String stock = String.valueOf(tblLaboreos.getModel().getValueAt(fila, 5));
 
-            CargaInsumo carga = new CargaInsumo("Modificacion", nombre, descripcion, unidadMedida, tipoInsumo, stock, insId);
+            PantallaLaboreoCargado carga = new PantallaLaboreoCargado("Modificacion", laboreoId);
             carga.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
@@ -104,8 +104,8 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-            CargaInsumo cargaInsumo = new CargaInsumo("Carga", "", "", "", null, "", 0);
-            cargaInsumo.setVisible(true);
+            PantallaLaboreoCargado pantallaLaboreoCargado = new PantallaLaboreoCargado("Carga", 0L);
+            pantallaLaboreoCargado.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
         });
@@ -118,21 +118,20 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campa�a", "Momento"};
+        String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campa�a", "Tipo Laboreo"};
         Object[][] data = new Object[1][5];
-        setModel(columnNames, data, tblInsumos);
+        setModel(columnNames, data, tblLaboreos);
     }
 
     private void setModel(String[] columnames, Object[][] data, JTable tabla) {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
-        tblInsumos.setModel(model);
-        tblInsumos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tblInsumos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblInsumos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblInsumos.getColumnModel().getColumn(2).setPreferredWidth(300);
-        tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tblInsumos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tblLaboreos.setModel(model);
+        tblLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblLaboreos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblLaboreos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblLaboreos.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tblLaboreos.getColumnModel().getColumn(3).setPreferredWidth(150);
     }
 
     private void showMessage(String error) {
@@ -146,23 +145,23 @@ public class PantallaAdministrarLaboreos  extends JFrame {
         Boolean guardado = false;
         try {
             insumo = new InsumoEntity();
-            int fila = tblInsumos.getSelectedRow();
+            int fila = tblLaboreos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            insumo.setInsId((int) tblInsumos.getModel().getValueAt(fila, 0));
-            insumo.setInsNombre((String) tblInsumos.getModel().getValueAt(fila, 1));
-            insumo.setInsDescripcion((String) tblInsumos.getModel().getValueAt(fila, 2));
-            insumo.setInsUnidadMedida((String) tblInsumos.getModel().getValueAt(fila, 3));
-            insumo.setTipoInsumoByInsTinId((TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4));
+            insumo.setInsId((int) tblLaboreos.getModel().getValueAt(fila, 0));
+            insumo.setInsNombre((String) tblLaboreos.getModel().getValueAt(fila, 1));
+            insumo.setInsDescripcion((String) tblLaboreos.getModel().getValueAt(fila, 2));
+            insumo.setInsUnidadMedida((String) tblLaboreos.getModel().getValueAt(fila, 3));
+            insumo.setTipoInsumoByInsTinId((TipoInsumoEntity) tblLaboreos.getModel().getValueAt(fila, 4));
             insumo.setInsFechaAlta(fechaActual);
             insumo.setInsUsuarioAlta("adminBajaLaboreo");
             insumo.setInsFechaUltMod(fechaActual);
             insumo.setInsUsuarioUtlMod("adminBajaLaboreo");
             insumo.setInsFechaBaja(fechaActual);
             insumo.setInsUsuarioBaja("adminBajaLaboreo");
-            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del laboreo: " + tblInsumos.getModel().getValueAt(fila, 1));
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del laboreo: " + tblLaboreos.getModel().getValueAt(fila, 1));
             if (i == 0) {
                 tx = session.beginTransaction();
                 session.update(insumo);
@@ -187,25 +186,24 @@ public class PantallaAdministrarLaboreos  extends JFrame {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            insumo = new InsumoEntity();
-            Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+            LaboreoEntity laboreoEntity = new LaboreoEntity();
+            Query query = session.createQuery("select t from LaboreoEntity t where ucase(lboDescripcion) like ucase(:pNombre) and lboFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campa�a", "Momento"};
-            Object[][] data = new Object[list.size()][6];
+            String[] columnNames = {"Cod", "Tipo Laboreo", "Descripcion", "Fecha Alta",};
+            Object[][] data = new Object[list.size()][4];
 
             while (iter.hasNext()) {
-                insumo = (InsumoEntity) iter.next();
-                data[i][0] = insumo.getInsId();
-                data[i][1] = insumo.getInsNombre();
-                data[i][2] = insumo.getInsDescripcion();
-                data[i][3] = insumo.getInsUnidadMedida();
-                data[i][4] = insumo.getTipoInsumoByInsTinId();
+                laboreoEntity = (LaboreoEntity) iter.next();
+                data[i][0] = laboreoEntity.getLboId();
+                data[i][1] = laboreoEntity.getTipoLaboreoEntity().getTpoNombre();
+                data[i][2] = laboreoEntity.getLboDescripcion();
+                data[i][3] = laboreoEntity.getLboFechaAlta();
 
                 i++;
             }
-            setModel(columnNames, data, tblInsumos);
+            setModel(columnNames, data, tblLaboreos);
         } finally {
             session.close();
         }

@@ -384,7 +384,7 @@ public class GestorLaboreo {
 
     public void registrarLaboreoPrecargado(ArrayList<DetalleLaboreo> detallesLaboreo,
                                  TipoLaboreoEntity tipoLaboreo, String descripcion,
-                                 TipoGranoEntity tipoGrano, String metrica, String medida) {
+                                 TipoGranoEntity tipoGrano, String metrica, String medida, String nombre) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
@@ -421,6 +421,10 @@ public class GestorLaboreo {
 
         }
 
+        laboreoEntity.setMedida(medida);
+        laboreoEntity.setMetrica(metrica);
+        laboreoEntity.setLboNombre(nombre);
+
         tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getTpoNombre());
         tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombre(tipoGrano.getTgrNombre());
         laboreoEntity.setTipoGrano(tipoGranoEntity);
@@ -444,6 +448,37 @@ public class GestorLaboreo {
         session.close();
     }
 
+
+    public List<Object[]> getInsumosByLaboreo(Long labId) {
+        session = Coneccion.getSession();
+
+        java.util.List list;
+        Query queryInsumoByLaboreo = session.createQuery("select t.insumoByDboInsId , t.dboCantidadInsumo " +
+                                                         "from DetalleLaboreoEntity t " +
+                                                         "where t.laboreoByDboLboId.lboId = :pId");
+        queryInsumoByLaboreo.setParameter("pId", labId);
+        list = queryInsumoByLaboreo.list();
+
+        session.close();
+
+        return  list;
+    }
+
+
+    public List<Object[]> getMaquinariasByLaboreo(Long labId) {
+        session = Coneccion.getSession();
+
+        java.util.List list;
+        Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinariaByDboMaqId, t.dboCantidadMaquinaria" +
+                                                             " from DetalleLaboreoEntity t " +
+                                                             "where t.laboreoByDboLboId.lboId = :pId");
+        queryMaquinariaByLaboreo.setParameter("pId", labId);
+        list = queryMaquinariaByLaboreo.list();
+        session.close();
+
+//        return  listaMaquinaria;
+        return  list;
+    }
 
 
 }
