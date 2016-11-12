@@ -154,7 +154,7 @@
                             </constraints>
                             <properties>
                               <icon value="Imagenes/rsz_new.png"/>
-                              <text value="Nuevo"/>
+                              <text value="Nueva Campaña"/>
                             </properties>
                           </component>
                           <component id="cc357" class="javax.swing.JButton" binding="btnEditar">

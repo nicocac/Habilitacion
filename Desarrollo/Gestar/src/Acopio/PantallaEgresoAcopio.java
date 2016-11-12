@@ -2,15 +2,24 @@ package Acopio;
 
 import Campania.Campania;
 import Campania.GestorCampania;
+import Cliente.CargaCliente;
 import Conexion.Coneccion;
 import Datos.*;
 import Lote.Lote;
 import Repository.LaboreoLoteCampaniaRepository;
 import Repository.LoteRepository;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -35,6 +44,8 @@ public class PantallaEgresoAcopio extends JFrame {
     public JTextField txtCantidad;
     public JComboBox cbxEstado;
     public JComboBox cbxMedida;
+    public JButton nuevoInsumoBtn;
+    public JTextField textField1;
 
     private String tipoOperacion;
     private int cnaId;
@@ -186,6 +197,24 @@ public class PantallaEgresoAcopio extends JFrame {
 
         //CANCELAR
         cancelarButton.addActionListener(e -> {
+            Document document = new Document();
+            try {
+                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
+                document.open();
+                PdfContentByte contentByte = writer.getDirectContent();
+                PdfTemplate template = contentByte.createTemplate(500, 500);
+                Graphics2D g2 = template.createGraphics(500, 500);
+                panel1.print(g2);
+                g2.dispose();
+                contentByte.addTemplate(template, 30, 300);
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            finally{
+                if(document.isOpen()){
+                    document.close();
+                }
+            }
             dispose();
         });
 
@@ -205,6 +234,15 @@ public class PantallaEgresoAcopio extends JFrame {
 //            cargarLotes(0);
 //        });
 
+        nuevoInsumoBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CargaCliente cargaCliente = new CargaCliente("Carga","","","","",0);
+                cargaCliente.setVisible(true);
+                            getDefaultCloseOperation();
+
+            }
+        });
     }
 
     private boolean isCellSelected(JTable tabla) {

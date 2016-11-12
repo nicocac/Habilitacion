@@ -24,7 +24,7 @@ public class LoteCampaniaEntity {
     private CampaniaEntity campaniaByLcpCnaId;
     private LoteEntity loteByLcpLteId;
 
-    private Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId;
+    private Collection<PlanificacionCampaniaEntity> laboreoLoteCampaniasByLcpId;
 
     //=================================================================
     private int lcpLteId;
@@ -144,12 +144,12 @@ public class LoteCampaniaEntity {
         this.loteByLcpLteId = loteByLcpLteId;
     }
 
-    @OneToMany(mappedBy = "loteCampaniaByLlcLcpId")
-    public Collection<LaboreoLoteCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
+    @OneToMany(mappedBy = "loteCampania")
+    public Collection<PlanificacionCampaniaEntity> getLaboreoLoteCampaniasByLcpId() {
         return laboreoLoteCampaniasByLcpId;
     }
 
-    public void setLaboreoLoteCampaniasByLcpId(Collection<LaboreoLoteCampaniaEntity> laboreoLoteCampaniasByLcpId) {
+    public void setLaboreoLoteCampaniasByLcpId(Collection<PlanificacionCampaniaEntity> laboreoLoteCampaniasByLcpId) {
         this.laboreoLoteCampaniasByLcpId = laboreoLoteCampaniasByLcpId;
     }
 

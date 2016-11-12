@@ -29,6 +29,7 @@ public class DetalleLaboreoEntity {
     private MaquinariaEntity maquinariaByDboMaqId;
 
     private TipoGranoEntity tipoGrano;
+    private TipoLaboreoEntity tipoLaboreo;
     //=================================================================
 //    private Integer dboInsId;
 //    private Integer dboLboId;
@@ -78,7 +79,6 @@ public class DetalleLaboreoEntity {
     public void setDboCantidadMaquinaria(int dboCantidadMaquinaria) {
         this.dboCantidadMaquinaria = dboCantidadMaquinaria;
     }
-
 
 
     @Basic
@@ -179,6 +179,16 @@ public class DetalleLaboreoEntity {
 
     public void setTipoGrano(TipoGranoEntity tipoGrano) {
         this.tipoGrano = tipoGrano;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "dbo_tipo_laboreo_id", referencedColumnName = "tpo_id")
+    public TipoLaboreoEntity getTipoLaboreo() {
+        return tipoLaboreo;
+    }
+
+    public void setTipoLaboreo(TipoLaboreoEntity tipoLaboreo) {
+        this.tipoLaboreo = tipoLaboreo;
     }
 
     //=================================================================

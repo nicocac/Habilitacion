@@ -20,8 +20,8 @@ public class LaboreoLoteCampaniaRepository {
         List<LaboreoEntity> listaLaboreo = new ArrayList<>();
         session = Coneccion.getSession();
         LaboreoEntity laboreo;
-        Query query = session.createQuery("select x.laboreoByLlcLboId from LaboreoLoteCampaniaEntity x " +
-                "where (x.loteCampaniaByLlcLcpId.loteByLcpLteId.id = :pId and x.loteCampaniaByLlcLcpId.campaniaByLcpCnaId.id = :pCamId)");
+        Query query = session.createQuery("select x.laboreo from PlanificacionCampaniaEntity x " +
+                "where (x.loteCampania.loteByLcpLteId.id = :pId and x.loteCampania.campaniaByLcpCnaId.id = :pCamId)");
         query.setParameter("pId", nroLote);
         query.setParameter("pCamId", camId);
         List list = query.list();

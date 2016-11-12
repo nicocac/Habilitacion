@@ -2,32 +2,35 @@ package Laboreo;
 
 import Conexion.Coneccion;
 import Datos.*;
-import Granos.CargaTipoGrano;
-import Insumo.CargaInsumo;
 import Insumo.Insumo;
-import Laboreo.TipoLaboreo.CargaTipoLaboreo;
-import Maquinaria.CargaMaquinaria;
 import Maquinaria.Maquinaria;
 import Repository.InsumoRepository;
 import Repository.LaboreoRepository;
+import Repository.PlanificacionRepository;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 /**
- * Created by jagm on 28/10/2016.
+ * Created by jagm on 11/11/2016.
  */
-public class PantallaLaboreoCargado extends JFrame {
+public class TicketPesada  extends JFrame {
     private JPanel panel1;
-    private JTextField txtDescripcion;
+    private JTextField txtRRHH;
     private JTable tblDetalles;
     private JList lstInsumos;
     private JList lstMaquinarias;
@@ -39,9 +42,13 @@ public class PantallaLaboreoCargado extends JFrame {
     private JButton btnLimpiar;
     private JButton btnEliminar;
     private JList lstLotes;
-    private JLabel lblLotes;
     private JComboBox cboMomentos;
+    public JList lstLaboreos;
     public JButton buttonFecha;
+    public JTextField txtTiempo;
+    public JButton btnGenerarOrden;
+    public JTextField txtFechaIni;
+    public JTextField txtFechaFin;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -56,127 +63,37 @@ public class PantallaLaboreoCargado extends JFrame {
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
     private String tipoOperacion;
+    private DefaultTableModel modelInsumoMaquinaria;
 
     InsumoRepository insumoRepository = new InsumoRepository();
     LaboreoRepository laboreoRepository = new LaboreoRepository();
+    PlanificacionRepository planificacionRepository = new PlanificacionRepository();
 
-    public PantallaLaboreoCargado(String operacion, Long laboreoId) {
-
+    public TicketPesada(String operacion, Integer planificacionId) {
 
         //INICIO
         setContentPane(panel1);
         pack();
-        inicializaTabla();
-        cargarItems();
-        cargarMaquinas();
-        cargaComboBoxTipoLaboreo();
-        cargaComboBoxTipoGrano();
+//        inicializaTabla();
+//        cargarItems();
+//        cargarMaquinas();
+//        cargaComboBoxTipoLaboreo();
+//        cargaComboBoxTipoGrano();
         tipoOperacion = operacion;
-        if (tipoOperacion.equals("Carga")) {
-            this.setTitle("Registrar Laboreo");
+//        if (tipoOperacion.equals("Carga")) {
+//            this.setTitle("Generar Ordenes de Trabajo");
+//        } else {
+//            this.setTitle("Modificar Ordenes de Trabajo");
 
-        } else {
-            this.setTitle("Modificar Laboreo");
+        PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
+        List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
+//        cargarLaboreos(listaLaboreoEntity);
 
-            LaboreoEntity laboreoEntity = laboreoRepository.getLaboreoById(laboreoId);
-            txtNombre.setText(laboreoEntity.getLboNombre());
-            txtMetrica.setText(laboreoEntity.getMetrica());
-            cboMomentos.setSelectedItem(laboreoEntity.getTipoLaboreoEntity());
-            cbxSemillas.setSelectedItem(laboreoEntity.getTipoGrano());
-
-            //Carga insumos
-            List<Object[]> listaIns;
-            //getInsumos por laboreo
-            listaIns = gestor.getInsumosByLaboreo(laboreoId);
-
-            //Carga maquinarias
-            List<Object[]> listaMaq;
-            //getMaquinaria por laboreo
-            listaMaq = gestor.getMaquinariasByLaboreo(laboreoId);
-
-
-            Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
-            int i = 0;
-            if (listaIns.size() != 0) {
-                for (Object[] row: listaIns) {
-                    InsumoEntity insumoEntity = (InsumoEntity)row[0];
-                    Integer cantidad = (Integer) row[1];
-
-                    data[i][0] = "Insumo";
-                    data[i][1] = insumoEntity.getInsNombre();
-                    data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
-                    data[i][3] = String.valueOf(cantidad);
-                    i++;
-                }
-            }
-
-            if (listaMaq.size() != 0) {
-                for (Object[] row: listaMaq) {
-                    MaquinariaEntity maquinariaEntity = (MaquinariaEntity)row[0];
-                    Integer cantidad = (Integer) row[1];
-
-                    data[i][0] =  "Maquinaria";
-                    data[i][1] = maquinariaEntity.getMaqNombre();
-                    data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
-                    data[i][3] = String.valueOf(cantidad);
-                    i++;
-                }
-            }
-
-//                }
-//            }
-
-            String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
-            DefaultTableModel model = new DefaultTableModel();
-            model.setDataVector(data, columnNames);
-            tblDetalles.setModel(model);
-
-//            return;
-        }
+//        lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
 
         this.setExtendedState(MAXIMIZED_BOTH);
-//        this.setTitle("Registrar Laboreo");
+        this.setTitle("Registrar Peso de Laboreo");
 
-
-//        cargarCampanias();
-//        cargarMomentos();
-//        cboCampania.addActionListener(e -> cargarLotes((Campania) cboCampania.getSelectedItem()));
-//        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
-
-        //AGREGAR INSUMO
-        btnAgregarItem.addActionListener(e -> {
-//            if (!existeLote()) {
-//                showMessage("Debe seleccionar al menos un lote para continuar.");
-//                return;
-//            }
-            java.util.List listaSeleccion;
-            listaSeleccion = lstInsumos.getSelectedValuesList();
-            Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount() - 1;
-            if (tblDetalles.getValueAt(fila, 1) != null) {
-                if (!tblDetalles.getValueAt(fila, 1).equals("")) {
-                    fila++;
-                }
-            }
-            while (iter.hasNext()) {
-                Insumo ins = (Insumo) iter.next();
-                if (permiteSeleccion("Insumo", ins.getNombre())) {
-                    if (fila == 0) {
-                        tblDetalles.setValueAt("Insumo", fila, 0);
-                        tblDetalles.setValueAt(ins.getNombre(), fila, 1);
-                        tblDetalles.setValueAt(ins.getUnidadMedida(), fila, 2);
-                        tblDetalles.setValueAt("0", fila, 3);
-                        fila++;
-                    } else {
-                        modelDetalle.addRow(new Object[]{"Insumo"
-                                , ins.getNombre()
-                                , ins.getUnidadMedida()
-                                , "0"});
-                        fila++;
-                    }
-                }
-            }
-        });
 
         //BUTTON FECHA
 //        SqlDateModel modelIni = new SqlDateModel();
@@ -193,59 +110,24 @@ public class PantallaLaboreoCargado extends JFrame {
 //        buttonFecha.add(datePickerIni);
         //
 
-        //AGREGAR MAQUINARIA
-        btnAgregarMaquinaria.addActionListener(e -> {
-//            if (!existeLote()) {
-//                showMessage("Debe seleccionar al menos un lote para continuar.");
-//                return;
-//            }
-            java.util.List listaSeleccion;
-            listaSeleccion = lstMaquinarias.getSelectedValuesList();
-            Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount() - 1;
-            if (tblDetalles.getValueAt(fila, 1) != null) {
-                if (!tblDetalles.getValueAt(fila, 1).equals("")) {
-                    fila++;
-                }
-
-            }
-            while (iter.hasNext()) {
-                Maquinaria maq = (Maquinaria) iter.next();
-                if (permiteSeleccion("Maquinaria", maq.getNombre())) {
-                    if (fila == 0) {
-                        tblDetalles.setValueAt("Maquinaria", fila, 0);
-                        tblDetalles.setValueAt(maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio(), fila, 1);
-                        tblDetalles.setValueAt("-", fila, 2);
-                        tblDetalles.setValueAt("0", fila, 3);
-                        fila++;
-                    } else {
-                        modelDetalle.addRow(new Object[]{"Maquinaria"
-                                , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
-                                , "-"
-                                , "-"});
-                        fila++;
-                    }
-                }
-            }
-        });
 
         //ELIMINAR ITEM
-        btnEliminar.addActionListener(e -> {
-            if (!isCellSelected(tblDetalles)) {
-                showMessage("Debe seleccionar un item para continuar.");
-                return;
-            }
-            int fila = tblDetalles.getSelectedRow();
-            if (fila == 0) {
-                tblDetalles.setValueAt("", 0, 0);
-                tblDetalles.setValueAt("", 0, 1);
-                tblDetalles.setValueAt("", 0, 2);
-                tblDetalles.setValueAt("", 0, 3);
-            } else {
-                DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
-                modelo.removeRow(tblDetalles.getSelectedRow());
-            }
-        });
+//        btnEliminar.addActionListener(e -> {
+//            if (!isCellSelected(tblDetalles)) {
+//                showMessage("Debe seleccionar un item para continuar.");
+//                return;
+//            }
+//            int fila = tblDetalles.getSelectedRow();
+//            if (fila == 0) {
+//                tblDetalles.setValueAt("", 0, 0);
+//                tblDetalles.setValueAt("", 0, 1);
+//                tblDetalles.setValueAt("", 0, 2);
+//                tblDetalles.setValueAt("", 0, 3);
+//            } else {
+//                DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
+//                modelo.removeRow(tblDetalles.getSelectedRow());
+//            }
+//        });
 
         //LIMPIAR
         btnLimpiar.addActionListener(e -> limpiarPantalla());
@@ -270,8 +152,6 @@ public class PantallaLaboreoCargado extends JFrame {
 //            }
 //        });
 
-        cboMomentos.addMouseListener(new MouseAdapter() {
-        });
 
 
 //        cboCampania.addMouseMotionListener(new MouseMotionAdapter() {
@@ -288,58 +168,37 @@ public class PantallaLaboreoCargado extends JFrame {
 
 
         //NUEVA ACTIVIDAD
-        nuevoTipoLaboreoBtn.addActionListener(e -> {
-            CargaTipoLaboreo cargaTipoLaboreo = new CargaTipoLaboreo("Carga", "", "", 0);
-            cargaTipoLaboreo.setVisible(true);
-            getDefaultCloseOperation();
-        });
-
-        cboMomentos.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                super.focusGained(e);
-                borrarComboBoxTipoLaboreo();
-                cargaComboBoxTipoLaboreo();
-            }
-        });
-
-        //NUEVO INSUMO
-        nuevoInsumoBtn.addActionListener(e -> {
-            CargaInsumo cargaInsumo = new CargaInsumo("Carga", "", "", "", null, "", 0);
-            cargaInsumo.setVisible(true);
-            getDefaultCloseOperation();
-        });
-
-        actualizarInsumosBtn.addActionListener(e -> {
-            cargarItems();
-        });
-
-        //NUEVA MAQUINARIA
-        nuevaMaquinariaBtn.addActionListener(e -> {
-            CargaMaquinaria cargaMaquinaria = new CargaMaquinaria("Carga", "", "", null, "", "", null, "", 0);
-            cargaMaquinaria.setVisible(true);
-            getDefaultCloseOperation();
-        });
-        actualizarMaqBtn.addActionListener(e -> {
-            cargarMaquinas();
-        });
+//        nuevoTipoLaboreoBtn.addActionListener(e -> {
+//            CargaTipoLaboreo cargaTipoLaboreo = new CargaTipoLaboreo("Carga", "", "", 0);
+//            cargaTipoLaboreo.setVisible(true);
+//            getDefaultCloseOperation();
+//        });
+//
+//        cboMomentos.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                super.focusGained(e);
+//                borrarComboBoxTipoLaboreo();
+//                cargaComboBoxTipoLaboreo();
+//            }
+//        });
 
 
         //NUEVA SEMILLA
-        nuevaSemillaBtn.addActionListener(e -> {
-            CargaTipoGrano cargaTipoGrano = new CargaTipoGrano("Carga", "", "", 0);
-            cargaTipoGrano.setVisible(true);
-            getDefaultCloseOperation();
-        });
-
-        cbxSemillas.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                super.focusGained(e);
-                borrarComboBoxTipoGrano();
-                cargaComboBoxTipoGrano();
-            }
-        });
+//        nuevaSemillaBtn.addActionListener(e -> {
+//            CargaTipoGrano cargaTipoGrano = new CargaTipoGrano("Carga", "", "", 0);
+//            cargaTipoGrano.setVisible(true);
+//            getDefaultCloseOperation();
+//        });
+//
+//        cbxSemillas.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                super.focusGained(e);
+////                borrarComboBoxTipoGrano();
+//                cargaComboBoxTipoGrano();
+//            }
+//        });
 
 
         //GUARDAR
@@ -410,19 +269,51 @@ public class PantallaLaboreoCargado extends JFrame {
 //            Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
                 gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
+                        txtRRHH.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
                         (String) cbxMedida.getSelectedItem(), txtNombre.getText());
 
 
             } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el laboreo: " + e1.toString());
+                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la orden de trabajo : " + e1.toString());
             } finally {
-                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
                 dispose();
             }
         });
 
 
+//        btnAgregarLaboreo.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
+//                borrarLstLaboreos();
+//                cargarLaboreos(listaLaboreoEntity);
+//            }
+//        });
+        btnGenerarOrden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Document document = new Document();
+                try {
+                    PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
+                    document.open();
+                    PdfContentByte contentByte = writer.getDirectContent();
+                    PdfTemplate template = contentByte.createTemplate(200, 600);
+                    Graphics2D g2 = template.createGraphics(200, 400);
+                    panel1.print(g2);
+                    g2.dispose();
+                    contentByte.addTemplate(template, 30, 300);
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+                finally{
+                    if(document.isOpen()){
+                        document.close();
+                    }
+                }
+                dispose();
+            }
+        });
     }
 
     private boolean isCellSelected(JTable tabla) {
@@ -540,17 +431,18 @@ public class PantallaLaboreoCargado extends JFrame {
     }
 
 
-//    private void cargarLotes(Campania camp) {
-//        java.util.List lista;
-//        lista = gestor.getLotesCampania(camp);
-//        DefaultListModel modelo = new DefaultListModel();
-//
-//        Iterator iter = lista.iterator();
-//        while (iter.hasNext()) {
-//            modelo.addElement(iter.next());
+    private void cargarLaboreos(List<LaboreoEntity> listaLaboreoEntity) {
+        DefaultListModel modelo = new DefaultListModel();
+//        List<LaboreoEntity> listaLaboreoSinOrden = new ArrayList<>();
+//        for(LaboreoEntity laboreo :listaLaboreoSinOrden){
+//            if(laboreo.)
 //        }
-//        lstLotes.setModel(modelo);
-//    }
+        Iterator iter = listaLaboreoEntity.iterator();
+        while (iter.hasNext()) {
+            modelo.addElement(iter.next());
+        }
+        lstLaboreos.setModel(modelo);
+    }
 
 
     private void borrarComboBoxCampania() {
@@ -561,8 +453,8 @@ public class PantallaLaboreoCargado extends JFrame {
         cboMomentos.removeAllItems();
     }
 
-    private void borrarComboBoxTipoGrano() {
-        cbxSemillas.removeAllItems();
+    private void borrarLstLaboreos() {
+        lstLaboreos.removeAll();
     }
 
 
@@ -624,27 +516,74 @@ public class PantallaLaboreoCargado extends JFrame {
 
     }
 
+
+    //METODO BUSCAR INSUMOS DE SOLICUTUDES
+    private void buscarInsumosMaquinariasPorLaboreo(Integer laboreoId, Integer planificacionId) {
+
+        //Carga insumos
+        java.util.List<Object[]> listaIns;
+        //getInsumos por laboreo
+        listaIns = gestor.getInsumosByLaboreoAndPlanificacion(laboreoId, planificacionId);
+
+        //Carga maquinarias
+        java.util.List<Object[]> listaMaq;
+        //getMaquinaria por laboreo
+        listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreoId, planificacionId);
+
+
+        Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
+        int i = 0;
+        if (listaIns.size() != 0) {
+            for (Object[] row: listaIns) {
+                InsumoEntity insumoEntity = (InsumoEntity)row[0];
+                Integer cantidad = (Integer) row[1];
+
+                data[i][0] = "Insumo";
+                data[i][1] = insumoEntity.getInsNombre();
+                data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
+                data[i][3] = String.valueOf(cantidad);
+                i++;
+            }
+        }
+
+        if (listaMaq.size() != 0) {
+            for (Object[] row: listaMaq) {
+                MaquinariaEntity maquinariaEntity = (MaquinariaEntity)row[0];
+                Integer cantidad = (Integer) row[1];
+
+                data[i][0] =  "Maquinaria";
+                data[i][1] = maquinariaEntity.getMaqNombre();
+                data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
+                data[i][3] = String.valueOf(cantidad);
+                i++;
+            }
+        }
+
+
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
+        DefaultTableModel model = new DefaultTableModel();
+        model.setDataVector(data, columnNames);
+        tblDetalles.setModel(model);
+
+//            return;
+
+    }
+
+
+    private void setModelInsumosMaquinarias(String[] columnames, Object[][] data) {
+        modelInsumoMaquinaria = new DefaultTableModel();
+        modelInsumoMaquinaria.setDataVector(data, columnames);
+        tblDetalles.setModel(modelInsumoMaquinaria);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(60);
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
 }
-//
-//class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-//
-//    private JComponent component = new JTextField();
-//
-//    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-//                                                 int rowIndex, int vColIndex) {
-//
-//        ((JTextField) component).setText(String.valueOf(value));
-//
-//        return component;
-//    }
-//
-//    public Object getCellEditorValue() {
-//        return ((JTextField) component).getText();
-//    }
-//}
-
-
-

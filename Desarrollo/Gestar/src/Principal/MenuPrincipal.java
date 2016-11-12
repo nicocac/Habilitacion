@@ -7,6 +7,7 @@ import Cliente.PantallaAdministrarCliente;
 import Granos.PantallaAdministrarTipoGranos;
 import Imagenes.ImageFondo;
 import Insumo.PantallaAdministrarInsumo;
+import Laboreo.PantallaAdministrarCampaniaPlanificada;
 import Laboreo.PantallaAdministrarLaboreos;
 import Laboreo.PantallaLaboreo;
 import Laboreo.TipoLaboreo.PantallaAdministrarTipoLaboreo;
@@ -19,11 +20,16 @@ import Procesos.PantallaSolicitudInsumos;
 import Procesos.PantallaAdministrarSolicitudInsumos;
 import TipoInsumo.PantallaAdministrarTipoInsumo;
 import TipoMedioAlmacenamiento.PantallaAdministrarMedios;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 
 
 public class MenuPrincipal extends JFrame implements ActionListener {
@@ -53,7 +59,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTONS
 
-        //BUTTON REGISTRAR LABOREO
+        //BUTTON PLANIFICAR CAMPANA
         JButton btnRegistrarLaboreo = new JButton("Planificar Campa\u00f1a");
         btnRegistrarLaboreo.setBounds(950, 300, 215, 100);
         image.add(btnRegistrarLaboreo);
@@ -65,9 +71,22 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         });
 
 
+
+        //BUTTON REGISTRAR ORDEN DE TRABAJO
+        JButton btnRegistrarOrdenTrabajo = new JButton("Generar orden de Trabajo");
+        btnRegistrarOrdenTrabajo.setBounds(1250, 300, 215, 100);
+        image.add(btnRegistrarOrdenTrabajo);
+
+        btnRegistrarOrdenTrabajo.addActionListener(e -> {
+            PantallaAdministrarCampaniaPlanificada pantallaAdministrarCampaniaPlanificada = new PantallaAdministrarCampaniaPlanificada();
+            pantallaAdministrarCampaniaPlanificada.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
         //BUTTON REGISTRAR AVANCE
         JButton btnRegistrarAvance = new JButton("Registrar Avance de Campa\u00f1a");
-        btnRegistrarAvance.setBounds(1250, 300, 215, 100);
+        btnRegistrarAvance.setBounds(950, 500, 215, 100);
         image.add(btnRegistrarAvance);
 
         btnRegistrarAvance.addActionListener(e -> {
@@ -78,8 +97,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 
         //BUTTON REGISTRAR EGRESO
-        JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
-        btnAdministrarAcopios.setBounds(950, 500, 215, 100);
+        JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Acopio");
+        btnAdministrarAcopios.setBounds(1250, 500, 215, 100);
         image.add(btnAdministrarAcopios);
 
         btnAdministrarAcopios.addActionListener(e -> {
@@ -92,7 +111,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON EXIT
         JButton btnExit = new JButton("Exit");
-        btnExit.setBounds(1250, 500, 215, 100);
+        btnExit.setBounds(950, 700, 215, 100);
         ImageIcon exitIcon = new ImageIcon("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\exit5.jpg");
         Image img = exitIcon.getImage() ;
         Image newimg = img.getScaledInstance( 230, 100,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -101,6 +120,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         image.add(btnExit);
 
         btnExit.addActionListener(e -> {
+
             dispose();
         });
 

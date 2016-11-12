@@ -48,7 +48,7 @@ public class PantallaAdministrarCampania extends JFrame {
         pack();
         this.setTitle("Consultar Campania");
         inicializaTabla();
-
+        buscarCampanias();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
@@ -123,7 +123,6 @@ public class PantallaAdministrarCampania extends JFrame {
         //REGISTRAR AVANCE
         btnRegistrarAvance.addActionListener(e -> {
 
-
             int fila = tblCampania.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
@@ -135,20 +134,13 @@ public class PantallaAdministrarCampania extends JFrame {
             Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 3);
             Date fechaFinReal = (Date) tblCampania.getModel().getValueAt(fila, 4);
 
-//            CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
-
-
-
+//           CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
 
             RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga",camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
             avanceCampania.setVisible(true);
             getDefaultCloseOperation();
 
             inicializaTabla();
-
-
-
-
 
         });
     }

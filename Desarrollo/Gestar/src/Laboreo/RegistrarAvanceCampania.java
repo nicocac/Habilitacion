@@ -17,6 +17,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.*;
 
@@ -40,7 +42,9 @@ public class RegistrarAvanceCampania extends JFrame {
     public JTextField txtFechaIni;
     public JTextField txtCantidad;
     public JComboBox cbxEstado;
+    public JTable tblDetalles;
     public JComboBox cbxMedida;
+    public JButton btnCargarPesada;
 
     private String tipoOperacion;
     private int cnaId;
@@ -56,12 +60,12 @@ public class RegistrarAvanceCampania extends JFrame {
         setBounds(200,300,900,500);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
-            this.setTitle("Registrar Avance Campania");
+            this.setTitle("Registrar Orden Trabajo Realizada");
         } else {
             this.setTitle("Modificar Avance Campania");
         }
 //        inicializaTabla();
-        cargarLotes(camId);
+//        cargarLotes(camId);
 
         if (denominacion.length() > 1 && camId != 0) {
 
@@ -89,7 +93,7 @@ public class RegistrarAvanceCampania extends JFrame {
             cnaId = camId;
         }
 
-        lstLotes.addListSelectionListener(e -> buscarLaboreoPorLote(camId));
+//        lstLotes.addListSelectionListener(e -> buscarLaboreoPorLote(camId));
 
 //        //Fecha
 //        SqlDateModel modelIni = new SqlDateModel();
@@ -112,7 +116,7 @@ public class RegistrarAvanceCampania extends JFrame {
         //
 
 
-        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
+//        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
 
         //MODIFICAR
         if (denominacion.length() > 1 && camId != 0) {
@@ -210,6 +214,11 @@ public class RegistrarAvanceCampania extends JFrame {
 //            cargarLotes(0);
 //        });
 
+        btnCargarPesada.addActionListener(e -> {
+            TicketPesada cargaTicketPesada = new TicketPesada("Carga", 0);
+            cargaTicketPesada.setVisible(true);
+            getDefaultCloseOperation();
+        });
     }
 
     private boolean isCellSelected(JTable tabla) {
@@ -237,6 +246,8 @@ public class RegistrarAvanceCampania extends JFrame {
 //    private void limpiarPantalla() {
 //        inicializaTabla();
 //    }
+
+
 
 
     private void cargarLotes(int camId) {

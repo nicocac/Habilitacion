@@ -45,7 +45,7 @@
         <mapping class="Datos.LoteEntity"/>
         <mapping class="Datos.LoteCampaniaEntity"/>
         <mapping class="Datos.TipoLaboreoEntity"/>
-        <mapping class="Datos.LaboreoLoteCampaniaEntity"/>
+        <mapping class="Datos.PlanificacionCampaniaEntity"/>
         <mapping class="Datos.TipoGranoEntity"/>
         <mapping class="Datos.ClienteEntity"/>
         <mapping class="Datos.TipoMedioEntity"/>
@@ -60,6 +60,9 @@
         <mapping class="Datos.TransporteEntity"/>
         <mapping class="Datos.EmpresaEntity"/>
         <mapping class="Datos.LaboreoInsumoMaqEntity"/>
+        <mapping class="Datos.DetallePlanificacionCampaniaLaboreosEntity"/>
+        <mapping class="Datos.DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity"/>
+        <mapping class="Datos.DetalleLaboreosInsumoDePlanificacionCampaniaEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

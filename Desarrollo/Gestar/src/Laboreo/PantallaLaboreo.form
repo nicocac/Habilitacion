@@ -315,7 +315,7 @@
       </component>
       <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
         <constraints>
-          <grid row="38" column="2" row-span="1" col-span="15" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="38" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
@@ -538,14 +538,16 @@
           <toolTipText value="Eliminar Item"/>
         </properties>
       </component>
-      <component id="7a73a" class="javax.swing.JTextField">
+      <component id="7a73a" class="javax.swing.JTextField" binding="txtFechaIni">
         <constraints>
           <grid row="4" column="6" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <forms defaultalign-horz="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="false"/>
+        </properties>
       </component>
       <component id="2f9d3" class="javax.swing.JLabel">
         <constraints>
@@ -567,14 +569,28 @@
           <text value="Fecha Fin  "/>
         </properties>
       </component>
-      <component id="77bf3" class="javax.swing.JTextField">
+      <component id="77bf3" class="javax.swing.JTextField" binding="txtFechaFin">
         <constraints>
           <grid row="4" column="11" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <forms defaultalign-horz="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="c131d" class="javax.swing.JButton">
+        <constraints>
+          <grid row="38" column="10" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+        <properties>
+          <icon value="Imagenes/item.png"/>
+          <inheritsPopupMenu value="true"/>
+          <label value="Generar Orden de trabajo"/>
+          <text value="Generar Orden de trabajo"/>
+        </properties>
       </component>
     </children>
   </grid>
