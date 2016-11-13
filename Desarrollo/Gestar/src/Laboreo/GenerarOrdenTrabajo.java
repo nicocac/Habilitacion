@@ -22,9 +22,12 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by jagm on 01/11/2016.
@@ -302,12 +305,17 @@ public class GenerarOrdenTrabajo extends JFrame {
                     PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
                     document.open();
                     PdfContentByte contentByte = writer.getDirectContent();
-                    PdfTemplate template = contentByte.createTemplate(200, 600);
-                    Graphics2D g2 = template.createGraphics(200, 400);
-                    g2.scale(30,50);
+                    PdfTemplate template = contentByte.createTemplate(700, 300);
+                    Graphics2D g2 = template.createGraphics(700, 300);
+                    g2.scale(0.25,0.25);
                     panel1.print(g2);
                     g2.dispose();
-                    contentByte.addTemplate(template, 30, 300);
+                    contentByte.addTemplate(template, 30, 500);
+                    try {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\jagm\\Desktop\\test.pdf");
+                    }catch (IOException io) {
+                        Logger.getLogger(GenerarOrdenTrabajo.class.getName()).log(Level.SEVERE, null, io);
+                    }
                 } catch (Exception e2) {
                     e2.printStackTrace();
                 }

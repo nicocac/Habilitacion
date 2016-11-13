@@ -409,7 +409,7 @@
           <forms/>
         </constraints>
         <properties>
-          <enabled value="false"/>
+          <enabled value="true"/>
           <text value="Semilla"/>
         </properties>
       </component>
@@ -419,7 +419,7 @@
           <forms/>
         </constraints>
         <properties>
-          <enabled value="false"/>
+          <enabled value="true"/>
         </properties>
       </component>
       <component id="9ae9f" class="javax.swing.JButton" binding="nuevaSemillaBtn">

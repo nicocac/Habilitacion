@@ -53,6 +53,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
         pack();
         this.setTitle("Consultar Campa\u00f1as planificadas");
         inicializaTabla();
+        buscarLaboreos();
 
 
         //BUSCAR

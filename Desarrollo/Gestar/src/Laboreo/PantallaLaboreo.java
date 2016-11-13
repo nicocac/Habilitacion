@@ -94,6 +94,7 @@ public class PantallaLaboreo extends JFrame {
         cargarItems();
         cargarMaquinas();
         cargarCampanias();
+        cargarCbxSemillas();
 //        cargarMomentos();
         cargaComboBoxLaboreo();
         cboCampania.addActionListener(e ->
@@ -659,6 +660,17 @@ public class PantallaLaboreo extends JFrame {
         Iterator iter = listaItems.iterator();
         while (iter.hasNext()) {
             cboMomentos.addItem(iter.next());
+        }
+//        cboMomentos.setSelectedIndex(0);
+    }
+
+    private void cargarCbxSemillas() {
+        java.util.List listaItems;
+        listaItems = gestor.getSemillas();
+
+        Iterator iter = listaItems.iterator();
+        while (iter.hasNext()) {
+            cbxSemillas.addItem(iter.next());
         }
 //        cboMomentos.setSelectedIndex(0);
     }

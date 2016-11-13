@@ -166,6 +166,30 @@ public class GestorLaboreo {
         return retorno;
     }
 
+
+    public List<TipoGranoEntity> getSemillas() {
+        session = Coneccion.getSession();
+        java.util.List list;
+//        LinkedList retorno = new LinkedList();
+        List<TipoGranoEntity> listaTipoGrano = new ArrayList<>();
+        TipoGranoEntity tg;
+        try {
+            Query query = session.createQuery("select t from TipoGranoEntity t where tgrFechaBaja is null");
+            list = query.list();
+            Iterator iter = list.iterator();
+            while (iter.hasNext()) {
+                tg = (TipoGranoEntity) iter.next();
+                listaTipoGrano.add(tg);
+            }
+        } finally {
+            session.close();
+        }
+
+        return listaTipoGrano;
+    }
+
+
+
     public TipoLaboreoEntity getMomentoByNombre(String pMomento) {
         session = Coneccion.getSession();
         java.util.List list;

@@ -5,14 +5,26 @@ import Datos.InsumoEntity;
 import Datos.StockInsumoEntity;
 import Datos.TipoInsumoEntity;
 import Repository.InsumoRepository;
+import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PantallaAdministrarInsumo extends JFrame {
@@ -25,6 +37,7 @@ public class PantallaAdministrarInsumo extends JFrame {
     private JButton btnNuevo;
     private JTable tblInsumos;
     private JButton btnCancelar;
+    public JButton imprimirStockInsumosButton;
     private JTable table1;
     private InsumoEntity insumo;
     private Transaction tx;
@@ -40,10 +53,13 @@ public class PantallaAdministrarInsumo extends JFrame {
 
         //INICIO
         setContentPane(panel1);
+        setBounds(30, 30, 1800, 11800);
+        setSize(1800,1800);
         this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Insumo");
         inicializaTabla();
+        buscarInsumos();
 
 
         //BUSCAR
@@ -114,7 +130,61 @@ public class PantallaAdministrarInsumo extends JFrame {
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
 
+        imprimirStockInsumosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    // Creacion del parrafo
+                    Paragraph paragraph = new Paragraph();
+                    Font fontTitulos = FontFactory.getFont(
+                            FontFactory.COURIER_BOLD, 14, Font.UNDERLINE,
+                            BaseColor.BLACK);
+
+                    paragraph.add(new Phrase("Reporte Stock de Insumos:", fontTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Desktop\\testListado.pdf"));
+                    doc.open();
+                    PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
+                    //adding table headers
+                    for (int i = 0; i < tblInsumos.getColumnCount(); i++) {
+                        pdfTable.addCell(tblInsumos.getColumnName(i));
+                    }
+                    //extracting data from the JTable and inserting it to PdfPTable
+                    for (int rows = 0; rows < tblInsumos.getRowCount() ; rows++) {
+                        for (int cols = 0; cols < tblInsumos.getColumnCount(); cols++) {
+                            pdfTable.addCell(tblInsumos.getModel().getValueAt(rows, cols).toString());
+
+                        }
+                    }
+
+                    doc.add(paragraph);
+                    doc.add(pdfTable);
+                    doc.close();
+                    showMessage("Listado De stock de Insumos Impreso");
+                    System.out.println("Listado De stock de Insumos Impreso");
+//                    doc.open();
+                    String pdfFile = "C:\\Users\\jagm\\Desktop\\testListado.pdf";
+                    try {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
+                    }catch (IOException io) {
+                        Logger.getLogger(PantallaAdministrarInsumo.class.getName()).log(Level.SEVERE, null, io);
+                    }
+
+                } catch (DocumentException ex) {
+                    Logger.getLogger(PantallaAdministrarInsumo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(PantallaAdministrarInsumo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+
+            }
+        });
     }
+
 
     //METODOS
     private void inicializaTabla() {
