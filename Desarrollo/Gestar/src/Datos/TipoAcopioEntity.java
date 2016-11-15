@@ -1,5 +1,7 @@
 package Datos;
 
+import sun.util.resources.cldr.en.TimeZoneNames_en_AU;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
@@ -20,6 +22,7 @@ public class TipoAcopioEntity {
     private String  tipoAcopioUsuarioBaja;
 
     private Collection<IngresoAcopioEntity> ingresoAcopio;
+    private TipoMedioEntity tipoMedio;
     //=================================================================
     @Id
     @GeneratedValue
@@ -116,6 +119,16 @@ public class TipoAcopioEntity {
 
     public void setIngresoAcopio(Collection<IngresoAcopioEntity> ingresoAcopio) {
         this.ingresoAcopio = ingresoAcopio;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_medio_id", referencedColumnName = "ti_medio_id")
+    public TipoMedioEntity getTipoMedio() {
+        return tipoMedio;
+    }
+
+    public void setTipoMedio(TipoMedioEntity tipoMedio) {
+        this.tipoMedio = tipoMedio;
     }
 
     //=================================================================

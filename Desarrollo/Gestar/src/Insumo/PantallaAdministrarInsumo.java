@@ -52,6 +52,11 @@ public class PantallaAdministrarInsumo extends JFrame {
 
 
         //INICIO
+        try{
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         setContentPane(panel1);
         setBounds(30, 30, 1800, 11800);
         setSize(1800,1800);
