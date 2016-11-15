@@ -349,7 +349,7 @@
                 </constraints>
                 <properties>
                   <editable value="false"/>
-                  <enabled value="false"/>
+                  <enabled value="true"/>
                 </properties>
               </component>
               <component id="fa0e7" class="javax.swing.JLabel">
@@ -371,7 +371,7 @@
                 </constraints>
                 <properties>
                   <editable value="false"/>
-                  <enabled value="false"/>
+                  <enabled value="true"/>
                 </properties>
               </component>
               <component id="9e266" class="javax.swing.JLabel">
@@ -393,7 +393,7 @@
                 </constraints>
                 <properties>
                   <editable value="false"/>
-                  <enabled value="false"/>
+                  <enabled value="true"/>
                 </properties>
               </component>
               <component id="a2ad5" class="javax.swing.JTextField">
@@ -547,6 +547,28 @@
                     <item value="Malo"/>
                     <item value="Regular"/>
                   </model>
+                </properties>
+              </component>
+              <component id="76377" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="22" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <labelFor value="42235"/>
+                  <text value="Observaciones"/>
+                </properties>
+              </component>
+              <component id="7e5fd" class="javax.swing.JTextField">
+                <constraints>
+                  <grid row="22" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                  <forms defaultalign-horz="false"/>
+                </constraints>
+                <properties>
+                  <editable value="true"/>
+                  <enabled value="true"/>
                 </properties>
               </component>
             </children>

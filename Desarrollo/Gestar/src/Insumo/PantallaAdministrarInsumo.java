@@ -9,6 +9,8 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,6 +40,7 @@ public class PantallaAdministrarInsumo extends JFrame {
     private JTable tblInsumos;
     private JButton btnCancelar;
     public JButton imprimirStockInsumosButton;
+    public JButton bntAyuda;
     private JTable table1;
     private InsumoEntity insumo;
     private Transaction tx;
@@ -151,7 +154,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Desktop\\testListado.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\testListadoInsu.pdf"));
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
                     //adding table headers
@@ -172,7 +175,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     showMessage("Listado De stock de Insumos Impreso");
                     System.out.println("Listado De stock de Insumos Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\Users\\jagm\\Desktop\\testListado.pdf";
+                    String pdfFile = "C:\\testListadoInsu.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     }catch (IOException io) {
@@ -186,6 +189,20 @@ public class PantallaAdministrarInsumo extends JFrame {
                 }
 
 
+            }
+        });
+
+
+
+
+        bntAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AyudaInsumo ayudaInsumo = new AyudaInsumo();
+                ayudaInsumo.setVisible(true);
+                getDefaultCloseOperation();
+
+//                JasperReport reporte = (JasperReport) JRLoader.loadObject("reporte1.jasper");
             }
         });
     }

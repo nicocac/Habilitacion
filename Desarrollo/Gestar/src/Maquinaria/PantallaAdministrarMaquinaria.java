@@ -4,14 +4,24 @@ import Conexion.Coneccion;
 import Datos.MaquinariaEntity;
 import Datos.TipoEstadoMaquinariaEntity;
 import Datos.TipoMaquinariaEntity;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PantallaAdministrarMaquinaria extends JFrame {
@@ -24,6 +34,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
     private JButton btnEditar;
     private JTable tblMaquinaria;
     private JButton btnCancelar;
+    public JButton imprimirInformeMaquinariasButton;
 
     private JTable table1;
     private MaquinariaEntity maquinaria;
@@ -116,6 +127,59 @@ public class PantallaAdministrarMaquinaria extends JFrame {
         //CANCELAR
         btnCancelar.addActionListener(e -> dispose());
 
+        imprimirInformeMaquinariasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    // Creacion del parrafo
+                    Paragraph paragraph = new Paragraph();
+                    Font fontTitulos = FontFactory.getFont(
+                            FontFactory.COURIER_BOLD, 14, Font.UNDERLINE,
+                            BaseColor.BLACK);
+
+                    paragraph.add(new Phrase("Reporte Stock de Maquinarias:", fontTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\testListadoMaq.pdf"));
+                    doc.open();
+                    PdfPTable pdfTable = new PdfPTable(tblMaquinaria.getColumnCount());
+                    //adding table headers
+                    for (int i = 0; i < tblMaquinaria.getColumnCount(); i++) {
+                        pdfTable.addCell(tblMaquinaria.getColumnName(i));
+                    }
+                    //extracting data from the JTable and inserting it to PdfPTable
+                    for (int rows = 0; rows < tblMaquinaria.getRowCount() ; rows++) {
+                        for (int cols = 0; cols < tblMaquinaria.getColumnCount(); cols++) {
+                            pdfTable.addCell(tblMaquinaria.getModel().getValueAt(rows, cols).toString());
+
+                        }
+                    }
+
+                    doc.add(paragraph);
+                    doc.add(pdfTable);
+                    doc.close();
+                    showMessage("Listado De stock de Maquinarias Impreso");
+                    System.out.println("Listado De stock de Maquinarias Impreso");
+//                    doc.open();
+                    String pdfFile = "C:\\testListadoMaq.pdf";
+                    try {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
+                    }catch (IOException io) {
+                        Logger.getLogger(PantallaAdministrarMaquinaria.class.getName()).log(Level.SEVERE, null, io);
+                    }
+
+                } catch (DocumentException ex) {
+                    Logger.getLogger(PantallaAdministrarMaquinaria.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(PantallaAdministrarMaquinaria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+
+            }
+        });
     }
 
     //METODOS

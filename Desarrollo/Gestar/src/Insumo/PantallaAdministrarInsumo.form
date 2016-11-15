@@ -283,11 +283,13 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="cf40b" class="javax.swing.JButton">
+              <component id="cf40b" class="javax.swing.JButton" binding="bntAyuda">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <focusPainted value="false"/>
+                  <horizontalTextPosition value="11"/>
                   <icon value="Imagenes/help5.png"/>
                   <text value="Ayuda"/>
                 </properties>
