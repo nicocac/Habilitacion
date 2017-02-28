@@ -38,7 +38,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
 
         //INICIO
         setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Administrar Solicitud de insumos");
         inicializaTabla();

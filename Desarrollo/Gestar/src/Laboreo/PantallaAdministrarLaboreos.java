@@ -40,10 +40,11 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
         //INICIO
         setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Laboreos");
         inicializaTabla();
+        buscarLaboreos();
 
 
         //BUSCAR
@@ -118,7 +119,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Descripcion", "Fecha Alta", "Campa�a", "Tipo Laboreo"};
+        String[] columnNames = {"Cod","Nombre", "Tipo Laboreo", "Descripcion", "Fecha Alta",};
         Object[][] data = new Object[1][5];
         setModel(columnNames, data, tblLaboreos);
     }
@@ -127,11 +128,12 @@ public class PantallaAdministrarLaboreos  extends JFrame {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
         tblLaboreos.setModel(model);
-        tblLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblLaboreos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblLaboreos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblLaboreos.getColumnModel().getColumn(2).setPreferredWidth(300);
         tblLaboreos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblLaboreos.getColumnModel().getColumn(4).setPreferredWidth(150);
     }
 
     private void showMessage(String error) {
@@ -191,15 +193,16 @@ public class PantallaAdministrarLaboreos  extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Tipo Laboreo", "Descripcion", "Fecha Alta",};
-            Object[][] data = new Object[list.size()][4];
+            String[] columnNames = {"Cod","Nombre", "Tipo Laboreo", "Descripcion", "Fecha Alta",};
+            Object[][] data = new Object[list.size()][5];
 
             while (iter.hasNext()) {
                 laboreoEntity = (LaboreoEntity) iter.next();
                 data[i][0] = laboreoEntity.getLboId();
-                data[i][1] = laboreoEntity.getTipoLaboreoEntity().getTpoNombre();
-                data[i][2] = laboreoEntity.getLboDescripcion();
-                data[i][3] = laboreoEntity.getLboFechaAlta();
+                data[i][1] = laboreoEntity.getLboNombre();
+                data[i][2] = laboreoEntity.getTipoLaboreoEntity().getTpoNombre();
+                data[i][3] = laboreoEntity.getLboDescripcion();
+                data[i][4] = laboreoEntity.getLboFechaAlta();
 
                 i++;
             }

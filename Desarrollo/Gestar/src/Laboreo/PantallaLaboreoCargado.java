@@ -64,7 +64,18 @@ public class PantallaLaboreoCargado extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
+
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+
+//        setContentPane(panel1);
         pack();
         inicializaTabla();
         cargarItems();
@@ -134,14 +145,6 @@ public class PantallaLaboreoCargado extends JFrame {
 //            return;
         }
 
-        this.setExtendedState(MAXIMIZED_BOTH);
-//        this.setTitle("Registrar Laboreo");
-
-
-//        cargarCampanias();
-//        cargarMomentos();
-//        cboCampania.addActionListener(e -> cargarLotes((Campania) cboCampania.getSelectedItem()));
-//        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
 
         //AGREGAR INSUMO
         btnAgregarItem.addActionListener(e -> {
@@ -254,37 +257,9 @@ public class PantallaLaboreoCargado extends JFrame {
         btnCancelar.addActionListener(e -> dispose());
 
 
-//        //NUEVA CAMPANIA
-//        nuevaCampaniaBtn.addActionListener(e -> {
-//            Campania.CargaCampania cargaCampania = new Campania.CargaCampania("Carga", 0, "", null, null, null);
-//            cargaCampania.setVisible(true);
-//            getDefaultCloseOperation();
-//        });
-
-//        cboCampania.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                super.focusGained(e);
-//                borrarComboBoxCampania();
-//                cargaComboBoxCampania();
-//            }
-//        });
-
         cboMomentos.addMouseListener(new MouseAdapter() {
         });
 
-
-//        cboCampania.addMouseMotionListener(new MouseMotionAdapter() {
-
-//        });
-//        cboCampania.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-//                borrarComboBoxCampania();
-////                cargarCampanias();
-//            }
-//        });
 
 
         //NUEVA ACTIVIDAD
@@ -415,7 +390,8 @@ public class PantallaLaboreoCargado extends JFrame {
 
 
             } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el laboreo: " + e1.toString());
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el laboreo: " + e1.toString());
+                return;
             } finally {
                 JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
                 dispose();
@@ -446,8 +422,8 @@ public class PantallaLaboreoCargado extends JFrame {
 
             try {
                 str = new String((String) tblDetalles.getValueAt(i, 1));
-                if (tipo.equals("Maquinaria") && tipo.equals(tblDetalles.getValueAt(i, 0)))
-                    str = str.substring(0, descripcion.length());
+//                if (tipo.equals("Maquinaria") && tipo.equals(tblDetalles.getValueAt(i, 0)))
+//                    str = str.substring(0, descripcion.length());
             } catch (NullPointerException np) {
                 str = "aaaaaaaaaaaaa";
             }
@@ -498,64 +474,19 @@ public class PantallaLaboreoCargado extends JFrame {
         lstMaquinarias.setModel(modelo);
     }
 
-//    private boolean existeLote() {
-//        if (lstLotes.getSelectedValuesList().size() == 0) {
-//            return false;
-//        }
-//        return true;
-//    }
+
 
     private void limpiarPantalla() {
         inicializaTabla();
     }
 
-//    private void cargarCampanias() {
-//        CampaniaEntity camp;
-//        Campania campania = new Campania();
-//        java.util.List listaItems;
-//        listaItems = gestor.getCampanias();
-//
-//        Iterator iter = listaItems.iterator();
-//        while (iter.hasNext()) {
-//            cboCampania.addItem(iter.next());
-//        }
-//
-//        cboCampania.setSelectedItem(null);
-//
-//    }
 
-    private void cargarMomentos() {
-        java.util.List listaItems;
-        listaItems = gestor.getMomentos();
-
-        Iterator iter = listaItems.iterator();
-        while (iter.hasNext()) {
-            cboMomentos.addItem(iter.next());
-        }
-//        cboMomentos.setSelectedIndex(0);
-    }
 
     private void showMessage(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
 
-//    private void cargarLotes(Campania camp) {
-//        java.util.List lista;
-//        lista = gestor.getLotesCampania(camp);
-//        DefaultListModel modelo = new DefaultListModel();
-//
-//        Iterator iter = lista.iterator();
-//        while (iter.hasNext()) {
-//            modelo.addElement(iter.next());
-//        }
-//        lstLotes.setModel(modelo);
-//    }
-
-
-    private void borrarComboBoxCampania() {
-//        cboCampania.removeAllItems();
-    }
 
     private void borrarComboBoxTipoLaboreo() {
         cboMomentos.removeAllItems();
@@ -565,30 +496,6 @@ public class PantallaLaboreoCargado extends JFrame {
         cbxSemillas.removeAllItems();
     }
 
-
-//    //METODO CARGA COMBO CAMPANIA
-//    private void cargaComboBoxCampania() {
-//        Session session = Coneccion.getSession();
-//        Query query = session.createQuery("SELECT p FROM CampaniaEntity p");
-//        java.util.List<CampaniaEntity> listaCampaniaEntity = query.list();
-//
-////        Vector<String> miVectorcampania = new Vector<>();
-//
-////        Iterator iter = listaItems.iterator();
-////        while (iter.hasNext()) {
-////            cboCampania.addItem(iter.next());
-////        }
-//
-////        cboCampania.setSelectedItem(null);
-//
-//        for (CampaniaEntity campania : listaCampaniaEntity) {
-//            //System.out.println(tipoEstado.getTeMaNombre());
-////            miVectorcampania.add(campania.getCnaDenominacion());
-//            cboCampania.addItem(campania);
-//            cboCampania.setSelectedItem(null);
-//        }
-//
-//    }
 
 
     //METODO CARGA COMBO TIPO LABOREO
@@ -628,23 +535,7 @@ public class PantallaLaboreoCargado extends JFrame {
         // TODO: place custom component creation code here
     }
 }
-//
-//class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-//
-//    private JComponent component = new JTextField();
-//
-//    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-//                                                 int rowIndex, int vColIndex) {
-//
-//        ((JTextField) component).setText(String.valueOf(value));
-//
-//        return component;
-//    }
-//
-//    public Object getCellEditorValue() {
-//        return ((JTextField) component).getText();
-//    }
-//}
+
 
 
 

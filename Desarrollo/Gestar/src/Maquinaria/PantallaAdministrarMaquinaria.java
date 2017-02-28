@@ -48,12 +48,21 @@ public class PantallaAdministrarMaquinaria extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Maquinaria");
         inicializaTabla();
-
+        buscarMaquinarias();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
@@ -143,7 +152,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\testListadoMaq.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListadoMaq.pdf"));
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblMaquinaria.getColumnCount());
                     //adding table headers
@@ -153,8 +162,11 @@ public class PantallaAdministrarMaquinaria extends JFrame {
                     //extracting data from the JTable and inserting it to PdfPTable
                     for (int rows = 0; rows < tblMaquinaria.getRowCount() ; rows++) {
                         for (int cols = 0; cols < tblMaquinaria.getColumnCount(); cols++) {
-                            pdfTable.addCell(tblMaquinaria.getModel().getValueAt(rows, cols).toString());
-
+                            if(tblMaquinaria.getModel().getValueAt(rows, cols) != null){
+                                pdfTable.addCell(tblMaquinaria.getModel().getValueAt(rows, cols).toString());
+                            } else {
+                                pdfTable.addCell("Sin Datos");
+                            }
                         }
                     }
 
@@ -164,7 +176,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
                     showMessage("Listado De stock de Maquinarias Impreso");
                     System.out.println("Listado De stock de Maquinarias Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\testListadoMaq.pdf";
+                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListadoMaq.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     }catch (IOException io) {

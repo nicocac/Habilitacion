@@ -42,7 +42,7 @@ public class PantallaAdministrarLote extends JFrame {
 
         //INICIO
         setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Lote");
         inicializaTabla();

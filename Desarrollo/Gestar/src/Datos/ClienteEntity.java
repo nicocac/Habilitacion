@@ -24,6 +24,7 @@ public class ClienteEntity {
     private Date clienteFechaBaja;
     private String clienteUsuarioBaja;
 
+    private TipoClienteEntity tipoClienteEntity;
     //=================================================================
 
     @Id
@@ -125,6 +126,17 @@ public class ClienteEntity {
 
     public void setClienteUsuarioBaja(String clienteUsuarioBaja) {
         this.clienteUsuarioBaja = clienteUsuarioBaja;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_cliente_entity", referencedColumnName = "tin_id")
+    public TipoClienteEntity getTipoClienteEntity() {
+        return tipoClienteEntity;
+    }
+
+    public void setTipoClienteEntity(TipoClienteEntity tipoClienteEntity) {
+        this.tipoClienteEntity = tipoClienteEntity;
     }
 
     //=================================================================

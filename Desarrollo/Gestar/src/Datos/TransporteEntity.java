@@ -21,6 +21,8 @@ public class TransporteEntity {
     private Date   transporteFechaBaja;
     private String transporteUsuarioBaja;
 
+    private TipoTransporteEntity tipoTransporteEntity;
+
     //=================================================================
 
     @Id
@@ -104,6 +106,17 @@ public class TransporteEntity {
 
     public void setTransporteUsuarioBaja(String transporteUsuarioBaja) {
         this.transporteUsuarioBaja = transporteUsuarioBaja;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_transporte_entity", referencedColumnName = "tin_id")
+    public TipoTransporteEntity getTipoTransporteEntity() {
+        return tipoTransporteEntity;
+    }
+
+    public void setTipoTransporteEntity(TipoTransporteEntity tipoTransporteEntity) {
+        this.tipoTransporteEntity = tipoTransporteEntity;
     }
 
 

@@ -2,6 +2,8 @@ package Cliente;
 
 import Conexion.Coneccion;
 import Datos.ClienteEntity;
+import Datos.TipoClienteEntity;
+import Repository.ClienteRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,6 +31,8 @@ public class PantallaAdministrarCliente extends JFrame {
     private Transaction tx;
     private DefaultTableModel model;
 
+    ClienteRepository clienteRepository = new ClienteRepository();
+
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
@@ -36,8 +40,17 @@ public class PantallaAdministrarCliente extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Clientes");
         inicializaTabla();
@@ -67,7 +80,8 @@ public class PantallaAdministrarCliente extends JFrame {
             int insId = (int) tblClientes.getModel().getValueAt(fila, 0);
             String nombre = (String) tblClientes.getModel().getValueAt(fila, 1);
             String apellido = (String) tblClientes.getModel().getValueAt(fila, 2);
-            String tipoCliente = (String) tblClientes.getModel().getValueAt(fila, 3);
+            TipoClienteEntity tipoCliente = (TipoClienteEntity) tblClientes.getModel().getValueAt(fila, 3);
+
             String cuitCuil = (String) tblClientes.getModel().getValueAt(fila, 4);
 
             CargaCliente carga = new CargaCliente("Modificacion", nombre, apellido, tipoCliente, cuitCuil, insId);
@@ -90,7 +104,7 @@ public class PantallaAdministrarCliente extends JFrame {
                     break;
                 }
                 case 2: {
-                    showMessage("No se pudo dar de baja el insumo.");
+                    showMessage("No se pudo dar de baja el Cliente.");
                     break;
                 }
             }
@@ -100,7 +114,7 @@ public class PantallaAdministrarCliente extends JFrame {
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-            CargaCliente cargaCliente = new CargaCliente("Carga", "", "", "","", 0);
+            CargaCliente cargaCliente = new CargaCliente("Carga", "", "", null,"", 0);
             cargaCliente.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
@@ -147,12 +161,15 @@ public class PantallaAdministrarCliente extends JFrame {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            cliente.setClienteId((int) tblClientes.getModel().getValueAt(fila, 0));
-            cliente.setClienteNombre((String) tblClientes.getModel().getValueAt(fila, 1));
-            cliente.setClienteApellido((String) tblClientes.getModel().getValueAt(fila, 2));
-            cliente.setClienteCuitCuil((String) tblClientes.getModel().getValueAt(fila, 3));
-            cliente.setClienteFechaAlta(fechaActual);
-            cliente.setClienteUsuarioAlta("adminBajaCliente");
+
+            cliente = clienteRepository.getClienteById((Long) tblClientes.getModel().getValueAt(fila, 0));
+
+//            cliente.setClienteId((int) tblClientes.getModel().getValueAt(fila, 0));
+//            cliente.setClienteNombre((String) tblClientes.getModel().getValueAt(fila, 1));
+//            cliente.setClienteApellido((String) tblClientes.getModel().getValueAt(fila, 2));
+//            cliente.setClienteCuitCuil((String) tblClientes.getModel().getValueAt(fila, 3));
+//            cliente.setClienteFechaAlta(fechaActual);
+//            cliente.setClienteUsuarioAlta("adminBajaCliente");
             cliente.setClienteFechaUltMod(fechaActual);
             cliente.setClienteUsuarioUltMod("adminBajaCliente");
             cliente.setClienteFechaBaja(fechaActual);
@@ -195,7 +212,11 @@ public class PantallaAdministrarCliente extends JFrame {
                 data[i][0] = cliente.getClienteId();
                 data[i][1] = cliente.getClienteNombre();
                 data[i][2] = cliente.getClienteApellido();
-                data[i][3] = cliente.getClienteApellido();
+                if(cliente.getTipoClienteEntity() == null){
+                    data[i][3] = null;
+                } else {
+                    data[i][3] = cliente.getTipoClienteEntity().getTinNombre();
+                }
                 data[i][4] = cliente.getClienteCuitCuil();
                 i++;
             }

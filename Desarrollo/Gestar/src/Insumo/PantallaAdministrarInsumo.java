@@ -2,15 +2,12 @@ package Insumo;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
-import Datos.StockInsumoEntity;
 import Datos.TipoInsumoEntity;
 import Repository.InsumoRepository;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -41,6 +38,7 @@ public class PantallaAdministrarInsumo extends JFrame {
     private JButton btnCancelar;
     public JButton imprimirStockInsumosButton;
     public JButton bntAyuda;
+    public JScrollPane jscroll;
     private JTable table1;
     private InsumoEntity insumo;
     private Transaction tx;
@@ -48,6 +46,7 @@ public class PantallaAdministrarInsumo extends JFrame {
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
+
     InsumoRepository insumoRepository = new InsumoRepository();
 
 
@@ -55,15 +54,21 @@ public class PantallaAdministrarInsumo extends JFrame {
 
 
         //INICIO
-        try{
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        setContentPane(panel1);
-        setBounds(30, 30, 1800, 11800);
-        setSize(1800,1800);
-        this.setExtendedState(MAXIMIZED_BOTH);
+
+
+        JPanel container = new JPanel();
+        container.setPreferredSize(new Dimension(900, 800));
+        panel1.setPreferredSize(new Dimension(900, 800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+
+
+//        setContentPane(panel1);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Insumo");
         inicializaTabla();
@@ -154,7 +159,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\testListadoInsu.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListado.pdf"));
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
                     //adding table headers
@@ -175,7 +180,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     showMessage("Listado De stock de Insumos Impreso");
                     System.out.println("Listado De stock de Insumos Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\testListadoInsu.pdf";
+                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListado.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     }catch (IOException io) {
@@ -213,6 +218,7 @@ public class PantallaAdministrarInsumo extends JFrame {
         String[] columnNames = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock"};
         Object[][] data = new Object[1][6];
         setModel(columnNames, data, tblInsumos);
+        jscroll.setBounds(10, 10, 1300, 800);
     }
 
     private void setModel(String[] columnames, Object[][] data, JTable tabla) {

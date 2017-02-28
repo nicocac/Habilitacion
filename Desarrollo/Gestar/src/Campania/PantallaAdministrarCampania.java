@@ -2,6 +2,7 @@ package Campania;
 
 import Conexion.Coneccion;
 import Datos.*;
+import Laboreo.AdministrarOrdenesPorCampania;
 import Laboreo.RegistrarAvanceCampania;
 import Maquinaria.CargaMaquinaria;
 import TipoInsumo.CargaTipoInsumo;
@@ -43,8 +44,17 @@ public class PantallaAdministrarCampania extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Campania");
         inicializaTabla();
@@ -128,6 +138,9 @@ public class PantallaAdministrarCampania extends JFrame {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return;
             }
+
+
+
             int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
             String denominacion = (String) tblCampania.getModel().getValueAt(fila, 1);
             Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 2);
@@ -136,9 +149,13 @@ public class PantallaAdministrarCampania extends JFrame {
 
 //           CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
 
-            RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga",camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
-            avanceCampania.setVisible(true);
+            AdministrarOrdenesPorCampania ordenesCampania = new AdministrarOrdenesPorCampania("Carga", camId);
+            ordenesCampania.setVisible(true);
             getDefaultCloseOperation();
+
+//            RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga",camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
+//            avanceCampania.setVisible(true);
+//            getDefaultCloseOperation();
 
             inicializaTabla();
 

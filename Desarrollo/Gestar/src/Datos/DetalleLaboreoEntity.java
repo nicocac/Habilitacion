@@ -152,7 +152,7 @@ public class DetalleLaboreoEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id", nullable = false)
+    @JoinColumn(name = "dbo_lbo_id", referencedColumnName = "lbo_id")
     public LaboreoEntity getLaboreoByDboLboId() {
         return laboreoByDboLboId;
     }

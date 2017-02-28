@@ -72,7 +72,16 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
         pack();
 //        inicializaTabla();
 //        cargarItems();
@@ -91,7 +100,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 
         lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
 
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Orden de trabajo");
 
 
@@ -151,7 +160,6 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //                cargaComboBoxCampania();
 //            }
 //        });
-
 
 
 //        cboCampania.addMouseMotionListener(new MouseMotionAdapter() {
@@ -294,9 +302,13 @@ public class AdministrarOrdenesPorCampania extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-            RegistrarAvanceCampania cargaTipoLaboreo = new RegistrarAvanceCampania("Carga",0, "", null,null, null);
-            cargaTipoLaboreo.setVisible(true);
-            getDefaultCloseOperation();
+//                RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
+//                avanceCampania.setVisible(true);
+                getDefaultCloseOperation();
+
+                RegistrarAvanceCampania cargaTipoLaboreo = new RegistrarAvanceCampania("Carga", 0, "", null, null, null);
+                cargaTipoLaboreo.setVisible(true);
+                getDefaultCloseOperation();
                 dispose();
             }
         });
@@ -520,8 +532,8 @@ public class AdministrarOrdenesPorCampania extends JFrame {
         Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
         int i = 0;
         if (listaIns.size() != 0) {
-            for (Object[] row: listaIns) {
-                InsumoEntity insumoEntity = (InsumoEntity)row[0];
+            for (Object[] row : listaIns) {
+                InsumoEntity insumoEntity = (InsumoEntity) row[0];
                 Integer cantidad = (Integer) row[1];
 
                 data[i][0] = "Insumo";
@@ -533,11 +545,11 @@ public class AdministrarOrdenesPorCampania extends JFrame {
         }
 
         if (listaMaq.size() != 0) {
-            for (Object[] row: listaMaq) {
-                MaquinariaEntity maquinariaEntity = (MaquinariaEntity)row[0];
+            for (Object[] row : listaMaq) {
+                MaquinariaEntity maquinariaEntity = (MaquinariaEntity) row[0];
                 Integer cantidad = (Integer) row[1];
 
-                data[i][0] =  "Maquinaria";
+                data[i][0] = "Maquinaria";
                 data[i][1] = maquinariaEntity.getMaqNombre();
                 data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                 data[i][3] = String.valueOf(cantidad);

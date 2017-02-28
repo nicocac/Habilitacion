@@ -472,6 +472,30 @@ public class GestorLaboreo {
     }
 
 
+    public void registrarEgresoSemillas(ArrayList<DetalleEgresoAcopioEntity> detallesEgreso,
+                                           AcopioEntity acopio, EgresoAcopioEntity egresoAcopio,
+                                           TipoGranoEntity tipoGrano) {
+
+        Session session = Coneccion.getSession();
+        Transaction tx = session.beginTransaction();
+
+        session.save(egresoAcopio);
+
+        for(DetalleEgresoAcopioEntity detalle: detallesEgreso){
+            detalle.setEgresoAcopio(egresoAcopio);
+            session.save(detalle);
+        }
+
+        try {
+            tx.commit();
+        }catch(Exception ex){
+            tx.rollback();
+        }
+        session.close();
+    }
+
+
+
     public List<Object[]> getInsumosByLaboreo(Long labId) {
         session = Coneccion.getSession();
 

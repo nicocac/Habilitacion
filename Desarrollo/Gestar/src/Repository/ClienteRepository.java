@@ -1,6 +1,7 @@
 package Repository;
 
 import Conexion.Coneccion;
+import Datos.ClienteEntity;
 import Datos.InsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,15 +16,15 @@ import java.util.List;
 public class ClienteRepository {
     Session session = Coneccion.getSession();
 
-    public List<InsumoEntity> getAllInsumos(){
-        List<InsumoEntity> listaInsumo = new ArrayList<>();
+    public List<ClienteEntity> getAllClientes(){
+        List<ClienteEntity> listaInsumo = new ArrayList<>();
         session = Coneccion.getSession();
-        InsumoEntity insumo;
-        Query query = session.createQuery("select x from InsumoEntity x");
+        ClienteEntity insumo;
+        Query query = session.createQuery("select x from ClienteEntity x");
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            insumo = (ClienteEntity) iter.next();
             listaInsumo.add(insumo);
         }
         session.close();
@@ -31,30 +32,30 @@ public class ClienteRepository {
     }
 
 
-    public InsumoEntity getInsumoByNombre(String nombre){
+    public ClienteEntity getClienteByNombre(String nombre){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
+        ClienteEntity insumo = new ClienteEntity();
+        Query query = session.createQuery("select x from ClienteEntity x where ucase(clienteNombre) like ucase(:pNombre) and clienteFechaBaja is null");
         query.setParameter("pNombre", nombre);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            insumo = (ClienteEntity) iter.next();
         }
         session.close();
         return insumo;
     }
 
 
-    public InsumoEntity getInsumoById(Long id){
+    public ClienteEntity getClienteById(Long id){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
+        ClienteEntity insumo = new ClienteEntity();
+        Query query = session.createQuery("select x from ClienteEntity x where ucase(clienteNombre) like ucase(:pId) and clienteFechaBaja is null");
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            insumo = (ClienteEntity) iter.next();
         }
         session.close();
         return insumo;

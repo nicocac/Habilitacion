@@ -91,7 +91,7 @@ public class TicketPesada  extends JFrame {
 
 //        lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
 
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Peso de Laboreo");
 
 

@@ -18,6 +18,7 @@ public class IngresoAcopioEntity {
     private Date ingresoFecha;
     private Integer ingresoCantidadTotal;
     private String estadoSemilla;
+    private String descripcion;
 
     private Date ingresoFechaAlta;
     private String ingresoUsuarioAlta;
@@ -28,12 +29,14 @@ public class IngresoAcopioEntity {
 
 //    private List<DetalleIngresoAcopioEntity> listaDetalleAcopioEntity;
 
+    private AcopioEntity acopio;
     private TipoAcopioEntity tipoAcopio;
     private TipoLaboreoEntity tipoLaboreo;
     private LoteEntity lote;
     private CampaniaEntity campania;
     private TipoGranoEntity tipoGrano;
     private EmpresaEntity empresa;
+    private ClienteEntity cliente;
 
     //======================================================================================
 
@@ -161,6 +164,16 @@ public class IngresoAcopioEntity {
     }
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id")
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "tipo_laboreo_id", referencedColumnName = "tpo_id")
     public TipoLaboreoEntity getTipoLaboreo() {
         return tipoLaboreo;
@@ -170,6 +183,16 @@ public class IngresoAcopioEntity {
         this.tipoLaboreo = tipoLaboreo;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "acopio_id", referencedColumnName = "acopio_id")
+    public AcopioEntity getAcopio() {
+        return acopio;
+    }
+
+    public void setAcopio(AcopioEntity acopio) {
+        this.acopio = acopio;
+    }
+
     @Column(name = "ingreso_estado")
     public String getEstadoSemilla() {
         return estadoSemilla;
@@ -177,5 +200,16 @@ public class IngresoAcopioEntity {
 
     public void setEstadoSemilla(String estadoSemilla) {
         this.estadoSemilla = estadoSemilla;
+    }
+
+
+    @Column(name = "ingreso_descripcion")
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

@@ -1,9 +1,12 @@
 package Cliente;
 
+import Cliente.TipoCliente.CargaTipoCliente;
 import Conexion.Coneccion;
 import Datos.ClienteEntity;
 import Datos.InsumoEntity;
+import Datos.TipoClienteEntity;
 import Datos.TipoInsumoEntity;
+import Repository.TipoClienteRepository;
 import Repository.TipoInsumoRepository;
 import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Session;
@@ -35,10 +38,10 @@ public class CargaCliente extends JFrame {
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
 
-    TipoInsumoRepository tipoInsumoRepository = new TipoInsumoRepository();
+    TipoClienteRepository tipoClienteRepository = new TipoClienteRepository();
 
 
-    public CargaCliente(String operacion, String nombre, String apellido, String tipoCliente, String cuitCuil, int id) {
+    public CargaCliente(String operacion, String nombre, String apellido, TipoClienteEntity tipoCliente, String cuitCuil, int id) {
 
         //INICIO
         setContentPane(panel1);
@@ -74,7 +77,7 @@ public class CargaCliente extends JFrame {
         }
 
         nuevoTipoCliente.addActionListener(e -> {
-            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
+            CargaTipoCliente cargaTipoInsumo = new CargaTipoCliente("Carga", "", "", 0);
             cargaTipoInsumo.setVisible(true);
             getDefaultCloseOperation();
         });
@@ -105,11 +108,11 @@ public class CargaCliente extends JFrame {
                 cliente.setClienteFechaAlta(fechaActual);
                 cliente.setClienteUsuarioAlta("admin");
                 cliente.setClienteCuitCuil(txtCuitCuil.getText());
-//                cliente.setTipoCliente(cbxTipoCliente.getSelectedItem().toString());
+//                cliente.setTipoClienteEntity(cbxTipoCliente.getSelectedItem().toString());
 
-//                String tipoInsumo = cbxTipoInsumo.getSelectedItem().toString();
-//                TipoInsumoEntity tipoInsumoEntity = tipoInsumoRepository.getTipoInsumoByNombre(tipoInsumo);
-//                insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
+                String tipoCliente = cbxTipoCliente.getSelectedItem().toString();
+                TipoClienteEntity tipoClienteEntity = tipoClienteRepository.getTipoClienteByNombre(tipoCliente);
+                cliente.setTipoClienteEntity(tipoClienteEntity);
 
                 Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
@@ -122,7 +125,7 @@ public class CargaCliente extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el cliente: " + e.toString());
+                JOptionPane.showMessageDialog(this, "Error al cargar el cliente: " + e.toString());
             } finally {
                 session.close();
             }
@@ -150,10 +153,10 @@ public class CargaCliente extends JFrame {
     //METODO CARGA COMBO
     private void cargaComboBoxTipo() {
 
-        List<TipoInsumoEntity> listaTipoInsumo = tipoInsumoRepository.getAllTipoInsumos();
+        List<TipoClienteEntity> listaTipoCliente = tipoClienteRepository.getAllTipoClientes();
 
         Vector<String> mivector = new Vector<>();
-        for (TipoInsumoEntity tipoInsumo : listaTipoInsumo) {
+        for (TipoClienteEntity tipoInsumo : listaTipoCliente) {
             mivector.add(tipoInsumo.getTinNombre());
             cbxTipoCliente.addItem(tipoInsumo);
         }

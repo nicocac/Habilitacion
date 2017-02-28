@@ -25,7 +25,7 @@ public class DetalleEgresoAcopioEntity {
 
     private EgresoAcopioEntity egresoAcopio;
     private TipoGranoEntity tipoGrano;
-    private TipoAcopioEntity tipoAcopio;
+    private AcopioEntity acopio;
 
 
 
@@ -133,6 +133,7 @@ public class DetalleEgresoAcopioEntity {
     public void setEgresoAcopio(EgresoAcopioEntity egresoAcopio) {
         this.egresoAcopio = egresoAcopio;
     }
+
     @ManyToOne
     @JoinColumn(name = "tipo_grano_id", referencedColumnName = "tgr_id")
     public TipoGranoEntity getTipoGrano() {
@@ -142,16 +143,15 @@ public class DetalleEgresoAcopioEntity {
     public void setTipoGrano(TipoGranoEntity tipoGrano) {
         this.tipoGrano = tipoGrano;
     }
+
+
     @ManyToOne
-    @JoinColumn(name = "tipo_acopio_id", referencedColumnName = "tipo_acopio_id")
-    public TipoAcopioEntity getTipoAcopio() {
-        return tipoAcopio;
+    @JoinColumn(name = "acopio_id", referencedColumnName = "acopio_id")
+    public AcopioEntity getAcopio() {
+        return acopio;
     }
 
-    public void setTipoAcopio(TipoAcopioEntity tipoAcopio) {
-        this.tipoAcopio = tipoAcopio;
+    public void setAcopio(AcopioEntity acopio) {
+        this.acopio = acopio;
     }
-
-
-
 }

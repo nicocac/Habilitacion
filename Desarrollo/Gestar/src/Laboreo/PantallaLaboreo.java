@@ -1,18 +1,15 @@
 package Laboreo;
 
-import Campania.CargaCampania;
 import Campania.Campania;
+import Campania.CargaCampania;
 import Conexion.Coneccion;
 import Date.DateLabelFormatter;
 import Datos.*;
 import Granos.CargaTipoGrano;
-import Granos.TipoGrano;
-import Insumo.Insumo;
 import Insumo.CargaInsumo;
-import Laboreo.TipoLaboreo.CargaTipoLaboreo;
-import Maquinaria.Maquinaria;
+import Insumo.Insumo;
 import Maquinaria.CargaMaquinaria;
-import Procesos.PantallaAdministrarSolicitudInsumos;
+import Maquinaria.Maquinaria;
 import Repository.InsumoRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,8 +18,6 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
@@ -66,6 +61,8 @@ public class PantallaLaboreo extends JFrame {
     public JTable tableLaboreos;
     public JTextField txtFechaIni;
     public JTextField txtFechaFin;
+    public JButton btnQuitarInsumosOMaq;
+    public JButton btnQuitarLaboreos;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
@@ -77,9 +74,21 @@ public class PantallaLaboreo extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
-        pack();
 
+
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+
+//        setContentPane(panel1);
+        pack();
+//        this.set
 //        tipoOperacion = operacion;
 //        if (tipoOperacion.equals("Carga")) {
 //            this.setTitle("Cargar Tipo de Insumo");
@@ -87,7 +96,7 @@ public class PantallaLaboreo extends JFrame {
 //            this.setTitle("Modificar Tipo de Insumo");
 //        }
 
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Planificar Campaña");
         inicializaTabla();
         inicializaTablaLaboreos();
@@ -319,8 +328,8 @@ public class PantallaLaboreo extends JFrame {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
-//                borrarComboBoxTipoLaboreo();
-//                cargaComboBoxLaboreo();
+                borrarComboBoxTipoLaboreo();
+                cargaComboBoxLaboreo();
             }
         });
 
@@ -372,6 +381,7 @@ public class PantallaLaboreo extends JFrame {
             Boolean sinStock = false;
             String insumosSinStock = "";
 
+            //Cargar detalles de insumos y maquinarias
             for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                 DetalleLaboreo det = new DetalleLaboreo();
                 if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
@@ -398,6 +408,7 @@ public class PantallaLaboreo extends JFrame {
                 detalles.add(det);
             }
 
+            //METODO RECHAZADO :(
 //            if (sinStock) {
 ////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
 //                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
@@ -435,7 +446,7 @@ public class PantallaLaboreo extends JFrame {
 
 
             } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la Planificacion de Campaña: " + e1.toString());
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la Planificacion de Campaña: " + e1.toString());
             } finally {
                 JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
                 dispose();
@@ -524,6 +535,48 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
+
+        //ELIMINAR INSUMO DE LA TABLA
+        btnQuitarInsumosOMaq.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isCellSelected(tblDetalles)) {
+                    showMessage("Debe seleccionar un item para continuar.");
+                    return;
+                }
+                int fila = tblDetalles.getSelectedRow();
+                if (fila == 0) {
+                    tblDetalles.setValueAt("", 0, 0);
+                    tblDetalles.setValueAt("", 0, 1);
+                    tblDetalles.setValueAt("", 0, 2);
+                    tblDetalles.setValueAt("", 0, 3);
+                } else {
+                    DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
+                    modelo.removeRow(tblDetalles.getSelectedRow());
+                }
+            }
+        });
+
+        //ELIMINAR LABOREO DE LA TABLA
+        btnQuitarLaboreos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isCellSelected(tableLaboreos)) {
+                    showMessage("Debe seleccionar un item para continuar.");
+                    return;
+                }
+                int fila = tableLaboreos.getSelectedRow();
+                if (fila == 0) {
+                    tableLaboreos.setValueAt("", 0, 0);
+                    tableLaboreos.setValueAt("", 0, 1);
+                    tableLaboreos.setValueAt("", 0, 2);
+                    tableLaboreos.setValueAt("", 0, 3);
+                } else {
+                    DefaultTableModel modelo = (DefaultTableModel) tableLaboreos.getModel();
+                    modelo.removeRow(tableLaboreos.getSelectedRow());
+                }
+            }
+        });
     }
 
 

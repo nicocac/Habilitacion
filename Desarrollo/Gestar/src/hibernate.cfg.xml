@@ -23,11 +23,18 @@
 
         <property name="hbm2ddl.auto">
             update
+
         </property>
 
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestar</property>
+
+
+        <property name="hibernate.hbm2ddl.import_files">hibernate.hbm2ddl.import_files="/import.sql"</property>
+        <!--<property name="hibernate.hbm2ddl.import_files">Datos/Dump20161113.sql</property>-->
+
+
 
         <mapping class="Datos.InsumoEntity"/>
         <!--<mapping class="Datos.MovimientosStockEntity"/>-->
@@ -63,6 +70,8 @@
         <mapping class="Datos.DetallePlanificacionCampaniaLaboreosEntity"/>
         <mapping class="Datos.DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity"/>
         <mapping class="Datos.DetalleLaboreosInsumoDePlanificacionCampaniaEntity"/>
+        <mapping class="Datos.TipoClienteEntity"/>
+        <mapping class="Datos.TipoTransporteEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

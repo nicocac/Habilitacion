@@ -171,11 +171,11 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <scrollpane id="28f86">
+                  <scrollpane id="28f86" binding="jscroll">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <minimum-size width="700" height="300"/>
-                        <preferred-size width="700" height="300"/>
+                        <preferred-size width="900" height="500"/>
                         <maximum-size width="700" height="300"/>
                       </grid>
                     </constraints>
@@ -187,8 +187,11 @@
                         <properties>
                           <autoCreateRowSorter value="true"/>
                           <autoResizeMode value="4"/>
+                          <autoscrolls value="true"/>
                           <cellSelectionEnabled value="true"/>
+                          <fillsViewportHeight value="true"/>
                           <name value="Tipo de Insumos"/>
+                          <preferredSize width="900" height="500"/>
                         </properties>
                       </component>
                     </children>
