@@ -33,15 +33,15 @@ public class LaboreoRepository {
     }
 
 
-    public TipoLaboreoEntity getTipoLaboreoByNombre(String nombre){
+    public LaboreoEntity getLaboreoByNombre(String nombre){
          session = Coneccion.getSession();
-        TipoLaboreoEntity tipoLaboreo = new TipoLaboreoEntity();
-        Query query = session.createQuery("select x from TipoLaboreoEntity x where ucase(tpoNombre) like ucase(:pNombre) and tpoFechaBaja is null");
+        LaboreoEntity tipoLaboreo = new LaboreoEntity();
+        Query query = session.createQuery("select x from LaboreoEntity x where ucase(lboNombre) like ucase(:pNombre) and lboFechaBaja is null");
         query.setParameter("pNombre", nombre);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            tipoLaboreo = (TipoLaboreoEntity) iter.next();
+            tipoLaboreo = (LaboreoEntity) iter.next();
         }
         session.close();
         return tipoLaboreo;

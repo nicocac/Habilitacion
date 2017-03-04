@@ -7,14 +7,13 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "detalle_insumos_labore_planificacion_campania", schema = "", catalog = "gestar")
+@Table(name = "detalle_laboreos_insumo_de_planificacion_campania", schema = "", catalog = "gestar")
 public class DetalleLaboreosInsumoDePlanificacionCampaniaEntity {
 
 
     private Integer id;
     private String observaciones;
     private int cantidadInsumo;
-    private int cantidadMaquinaria;
 
     private Date fechaAlta;
     private String usuarioAlta;
@@ -23,13 +22,9 @@ public class DetalleLaboreosInsumoDePlanificacionCampaniaEntity {
     private Date fechaBaja;
     private String usuarioBaja;
 
-    private  PlanificacionCampaniaEntity planificacion;
-    private LaboreoEntity laboreo;
+    private  DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreos;
     private InsumoEntity insumo;
 
-//    private MaquinariaEntity maquinaria;
-    private TipoGranoEntity tipoGrano;
-    private LoteCampaniaEntity loteCampania;
 
     @Id
     @GeneratedValue
@@ -62,15 +57,6 @@ public class DetalleLaboreosInsumoDePlanificacionCampaniaEntity {
         this.cantidadInsumo = cantidadInsumo;
     }
 
-    @Basic
-    @Column(name = "cantidad_maquinaria")
-    public int getCantidadMaquinaria() {
-        return cantidadMaquinaria;
-    }
-
-    public void setCantidadMaquinaria(int cantidadMaquinaria) {
-        this.cantidadMaquinaria = cantidadMaquinaria;
-    }
 
     @Basic
     @Column(name = "fecha_alta")
@@ -142,55 +128,18 @@ public class DetalleLaboreosInsumoDePlanificacionCampaniaEntity {
         this.insumo = insumo;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "maquinaria_id", referencedColumnName = "maq_id")
-//    public MaquinariaEntity getMaquinaria() {
-//        return maquinaria;
-//    }
-//
-//    public void setMaquinaria(MaquinariaEntity maquinaria) {
-//        this.maquinaria = maquinaria;
-//    }
 
     @ManyToOne
-    @JoinColumn(name = "laboreo_id", referencedColumnName = "lbo_id", nullable = false)
-    public LaboreoEntity getLaboreo() {
-        return laboreo;
+    @JoinColumn(name = "detalle_planificacion_campania_laboreos_id", referencedColumnName = "id")
+
+    public DetallePlanificacionCampaniaLaboreosEntity getDetallePlanificacionCampaniaLaboreos() {
+        return detallePlanificacionCampaniaLaboreos;
     }
 
-    public void setLaboreo(LaboreoEntity laboreo) {
-        this.laboreo = laboreo;
+    public void setDetallePlanificacionCampaniaLaboreos(DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreos) {
+        this.detallePlanificacionCampaniaLaboreos = detallePlanificacionCampaniaLaboreos;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "lote_campania_id", referencedColumnName = "lcp_id")
-    public LoteCampaniaEntity getLoteCampania() {
-        return loteCampania;
-    }
-
-    public void setLoteCampania(LoteCampaniaEntity loteCampania) {
-        this.loteCampania = loteCampania;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "tipo_grano_id", referencedColumnName = "tgr_id")
-    public TipoGranoEntity getTipoGrano() {
-        return tipoGrano;
-    }
-
-    public void setTipoGrano(TipoGranoEntity tipoGrano) {
-        this.tipoGrano = tipoGrano;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "planificacion_campania_id", referencedColumnName = "planificacion_id")
-    public PlanificacionCampaniaEntity getPlanificacion() {
-        return planificacion;
-    }
-
-    public void setPlanificacion(PlanificacionCampaniaEntity planificacion) {
-        this.planificacion = planificacion;
-    }
 
     //=================================================================
 

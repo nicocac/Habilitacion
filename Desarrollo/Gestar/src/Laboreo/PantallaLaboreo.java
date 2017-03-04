@@ -10,7 +10,10 @@ import Insumo.CargaInsumo;
 import Insumo.Insumo;
 import Maquinaria.CargaMaquinaria;
 import Maquinaria.Maquinaria;
+import Repository.CampaniaRepository;
 import Repository.InsumoRepository;
+import Repository.LaboreoRepository;
+import Repository.LoteRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -63,12 +66,16 @@ public class PantallaLaboreo extends JFrame {
     public JTextField txtFechaFin;
     public JButton btnQuitarInsumosOMaq;
     public JButton btnQuitarLaboreos;
+    public JButton btnGenerarOrden;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
     private String tipoOperacion;
 
     InsumoRepository insumoRepository = new InsumoRepository();
+    LaboreoRepository laboreoRepository = new LaboreoRepository();
+    LoteRepository loteRepository = new LoteRepository();
+    CampaniaRepository campaniaRepository = new CampaniaRepository();
 
     public PantallaLaboreo() {
 
@@ -106,6 +113,11 @@ public class PantallaLaboreo extends JFrame {
         cargarCbxSemillas();
 //        cargarMomentos();
         cargaComboBoxLaboreo();
+
+        Planificacion planificacion = new Planificacion();
+        ArrayList<DetalleLote> listaDetalleDeLotes = new ArrayList<>();
+        ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
+
         cboCampania.addActionListener(e ->
                         cargarLotes((Campania) cboCampania.getSelectedItem())
 
@@ -208,11 +220,11 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-
         //AGREGAR LABOREO
         btnAgregarLaboreo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//
                 if (cboMomentos.getSelectedItem() == null) {
                     showMessage("Debe seleccionar al menos un laboreo para continuar.");
                     return;
@@ -223,13 +235,68 @@ public class PantallaLaboreo extends JFrame {
                     return;
                 }
 
-                ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
-
                 LaboreoEntity laboreo = (LaboreoEntity) cboMomentos.getSelectedItem();
+                LoteEntity loteEntity = null;
+                ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
+                Iterator iter = lotes.iterator();
+                while (iter.hasNext()) {
+                    Lote.Lote lote = (Lote.Lote) iter.next();
+                    loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
+                }
+                //   LoteEntity lote = (LoteEntity) lstLotes.getSelectedValuesList().get(0);
+                TipoGranoEntity grano = (TipoGranoEntity) cbxSemillas.getSelectedItem();
+
+                DetalleLote detalleLote = new DetalleLote();
+                detalleLote.setLoteEntity(loteEntity);
+                detalleLote.setLaboreoEntity(laboreo);
+                listaDetalleDeLotes.add(detalleLote);
+
+                DetalleLaboreos detalleLaboreos = new DetalleLaboreos();
+                detalleLaboreos.setLaboreoEntity(laboreo);
+                detalleLaboreos.setTipoGranoEntity(grano);
+
+                //Cargar detalles de insumos y maquinarias
+//                        ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+                ArrayList<DetalleLaboreo> listaDetallesInsMaq = new ArrayList<>();
+                Boolean sinStock = false;
+                String insumosSinStock = "";
+
+                for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
+                    DetalleLaboreo det = new DetalleLaboreo();
+                    if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
+                        InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
+
+                        if (insumoEntity.getInsStock() == null) {
+                            sinStock = true;
+                            if (insumosSinStock.equals("")) {
+                                insumosSinStock = insumoEntity.getInsNombre();
+                            } else {
+                                insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
+                            }
+                        }
+
+
+                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+                        det.setInsumo(ins);
+                        det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                    } else {
+                        Maquinaria maq = new Maquinaria();
+                        maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
+                        det.setMaquinaria(maq);
+                        det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+
+                    }
+                    listaDetallesInsMaq.add(det);
+                }
+
+                listaDetalleDeLaboreos.add(detalleLaboreos);
+                detalleLote.setListaDetalleLaboreos(listaDetalleDeLaboreos);
+                detalleLaboreos.setListaDetalleLaboreo(listaDetallesInsMaq);
+//                ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
 
 
                 int fila = tableLaboreos.getRowCount() - 1;
-                if(tableLaboreos.getRowCount() != 0) {
+                if (tableLaboreos.getRowCount() != 0) {
                     fila = tableLaboreos.getRowCount() - 1;
                     if (tableLaboreos.getValueAt(fila, 1) != null) {
                         if (!tableLaboreos.getValueAt(fila, 1).equals("")) {
@@ -242,21 +309,123 @@ public class PantallaLaboreo extends JFrame {
                     tableLaboreos.setValueAt("Laboreo", fila, 0);
                     tableLaboreos.setValueAt(laboreo.getLboNombre(), fila, 1);
                     tableLaboreos.setValueAt(laboreo.getLboDescripcion(), fila, 2);
-                    tableLaboreos.setValueAt(lotes.size(), fila, 3);
-
-                    tableLaboreos.setValueAt(lotes.size(), fila, 4);
+                    tableLaboreos.setValueAt(lstLotes.getSelectedValue(), fila, 3);
+                    tableLaboreos.setValueAt("Ver", fila, 4);
                     fila++;
                 } else {
                     modelLaboreos.addRow(new Object[]{"Laboreo"
                             , laboreo.getLboNombre()
                             , laboreo.getLboDescripcion()
-                            , laboreo.getLaboreoLoteCampaniasByLboId().size()});
+                            , laboreo.getDetalleLaboreosByLboId().size()});
                     fila++;
                 }
 
             }
         });
 
+
+        //GUARDAR
+        btnFinalizar.addActionListener(e -> {
+                    GestorLaboreo gest = new GestorLaboreo();
+
+                    Campania camp = (Campania) cboCampania.getSelectedItem();
+                    CampaniaEntity campania = campaniaRepository.getCampaniaByNombre(camp.getDenominacion());
+                    ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
+
+//            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+                    Boolean sinStock = false;
+                    String insumosSinStock = "";
+
+                    planificacion.setCampania(campania);
+                    planificacion.setListaDetallesLote(listaDetalleDeLotes);
+
+
+//            //Cargar detalles de insumos y maquinarias
+//            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
+//                DetalleLaboreo det = new DetalleLaboreo();
+//                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
+//                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
+//
+//                    if (insumoEntity.getInsStock() == null) {
+//                        sinStock = true;
+//                        if (insumosSinStock.equals("")) {
+//                            insumosSinStock = insumoEntity.getInsNombre();
+//                        } else {
+//                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
+//                        }
+//                    }
+//
+//
+//                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+//                    det.setInsumo(ins);
+////                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+//                } else {
+//                    Maquinaria maq = new Maquinaria();
+//                    maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
+//                    det.setMaquinaria(maq);
+//                }
+//                detalles.add(det);
+//            }
+
+
+//            //Cargar detalles de laboreos
+//            ArrayList<DetalleDelLaboreo> detalleLaboreo = new ArrayList<>();
+//
+//            for (int i = 0; i < tableLaboreos.getModel().getRowCount(); i++) {
+//                DetalleDelLaboreo lab = new DetalleDelLaboreo();
+//                if (tableLaboreos.getValueAt(i, 0).equals("Laboreo")) {
+//                    LaboreoEntity laboreoEntity = laboreoRepository.getLaboreoByNombre((String) tblDetalles.getValueAt(i, 1));
+//                    lab.setLaboreoEntity(laboreoEntity);
+//                    lab.setNombreLote(String.valueOf(lstLotes.getSelectedValue()));
+//                    detalleLaboreo.add(lab);
+//                }
+
+
+                    //METODO RECHAZADO :(
+//            if (sinStock) {
+////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+//                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
+//                if (respuesta == 0) {
+//                    dispose();
+//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+//                    getDefaultCloseOperation();
+//                    return;
+//                }
+////                          else {
+////                            return;
+////                        }
+//            }
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+                    java.util.Date date = new java.util.Date();
+                    java.util.Calendar cal = Calendar.getInstance();
+                    try {
+//                date = formatter.parse(txtFecha.getText());
+                    } catch (Exception exe) {
+                        showMessage(exe.getMessage());
+                    }
+                    cal.setTime(date);
+                    cal.set(Calendar.HOUR_OF_DAY, 0);
+                    cal.set(Calendar.MINUTE, 0);
+                    cal.set(Calendar.SECOND, 0);
+                    cal.set(Calendar.MILLISECOND, 0);
+//            Date fecha = new Date(cal.getTime().getTime());
+
+                    Date fecha = (Date) datePickerIni.getModel().getValue();
+                    try {
+                        gest.registrarLaboreo(planificacion, fecha, txtDescripcion.getText());
+
+                        JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                        dispose();
+
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la Planificacion de Campaña: " + e1.toString());
+                    } finally {
+                      //  dispose();
+                    }
+                }
+        );
 
 
         //ELIMINAR ITEM
@@ -371,88 +540,6 @@ public class PantallaLaboreo extends JFrame {
             }
         });
 
-        //GUARDAR
-        btnFinalizar.addActionListener(e -> {
-            GestorLaboreo gest = new GestorLaboreo();
-            Campania camp = (Campania) cboCampania.getSelectedItem();
-            ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
-
-            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-            Boolean sinStock = false;
-            String insumosSinStock = "";
-
-            //Cargar detalles de insumos y maquinarias
-            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
-                DetalleLaboreo det = new DetalleLaboreo();
-                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
-
-                    if (insumoEntity.getInsStock() == null) {
-                        sinStock = true;
-                        if (insumosSinStock.equals("")) {
-                            insumosSinStock = insumoEntity.getInsNombre();
-                        } else {
-                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
-                        }
-                    }
-
-
-                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
-                    det.setInsumo(ins);
-//                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-                } else {
-                    Maquinaria maq = new Maquinaria();
-                    maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
-                    det.setMaquinaria(maq);
-                }
-                detalles.add(det);
-            }
-
-            //METODO RECHAZADO :(
-//            if (sinStock) {
-////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-//                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-//                if (respuesta == 0) {
-//                    dispose();
-//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
-//                    getDefaultCloseOperation();
-//                    return;
-//                }
-////                          else {
-////                            return;
-////                        }
-//            }
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-            java.util.Date date = new java.util.Date();
-            java.util.Calendar cal = Calendar.getInstance();
-            try {
-//                date = formatter.parse(txtFecha.getText());
-            } catch (Exception exe) {
-                showMessage(exe.getMessage());
-            }
-            cal.setTime(date);
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-//            Date fecha = new Date(cal.getTime().getTime());
-
-            Date fecha = (Date) datePickerIni.getModel().getValue();
-            try {
-                gest.registrarLaboreo(camp, lotes, detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        fecha, null, txtDescripcion.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem());
-
-
-            } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la Planificacion de Campaña: " + e1.toString());
-            } finally {
-                JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
-                dispose();
-            }
-        });
-
 
         cboMomentos.addMouseListener(new MouseAdapter() {
             @Override
@@ -464,7 +551,6 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-
 //        //Metodo Campania
 //        cboCampania.addItemListener(new ItemListener() {
 //            @Override
@@ -474,7 +560,6 @@ public class PantallaLaboreo extends JFrame {
 //                txtFechaFin.setText(campaniaEntity.getCnaFechaFinEstimada().toString());
 //            }
 //        });
-
 
 
         //Metodo Tipo Laboreo
@@ -535,7 +620,6 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-
         //ELIMINAR INSUMO DE LA TABLA
         btnQuitarInsumosOMaq.addActionListener(new ActionListener() {
             @Override
@@ -578,7 +662,6 @@ public class PantallaLaboreo extends JFrame {
             }
         });
     }
-
 
 
     private boolean isCellSelected(JTable tabla) {
@@ -745,7 +828,7 @@ public class PantallaLaboreo extends JFrame {
         lstLotes.setModel(modelo);
 
         txtFechaIni.setText((camp == null) ? "" : camp.getFechaInicio().toString());
-        txtFechaFin.setText((camp==null) ? "" : camp.getFechaFinReal().toString());
+        txtFechaFin.setText((camp == null) ? "" : camp.getFechaFinReal().toString());
     }
 
 

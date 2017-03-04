@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by OWNER on 9/4/2016.
+ * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "planificacion_campania", schema = "", catalog = "gestar")
-public class PlanificacionCampaniaEntity {
+@Table(name = "detalle_planificacion_campania_lotes", schema = "", catalog = "gestar")
+public class DetallePlanificacionCampaniaLoteEntity {
 
-    private Integer planificacionId;
+
+    private Integer id;
     private String observaciones;
 
     private Date fechaAlta;
@@ -20,26 +21,24 @@ public class PlanificacionCampaniaEntity {
     private Date fechaBaja;
     private String usuarioBaja;
 
+    private PlanificacionCampaniaEntity planificacion;
+    private LoteEntity lote;
+
+    ////////////////////
     private LoteCampaniaEntity loteCampania;
-    private CampaniaEntity campania;
-
-//////////////
-
-
-
-    //======================================================================================
 
     @Id
     @GeneratedValue
-    @Column(name = "planificacion_id")
-    public Integer getPlanificacionId() {
-        return planificacionId;
+    @Column(name = "id")
+    public Integer getId() {
+        return id;
     }
 
-    public void setPlanificacionId(Integer planificacionId) {
-        this.planificacionId = planificacionId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
+    @Basic
     @Column(name = "observaciones")
     public String getObservaciones() {
         return observaciones;
@@ -50,6 +49,7 @@ public class PlanificacionCampaniaEntity {
     }
 
 
+    @Basic
     @Column(name = "fecha_alta")
     public Date getFechaAlta() {
         return fechaAlta;
@@ -59,6 +59,7 @@ public class PlanificacionCampaniaEntity {
         this.fechaAlta = fechaAlta;
     }
 
+    @Basic
     @Column(name = "usuario_alta")
     public String getUsuarioAlta() {
         return usuarioAlta;
@@ -68,6 +69,7 @@ public class PlanificacionCampaniaEntity {
         this.usuarioAlta = usuarioAlta;
     }
 
+    @Basic
     @Column(name = "fecha_ult_mod")
     public Date getFechaUltMod() {
         return fechaUltMod;
@@ -77,6 +79,7 @@ public class PlanificacionCampaniaEntity {
         this.fechaUltMod = fechaUltMod;
     }
 
+    @Basic
     @Column(name = "usuario_ult_mod")
     public String getUsuarioUltMod() {
         return usuarioUltMod;
@@ -86,6 +89,7 @@ public class PlanificacionCampaniaEntity {
         this.usuarioUltMod = usuarioUltMod;
     }
 
+    @Basic
     @Column(name = "fecha_baja")
     public Date getFechaBaja() {
         return fechaBaja;
@@ -95,6 +99,7 @@ public class PlanificacionCampaniaEntity {
         this.fechaBaja = fechaBaja;
     }
 
+    @Basic
     @Column(name = "usuario_baja")
     public String getUsuarioBaja() {
         return usuarioBaja;
@@ -103,7 +108,6 @@ public class PlanificacionCampaniaEntity {
     public void setUsuarioBaja(String usuarioBaja) {
         this.usuarioBaja = usuarioBaja;
     }
-
 
     @ManyToOne
     @JoinColumn(name = "lote_campania_id", referencedColumnName = "lcp_id")
@@ -117,13 +121,26 @@ public class PlanificacionCampaniaEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "campania_id", referencedColumnName = "cna_id")
-
-    public CampaniaEntity getCampania() {
-        return campania;
+    @JoinColumn(name = "planificacion_campania_id", referencedColumnName = "planificacion_id")
+    public PlanificacionCampaniaEntity getPlanificacion() {
+        return planificacion;
     }
 
-    public void setCampania(CampaniaEntity campania) {
-        this.campania = campania;
+    public void setPlanificacion(PlanificacionCampaniaEntity planificacion) {
+        this.planificacion = planificacion;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "lote_id", referencedColumnName = "lte_id")
+    public LoteEntity getLote() {
+        return lote;
+    }
+
+    public void setLote(LoteEntity lote) {
+        this.lote = lote;
+    }
+
+    //=================================================================
+
+
 }

@@ -34,7 +34,7 @@ public class MaquinariaRepository {
 
     public MaquinariaEntity getMaquinariaByNombre(String nombre){
          session = Coneccion.getSession();
-        MaquinariaEntity maquinaria = new MaquinariaEntity();
+        MaquinariaEntity maquinaria = null;
         Query query = session.createQuery("select x from MaquinariaEntity x where ucase(maqNombre) like ucase(:pNombre) and maqFechaBaja is null");
         query.setParameter("pNombre", nombre);
         List list = query.list();
@@ -50,7 +50,7 @@ public class MaquinariaRepository {
 
     public InsumoEntity getInsumoById(Long id){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
+        InsumoEntity insumo = null;
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);
         List list = query.list();

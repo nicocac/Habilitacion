@@ -117,7 +117,7 @@ public class CargaCampania extends JFrame {
                     gestor.registrarCampania(campania, tipoOperacion, cnaId);
 
                 } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar el insumo: " + e1.toString());
+                    JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar Campania: " + e1.toString());
                 } finally {
                     JOptionPane.showMessageDialog(null, "La Campania: " + txtCampania.getText() + " fue guardada con exito.");
                     dispose();

@@ -7,14 +7,12 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "detalle_laboreos_planificacion_campania", schema = "", catalog = "gestar")
+@Table(name = "detalle_planificacion_campania_laboreos", schema = "", catalog = "gestar")
 public class DetallePlanificacionCampaniaLaboreosEntity {
 
 
     private Integer id;
     private String observaciones;
-    private int cantidadInsumo;
-    private int cantidadMaquinaria;
 
     private Date fechaAlta;
     private String usuarioAlta;
@@ -23,16 +21,12 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
     private Date fechaBaja;
     private String usuarioBaja;
 
-    private  PlanificacionCampaniaEntity planificacion;
     private LaboreoEntity laboreo;
+    private  DetallePlanificacionCampaniaLoteEntity detallePlanificacionCampaniaLote;
     private Boolean tieneOrdenTrabajo;
-
     private TipoGranoEntity tipoGrano;
 
     ////////////////////
-    private InsumoEntity insumo;
-    private MaquinariaEntity maquinaria;
-    private LoteCampaniaEntity loteCampania;
 
     @Id
     @GeneratedValue
@@ -53,26 +47,6 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }
-
-    @Basic
-    @Column(name = "cantidad_insumo")
-    public int getCantidadInsumo() {
-        return cantidadInsumo;
-    }
-
-    public void setCantidadInsumo(int cantidadInsumo) {
-        this.cantidadInsumo = cantidadInsumo;
-    }
-
-    @Basic
-    @Column(name = "cantidad_maquinaria")
-    public int getCantidadMaquinaria() {
-        return cantidadMaquinaria;
-    }
-
-    public void setCantidadMaquinaria(int cantidadMaquinaria) {
-        this.cantidadMaquinaria = cantidadMaquinaria;
     }
 
     @Basic
@@ -135,25 +109,6 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
         this.usuarioBaja = usuarioBaja;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "insumo_id", referencedColumnName = "ins_id")
-    public InsumoEntity getInsumo() {
-        return insumo;
-    }
-
-    public void setInsumo(InsumoEntity insumo) {
-        this.insumo = insumo;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "maquinaria_id", referencedColumnName = "maq_id")
-    public MaquinariaEntity getMaquinaria() {
-        return maquinaria;
-    }
-
-    public void setMaquinaria(MaquinariaEntity maquinaria) {
-        this.maquinaria = maquinaria;
-    }
 
     @ManyToOne
     @JoinColumn(name = "laboreo_id", referencedColumnName = "lbo_id", nullable = false)
@@ -165,15 +120,6 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
         this.laboreo = laboreo;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "lote_campania_id", referencedColumnName = "lcp_id")
-    public LoteCampaniaEntity getLoteCampania() {
-        return loteCampania;
-    }
-
-    public void setLoteCampania(LoteCampaniaEntity loteCampania) {
-        this.loteCampania = loteCampania;
-    }
 
     @ManyToOne
     @JoinColumn(name = "tipo_grano_id", referencedColumnName = "tgr_id")
@@ -185,15 +131,6 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
         this.tipoGrano = tipoGrano;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "planificacion_campania_id", referencedColumnName = "planificacion_id")
-    public PlanificacionCampaniaEntity getPlanificacion() {
-        return planificacion;
-    }
-
-    public void setPlanificacion(PlanificacionCampaniaEntity planificacion) {
-        this.planificacion = planificacion;
-    }
 
     @Column(name = "tiene_orden")
     public Boolean getTieneOrdenTrabajo() {
@@ -202,6 +139,17 @@ public class DetallePlanificacionCampaniaLaboreosEntity {
 
     public void setTieneOrdenTrabajo(Boolean tieneOrdenTrabajo) {
         this.tieneOrdenTrabajo = tieneOrdenTrabajo;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "detalle_planificacion_campania_lote_id", referencedColumnName = "id")
+    public DetallePlanificacionCampaniaLoteEntity getDetallePlanificacionCampaniaLote() {
+        return detallePlanificacionCampaniaLote;
+    }
+
+    public void setDetallePlanificacionCampaniaLote(DetallePlanificacionCampaniaLoteEntity detallePlanificacionCampaniaLote) {
+        this.detallePlanificacionCampaniaLote = detallePlanificacionCampaniaLote;
     }
 
     //=================================================================

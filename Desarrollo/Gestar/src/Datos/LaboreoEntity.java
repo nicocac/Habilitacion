@@ -30,7 +30,6 @@ public class LaboreoEntity {
     private TipoLaboreoEntity tipoLaboreoEntity;
 
     private Collection<DetalleLaboreoEntity> detalleLaboreosByLboId;
-    private Collection<PlanificacionCampaniaEntity> laboreoLoteCampaniasByLboId;
 
     private TipoGranoEntity tipoGrano;
     //======================================================================================
@@ -181,14 +180,7 @@ public class LaboreoEntity {
         this.detalleLaboreosByLboId = detalleLaboreosByLboId;
     }
 
-    @OneToMany(mappedBy = "laboreo")
-    public Collection<PlanificacionCampaniaEntity> getLaboreoLoteCampaniasByLboId() {
-        return laboreoLoteCampaniasByLboId;
-    }
 
-    public void setLaboreoLoteCampaniasByLboId(Collection<PlanificacionCampaniaEntity> laboreoLoteCampaniasByLboId) {
-        this.laboreoLoteCampaniasByLboId = laboreoLoteCampaniasByLboId;
-    }
 
     @ManyToOne
     @JoinColumn(name = "lbo_tlbo_id", referencedColumnName = "tpo_id")

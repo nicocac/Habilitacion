@@ -22,6 +22,8 @@ public class CampaniaEntity {
     private Date cnaFechaBaja;
     private String cnaUsuarioBaja;
 
+    private boolean estaPlanificada;
+
     private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
     //=================================================================
@@ -134,6 +136,17 @@ public class CampaniaEntity {
         this.cnaUsuarioBaja = cnaUsuarioBaja;
     }
 
+    @Basic
+    @Column(name = "esta_lanificada")
+    public boolean isEstaPlanificada() {
+
+        return estaPlanificada;
+
+    }
+
+    public void setEstaPlanificada(boolean estaPlanificada) {
+        this.estaPlanificada = estaPlanificada;
+    }
 
     @OneToMany(mappedBy = "campaniaByLcpCnaId")
     public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {

@@ -189,7 +189,6 @@ public class GestorLaboreo {
     }
 
 
-
     public TipoLaboreoEntity getMomentoByNombre(String pMomento) {
         session = Coneccion.getSession();
         java.util.List list;
@@ -212,96 +211,101 @@ public class GestorLaboreo {
     }
 
 
-
-    public void registrarLaboreo(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo,
-                                 TipoLaboreoEntity tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion,
-                                 TipoGranoEntity tipoGrano) {
+    public void registrarLaboreo(Planificacion planificacion, Date fechaPlan, String descripcion) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
 
-        LoteCampaniaEntity loteCampaniaEntity;
-        CampaniaEntity campaniaEntity;
-        TipoLaboreoEntity tipoLaboreoEntity = new TipoLaboreoEntity();
-        TipoGranoEntity tipoGranoEntity;
-        PlanificacionCampaniaEntity planificacionCampaniaEntity;
-        DetalleLaboreoEntity detalleLaboreoEntity;
+//        CampaniaEntity campaniaEntity;
+        PlanificacionCampaniaEntity planificacionCampaniaEntity = new PlanificacionCampaniaEntity();
+        DetallePlanificacionCampaniaLoteEntity detallePlanificacionCampaniaLoteEntity;
+        DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
+        DetalleLaboreosInsumoDePlanificacionCampaniaEntity detalleLaboreosInsumoDePlanificacionCampaniaEntity;
+        DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity detalleLaboreosMaquinariaDePlanificacionCampaniaEntity;
+
         MaquinariaEntity maquinariaEntity;
         InsumoEntity insumoEntity;
-        LaboreoEntity laboreoEntity = new LaboreoEntity();
 
+        ArrayList<DetallePlanificacionCampaniaLoteEntity> listaLotes = new ArrayList<>();
+        ArrayList<DetallePlanificacionCampaniaLaboreosEntity> listaLaboreos = new ArrayList<>();
+        ArrayList<DetalleLaboreosInsumoDePlanificacionCampaniaEntity> listaInsumos = new ArrayList<>();
+        ArrayList<DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity> listaMaquinarias = new ArrayList<>();
 
-        ArrayList<DetalleLaboreoEntity> listaDetallesLaboreoEntity = new ArrayList<>();
-        for (int i = 0; i < detallesLaboreo.size(); i++) {
-            detalleLaboreoEntity = new DetalleLaboreoEntity();
-            try {
-                String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
-                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
-                detalleLaboreoEntity.setInsumoByDboInsId(insumoEntity);
+        planificacionCampaniaEntity.setCampania(planificacion.getCampania());
+        planificacionCampaniaEntity.setFechaAlta(fechaPlan);
+        planificacionCampaniaEntity.setObservaciones(descripcion);
 
-            } catch (NullPointerException npe) {
-                String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
-                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
-                detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
-            }
-//            detalleLaboreoEntity.setDboCantidad(detallesLaboreo.get(i).getCantidad());
-            listaDetallesLaboreoEntity.add(detalleLaboreoEntity);
+        for (DetalleLote lote : planificacion.getListaDetallesLote()) {
+            detallePlanificacionCampaniaLoteEntity = new DetallePlanificacionCampaniaLoteEntity();
+            detallePlanificacionCampaniaLoteEntity.setLote(lote.getLoteEntity());
+            detallePlanificacionCampaniaLoteEntity.setPlanificacion(planificacionCampaniaEntity);
+            detallePlanificacionCampaniaLoteEntity.setObservaciones("Carga de Lotes");
+            detallePlanificacionCampaniaLoteEntity.setFechaAlta(fechaPlan);
 
-//            session.save(detalleLaboreoEntity);
+            for (DetalleLaboreos laboreo : lote.getListaDetalleLaboreos()) {
+                detallePlanificacionCampaniaLaboreosEntity = new DetallePlanificacionCampaniaLaboreosEntity();
+                detallePlanificacionCampaniaLaboreosEntity.setLaboreo(laboreo.getLaboreoEntity());
+                detallePlanificacionCampaniaLaboreosEntity.setDetallePlanificacionCampaniaLote(detallePlanificacionCampaniaLoteEntity);
+                detallePlanificacionCampaniaLaboreosEntity.setObservaciones("Carga Laboreos");
+                detallePlanificacionCampaniaLaboreosEntity.setFechaAlta(fechaPlan);
+                detallePlanificacionCampaniaLaboreosEntity.setTipoGrano(laboreo.getTipoGranoEntity());
+                detallePlanificacionCampaniaLaboreosEntity.setTieneOrdenTrabajo(false);
 
-        }
+                for (DetalleLaboreo insOmaq : laboreo.getListaDetalleLaboreo()) {
 
+                    try {
+                        String nombreInsumo = insOmaq.getInsumo().getNombre();
+                        insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity = new DetalleLaboreosInsumoDePlanificacionCampaniaEntity();
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity.setInsumo(insumoEntity);
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity.setCantidadInsumo(insOmaq.getCantidadIsumo());
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity.setFechaAlta(fechaPlan);
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity.setObservaciones("Carga Insumo del laboreo");
+                        detalleLaboreosInsumoDePlanificacionCampaniaEntity.setDetallePlanificacionCampaniaLaboreos(detallePlanificacionCampaniaLaboreosEntity);
 
-        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getTpoNombre());
-        tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombre(tipoGrano.getTgrNombre());
-        laboreoEntity.setTipoGrano(tipoGranoEntity);
-        laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
-        laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
-        laboreoEntity.setLboFechaHoraInicio(fechaInicio);
-        laboreoEntity.setLboFechaHoraFin(fechaFin);
-        laboreoEntity.setLboDescripcion(descripcion);
-        session.save(laboreoEntity);
+                        listaInsumos.add(detalleLaboreosInsumoDePlanificacionCampaniaEntity);
 
+                    } catch (NullPointerException npe) {
+                        String nombreMaquinaria = insOmaq.getMaquinaria().getNombre();
+                        maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity = new DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity();
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setMaquinaria(maquinariaEntity);
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setCantidadMaquinaria(insOmaq.getCantidadMaquinaria());
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setFechaAlta(fechaPlan);
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setObservaciones("Carga Insumo del laboreo");
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setDetallePlanificacionCampaniaLaboreos(detallePlanificacionCampaniaLaboreosEntity);
 
-        ArrayList<PlanificacionCampaniaEntity> listaPlanificacionCampaniaEntity = new ArrayList<>();
-        campaniaEntity = campaniaRepository.getCampaniaByNombre(campania.getDenominacion());
-
-        for (int i = 0; i < listaLotes.size(); i++) {
-            planificacionCampaniaEntity = new PlanificacionCampaniaEntity();
-
-            LoteEntity loteEntity = loteRepository.getLoteByDenominacion(listaLotes.get(i).getDenominacion());
-            List list = this.getLotesCampania(campania);
-
-            Iterator iter = list.iterator();
-
-            while (iter.hasNext()) {
-                Lote lot = (Lote) iter.next();
-                LoteEntity loteCamp = loteRepository.getLoteByDenominacion(lot.getDenominacion());
-
-                if (loteCamp.getLteId() == loteEntity.getLteId()) {
-
-//                    Iterator it = loteCamp.getLoteCampaniasByLteId().iterator();
-                    List<LoteCampaniaEntity> it = loteCampaniaRepository.getLotesCampaniasByLote(loteCamp.getLteId());
-
-                    for(LoteCampaniaEntity lce: it){
-                        LoteCampaniaEntity ltc = (LoteCampaniaEntity) lce;
-                        if (ltc.getCampaniaByLcpCnaId().equals(campaniaEntity)) {
-                            planificacionCampaniaEntity.setLoteCampania(ltc);
-                            planificacionCampaniaEntity.setLaboreo(laboreoEntity);
-                        }
+                        listaMaquinarias.add(detalleLaboreosMaquinariaDePlanificacionCampaniaEntity);
                     }
-
-                    listaPlanificacionCampaniaEntity.add(planificacionCampaniaEntity);
-                    session.save(planificacionCampaniaEntity);
                 }
+                listaLaboreos.add(detallePlanificacionCampaniaLaboreosEntity);
+            }
+            listaLotes.add(detallePlanificacionCampaniaLoteEntity);
+        }
+
+
+        session.save(planificacionCampaniaEntity);
+
+        for (DetallePlanificacionCampaniaLoteEntity lote : listaLotes) {
+                session.save(lote);
+            for (DetallePlanificacionCampaniaLaboreosEntity laboreo : listaLaboreos) {
+                session.save(laboreo);
+
             }
         }
 
-        laboreoEntity.setLaboreoLoteCampaniasByLboId(listaPlanificacionCampaniaEntity);
-        session.update(laboreoEntity);
+        for (DetalleLaboreosInsumoDePlanificacionCampaniaEntity ins : listaInsumos) {
+            session.save(ins);
+        }
+        for (DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity maq : listaMaquinarias) {
+            session.save(maq);
+        }
+
+
+        session.update(planificacionCampaniaEntity);
         try {
             tx.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             tx.rollback();
         }
         session.close();
@@ -309,9 +313,10 @@ public class GestorLaboreo {
 
 
     //Registrar ingresar acopio
+
     public void registrarIngresoAcopio(Campania campania, ArrayList<Lote> listaLotes, ArrayList<DetalleLaboreo> detallesLaboreo,
-                                 TipoLaboreoEntity tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion,
-                                 TipoGranoEntity tipoGrano) {
+                                       TipoLaboreoEntity tipoLaboreo, Date fechaInicio, Date fechaFin, String descripcion,
+                                       TipoGranoEntity tipoGrano) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
@@ -379,11 +384,11 @@ public class GestorLaboreo {
 //                    Iterator it = loteCamp.getLoteCampaniasByLteId().iterator();
                     List<LoteCampaniaEntity> it = loteCampaniaRepository.getLotesCampaniasByLote(loteCamp.getLteId());
 
-                    for(LoteCampaniaEntity lce: it){
+                    for (LoteCampaniaEntity lce : it) {
                         LoteCampaniaEntity ltc = (LoteCampaniaEntity) lce;
                         if (ltc.getCampaniaByLcpCnaId().equals(campaniaEntity)) {
                             planificacionCampaniaEntity.setLoteCampania(ltc);
-                            planificacionCampaniaEntity.setLaboreo(laboreoEntity);
+//                            planificacionCampaniaEntity.setLaboreo(laboreoEntity);
                         }
                     }
 
@@ -393,28 +398,27 @@ public class GestorLaboreo {
             }
         }
 
-        laboreoEntity.setLaboreoLoteCampaniasByLboId(listaPlanificacionCampaniaEntity);
+//        laboreoEntity.setLaboreoLoteCampaniasByLboId(listaPlanificacionCampaniaEntity);
         session.update(laboreoEntity);
         try {
             tx.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             tx.rollback();
         }
         session.close();
     }
 
 
-
     public void registrarLaboreoPrecargado(ArrayList<DetalleLaboreo> detallesLaboreo,
-                                 TipoLaboreoEntity tipoLaboreo, String descripcion,
-                                 TipoGranoEntity tipoGrano, String metrica, String medida, String nombre) {
+                                           TipoLaboreoEntity tipoLaboreo, String descripcion,
+                                           TipoGranoEntity tipoGrano, String metrica, String medida, String nombre) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
 
         TipoLaboreoEntity tipoLaboreoEntity = new TipoLaboreoEntity();
         TipoGranoEntity tipoGranoEntity;
-        DetalleLaboreoEntity detalleLaboreoEntity=null;
+        DetalleLaboreoEntity detalleLaboreoEntity = null;
         MaquinariaEntity maquinariaEntity;
         InsumoEntity insumoEntity;
         LaboreoEntity laboreoEntity = new LaboreoEntity();
@@ -458,14 +462,14 @@ public class GestorLaboreo {
         laboreoEntity.setLboDescripcion(descripcion);
         session.save(laboreoEntity);
 
-        for(DetalleLaboreoEntity detalleLaboreo: listaDetallesLaboreoEntity){
+        for (DetalleLaboreoEntity detalleLaboreo : listaDetallesLaboreoEntity) {
             detalleLaboreo.setLaboreoByDboLboId(laboreoEntity);
             session.save(detalleLaboreo);
         }
 
         try {
             tx.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             tx.rollback();
         }
         session.close();
@@ -473,27 +477,26 @@ public class GestorLaboreo {
 
 
     public void registrarEgresoSemillas(ArrayList<DetalleEgresoAcopioEntity> detallesEgreso,
-                                           AcopioEntity acopio, EgresoAcopioEntity egresoAcopio,
-                                           TipoGranoEntity tipoGrano) {
+                                        AcopioEntity acopio, EgresoAcopioEntity egresoAcopio,
+                                        TipoGranoEntity tipoGrano) {
 
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
 
         session.save(egresoAcopio);
 
-        for(DetalleEgresoAcopioEntity detalle: detallesEgreso){
+        for (DetalleEgresoAcopioEntity detalle : detallesEgreso) {
             detalle.setEgresoAcopio(egresoAcopio);
             session.save(detalle);
         }
 
         try {
             tx.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             tx.rollback();
         }
         session.close();
     }
-
 
 
     public List<Object[]> getInsumosByLaboreo(Long labId) {
@@ -501,14 +504,14 @@ public class GestorLaboreo {
 
         java.util.List list;
         Query queryInsumoByLaboreo = session.createQuery("select t.insumoByDboInsId , t.dboCantidadInsumo " +
-                                                         "from DetalleLaboreoEntity t " +
-                                                         "where t.laboreoByDboLboId.lboId = :pId");
+                "from DetalleLaboreoEntity t " +
+                "where t.laboreoByDboLboId.lboId = :pId");
         queryInsumoByLaboreo.setParameter("pId", labId);
         list = queryInsumoByLaboreo.list();
 
         session.close();
 
-        return  list;
+        return list;
     }
 
 
@@ -517,16 +520,15 @@ public class GestorLaboreo {
 
         java.util.List list;
         Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinariaByDboMaqId, t.dboCantidadMaquinaria" +
-                                                             " from DetalleLaboreoEntity t " +
-                                                             "where t.laboreoByDboLboId.lboId = :pId");
+                " from DetalleLaboreoEntity t " +
+                "where t.laboreoByDboLboId.lboId = :pId");
         queryMaquinariaByLaboreo.setParameter("pId", labId);
         list = queryMaquinariaByLaboreo.list();
         session.close();
 
 //        return  listaMaquinaria;
-        return  list;
+        return list;
     }
-
 
 
     public List<Object[]> getInsumosByLaboreoAndPlanificacion(Integer labId, Integer planificacionId) {
@@ -535,14 +537,15 @@ public class GestorLaboreo {
         java.util.List list;
         Query queryInsumoByLaboreo = session.createQuery("select t.insumo , t.cantidadInsumo " +
                 "from DetalleLaboreosInsumoDePlanificacionCampaniaEntity t " +
-                "where (t.laboreo.lboId = :pId AND t.planificacion.id = :p2Id)");
+                "where (t.detallePlanificacionCampaniaLaboreos.laboreo = :pId" +
+                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion = :p2Id)");
         queryInsumoByLaboreo.setParameter("pId", labId);
         queryInsumoByLaboreo.setParameter("p2Id", planificacionId);
         list = queryInsumoByLaboreo.list();
 
         session.close();
 
-        return  list;
+        return list;
     }
 
 
@@ -552,14 +555,15 @@ public class GestorLaboreo {
         java.util.List list;
         Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinaria, t.cantidadMaquinaria" +
                 " from DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity t " +
-                "where (t.laboreo.lboId = :pId AND t.planificacion.id = :p2Id)");
+                "where (t.detallePlanificacionCampaniaLaboreos.laboreo = :pId" +
+                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion = :p2Id)");
         queryMaquinariaByLaboreo.setParameter("pId", labId);
         queryMaquinariaByLaboreo.setParameter("p2Id", planificacionId);
         list = queryMaquinariaByLaboreo.list();
         session.close();
 
 //        return  listaMaquinaria;
-        return  list;
+        return list;
     }
 
 }

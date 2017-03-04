@@ -68,6 +68,7 @@
         <mapping class="Datos.EmpresaEntity"/>
         <mapping class="Datos.LaboreoInsumoMaqEntity"/>
         <mapping class="Datos.DetallePlanificacionCampaniaLaboreosEntity"/>
+        <mapping class="Datos.DetallePlanificacionCampaniaLoteEntity"/>
         <mapping class="Datos.DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity"/>
         <mapping class="Datos.DetalleLaboreosInsumoDePlanificacionCampaniaEntity"/>
         <mapping class="Datos.TipoClienteEntity"/>
