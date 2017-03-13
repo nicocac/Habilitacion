@@ -109,7 +109,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="57254" class="javax.swing.JTextField" binding="textNombre">
+                      <component id="57254" class="javax.swing.JTextField" binding="txtNombre">
                         <constraints/>
                         <properties/>
                       </component>
@@ -138,6 +138,7 @@
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <editable value="true"/>
                       <model>
                         <item value="Kg"/>
                       </model>
@@ -151,7 +152,9 @@
                 </constraints>
                 <properties>
                   <editable value="false"/>
+                  <enabled value="false"/>
                   <model>
+                    <item value="Sin datos"/>
                     <item value="Bueno"/>
                     <item value="Muy Bueno"/>
                     <item value="Excelente"/>
@@ -167,6 +170,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Estado Granos"/>
                 </properties>
               </component>
@@ -198,6 +202,7 @@
                 </constraints>
                 <properties>
                   <editable value="false"/>
+                  <enabled value="false"/>
                   <model/>
                 </properties>
               </component>
@@ -208,6 +213,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Tipo Grano"/>
                 </properties>
               </component>
@@ -238,6 +244,7 @@
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <editable value="true"/>
                   <enabled value="true"/>
                   <model>
                     <item value=".."/>

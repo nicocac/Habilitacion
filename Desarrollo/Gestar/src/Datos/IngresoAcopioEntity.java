@@ -31,7 +31,7 @@ public class IngresoAcopioEntity {
 
     private AcopioEntity acopio;
     private TipoAcopioEntity tipoAcopio;
-    private TipoLaboreoEntity tipoLaboreo;
+    private LaboreoEntity laboreo;
     private LoteEntity lote;
     private CampaniaEntity campania;
     private TipoGranoEntity tipoGrano;
@@ -174,13 +174,13 @@ public class IngresoAcopioEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "tipo_laboreo_id", referencedColumnName = "tpo_id")
-    public TipoLaboreoEntity getTipoLaboreo() {
-        return tipoLaboreo;
+    @JoinColumn(name = "laboreo_id", referencedColumnName = "lbo_id")
+    public LaboreoEntity getLaboreo() {
+        return laboreo;
     }
 
-    public void setTipoLaboreo(TipoLaboreoEntity tipoLaboreo) {
-        this.tipoLaboreo = tipoLaboreo;
+    public void setLaboreo(LaboreoEntity laboreo) {
+        this.laboreo = laboreo;
     }
 
     @ManyToOne

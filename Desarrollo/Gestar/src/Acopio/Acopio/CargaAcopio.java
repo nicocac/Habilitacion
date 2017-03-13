@@ -1,13 +1,20 @@
 package Acopio.Acopio;
 
+import Acopio.TipoAcopio.CargaTipoAcopio;
 import Conexion.Coneccion;
 import Datos.AcopioEntity;
 import Datos.TipoAcopioEntity;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Date;
+import java.util.Vector;
 
 /**
  * Created by jagm on 28/02/2017.
@@ -28,7 +35,6 @@ public class CargaAcopio extends JFrame {
     public JTextArea txtCodigo;
     public JLabel cantidadSoportada;
     public JTextField cantidadActual;
-    public JTextField textNombre;
     private String tipoOperacion;
     private int tinId;
 
@@ -37,6 +43,7 @@ public class CargaAcopio extends JFrame {
 
     public CargaAcopio() {
     }
+
 
     public CargaAcopio(String operacion, String nombre, Integer codigo, int id) {
 
@@ -51,6 +58,24 @@ public class CargaAcopio extends JFrame {
         }
 
 
+        //NEVO TIPO ACOPIO
+        nvoBtnTipoAcopio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CargaTipoAcopio cargaAcopio = new CargaTipoAcopio("Carga", "", "", 0);
+                cargaAcopio.setVisible(true);
+                getDefaultCloseOperation();
+            }
+        });
+        nvoBtnTipoAcopio.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoAcopio();
+                cargaComboBoxTipoAcopio();
+            }
+        });
+
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
@@ -58,6 +83,7 @@ public class CargaAcopio extends JFrame {
                 dispose();
             }
         });
+
 
 
         //CANCELAR
@@ -72,6 +98,8 @@ public class CargaAcopio extends JFrame {
     }
 
 
+
+
     //METODO GUARDAR
     private Boolean save() {
         Session session = Coneccion.getSession();
@@ -82,8 +110,8 @@ public class CargaAcopio extends JFrame {
                 tipo.setNombre(txtNombre.getText());
                 tipo.setCodigo(Integer.parseInt(txtCodigo.getText()));
                 tipo.setTipoAcopioEntity((TipoAcopioEntity) cbxTipoAcopio.getSelectedItem());
-                tipo.setCantidadSoportada(Integer.parseInt(cantidadSoportada.getText()));
-                tipo.setCantidadGrano(Integer.parseInt(cantidadActual.getText()));
+                tipo.setCantidadSoportada(Integer.parseInt(cantidadPeso.getText()));
+//                tipo.setCantidadGrano(Integer.parseInt(cantidadActual.getText()));
                 tipo.setAcopioFechaAlta(fechaActual);
                 tipo.setAcopioUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
@@ -98,6 +126,7 @@ public class CargaAcopio extends JFrame {
 //            session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el Acopio: " + e.toString());
+                return false;
             } finally {
                 session.close();
             }
@@ -113,11 +142,34 @@ public class CargaAcopio extends JFrame {
     private String validaCarga() {
         if (txtNombre.getText().replaceAll(" ", "").length() == 0) return "N";
 
-        if (txtDescripcion.getText().replaceAll(" ", "").length() == 0) return "N";
+        if (txtCodigo.getText().replaceAll(" ", "").length() == 0) return "N";
 
         return "S";
 
     }
+
+
+    //---CARGA DE COMBO BOXS
+
+    //METODO CARGA COMBO  Acopio
+    private void cargaComboBoxTipoAcopio() {
+        Session session = Coneccion.getSession();
+        Query query = session.createQuery("SELECT p FROM TipoAcopioEntity p");
+        java.util.List<TipoAcopioEntity> listaTipoMaquinaria = query.list();
+
+        Vector<String> miVectorTipoMaquinaria = new Vector<>();
+        for (TipoAcopioEntity tipoMaquinaria : listaTipoMaquinaria) {
+            //System.out.println(tipoMaquinaria.getTeMaNombre());
+            miVectorTipoMaquinaria.add(tipoMaquinaria.getTipoAcopioNombre());
+            cbxTipoAcopio.addItem(tipoMaquinaria);
+        }
+
+    }
+
+    private void borrarComboBoxTipoAcopio() {
+        cbxTipoAcopio.removeAllItems();
+    }
+
 
 
 }

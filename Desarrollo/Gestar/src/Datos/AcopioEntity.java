@@ -170,4 +170,9 @@ public class AcopioEntity {
     public void setTipoGrano(TipoGranoEntity tipoGrano) {
         this.tipoGrano = tipoGrano;
     }
+
+    @Override
+    public String toString() {
+        return  codigo.toString() ;
+    }
 }

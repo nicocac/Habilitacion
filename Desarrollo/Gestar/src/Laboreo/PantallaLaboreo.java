@@ -77,6 +77,9 @@ public class PantallaLaboreo extends JFrame {
     LoteRepository loteRepository = new LoteRepository();
     CampaniaRepository campaniaRepository = new CampaniaRepository();
 
+    DetalleLote detalleLote = null;
+    ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
+
     public PantallaLaboreo() {
 
 
@@ -116,7 +119,7 @@ public class PantallaLaboreo extends JFrame {
 
         Planificacion planificacion = new Planificacion();
         ArrayList<DetalleLote> listaDetalleDeLotes = new ArrayList<>();
-        ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
+//        ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
 
         cboCampania.addActionListener(e ->
                         cargarLotes((Campania) cboCampania.getSelectedItem())
@@ -204,15 +207,15 @@ public class PantallaLaboreo extends JFrame {
                 if (permiteSeleccion("Maquinaria", maq.getNombre())) {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Maquinaria", fila, 0);
-                        tblDetalles.setValueAt(maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio(), fila, 1);
-                        tblDetalles.setValueAt("-", fila, 2);
-                        tblDetalles.setValueAt("-", fila, 3);
+                        tblDetalles.setValueAt(maq.getNombre(), fila, 1);
+                        tblDetalles.setValueAt(maq.getMarca(), fila, 2);
+                        tblDetalles.setValueAt("0", fila, 3);
                         fila++;
                     } else {
                         modelDetalle.addRow(new Object[]{"Maquinaria"
                                 , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
-                                , "-"
-                                , "-"});
+                                , maq.getMarca()
+                                , "0"});
                         fila++;
                     }
                 }
@@ -246,10 +249,47 @@ public class PantallaLaboreo extends JFrame {
                 //   LoteEntity lote = (LoteEntity) lstLotes.getSelectedValuesList().get(0);
                 TipoGranoEntity grano = (TipoGranoEntity) cbxSemillas.getSelectedItem();
 
-                DetalleLote detalleLote = new DetalleLote();
-                detalleLote.setLoteEntity(loteEntity);
-                detalleLote.setLaboreoEntity(laboreo);
-                listaDetalleDeLotes.add(detalleLote);
+                if (detalleLote == null) {
+                    detalleLote = new DetalleLote();
+                    listaDetalleDeLaboreos = new ArrayList<>();
+                    detalleLote.setLoteEntity(loteEntity);
+//                    detalleLote.setLaboreoEntity(laboreo);
+                    listaDetalleDeLotes.add(detalleLote);
+                } else {
+                    Boolean existe = false;
+                    if (!detalleLote.getLoteEntity().equals(loteEntity)) {
+                        //verificar si ya existe
+                        for (DetalleLote lote : listaDetalleDeLotes) {
+                            if (lote.getLoteEntity().equals(loteEntity)) {
+                                detalleLote = lote;
+                                detalleLote.setListaDetalleLaboreos(lote.getListaDetalleLaboreos());
+                                for (DetalleLaboreos laboreos : detalleLote.getListaDetalleLaboreos()) {
+                                    if (laboreos.getLaboreoEntity().equals(laboreo)) {
+                                        JOptionPane.showMessageDialog(null, "El Laboreo ya esta cargado para ese lote, seleccione otro laboreo");
+                                        return;
+                                    }
+                                }
+                                existe = true;
+                                break;
+
+                            }
+                        }
+                        if (!existe) {
+                            detalleLote = new DetalleLote();
+                            listaDetalleDeLaboreos = new ArrayList<>();
+                            detalleLote.setLoteEntity(loteEntity);
+//                    detalleLote.setLaboreoEntity(laboreo);
+                            listaDetalleDeLotes.add(detalleLote);
+                        }
+                    }
+                    for (DetalleLaboreos laboreos : detalleLote.getListaDetalleLaboreos()) {
+                        if (laboreos.getLaboreoEntity().equals(laboreo)) {
+                            JOptionPane.showMessageDialog(null, "El Laboreo ya esta cargado para ese lote, seleccione otro laboreo");
+                            return;
+                        }
+                    }
+                }
+
 
                 DetalleLaboreos detalleLaboreos = new DetalleLaboreos();
                 detalleLaboreos.setLaboreoEntity(laboreo);
@@ -280,8 +320,7 @@ public class PantallaLaboreo extends JFrame {
                         det.setInsumo(ins);
                         det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                     } else {
-                        Maquinaria maq = new Maquinaria();
-                        maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
+                        Maquinaria maq = new Maquinaria((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null, null);
                         det.setMaquinaria(maq);
                         det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
 
@@ -309,14 +348,15 @@ public class PantallaLaboreo extends JFrame {
                     tableLaboreos.setValueAt("Laboreo", fila, 0);
                     tableLaboreos.setValueAt(laboreo.getLboNombre(), fila, 1);
                     tableLaboreos.setValueAt(laboreo.getLboDescripcion(), fila, 2);
-                    tableLaboreos.setValueAt(lstLotes.getSelectedValue(), fila, 3);
-                    tableLaboreos.setValueAt("Ver", fila, 4);
+                    tableLaboreos.setValueAt(loteEntity.getLteDenominacion(), fila, 3);
+                    tableLaboreos.setValueAt(grano.getTgrNombre(), fila, 4);
                     fila++;
                 } else {
                     modelLaboreos.addRow(new Object[]{"Laboreo"
                             , laboreo.getLboNombre()
                             , laboreo.getLboDescripcion()
-                            , laboreo.getDetalleLaboreosByLboId().size()});
+                            , loteEntity.getLteDenominacion()
+                            , grano.getTgrNombre()});
                     fila++;
                 }
 
@@ -416,13 +456,13 @@ public class PantallaLaboreo extends JFrame {
                     try {
                         gest.registrarLaboreo(planificacion, fecha, txtDescripcion.getText());
 
-                        JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                        JOptionPane.showMessageDialog(null, "La Planificacion: " + planificacion.getCampania().getCnaDenominacion() + " fue realizada con exito.");
                         dispose();
 
                     } catch (Exception e1) {
                         JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la Planificacion de Campaña: " + e1.toString());
                     } finally {
-                      //  dispose();
+                        //  dispose();
                     }
                 }
         );
@@ -681,8 +721,8 @@ public class PantallaLaboreo extends JFrame {
 
 
     private void inicializaTablaLaboreos() {
-        String[] columnNamesLaboreo = {"Clasificacion", "Nombre", "Descripcion", "Cantidad Lotes", "Lotes"};
-        Object[][] data = new Object[1][6];
+        String[] columnNamesLaboreo = {"Clasificacion", "Nombre", "Descripcion", "Lote", "Semilla"};
+        Object[][] data = new Object[1][5];
         setModelLaboreos(columnNamesLaboreo, data);
 
 
@@ -732,8 +772,9 @@ public class PantallaLaboreo extends JFrame {
         tableLaboreos.getColumnModel().getColumn(0).setPreferredWidth(180);
         tableLaboreos.getColumnModel().getColumn(1).setPreferredWidth(350);
         tableLaboreos.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tableLaboreos.getColumnModel().getColumn(3).setPreferredWidth(60);
-        col = tableLaboreos.getColumnModel().getColumn(3);
+        tableLaboreos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tableLaboreos.getColumnModel().getColumn(4).setPreferredWidth(100);
+        col = tableLaboreos.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tableLaboreos.setCellSelectionEnabled(true);
         //  tableLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

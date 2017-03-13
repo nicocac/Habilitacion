@@ -1,10 +1,8 @@
 package Repository;
 
 import Conexion.Coneccion;
-import Datos.LaboreoEntity;
-import Datos.PlanificacionCampaniaEntity;
-import Datos.TipoInsumoEntity;
-import Datos.TipoLaboreoEntity;
+import Datos.*;
+import Laboreo.OrdenTrabajoLaboreo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -66,21 +64,48 @@ public class PlanificacionRepository {
         return planificacionCampania;
     }
 
-    public List<LaboreoEntity> getLaboreosByCampIdPlanificadaId(Integer id){
+    public List<OrdenTrabajoLaboreo> getLaboreosByCampIdPlanificadaId(Integer id){
         session = Coneccion.getSession();
-        List<LaboreoEntity> listaLaboreoEntity = new ArrayList<>();
+        List<OrdenTrabajoLaboreo> listaLaboreoLoteEntity = new ArrayList<>();
         LaboreoEntity laboreo = new LaboreoEntity();
-        Query query = session.createQuery("select x.laboreo from DetallePlanificacionCampaniaLaboreosEntity x " +
-                "where ucase(x.planificacion.id) like ucase(:pId) and x.fechaBaja is null and x.tieneOrdenTrabajo = false");
+        LoteEntity lote = new LoteEntity();
+        Query query = session.createQuery("select x.laboreo, x.tipoGrano, x.detallePlanificacionCampaniaLote.lote from DetallePlanificacionCampaniaLaboreosEntity x " +
+                "where ucase(x.detallePlanificacionCampaniaLote.planificacion.planificacionId) like ucase(:pId) " +
+                "and x.fechaBaja is null and x.tieneOrdenTrabajo = false");
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            laboreo = (LaboreoEntity) iter.next();
-            listaLaboreoEntity.add(laboreo);
+            OrdenTrabajoLaboreo orden = new OrdenTrabajoLaboreo();
+            Object[] array = (Object[]) iter.next();
+            orden.setLaboreoEntity((LaboreoEntity)array[0]);
+            orden.setSemilla((TipoGranoEntity) array[1]);
+            orden.setLoteEntity((LoteEntity) array[2]);
+
+            listaLaboreoLoteEntity.add(orden);
         }
         session.close();
-        return listaLaboreoEntity;
+        return listaLaboreoLoteEntity;
+    }
+
+
+    public List<OrdenTrabajoEntity> getOrdenesByPlanificadaId(Integer planId){
+        session = Coneccion.getSession();
+        List<OrdenTrabajoEntity> listaOrdenes = new ArrayList<>();
+        OrdenTrabajoEntity ordenTrabajoEntity = new OrdenTrabajoEntity();
+
+        Query query = session.createQuery("select x from OrdenTrabajoEntity x " +
+                "where ucase(x.planificacion.id) like ucase(:pId) " +
+                "and x.fechaBaja is null and x.estaRegistrada = false");
+        query.setParameter("pId", planId);
+        List list = query.list();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            ordenTrabajoEntity = (OrdenTrabajoEntity) iter.next();
+            listaOrdenes.add(ordenTrabajoEntity);
+        }
+        session.close();
+        return listaOrdenes;
     }
 
 }

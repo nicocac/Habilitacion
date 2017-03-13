@@ -1,6 +1,7 @@
 package Repository;
 
 import Conexion.Coneccion;
+import Datos.AcopioEntity;
 import Datos.TipoAcopioEntity;
 import Datos.TipoGranoEntity;
 import Datos.TipoInsumoEntity;
@@ -46,6 +47,22 @@ public class TipoAcopioRepository {
         session.close();
         return tipoGrano;
     }
+
+
+//    public TipoAcopioEntity getTipoAcopioByAcopioID(Integer acopioId){
+//        session = Coneccion.getSession();
+//        TipoAcopioEntity tipoAcopio = new TipoAcopioEntity();
+//        Query query = session.createQuery("select x from TipoAcopioEntity x " +
+//                "where (x.aco) like ucase(:pNombre) and tipoAcopioFechaBaja is null");
+//        query.setParameter("pNombre", nombre);
+//        List list = query.list();
+//        Iterator iter = list.iterator();
+//        while (iter.hasNext()) {
+//            tipoAcopio = (TipoAcopioEntity) iter.next();
+//        }
+//        session.close();
+//        return tipoAcopio;
+//    }
 
 
     public TipoInsumoEntity getTipoInsumoById(Long id){

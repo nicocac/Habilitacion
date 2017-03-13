@@ -29,9 +29,6 @@ public class MaquinariaEntity {
     private Collection<DetalleLaboreoEntity> detalleLaboreosByMaqId;
 
     //======================================================================================
-    private Integer maqTestadoId;
-    private Integer maqTmaqId;
-    //======================================================================================
 
     @Id
     @GeneratedValue
@@ -219,50 +216,11 @@ public class MaquinariaEntity {
         if (maqFechaBaja != null ? !maqFechaBaja.equals(that.maqFechaBaja) : that.maqFechaBaja != null) return false;
         if (maqUsuarioBaja != null ? !maqUsuarioBaja.equals(that.maqUsuarioBaja) : that.maqUsuarioBaja != null)
             return false;
-        if (maqTestadoId != null ? !maqTestadoId.equals(that.maqTestadoId) : that.maqTestadoId != null) return false;
-        if (maqTmaqId != null ? !maqTmaqId.equals(that.maqTmaqId) : that.maqTmaqId != null) return false;
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = maqId;
-        result = 31 * result + (maqAnioFabricacion != null ? maqAnioFabricacion.hashCode() : 0);
-        result = 31 * result + (maqDescripcion != null ? maqDescripcion.hashCode() : 0);
-        result = 31 * result + (maqFechaAlta != null ? maqFechaAlta.hashCode() : 0);
-        result = 31 * result + (maqFechaBaja != null ? maqFechaBaja.hashCode() : 0);
-        result = 31 * result + (maqFechaUltMod != null ? maqFechaUltMod.hashCode() : 0);
-        result = 31 * result + (maqMarca != null ? maqMarca.hashCode() : 0);
-        result = 31 * result + (maqModelo != null ? maqModelo.hashCode() : 0);
-        result = 31 * result + (maqNombre != null ? maqNombre.hashCode() : 0);
-        result = 31 * result + (maqUsuarioAlta != null ? maqUsuarioAlta.hashCode() : 0);
-        result = 31 * result + (maqUsuarioBaja != null ? maqUsuarioBaja.hashCode() : 0);
-        result = 31 * result + (maqUsuarioUtlMod != null ? maqUsuarioUtlMod.hashCode() : 0);
-        result = 31 * result + (maqTestadoId != null ? maqTestadoId.hashCode() : 0);
-        result = 31 * result + (maqTmaqId != null ? maqTmaqId.hashCode() : 0);
-        return result;
-    }
 
-
-    ///////////////////////////////
-    //=================================================================
-
-    public Integer getMaqTestadoId() {
-        return maqTestadoId;
-    }
-
-    public void setMaqTestadoId(Integer maqTestadoId) {
-        this.maqTestadoId = maqTestadoId;
-    }
-
-    public Integer getMaqTmaqId() {
-        return maqTmaqId;
-    }
-
-    public void setMaqTmaqId(Integer maqTmaqId) {
-        this.maqTmaqId = maqTmaqId;
-    }
 
 
 

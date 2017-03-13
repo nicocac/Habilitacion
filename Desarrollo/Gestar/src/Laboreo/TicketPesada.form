@@ -142,7 +142,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="1ac4" class="javax.swing.JTextField" binding="txtRRHH">
+              <component id="1ac4" class="javax.swing.JTextField" binding="txtPeso">
                 <constraints>
                   <grid row="16" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -251,7 +251,7 @@
                   <forms defaultalign-vert="false"/>
                 </constraints>
               </vspacer>
-              <component id="ec98c" class="javax.swing.JTextField">
+              <component id="ec98c" class="javax.swing.JTextField" binding="txtCampania">
                 <constraints>
                   <grid row="4" column="4" row-span="1" col-span="14" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -263,7 +263,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="324b0" class="javax.swing.JTextField" binding="txtTiempo">
+              <component id="324b0" class="javax.swing.JTextField" binding="txtMedida">
                 <constraints>
                   <grid row="18" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -313,7 +313,7 @@
                   <text value="Guardar"/>
                 </properties>
               </component>
-              <component id="b4979" class="javax.swing.JTextField">
+              <component id="b4979" class="javax.swing.JTextField" binding="txtObservaciones">
                 <constraints>
                   <grid row="20" column="4" row-span="1" col-span="39" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -332,7 +332,7 @@
                   <text value="Observaciones"/>
                 </properties>
               </component>
-              <component id="51309" class="javax.swing.JTextField">
+              <component id="51309" class="javax.swing.JTextField" binding="txtLote">
                 <constraints>
                   <grid row="8" column="4" row-span="1" col-span="14" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -408,7 +408,7 @@
                   <text value="Numero de Orden"/>
                 </properties>
               </component>
-              <component id="88e" class="javax.swing.JTextField">
+              <component id="88e" class="javax.swing.JTextField" binding="txtNroOrden">
                 <constraints>
                   <grid row="2" column="4" row-span="1" col-span="14" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -420,7 +420,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="fd0e1" class="javax.swing.JTextField">
+              <component id="fd0e1" class="javax.swing.JTextField" binding="txtLaboreo">
                 <constraints>
                   <grid row="6" column="4" row-span="1" col-span="14" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -432,7 +432,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="3f61d" class="javax.swing.JTextField">
+              <component id="3f61d" class="javax.swing.JTextField" binding="txtSemilla">
                 <constraints>
                   <grid row="10" column="4" row-span="1" col-span="14" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

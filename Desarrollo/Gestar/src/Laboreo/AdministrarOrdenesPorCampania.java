@@ -4,23 +4,20 @@ import Conexion.Coneccion;
 import Datos.*;
 import Insumo.Insumo;
 import Maquinaria.Maquinaria;
+import Repository.CampaniaRepository;
 import Repository.InsumoRepository;
 import Repository.LaboreoRepository;
 import Repository.PlanificacionRepository;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTemplate;
-import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -44,10 +41,14 @@ public class AdministrarOrdenesPorCampania extends JFrame {
     private JList lstLotes;
     private JComboBox cboMomentos;
     public JList lstLaboreos;
-    public JButton btnAgregarLaboreo;
-    public JButton btnGenerarOrden;
+    public JButton btnActualizar;
+    public JButton btnRegistrarAvance;
     public JTextField txtFechaIni;
     public JTextField txtFechaFin;
+    public JTextField txtCamp;
+    public JTextField txtLaboreo;
+    public JTextField txtLote;
+    public JList lstOrdenes;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -67,6 +68,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
     InsumoRepository insumoRepository = new InsumoRepository();
     LaboreoRepository laboreoRepository = new LaboreoRepository();
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
+    CampaniaRepository campaniaRepository = new CampaniaRepository();
 
     public AdministrarOrdenesPorCampania(String operacion, Integer planificacionId) {
 
@@ -95,10 +97,29 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //            this.setTitle("Modificar Ordenes de Trabajo");
 
         PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
-        List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
-        cargarLaboreos(listaLaboreoEntity);
+        CampaniaEntity campaniaEntity = campaniaRepository.getCampaniaByNombre(planificacion.getCampania().getCnaDenominacion());
 
-        lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
+        txtCamp.setText(campaniaEntity.getCnaDenominacion());
+        txtFechaIni.setText(campaniaEntity.getCnaFechaInicio().toString());
+        txtFechaFin.setText(campaniaEntity.getCnaFechaFinReal().toString());
+
+        List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaId(planificacionId);
+        cargarOrdenes(listaOrdenes);
+
+//        lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
+
+        lstOrdenes.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+//                lblLotes.setText(String.valueOf(lstLaboreos.getSelectedValuesList().size()));
+                OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
+                txtRRHH.setText(orden.getRecursoHumano());
+                txtLaboreo.setText(orden.getLaboreo().getLboNombre());
+                txtLote.setText(orden.getLote().getLteDenominacion());
+
+
+            }
+        });
 
 //        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Orden de trabajo");
@@ -211,86 +232,86 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
-            GestorLaboreo gest = new GestorLaboreo();
-            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-            Boolean sinStock = false;
-            String insumosSinStock = "";
-
-            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
-                DetalleLaboreo det = new DetalleLaboreo();
-                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
-
-                    if (insumoEntity.getInsStock() == null) {
-                        sinStock = true;
-                        if (insumosSinStock.equals("")) {
-                            insumosSinStock = insumoEntity.getInsNombre();
-                        } else {
-                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
-                        }
-                    }
-
-
-                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
-                    det.setInsumo(ins);
-                    det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-                } else {
-                    Maquinaria maq = new Maquinaria();
-                    maq.setNombre((String) tblDetalles.getValueAt(i, 1));
-                    det.setMaquinaria(maq);
-                    det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-
-                }
-                detalles.add(det);
-            }
-
-//            if (sinStock){
-////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-//                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-//                if(respuesta == 0){
-//                    dispose();
-//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
-//                    getDefaultCloseOperation();
-//                    return;
+//            GestorLaboreo gest = new GestorLaboreo();
+//            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+//            Boolean sinStock = false;
+//            String insumosSinStock = "";
+//
+//            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
+//                DetalleLaboreo det = new DetalleLaboreo();
+//                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
+//                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
+//
+//                    if (insumoEntity.getInsStock() == null) {
+//                        sinStock = true;
+//                        if (insumosSinStock.equals("")) {
+//                            insumosSinStock = insumoEntity.getInsNombre();
+//                        } else {
+//                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
+//                        }
+//                    }
+//
+//
+//                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+//                    det.setInsumo(ins);
+//                    det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+//                } else {
+//                    Maquinaria maq = new Maquinaria();
+//                    maq.setNombre((String) tblDetalles.getValueAt(i, 1));
+//                    det.setMaquinaria(maq);
+//                    det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+//
 //                }
-////                          else {
-////                            return;
-////                        }
+//                detalles.add(det);
 //            }
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-            java.util.Date date = new java.util.Date();
-            java.util.Calendar cal = Calendar.getInstance();
-            try {
-//                date = formatter.parse(txtFecha.getText());
-            } catch (Exception exe) {
-                showMessage(exe.getMessage());
-            }
-            cal.setTime(date);
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-//            Date fecha = new Date(cal.getTime().getTime());
-
-//            Date fecha = (Date) datePickerIni.getModel().getValue();
-            try {
-                gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        txtRRHH.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
-                        (String) cbxMedida.getSelectedItem(), txtNombre.getText());
-
-
-            } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la orden de trabajo : " + e1.toString());
-            } finally {
-                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
+//
+////            if (sinStock){
+//////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+////                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
+////                if(respuesta == 0){
+////                    dispose();
+////                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
+////                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+////                    getDefaultCloseOperation();
+////                    return;
+////                }
+//////                          else {
+//////                            return;
+//////                        }
+////            }
+//
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+//            java.util.Date date = new java.util.Date();
+//            java.util.Calendar cal = Calendar.getInstance();
+//            try {
+////                date = formatter.parse(txtFecha.getText());
+//            } catch (Exception exe) {
+//                showMessage(exe.getMessage());
+//            }
+//            cal.setTime(date);
+//            cal.set(Calendar.HOUR_OF_DAY, 0);
+//            cal.set(Calendar.MINUTE, 0);
+//            cal.set(Calendar.SECOND, 0);
+//            cal.set(Calendar.MILLISECOND, 0);
+////            Date fecha = new Date(cal.getTime().getTime());
+//
+////            Date fecha = (Date) datePickerIni.getModel().getValue();
+//            try {
+//                gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
+//                        txtRRHH.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
+//                        (String) cbxMedida.getSelectedItem(), txtNombre.getText());
+//
+//
+//            } catch (Exception e1) {
+//                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la orden de trabajo : " + e1.toString());
+//            } finally {
+//                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
                 dispose();
-            }
+//            }
         });
 
 
-//        btnAgregarLaboreo.addActionListener(new ActionListener() {
+//        btnActualizar.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
@@ -298,18 +319,24 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //                cargarLaboreos(listaLaboreoEntity);
 //            }
 //        });
-        btnGenerarOrden.addActionListener(new ActionListener() {
+
+
+        //REGISTRAR EL AVANCE
+        btnRegistrarAvance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
 //                RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
 //                avanceCampania.setVisible(true);
-                getDefaultCloseOperation();
+//                getDefaultCloseOperation();
 
-                RegistrarAvanceCampania cargaTipoLaboreo = new RegistrarAvanceCampania("Carga", 0, "", null, null, null);
-                cargaTipoLaboreo.setVisible(true);
+                OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
+
+                RegistrarAvanceCampania registrarAvanceCampania = new RegistrarAvanceCampania("Carga", orden);
+                setBounds(200,300,900,900);
+                registrarAvanceCampania.setVisible(true);
                 getDefaultCloseOperation();
-                dispose();
+//                dispose();
             }
         });
     }
@@ -429,17 +456,17 @@ public class AdministrarOrdenesPorCampania extends JFrame {
     }
 
 
-    private void cargarLaboreos(List<LaboreoEntity> listaLaboreoEntity) {
+    private void cargarOrdenes(List<OrdenTrabajoEntity> listaOrdenes) {
         DefaultListModel modelo = new DefaultListModel();
 //        List<LaboreoEntity> listaLaboreoSinOrden = new ArrayList<>();
 //        for(LaboreoEntity laboreo :listaLaboreoSinOrden){
 //            if(laboreo.)
 //        }
-        Iterator iter = listaLaboreoEntity.iterator();
+        Iterator iter = listaOrdenes.iterator();
         while (iter.hasNext()) {
             modelo.addElement(iter.next());
         }
-        lstLaboreos.setModel(modelo);
+        lstOrdenes.setModel(modelo);
     }
 
 
@@ -516,17 +543,17 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 
 
     //METODO BUSCAR INSUMOS DE SOLICUTUDES
-    private void buscarInsumosMaquinariasPorLaboreo(Integer laboreoId, Integer planificacionId) {
+    private void buscarInsumosMaquinariasPorLaboreo(LaboreoEntity laboreo, Integer planificacionId) {
 
         //Carga insumos
         java.util.List<Object[]> listaIns;
         //getInsumos por laboreo
-        listaIns = gestor.getInsumosByLaboreoAndPlanificacion(laboreoId, planificacionId);
+        listaIns = gestor.getInsumosByLaboreoAndPlanificacion(laboreo.getLboId(), planificacionId);
 
         //Carga maquinarias
         java.util.List<Object[]> listaMaq;
         //getMaquinaria por laboreo
-        listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreoId, planificacionId);
+        listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreo.getLboId(), planificacionId);
 
 
         Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];

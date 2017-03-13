@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.Date;
 import java.util.Properties;
 import java.util.Vector;
@@ -142,6 +143,8 @@ public class PantallaCargaAcopio extends JFrame {
 
 
         //COMBO BOXS
+
+
 
         //Acopio
         nvoBtnAcopio.addActionListener(new ActionListener() {
@@ -267,6 +270,9 @@ public class PantallaCargaAcopio extends JFrame {
                 cargaComboBoxCliente();
             }
         });
+
+
+
     }
 
 
@@ -362,6 +368,7 @@ public class PantallaCargaAcopio extends JFrame {
     //---CARGA DE COMBO BOXS
 
     //METODO CARGA COMBO  Acopio
+
     private void cargaComboBoxAcopio() {
         Session session = Coneccion.getSession();
         Query query = session.createQuery("SELECT p FROM AcopioEntity p");

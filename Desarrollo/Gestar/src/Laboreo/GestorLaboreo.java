@@ -27,6 +27,7 @@ public class GestorLaboreo {
     TipoLaboreoRepository tipoLaboreoRepository = new TipoLaboreoRepository();
     LoteCampaniaRepository loteCampaniaRepository = new LoteCampaniaRepository();
     TipoGranoRepository tipoGranoRepository = new TipoGranoRepository();
+    OrdenRepository ordenRepository = new OrdenRepository();
     Session session;
 
     public List getInsumos() {
@@ -272,7 +273,7 @@ public class GestorLaboreo {
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setMaquinaria(maquinariaEntity);
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setCantidadMaquinaria(insOmaq.getCantidadMaquinaria());
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setFechaAlta(fechaPlan);
-                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setObservaciones("Carga Insumo del laboreo");
+                        detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setObservaciones("Carga Maquinaria del laboreo");
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setDetallePlanificacionCampaniaLaboreos(detallePlanificacionCampaniaLaboreosEntity);
 
                         listaMaquinarias.add(detalleLaboreosMaquinariaDePlanificacionCampaniaEntity);
@@ -287,7 +288,7 @@ public class GestorLaboreo {
         session.save(planificacionCampaniaEntity);
 
         for (DetallePlanificacionCampaniaLoteEntity lote : listaLotes) {
-                session.save(lote);
+            session.save(lote);
             for (DetallePlanificacionCampaniaLaboreosEntity laboreo : listaLaboreos) {
                 session.save(laboreo);
 
@@ -476,6 +477,158 @@ public class GestorLaboreo {
     }
 
 
+    public void registrarOrden(ArrayList<DetalleLaboreo> detallesLaboreo, String nroOrden, PlanificacionCampaniaEntity planificacion,
+                               String txtRRHH, Date fecha, String txtTiempo, LaboreoEntity laboreoEntity,
+                               LoteEntity loteEntity, TipoGranoEntity tipoGranoEntity) {
+
+        Session session = Coneccion.getSession();
+        Transaction tx = session.beginTransaction();
+
+        OrdenTrabajoEntity ordenTrabajoEntity = new OrdenTrabajoEntity();
+        DetalleOrdenEntity detalleOrdenEntity;
+
+        InsumoEntity insumoEntity;
+        MaquinariaEntity maquinariaEntity;
+
+        ArrayList<DetalleOrdenEntity> listaDetallesLaboreoEntity = new ArrayList<>();
+        for (int i = 0; i < detallesLaboreo.size(); i++) {
+            detalleOrdenEntity = new DetalleOrdenEntity();
+            detalleOrdenEntity.setObservaciones("Carga detalles de una orden de trabajo");
+            try {
+                String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
+                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                detalleOrdenEntity.setInsumo(insumoEntity);
+                detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
+
+
+            } catch (NullPointerException npe) {
+                String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
+                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                detalleOrdenEntity.setMaquinaria(maquinariaEntity);
+                detalleOrdenEntity.setCantidadMaquinaria(detallesLaboreo.get(i).getCantidadMaquinaria());
+//                session.update(maquinariaEntity);
+
+            }
+            listaDetallesLaboreoEntity.add(detalleOrdenEntity);
+
+        }
+
+
+        ordenTrabajoEntity.setObservaciones("Carga de una orden");
+        ordenTrabajoEntity.setNroOrden(Integer.parseInt(nroOrden));
+        ordenTrabajoEntity.setPlanificacion(planificacion);
+        ordenTrabajoEntity.setRecursoHumano(txtRRHH);
+        ordenTrabajoEntity.setFechaAlta(fecha);
+        ordenTrabajoEntity.setTiempo(txtTiempo);
+        ordenTrabajoEntity.setLaboreo(laboreoEntity);
+        ordenTrabajoEntity.setLote(loteEntity);
+        ordenTrabajoEntity.setGrano(tipoGranoEntity);
+
+        session.save(ordenTrabajoEntity);
+
+        for (DetalleOrdenEntity detalleLaboreo : listaDetallesLaboreoEntity) {
+            detalleLaboreo.setOrden(ordenTrabajoEntity);
+            session.save(detalleLaboreo);
+        }
+
+        DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity =
+                getLaboreoByPlanificacionAndLote(laboreoEntity.getLboId(), planificacion.getPlanificacionId(), loteEntity.getLteId());
+        detallePlanificacionCampaniaLaboreosEntity.setTieneOrdenTrabajo(true);
+        session.update(detallePlanificacionCampaniaLaboreosEntity);
+
+        try {
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+        }
+        session.close();
+    }
+
+
+    public void registrarAvanceOrdenIngreso(Date fecha, ArrayList<DetalleLaboreo> detallesLaboreo, OrdenTrabajoEntity orden,
+                                            String txtRRHH, String txtTiempo, String cantidad, String estadoSemilla, AcopioEntity acopioEntity) {
+
+        Session session = Coneccion.getSession();
+        Transaction tx = session.beginTransaction();
+
+//        Date fecha = (Date) session.createSQLQuery("SELECT SYSDATE CURRENT_DATE FROM DUAL").uniqueResult();
+
+        DetalleOrdenEntity detalleOrdenEntity;
+
+        InsumoEntity insumoEntity;
+        MaquinariaEntity maquinariaEntity;
+
+        ArrayList<DetalleOrdenEntity> listaDetallesLaboreoEntity = new ArrayList<>();
+        for (int i = 0; i < detallesLaboreo.size(); i++) {
+            detalleOrdenEntity = new DetalleOrdenEntity();
+            detalleOrdenEntity.setObservaciones("Carga detalles reales de una orden de trabajo registrada");
+            try {
+                String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
+                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                detalleOrdenEntity.setInsumo(insumoEntity);
+                detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
+
+
+            } catch (NullPointerException npe) {
+                String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
+                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                detalleOrdenEntity.setMaquinaria(maquinariaEntity);
+                detalleOrdenEntity.setCantidadMaquinaria(detallesLaboreo.get(i).getCantidadMaquinaria());
+//                session.update(maquinariaEntity);
+
+            }
+            listaDetallesLaboreoEntity.add(detalleOrdenEntity);
+
+        }
+
+
+        orden.setObservaciones("Modifica de una orden");
+        orden.setRecursoHumano(txtRRHH);
+        orden.setFechaAlta(fecha);
+        orden.setTiempo(txtTiempo);
+        orden.setEstaRegistrada(true);
+
+        session.update(orden);
+
+        //Borramos los detalles viejos
+//        int delete = ordenRepository.deleteAllDetalleOrdenesByOrdenID(orden.getId());
+        int result = 0;
+        Query queryDelete = session.createQuery("delete from DetalleOrdenEntity x " +
+                "where x.orden.id = (:ordenID) ");
+        queryDelete.setParameter("ordenID", orden.getId());
+        result = queryDelete.executeUpdate();
+
+        if (result > 0) {
+            //Guardamos la orden a los detalles nuevo
+            for (DetalleOrdenEntity detalleLaboreo : listaDetallesLaboreoEntity) {
+                detalleLaboreo.setOrden(orden);
+                session.save(detalleLaboreo);
+            }
+        }
+
+
+        IngresoAcopioEntity ingresoAcopioEntity = new IngresoAcopioEntity();
+        ingresoAcopioEntity.setAcopio(acopioEntity);
+        ingresoAcopioEntity.setTipoGrano(orden.getGrano());
+        ingresoAcopioEntity.setLaboreo(orden.getLaboreo());
+        ingresoAcopioEntity.setCampania(orden.getPlanificacion().getCampania());
+        ingresoAcopioEntity.setLote(orden.getLote());
+        ingresoAcopioEntity.setIngresoCantidadTotal(Integer.parseInt(cantidad));
+        ingresoAcopioEntity.setEstadoSemilla(estadoSemilla);
+        ingresoAcopioEntity.setIngresoFecha(fecha);
+        ingresoAcopioEntity.setIngresoUsuarioAlta("admin");
+
+        session.save(ingresoAcopioEntity);
+
+        try {
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+        }
+        session.close();
+    }
+
+
     public void registrarEgresoSemillas(ArrayList<DetalleEgresoAcopioEntity> detallesEgreso,
                                         AcopioEntity acopio, EgresoAcopioEntity egresoAcopio,
                                         TipoGranoEntity tipoGrano) {
@@ -531,14 +684,14 @@ public class GestorLaboreo {
     }
 
 
-    public List<Object[]> getInsumosByLaboreoAndPlanificacion(Integer labId, Integer planificacionId) {
+    public List<Object[]> getInsumosByLaboreoAndPlanificacion(Long labId, Integer planificacionId) {
         session = Coneccion.getSession();
 
         java.util.List list;
         Query queryInsumoByLaboreo = session.createQuery("select t.insumo , t.cantidadInsumo " +
                 "from DetalleLaboreosInsumoDePlanificacionCampaniaEntity t " +
-                "where (t.detallePlanificacionCampaniaLaboreos.laboreo = :pId" +
-                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion = :p2Id)");
+                "where (t.detallePlanificacionCampaniaLaboreos.laboreo.id = :pId" +
+                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion.id = :p2Id)");
         queryInsumoByLaboreo.setParameter("pId", labId);
         queryInsumoByLaboreo.setParameter("p2Id", planificacionId);
         list = queryInsumoByLaboreo.list();
@@ -549,20 +702,59 @@ public class GestorLaboreo {
     }
 
 
-    public List<Object[]> getMaquinariasByLaboreoAndPlanificacion(Integer labId, Integer planificacionId) {
+    public List<Object[]> getMaquinariasByLaboreoAndPlanificacion(Long labId, Integer planificacionId) {
         session = Coneccion.getSession();
 
         java.util.List list;
         Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinaria, t.cantidadMaquinaria" +
                 " from DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity t " +
-                "where (t.detallePlanificacionCampaniaLaboreos.laboreo = :pId" +
-                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion = :p2Id)");
+                "where (t.detallePlanificacionCampaniaLaboreos.laboreo.id = :pId" +
+                " AND t.detallePlanificacionCampaniaLaboreos.detallePlanificacionCampaniaLote.planificacion.id = :p2Id)");
         queryMaquinariaByLaboreo.setParameter("pId", labId);
         queryMaquinariaByLaboreo.setParameter("p2Id", planificacionId);
         list = queryMaquinariaByLaboreo.list();
         session.close();
 
 //        return  listaMaquinaria;
+        return list;
+    }
+
+    public DetallePlanificacionCampaniaLaboreosEntity getLaboreoByPlanificacionAndLote(Long labId, Integer planificacionId, Integer loteId) {
+        session = Coneccion.getSession();
+
+        DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
+        java.util.List list;
+        Query queryInsumoByLaboreo = session.createQuery("select t " +
+                "from DetallePlanificacionCampaniaLaboreosEntity t " +
+                "where (t.laboreo.id = :pId" +
+                " AND t.detallePlanificacionCampaniaLote.planificacion.id = :p2Id AND t.detallePlanificacionCampaniaLote.lote.id = :p3Id)");
+        queryInsumoByLaboreo.setParameter("pId", labId);
+        queryInsumoByLaboreo.setParameter("p2Id", planificacionId);
+        queryInsumoByLaboreo.setParameter("p3Id", loteId);
+        detallePlanificacionCampaniaLaboreosEntity = (DetallePlanificacionCampaniaLaboreosEntity) queryInsumoByLaboreo.uniqueResult();
+
+        session.close();
+
+        return detallePlanificacionCampaniaLaboreosEntity;
+    }
+
+
+    public List <Object[]> getStockByAcopio() {
+        session = Coneccion.getSession();
+
+        DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
+        java.util.List <Object[]>list;
+
+        Query query = session.createQuery("select a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre," +
+                " i.tipoGrano.tgrNombre, SUM(i.ingresoCantidadTotal) " +
+                "from AcopioEntity a, IngresoAcopioEntity i " +
+                "where (a.acopioId = i.acopio.acopioId)" +
+                "group by a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre, i.tipoGrano.tgrNombre");
+
+        list =  query.list();
+
+        session.close();
+
         return list;
     }
 

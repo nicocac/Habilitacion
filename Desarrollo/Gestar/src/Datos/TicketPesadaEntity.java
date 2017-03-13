@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campania", schema = "", catalog = "gestar")
+@Table(name = "ticket_pesada", schema = "", catalog = "gestar")
 public class TicketPesadaEntity {
 
     private Integer id;

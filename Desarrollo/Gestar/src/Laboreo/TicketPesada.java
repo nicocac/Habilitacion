@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class TicketPesada  extends JFrame {
     private JPanel panel1;
-    private JTextField txtRRHH;
+    private JTextField txtPeso;
     private JTable tblDetalles;
     private JList lstInsumos;
     private JList lstMaquinarias;
@@ -45,10 +45,16 @@ public class TicketPesada  extends JFrame {
     private JComboBox cboMomentos;
     public JList lstLaboreos;
     public JButton buttonFecha;
-    public JTextField txtTiempo;
+    public JTextField txtMedida;
     public JButton btnGenerarOrden;
     public JTextField txtFechaIni;
     public JTextField txtFechaFin;
+    public JTextField txtNroOrden;
+    public JTextField txtCampania;
+    public JTextField txtLote;
+    public JTextField txtLaboreo;
+    public JTextField txtSemilla;
+    public JTextField txtObservaciones;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -69,24 +75,45 @@ public class TicketPesada  extends JFrame {
     LaboreoRepository laboreoRepository = new LaboreoRepository();
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
 
-    public TicketPesada(String operacion, Integer planificacionId) {
+    public TicketPesada(String operacion, OrdenTrabajoEntity orden) {
 
         //INICIO
-        setContentPane(panel1);
-        pack();
+//        setContentPane(panel1);
+//        pack();
+        JPanel container = new JPanel();
+
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
 //        inicializaTabla();
 //        cargarItems();
 //        cargarMaquinas();
 //        cargaComboBoxTipoLaboreo();
 //        cargaComboBoxTipoGrano();
+        setBounds(200,300,900,500);
         tipoOperacion = operacion;
-//        if (tipoOperacion.equals("Carga")) {
-//            this.setTitle("Generar Ordenes de Trabajo");
-//        } else {
-//            this.setTitle("Modificar Ordenes de Trabajo");
+        if (tipoOperacion.equals("Carga")) {
+            this.setTitle("Registrar Orden Trabajo Realizada");
+        } else {
+            this.setTitle("Modificar Avance Campania");
+        }
+//        inicializaTabla();
+//        cargarLotes(camId);
 
-        PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
-        List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
+        txtNroOrden.setText(orden.getNroOrden().toString());
+        txtCampania.setText(orden.getPlanificacion().getCampania().getCnaDenominacion());
+        txtLote.setText(orden.getLote().getLteDenominacion());
+        txtPeso.setText(orden.getRecursoHumano());
+        txtFechaIni.setText(orden.getPlanificacion().getCampania().getCnaFechaInicio().toString());
+        txtFechaFin.setText(orden.getPlanificacion().getCampania().getCnaFechaFinReal().toString());
+        txtMedida.setText(orden.getTiempo());
+        txtLaboreo.setText(orden.getLaboreo().getLboNombre());
+        txtSemilla.setText(orden.getGrano().getTgrNombre());
+//        PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
+//        List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
 //        cargarLaboreos(listaLaboreoEntity);
 
 //        lstLaboreos.addListSelectionListener(e -> buscarInsumosMaquinariasPorLaboreo((Integer) lstLaboreos.getSelectedValue(), planificacion.getPlanificacionId()));
@@ -269,7 +296,7 @@ public class TicketPesada  extends JFrame {
 //            Date fecha = (Date) datePickerIni.getModel().getValue();
             try {
                 gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        txtRRHH.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
+                        txtPeso.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
                         (String) cbxMedida.getSelectedItem(), txtNombre.getText());
 
 
@@ -282,7 +309,7 @@ public class TicketPesada  extends JFrame {
         });
 
 
-//        btnAgregarLaboreo.addActionListener(new ActionListener() {
+//        btnActualizar.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                List<LaboreoEntity> listaLaboreoEntity = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
@@ -518,17 +545,17 @@ public class TicketPesada  extends JFrame {
 
 
     //METODO BUSCAR INSUMOS DE SOLICUTUDES
-    private void buscarInsumosMaquinariasPorLaboreo(Integer laboreoId, Integer planificacionId) {
+    private void buscarInsumosMaquinariasPorLaboreo(LaboreoEntity laboreo, Integer planificacionId) {
 
         //Carga insumos
         java.util.List<Object[]> listaIns;
         //getInsumos por laboreo
-        listaIns = gestor.getInsumosByLaboreoAndPlanificacion(laboreoId, planificacionId);
+        listaIns = gestor.getInsumosByLaboreoAndPlanificacion(laboreo.getLboId(), planificacionId);
 
         //Carga maquinarias
         java.util.List<Object[]> listaMaq;
         //getMaquinaria por laboreo
-        listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreoId, planificacionId);
+        listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreo.getLboId(), planificacionId);
 
 
         Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];

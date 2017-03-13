@@ -34,7 +34,7 @@ public class MaquinariaRepository {
 
     public MaquinariaEntity getMaquinariaByNombre(String nombre){
          session = Coneccion.getSession();
-        MaquinariaEntity maquinaria = null;
+        MaquinariaEntity maquinaria = new MaquinariaEntity();
         Query query = session.createQuery("select x from MaquinariaEntity x where ucase(maqNombre) like ucase(:pNombre) and maqFechaBaja is null");
         query.setParameter("pNombre", nombre);
         List list = query.list();

@@ -55,8 +55,6 @@ public class PantallaEgresoAcopio extends JFrame {
     public JComboBox cbxSemillas;
     public JTextField txtFechaIni;
     public JTextField txtCantidad;
-    public JComboBox cbxEstado;
-    public JComboBox cbxMedida;
     public JButton nuevoClienteBtn;
     public JButton nuevoTransporteBtn;
     public JButton salirButton;
@@ -72,6 +70,9 @@ public class PantallaEgresoAcopio extends JFrame {
     public JButton btnQuitar;
     public JTextField cantidadTotal;
     public JSeparator Detalles;
+    public JComboBox cbxMedida;
+    public JComboBox cbxEstado;
+    public JTextField txtTipoAcopio;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
 
     private String tipoOperacion;

@@ -5,6 +5,7 @@ import Acopio.TipoAcopio.CargaTipoAcopio;
 import Conexion.Coneccion;
 import Datos.AcopioEntity;
 import Datos.TipoAcopioEntity;
+import Laboreo.GestorLaboreo;
 import Repository.AcopioRepository;
 import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Query;
@@ -37,6 +38,7 @@ public class AdministrarAcopio extends JFrame {
     Date fechaActual = new Date(fecha.getTime());
 
     AcopioRepository acopioRepository = new AcopioRepository();
+    GestorLaboreo gest = new GestorLaboreo();
 
     public AdministrarAcopio() {
 
@@ -57,7 +59,7 @@ public class AdministrarAcopio extends JFrame {
         pack();
         this.setTitle("Consultar Acopios");
         inicializaTabla();
-
+        buscarTiposAcopio();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
@@ -136,11 +138,11 @@ public class AdministrarAcopio extends JFrame {
         tblTipos.setModel(model);
         tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblTipos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblTipos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(500);
-        tblTipos.getColumnModel().getColumn(3).setPreferredWidth(500);
-        tblTipos.getColumnModel().getColumn(4).setPreferredWidth(500);
-        tblTipos.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tblTipos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(5).setPreferredWidth(100);
     }
 
     private void showMessage(String error) {
@@ -158,11 +160,11 @@ public class AdministrarAcopio extends JFrame {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            if(Integer.parseInt(tblTipos.getModel().getValueAt(fila,5).toString()) > 0){
+            if (Integer.parseInt(tblTipos.getModel().getValueAt(fila, 5).toString()) > 0) {
                 showMessage("El Acopio debe estar vacio para poder darse de baja.");
                 return 3;
             }
-            AcopioEntity acopioEntity =  acopioRepository.getAcopioById((Long)tblTipos.getModel().getValueAt(fila, 0));
+            AcopioEntity acopioEntity = acopioRepository.getAcopioById((Long) tblTipos.getModel().getValueAt(fila, 0));
             acopioEntity.setAcopioFechaUltMod(fechaActual);
             acopioEntity.setAcopioFechaBaja(fechaActual);
             acopioEntity.setAcopioUsuarioBaja("adminBAJA");
@@ -191,32 +193,29 @@ public class AdministrarAcopio extends JFrame {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            tipo = new AcopioEntity();
-            Query query = session.createQuery("select t from AcopioEntity t where ucase(nombre) like ucase(:pNombre) and acopioFechaBaja is null");
-            query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
-            java.util.List list = query.list();
+            java.util.List<Object[]> list;
+            Object[] acopio;
+//            tipo = new AcopioEntity();
+
+//            Query query = session.createQuery("select t from AcopioEntity t where ucase(nombre) like ucase(:pNombre) " +
+//                    "and acopioFechaBaja is null");
+//            query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
+
+//            java.util.List list = query.list();
+            list = gest.getStockByAcopio();
+
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Acopio", "Semilla", "Cantidad Total"};
+            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Cantidad Total"};
             Object[][] data = new Object[list.size()][6];
 
             while (iter.hasNext()) {
-                tipo = (AcopioEntity) iter.next();
-                data[i][0] = tipo.getAcopioId();
-                data[i][1] = tipo.getNombre();
-                data[i][2] = tipo.getCodigo();
-
-                if(tipo.getTipoAcopioEntity() == null){
-                    data[i][3] = null;
-                } else {
-                    data[i][3] = tipo.getTipoAcopioEntity().getTipoAcopioNombre();
-                }
-
-                if(tipo.getTipoGrano() == null){
-                    data[i][4] = null;
-                } else {
-                    data[i][4] = tipo.getTipoGrano().getTgrNombre();
-                }
-                data[i][5] = tipo.getCantidadGrano();
+                acopio = (Object[]) iter.next();
+                data[i][0] = acopio[0];
+                data[i][1] = acopio[1];
+                data[i][2] = acopio[2];
+                data[i][3] = acopio[3];
+                data[i][4] = acopio[4];
+                data[i][5] = acopio[5];
                 i++;
             }
             setModel(columnNames, data, tblTipos);

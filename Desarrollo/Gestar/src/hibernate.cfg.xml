@@ -73,6 +73,9 @@
         <mapping class="Datos.DetalleLaboreosInsumoDePlanificacionCampaniaEntity"/>
         <mapping class="Datos.TipoClienteEntity"/>
         <mapping class="Datos.TipoTransporteEntity"/>
+        <mapping class="Datos.DetalleOrdenEntity"/>
+        <mapping class="Datos.OrdenTrabajoEntity"/>
+        <mapping class="Datos.TicketPesadaEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->

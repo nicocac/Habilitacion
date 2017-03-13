@@ -8,14 +8,15 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campania", schema = "", catalog = "gestar")
+@Table(name = "orden", schema = "", catalog = "gestar")
 public class OrdenTrabajoEntity {
 
     private Integer id;
+    private Integer nroOrden;
     private String  observaciones;
     private String  recursoHumano;
     private String  tiempo;
-
+    private Boolean estaRegistrada;
 
     private Date    fechaAlta;
     private String  usuarioAlta;
@@ -26,6 +27,8 @@ public class OrdenTrabajoEntity {
 
     private LoteCampaniaEntity loteCampania;
     private LaboreoEntity laboreo;
+    private LoteEntity lote;
+    private TipoGranoEntity grano;
     private PlanificacionCampaniaEntity planificacion;
 
     //=================================================================
@@ -152,6 +155,38 @@ public class OrdenTrabajoEntity {
         this.laboreo = laboreo;
     }
 
+    @Basic
+    @Column(name = "nro_orden")
+    public Integer getNroOrden() {
+        return nroOrden;
+    }
+
+    public void setNroOrden(Integer nroOrden) {
+        this.nroOrden = nroOrden;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "lote_id", referencedColumnName = "lte_id")
+    public LoteEntity getLote() {
+        return lote;
+    }
+
+    public void setLote(LoteEntity lote) {
+        this.lote = lote;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "grano_id", referencedColumnName = "tgr_id")
+    public TipoGranoEntity getGrano() {
+        return grano;
+    }
+
+    public void setGrano(TipoGranoEntity grano) {
+        this.grano = grano;
+    }
+
     @ManyToOne
     @JoinColumn(name = "planificacion_id", referencedColumnName = "planificacion_id")
     public PlanificacionCampaniaEntity getPlanificacion() {
@@ -162,6 +197,19 @@ public class OrdenTrabajoEntity {
         this.planificacion = planificacion;
     }
 
+    @Column(name = "esta_registrada")
+    public Boolean getEstaRegistrada() {
+        return estaRegistrada;
+    }
 
+    public void setEstaRegistrada(Boolean estaRegistrada) {
+        this.estaRegistrada = estaRegistrada;
+    }
+
+    @Override
+    public String toString() {
+        return
+                this.getNroOrden().toString();
+    }
 
 }

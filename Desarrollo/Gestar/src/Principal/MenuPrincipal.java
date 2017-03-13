@@ -87,7 +87,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         image.add(btnRegistrarOrdenTrabajo);
 
         btnRegistrarOrdenTrabajo.addActionListener(e -> {
-            PantallaAdministrarCampaniaPlanificada pantallaAdministrarCampaniaPlanificada = new PantallaAdministrarCampaniaPlanificada();
+            PantallaAdministrarCampaniaPlanificada pantallaAdministrarCampaniaPlanificada = new PantallaAdministrarCampaniaPlanificada("Generar");
             pantallaAdministrarCampaniaPlanificada.setVisible(true);
             getDefaultCloseOperation();
         });
@@ -99,8 +99,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         image.add(btnRegistrarAvance);
 
         btnRegistrarAvance.addActionListener(e -> {
-            PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
-            pantallaAdministrarCampania.setVisible(true);
+//            PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
+//            pantallaAdministrarCampania.setVisible(true);
+            PantallaAdministrarCampaniaPlanificada pantallaAdministrarCampaniaPlanificada = new PantallaAdministrarCampaniaPlanificada("Avance");
+            pantallaAdministrarCampaniaPlanificada.setVisible(true);
             getDefaultCloseOperation();
         });
 
@@ -457,7 +459,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == AdmOrdenesXCamp) {
-            PantallaAdministrarCampaniaPlanificada administrarOrdenesPorCampania = new PantallaAdministrarCampaniaPlanificada();
+            PantallaAdministrarCampaniaPlanificada administrarOrdenesPorCampania = new PantallaAdministrarCampaniaPlanificada("");
             administrarOrdenesPorCampania.setVisible(true);
             getDefaultCloseOperation();
         }
@@ -472,7 +474,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 
         if (e.getSource() == AdmCampaniaPlanificada) {
-            PantallaAdministrarCampaniaPlanificada administrarOrdenesPorCampania = new PantallaAdministrarCampaniaPlanificada();
+            PantallaAdministrarCampaniaPlanificada administrarOrdenesPorCampania = new PantallaAdministrarCampaniaPlanificada("");
             administrarOrdenesPorCampania.setVisible(true);
             getDefaultCloseOperation();
         }

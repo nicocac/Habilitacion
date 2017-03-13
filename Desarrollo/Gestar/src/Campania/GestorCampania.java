@@ -198,6 +198,7 @@ public class GestorCampania {
         campaniaEntity.setCnaFechaFinReal(campania.getFechaFinReal());
         campaniaEntity.setCnaFechaAlta(fechaActual);
         campaniaEntity.setCnaUsuarioAlta("admin");
+        campaniaEntity.setEstaPlanificada(true);
 
         for (Lote lote : campania.getLotes()) {
             //Si estamos modificando la campaña borrar y crear de nuevo todos los lotescampanias
