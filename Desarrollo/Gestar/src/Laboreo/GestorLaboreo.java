@@ -742,14 +742,49 @@ public class GestorLaboreo {
     public List <Object[]> getStockByAcopio() {
         session = Coneccion.getSession();
 
-        DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
         java.util.List <Object[]>list;
 
         Query query = session.createQuery("select a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre," +
-                " i.tipoGrano.tgrNombre, SUM(i.ingresoCantidadTotal) " +
+                " i.tipoGrano.tgrNombre, i.estadoSemilla, SUM(i.ingresoCantidadTotal) " +
                 "from AcopioEntity a, IngresoAcopioEntity i " +
                 "where (a.acopioId = i.acopio.acopioId)" +
-                "group by a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre, i.tipoGrano.tgrNombre");
+                "group by a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre, i.tipoGrano.tgrNombre, i.estadoSemilla");
+
+        list =  query.list();
+
+        session.close();
+
+        return list;
+    }
+
+
+    public List <Object[]> getStockIngresoByAcopio() {
+        session = Coneccion.getSession();
+
+        java.util.List <Object[]>list;
+
+        Query query = session.createQuery("select a.acopioId, SUM(i.ingresoCantidadTotal) " +
+                "from AcopioEntity a, IngresoAcopioEntity i " +
+                "where (a.acopioId = i.acopio.acopioId)" +
+                "group by a.acopioId ");
+
+        list =  query.list();
+
+        session.close();
+
+        return list;
+    }
+
+
+    public List <Object[]> getStockEgresoByAcopio() {
+        session = Coneccion.getSession();
+
+        java.util.List <Object[]>list;
+
+        Query query = session.createQuery("select a.acopioId, SUM(d.detalleEgresoCantidad) " +
+                "from AcopioEntity a, DetalleEgresoAcopioEntity d " +
+                "where (a.acopioId = d.acopio.acopioId)" +
+                "group by a.acopioId ");
 
         list =  query.list();
 

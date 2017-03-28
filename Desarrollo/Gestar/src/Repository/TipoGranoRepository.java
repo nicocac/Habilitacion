@@ -17,15 +17,15 @@ import java.util.List;
 public class TipoGranoRepository {
     Session session = Coneccion.getSession();
 
-    public List<TipoInsumoEntity> getAllTipoInsumos(){
-        List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
+    public List<TipoGranoEntity> getAllTipoGranos(){
+        List<TipoGranoEntity> listaTipoInsumo = new ArrayList<>();
          session = Coneccion.getSession();
-        TipoInsumoEntity tipoInsumo;
-        Query query = session.createQuery("select x from TipoInsumoEntity x");
+        TipoGranoEntity tipoInsumo;
+        Query query = session.createQuery("select x from TipoGranoEntity x");
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            tipoInsumo = (TipoInsumoEntity) iter.next();
+            tipoInsumo = (TipoGranoEntity) iter.next();
             listaTipoInsumo.add(tipoInsumo);
         }
         session.close();

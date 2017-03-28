@@ -2,6 +2,7 @@ package Transporte.TipoTransporte;
 
 import Conexion.Coneccion;
 import Datos.TipoInsumoEntity;
+import Datos.TipoTransporteEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -67,7 +68,7 @@ public class CargaTipoTransporte extends JFrame {
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
-                TipoInsumoEntity tipo = new TipoInsumoEntity();
+                TipoTransporteEntity tipo = new TipoTransporteEntity();
                 tipo.setTinNombre(txtNombre.getText());
                 tipo.setTinDescripcion(txtDescripcion.getText());
                 tipo.setTinFechaAlta(fechaActual);

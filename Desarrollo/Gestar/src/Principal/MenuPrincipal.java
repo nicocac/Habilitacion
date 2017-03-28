@@ -122,7 +122,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON EXIT
         JButton btnExit = new JButton("Exit");
-        btnExit.setBounds(750, 300, 215, 70);
+        btnExit.setBounds(720, 400, 215, 70);
         ImageIcon exitIcon = new ImageIcon("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\exit5.jpg");
         Image img = exitIcon.getImage() ;
         Image newimg = img.getScaledInstance( 230, 100,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -134,6 +134,18 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
             dispose();
         });
+
+        //BUTTON ADMINISTRAR ACOPIOS
+        JButton btnAdmAcopios = new JButton("Administrar Acopios");
+        btnAdmAcopios.setBounds(720, 300, 215, 70);
+        image.add(btnAdmAcopios);
+
+        btnAdmAcopios.addActionListener(e -> {
+            AdministrarAcopio pantallaLaboreo = new AdministrarAcopio();
+            pantallaLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
 
 
         image.setLayout(null);

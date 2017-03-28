@@ -30,6 +30,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.FileOutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -64,27 +66,36 @@ public class PantallaEgresoAcopio extends JFrame {
     public JComboBox cbxCliente;
     public JComboBox cbxTransporte;
     public JTextArea txtObserv;
-    public JComboBox comboBox1;
     public JButton btnAgregarSemilla;
     public JTable tblDetalles;
     public JButton btnQuitar;
     public JTextField cantidadTotal;
     public JSeparator Detalles;
     public JComboBox cbxMedida;
-    public JComboBox cbxEstado;
     public JTextField txtTipoAcopio;
+    public JTextField txtStock;
+    public JButton btnAgregarParcial;
+    public JTextField cantidadSemillaParcialTotal;
+    public JTextField txtEstado;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
 
     private String tipoOperacion;
     private int cnaId;
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
+    List<Object[]> listaAcopios = null;
 
     private GestorCampania gestor = new GestorCampania();
+    GestorLaboreo gest = new GestorLaboreo();
     LaboreoLoteCampaniaRepository laboreoLoteCampaniaRepository = new LaboreoLoteCampaniaRepository();
     TipoGranoRepository tipoGranoRepository = new TipoGranoRepository();
     TipoAcopioRepository tipoAcopioRepository = new TipoAcopioRepository();
     AcopioRepository acopioRepository = new AcopioRepository();
+    ClienteRepository clienteRepository = new ClienteRepository();
+    TransporteRepository transporteRepository = new TransporteRepository();
+
+    Long cantidad = null;
+    Long cantidadPesoTotal = 0L;
 
     public PantallaEgresoAcopio(String operacion, int camId, String denominacion) {
 //    public PantallaEgresoAcopio(String operacion, int camId, String denominacion, java.sql.Date fechaInicio, java.sql.Date fechaFin, java.sql.Date fechaFinReal) {
@@ -110,6 +121,10 @@ public class PantallaEgresoAcopio extends JFrame {
         } else {
             this.setTitle("Modificar Egreso de Semillas");
         }
+
+        cargaComboBoxTransporte();
+        cargaComboBoxCliente();
+        cargaComboBoxSemillas();
 
 
         //----------------------------------------------------------------------
@@ -157,7 +172,6 @@ public class PantallaEgresoAcopio extends JFrame {
 //        lstLotes.addListSelectionListener(e -> buscarLaboreoPorLote(camId));
 
 
-
 //        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
 
         //MODIFICAR
@@ -186,56 +200,10 @@ public class PantallaEgresoAcopio extends JFrame {
         }
 
 
-
         //Registrar Egreso Acopio
         btnGuardar.addActionListener(e -> {
             if (validaCarga().equals("S")) {
                 try {
-
-//                    Session session = Coneccion.getSession();
-//                    Transaction tx = session.beginTransaction();
-//
-//                    //MODIFICAR STOCK SEGUN EGRESO
-////                    IngresoAcopioEntity ingresoAcopioEntity = new IngresoAcopioEntity();
-////                    ingresoAcopioEntity.setTipoGrano((TipoGranoEntity)cbxSemillas.getSelectedItem());
-////                    ingresoAcopioEntity.setTipoLaboreo((TipoLaboreoEntity) cboMomentos.getSelectedItem());
-////                    ingresoAcopioEntity.setLote((LoteEntity) lstLotes.getSelectedValue());
-////                    ingresoAcopioEntity.setIngresoCantidadTotal(Integer.parseInt(txtCantidad.getText()));
-////                    ingresoAcopioEntity.setEstadoSemilla((String) cbxEstado.getSelectedItem());
-//
-//                    EgresoAcopioEntity egreso = new EgresoAcopioEntity();
-//
-//                    java.util.Date selectedDateIni = (java.util.Date) datePickerIni.getModel().getValue();
-//                    egreso.setEgresoFecha((java.sql.Date) selectedDateIni);
-//
-//                    egreso.setCliente((ClienteEntity) cbxCliente.getSelectedItem());
-//                    egreso.setTransporte((TransporteEntity) cbxTransporte.getSelectedItem());
-//                    egreso.setEgresoCantidadTotal(Integer.parseInt(txtCantidad.getText()));
-//
-//                    egreso.setMotivo(txtObserv.getText());
-//                    egreso.setEgresoFechaAlta(fechaActual);
-//                    egreso.setEgresoUsuarioAlta("adminBAJA");
-//                    egreso.setEgresoFechaUltMod(fechaActual);
-//
-//                    session.save(egreso);
-//                    try {
-//                        tx.commit();
-//                    }catch(Exception ex){
-//                        tx.rollback();
-//                    }
-//                    session.close();
-//
-////                    Date selectedDateIni = (Date) datePickerIni.getModel().getValue();
-////                    Date selectedDateFin = (Date) datePickerFin.getModel().getValue();
-////                    Date selectedDateFinReal = (Date) datePickerFin.getModel().getValue();
-////                    campania.setFechaInicio((java.sql.Date) selectedDateIni);
-////                    campania.setFechaFinEstimada((java.sql.Date) selectedDateFin);
-////                    campania.setFechaFinReal((java.sql.Date) selectedDateFinReal);
-//
-////                    gestor.registrarCampania(campania, tipoOperacion, cnaId);
-////                    gestor.registrarIngresoAcopio(campania, tipoOperacion, cnaId);
-
-
 
                     //-------------------------------------------------------
                     GestorLaboreo gest = new GestorLaboreo();
@@ -262,6 +230,7 @@ public class PantallaEgresoAcopio extends JFrame {
                     for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                         DetalleEgresoAcopioEntity det = new DetalleEgresoAcopioEntity();
                         if (tblDetalles.getValueAt(i, 0).equals("Egreso")) {
+                            //{"Egreso id", "Semilla", "Cantidad", "Acopio"};
                             tipoGrano = tipoGranoRepository.getTipoGranoByNombre((String) tblDetalles.getValueAt(i, 1));
                             String cantidad = ((String) tblDetalles.getValueAt(i, 2));
                             acopio = acopioRepository.getAcopioByCodigo((Integer) tblDetalles.getValueAt(i, 3));
@@ -313,9 +282,8 @@ public class PantallaEgresoAcopio extends JFrame {
                 contentByte.addTemplate(template, 30, 300);
             } catch (Exception e2) {
                 e2.printStackTrace();
-            }
-            finally{
-                if(document.isOpen()){
+            } finally {
+                if (document.isOpen()) {
                     document.close();
                 }
             }
@@ -327,9 +295,19 @@ public class PantallaEgresoAcopio extends JFrame {
         nuevoClienteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CargaCliente cargaCliente = new CargaCliente("Carga","","",null,"",0);
+                CargaCliente cargaCliente = new CargaCliente("Carga", "", "", null, "", 0);
                 cargaCliente.setVisible(true);
                 getDefaultCloseOperation();
+
+            }
+        });
+
+        cbxCliente.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxCliente();
+                cargaComboBoxCliente();
 
             }
         });
@@ -339,10 +317,41 @@ public class PantallaEgresoAcopio extends JFrame {
         nuevoTransporteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CargaTransporte cargaTransporte = new CargaTransporte("Carga","","",null,0);
+                CargaTransporte cargaTransporte = new CargaTransporte("Carga", "", "", null, 0);
                 cargaTransporte.setVisible(true);
                 getDefaultCloseOperation();
 
+            }
+        });
+        cbxTransporte.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTransporte();
+                cargaComboBoxTransporte();
+
+            }
+        });
+
+
+        //RELLENAR CAMPOS ACOPIO
+        cbxAcopio.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+
+                Integer nroAcopio = Integer.parseInt(cbxAcopio.getSelectedItem().toString());
+
+                for (Object[] acopio : listaAcopios) {
+                    if (acopio[0].equals(nroAcopio)) {
+                        //String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+
+                        txtTipoAcopio.setText((String) acopio[3]);
+                        txtEstado.setText((String) acopio[5]);
+                        Long stock = (Long) acopio[6];
+                        txtStock.setText((Long.toString(stock)));
+                    }
+                }
             }
         });
 
@@ -357,18 +366,17 @@ public class PantallaEgresoAcopio extends JFrame {
                 }
 
                 if (!existeLote()) {
-                    showMessage("Debe seleccionar al menos un tipo de acopio para continuar.");
+                    showMessage("Debe seleccionar al menos un  acopio para continuar.");
                     return;
                 }
 
-//                ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
 
                 TipoGranoEntity semilla = (TipoGranoEntity) cbxSemilla.getSelectedItem();
-                TipoAcopioEntity acopio = (TipoAcopioEntity) cbxAcopio.getSelectedItem();
+                AcopioEntity acopio = acopioRepository.getAcopioById(Long.parseLong(cbxAcopio.getSelectedItem().toString()));
 
 
                 int fila = tblDetalles.getRowCount() - 1;
-                if(tblDetalles.getRowCount() != 0) {
+                if (tblDetalles.getRowCount() != 0) {
                     fila = tblDetalles.getRowCount() - 1;
                     if (tblDetalles.getValueAt(fila, 1) != null) {
                         if (!tblDetalles.getValueAt(fila, 1).equals("")) {
@@ -381,19 +389,22 @@ public class PantallaEgresoAcopio extends JFrame {
                 if (fila == 0) {
                     tblDetalles.setValueAt("Egreso", fila, 0);
                     tblDetalles.setValueAt(semilla.getTgrNombre(), fila, 1);
-                    tblDetalles.setValueAt(txtCantidad.getText(), fila, 2);
-                    tblDetalles.setValueAt(acopio.getTipoAcopioNombre(), fila, 3);
+                    tblDetalles.setValueAt(cantidadSemillaParcialTotal.getText(), fila, 2);
+                    tblDetalles.setValueAt(acopio.getCodigo(), fila, 3);
 
                     fila++;
                 } else {
                     modelDetalle.addRow(new Object[]{"Egreso"
                             , semilla.getTgrNombre()
-                            , txtCantidad.getText()
-                            , acopio.getTipoAcopioNombre()});
+                            , cantidadSemillaParcialTotal.getText()
+                            , acopio.getCodigo()});
                     fila++;
                 }
 
+                cantidadPesoTotal = cantidadPesoTotal + Long.parseLong(tblDetalles.getValueAt(tblDetalles.getRowCount() - 1, 2).toString());
+                cantidadTotal.setText(cantidadPesoTotal.toString());
             }
+
         });
 
 
@@ -415,21 +426,57 @@ public class PantallaEgresoAcopio extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                    if (!isCellSelected(tblDetalles)) {
-                        showMessage("Debe seleccionar un item para continuar.");
-                        return;
-                    }
-                    int fila = tblDetalles.getSelectedRow();
-                    if (fila == 0) {
-                        tblDetalles.setValueAt("", 0, 0);
-                        tblDetalles.setValueAt("", 0, 1);
-                        tblDetalles.setValueAt("", 0, 2);
-                        tblDetalles.setValueAt("", 0, 3);
-                    } else {
-                        DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
-                        modelo.removeRow(tblDetalles.getSelectedRow());
-                    }
+                if (!isCellSelected(tblDetalles)) {
+                    showMessage("Debe seleccionar un item para continuar.");
+                    return;
+                }
+                cantidadPesoTotal = cantidadPesoTotal - Long.parseLong(tblDetalles.getValueAt(tblDetalles.getSelectedRow(), 2).toString());
+                cantidadTotal.setText(cantidadPesoTotal.toString());
 
+                int fila = tblDetalles.getSelectedRow();
+                if (fila == 0) {
+                    tblDetalles.setValueAt("", 0, 0);
+                    tblDetalles.setValueAt("", 0, 1);
+                    tblDetalles.setValueAt("", 0, 2);
+                    tblDetalles.setValueAt("", 0, 3);
+                } else {
+                    DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
+                    modelo.removeRow(tblDetalles.getSelectedRow());
+                }
+
+
+            }
+        });
+
+
+        //CARGAR ACOPIOS SEGUN SEMILLAS
+        cbxSemilla.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cantidad = 0L;
+                String nombreSemilla = cbxSemilla.getSelectedItem().toString();
+                listaAcopios = buscarAcopios();
+                for (Object[] acopio : listaAcopios) {
+                    //String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+                    if (acopio[4].equals(nombreSemilla))
+                        cbxAcopio.addItem(acopio[0]);
+                }
+            }
+        });
+
+        btnAgregarParcial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Long cantidadParcial = Long.parseLong(txtCantidad.getText());
+                Long diferencia = Long.parseLong(txtStock.getText()) - cantidadParcial;
+                if (diferencia < 0) {
+                    showMessage("La cantidad seleccionada supera el stock, establezca un valor menor.");
+                    return;
+                }
+                txtStock.setText(diferencia.toString());
+
+                cantidad = cantidad + Long.parseLong(txtCantidad.getText());
+                cantidadSemillaParcialTotal.setText(cantidad.toString());
             }
         });
     }
@@ -457,15 +504,14 @@ public class PantallaEgresoAcopio extends JFrame {
         tblDetalles.setModel(modelDetalle);
         //tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(180);
-        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(100);
         col = tblDetalles.getColumnModel().getColumn(3);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
         //  tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
-
 
 
 //    private boolean isCellSelected(JTable tabla) {
@@ -484,7 +530,7 @@ public class PantallaEgresoAcopio extends JFrame {
 
 
     private boolean existeLote() {
-        if (lstLotes.getSelectedValuesList().size() == 0) {
+        if (cbxAcopio.getSelectedItem() == null) {
             return false;
         }
         return true;
@@ -511,14 +557,65 @@ public class PantallaEgresoAcopio extends JFrame {
         lstLotes.setModel(modelo);
 
 
+    }
+
+
+    //METODO CARGA COMBO CLIENTE
+    private void cargaComboBoxCliente() {
+
+        List<ClienteEntity> listaTipoCliente = clienteRepository.getAllClientes();
+
+        Vector<String> mivector = new Vector<>();
+        for (ClienteEntity tipoInsumo : listaTipoCliente) {
+            mivector.add(tipoInsumo.getClienteNombre());
+            cbxCliente.addItem(tipoInsumo);
+        }
+
+    }
+
+    private void borrarComboBoxCliente() {
+        cbxCliente.removeAllItems();
+    }
+
+
+    //METODO CARGA COMBO TRANSPORTE
+    private void cargaComboBoxTransporte() {
+
+        List<TransporteEntity> listaTipoCliente = transporteRepository.getAllTransportes();
+
+        Vector<String> mivector = new Vector<>();
+        for (TransporteEntity tipoInsumo : listaTipoCliente) {
+            mivector.add(tipoInsumo.getTransporteNombre());
+            cbxTransporte.addItem(tipoInsumo);
+        }
+
+    }
+
+    private void borrarComboBoxTransporte() {
+        cbxTransporte.removeAllItems();
+    }
+
+
+    //CARGA COMBO SEMILLAS
+    private void cargaComboBoxSemillas() {
+
+        List<TipoGranoEntity> listaSemillas = tipoGranoRepository.getAllTipoGranos();
+
+//        Vector<String> mivector = new Vector<>();
+        for (TipoGranoEntity tipoGrano : listaSemillas) {
+//            mivector.add(tipoGrano.getTgrNombre());
+            cbxSemilla.addItem(tipoGrano);
+
+        }
+//        cbxTransporte.addItem(mivector);
+
 
     }
 
 
-
     //METODO VALIDAR CARGA
     private String validaCarga() {
-        if (txtCampania.getText().replaceAll(" ", "").length() == 0) return "N";
+        if (cbxCliente.getSelectedItem() == null) return "N";
         return "S";
     }
 
@@ -530,6 +627,55 @@ public class PantallaEgresoAcopio extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+
+    //METODO BUSCAR ACOPIOS
+    public List<Object[]> buscarAcopios() {
+        Session session = Coneccion.getSession();
+        java.util.List<Object[]> listaAcopios = null;
+        int i = 0;
+        try {
+            java.util.List<Object[]> list;
+            listaAcopios = new ArrayList<>();
+            Object[] acopio;
+            list = gest.getStockByAcopio();
+
+            //
+            List<Object[]> listEgreso = gest.getStockEgresoByAcopio();
+
+            List<Object[]> listStockFinal = new ArrayList<>();
+
+            for (Object[] ingreso : list) {
+
+                for (Object[] egreso : listEgreso) {
+                    if (ingreso[0].equals(egreso[0])) {
+
+                        Long cantidadFinal = (Long) ingreso[6] - (Long) egreso[1];
+                        ingreso[6] = cantidadFinal;
+                    }
+
+                }
+                listStockFinal.add(ingreso);
+            }
+            //
+
+            Iterator iter = listStockFinal.iterator();
+
+//            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+
+            while (iter.hasNext()) {
+                acopio = (Object[]) iter.next();
+                listaAcopios.add(acopio);
+                i++;
+            }
+
+        } finally {
+            session.close();
+            return listaAcopios;
+        }
+
+    }
+
 }
 
 class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {

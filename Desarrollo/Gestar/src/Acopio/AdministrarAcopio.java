@@ -15,7 +15,9 @@ import org.hibernate.Transaction;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by jagm on 17/02/2017.
@@ -127,8 +129,8 @@ public class AdministrarAcopio extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Acopio", "Semilla", "Cantidad Total"};
-        Object[][] data = new Object[1][6];
+        String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+        Object[][] data = new Object[1][7];
         setModel(columnNames, data, tblTipos);
     }
 
@@ -143,6 +145,7 @@ public class AdministrarAcopio extends JFrame {
         tblTipos.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblTipos.getColumnModel().getColumn(4).setPreferredWidth(100);
         tblTipos.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(6).setPreferredWidth(100);
     }
 
     private void showMessage(String error) {
@@ -195,18 +198,30 @@ public class AdministrarAcopio extends JFrame {
         try {
             java.util.List<Object[]> list;
             Object[] acopio;
-//            tipo = new AcopioEntity();
 
-//            Query query = session.createQuery("select t from AcopioEntity t where ucase(nombre) like ucase(:pNombre) " +
-//                    "and acopioFechaBaja is null");
-//            query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
-
-//            java.util.List list = query.list();
             list = gest.getStockByAcopio();
+            //
+            List<Object[]> listEgreso = gest.getStockEgresoByAcopio();
 
-            Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Cantidad Total"};
-            Object[][] data = new Object[list.size()][6];
+            List<Object[]> listStockFinal = new ArrayList<>();
+
+            for(Object[] ingreso: list){
+
+                for(Object[] egreso: listEgreso){
+                    if(ingreso[0].equals(egreso[0])){
+
+                        Long cantidadFinal = (Long)ingreso[6] -(Long)egreso[1];
+                        ingreso[6] = cantidadFinal;
+                    }
+
+                }
+            listStockFinal.add(ingreso);
+            }
+            //
+
+            Iterator iter = listStockFinal.iterator();
+            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+            Object[][] data = new Object[listStockFinal.size()][7];
 
             while (iter.hasNext()) {
                 acopio = (Object[]) iter.next();
@@ -216,6 +231,7 @@ public class AdministrarAcopio extends JFrame {
                 data[i][3] = acopio[3];
                 data[i][4] = acopio[4];
                 data[i][5] = acopio[5];
+                data[i][6] = acopio[6];
                 i++;
             }
             setModel(columnNames, data, tblTipos);

@@ -67,6 +67,7 @@ public class PantallaLaboreo extends JFrame {
     public JButton btnQuitarInsumosOMaq;
     public JButton btnQuitarLaboreos;
     public JButton btnGenerarOrden;
+    public JButton actualizarLaboreo;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
@@ -153,7 +154,7 @@ public class PantallaLaboreo extends JFrame {
             }
             while (iter.hasNext()) {
                 Insumo ins = (Insumo) iter.next();
-                if (permiteSeleccion("Insumo", ins.getNombre())) {
+//                if (permiteSeleccion("Insumo", ins.getNombre())) {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Insumo", fila, 0);
                         tblDetalles.setValueAt(ins.getNombre(), fila, 1);
@@ -167,7 +168,7 @@ public class PantallaLaboreo extends JFrame {
                                 , "0"});
                         fila++;
                     }
-                }
+//                }
             }
         });
 
@@ -195,16 +196,17 @@ public class PantallaLaboreo extends JFrame {
             java.util.List listaSeleccion;
             listaSeleccion = lstMaquinarias.getSelectedValuesList();
             Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount() - 1;
+            int fila = tblDetalles.getRowCount() -1;
             if (tblDetalles.getValueAt(fila, 1) != null) {
                 if (!tblDetalles.getValueAt(fila, 1).equals("")) {
                     fila++;
                 }
 
             }
+
             while (iter.hasNext()) {
                 Maquinaria maq = (Maquinaria) iter.next();
-                if (permiteSeleccion("Maquinaria", maq.getNombre())) {
+//                if (permiteSeleccion("Maquinaria", maq.getNombre())) {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Maquinaria", fila, 0);
                         tblDetalles.setValueAt(maq.getNombre(), fila, 1);
@@ -212,13 +214,14 @@ public class PantallaLaboreo extends JFrame {
                         tblDetalles.setValueAt("0", fila, 3);
                         fila++;
                     } else {
+//                        model
                         modelDetalle.addRow(new Object[]{"Maquinaria"
                                 , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
                                 , maq.getMarca()
                                 , "0"});
                         fila++;
                     }
-                }
+//                }
             }
         });
 
@@ -533,14 +536,14 @@ public class PantallaLaboreo extends JFrame {
             getDefaultCloseOperation();
         });
 
-        cboMomentos.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                super.focusGained(e);
-                borrarComboBoxTipoLaboreo();
-                cargaComboBoxLaboreo();
-            }
-        });
+//        cboMomentos.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                super.focusGained(e);
+//                borrarComboBoxTipoLaboreo();
+//                cargaComboBoxLaboreo();
+//            }
+//        });
 
         //NUEVO INSUMO
         nuevoInsumoBtn.addActionListener(e -> {
@@ -652,9 +655,12 @@ public class PantallaLaboreo extends JFrame {
 //            }
 
                 String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
-                DefaultTableModel model = new DefaultTableModel();
-                model.setDataVector(data, columnNames);
-                tblDetalles.setModel(model);
+//                DefaultTableModel model = new DefaultTableModel();
+//                model.setDataVector(data, columnNames);
+//                tblDetalles.setModel(model);
+                 modelDetalle = new DefaultTableModel();
+                modelDetalle.setDataVector(data, columnNames);
+                tblDetalles.setModel(modelDetalle);
 //            return;
             }
         });
@@ -699,6 +705,15 @@ public class PantallaLaboreo extends JFrame {
                     DefaultTableModel modelo = (DefaultTableModel) tableLaboreos.getModel();
                     modelo.removeRow(tableLaboreos.getSelectedRow());
                 }
+            }
+        });
+
+
+        actualizarLaboreo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                borrarComboBoxTipoLaboreo();
+                cargaComboBoxLaboreo();
             }
         });
     }
