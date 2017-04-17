@@ -1,6 +1,7 @@
 package Principal;
 
 import Acopio.AdministrarAcopio;
+import Acopio.AdministrarEgresoAcopio;
 import Acopio.PantallaCargaAcopio;
 import Acopio.PantallaEgresoAcopio;
 import Acopio.TipoAcopio.AdministrarTipoAcopio;
@@ -113,7 +114,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         image.add(btnAdministrarAcopios);
 
         btnAdministrarAcopios.addActionListener(e -> {
-            PantallaEgresoAcopio pantallaEgresoAcopio = new PantallaEgresoAcopio("Carga", 0 , "Egreso");
+            PantallaEgresoAcopio pantallaEgresoAcopio = new PantallaEgresoAcopio("Carga", 0);
             pantallaEgresoAcopio.setVisible(true);
             getDefaultCloseOperation();
         });
@@ -136,12 +137,24 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         });
 
         //BUTTON ADMINISTRAR ACOPIOS
-        JButton btnAdmAcopios = new JButton("Administrar Acopios");
-        btnAdmAcopios.setBounds(720, 300, 215, 70);
+        JButton btnAdmAcopios = new JButton("Administrar Stock Acopios");
+        btnAdmAcopios.setBounds(600, 300, 215, 70);
         image.add(btnAdmAcopios);
 
         btnAdmAcopios.addActionListener(e -> {
             AdministrarAcopio pantallaLaboreo = new AdministrarAcopio();
+            pantallaLaboreo.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
+        //BUTTON ADMINISTRAR EGRESOS
+        JButton btnAdmEgreso = new JButton("Administrar Egresos Granos");
+        btnAdmEgreso.setBounds(850, 300, 215, 70);
+        image.add(btnAdmEgreso);
+
+        btnAdmEgreso.addActionListener(e -> {
+            AdministrarEgresoAcopio pantallaLaboreo = new AdministrarEgresoAcopio();
             pantallaLaboreo.setVisible(true);
             getDefaultCloseOperation();
         });

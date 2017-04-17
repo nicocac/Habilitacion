@@ -96,7 +96,7 @@ public class PlanificacionRepository {
 
         Query query = session.createQuery("select x from OrdenTrabajoEntity x " +
                 "where ucase(x.planificacion.id) like ucase(:pId) " +
-                "and x.fechaBaja is null and x.estaRegistrada = false");
+                "and x.fechaBaja is null and (x.estaRegistrada = false or x.estaRegistrada = null)");
         query.setParameter("pId", planId);
         List list = query.list();
         Iterator iter = list.iterator();

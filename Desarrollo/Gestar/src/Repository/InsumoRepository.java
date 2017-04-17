@@ -60,4 +60,19 @@ public class InsumoRepository {
         return insumo;
     }
 
+    public List<InsumoEntity> getAllInsumosByTipo(Integer tipoId){
+        List<InsumoEntity> listaInsumo = new ArrayList<>();
+        session = Coneccion.getSession();
+        InsumoEntity insumo;
+        Query query = session.createQuery("select x from InsumoEntity x where x.tipoInsumoByInsTinId.id = :tipoId");
+        List list = query.list();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            insumo = (InsumoEntity) iter.next();
+            listaInsumo.add(insumo);
+        }
+        session.close();
+        return listaInsumo;
+    }
+
 }

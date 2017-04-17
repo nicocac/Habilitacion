@@ -2,6 +2,7 @@ package Laboreo;
 
 import Conexion.Coneccion;
 import Datos.InsumoEntity;
+import Datos.OrdenTrabajoEntity;
 import Datos.PlanificacionCampaniaEntity;
 import Repository.PlanificacionRepository;
 import com.itextpdf.text.Document;
@@ -35,6 +36,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
     private JTable tblCampPlanificadas;
     private JButton btnCancelar;
     public JButton btnRegistrarAvance;
+    public JPanel panelIni;
     public JButton btnRegistrarOrden;
     private JTable table1;
     private InsumoEntity insumo;
@@ -57,19 +59,19 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
                 this.btnNuevaOrden.hide();
             }
         }
-        setContentPane(panel1);
+        setContentPane(panelIni);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Campa\u00f1as planificadas");
         inicializaTabla();
-        buscarCampaniasPlanificadas();
+        buscarCampaniasPlanificadas(tipo);
 
 
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Coneccion.getSession();
-            buscarCampaniasPlanificadas();
+            buscarCampaniasPlanificadas(tipo);
         });
 
 
@@ -85,7 +87,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
                 PdfContentByte contentByte = writer.getDirectContent();
                 PdfTemplate template = contentByte.createTemplate(2600, 1800);
                 Graphics2D g2 = template.createGraphics(900, 100);
-                panel1.print(g2);
+                panelIni.print(g2);
                 g2.dispose();
                 contentByte.addTemplate(template, 30, 300);
             } catch (Exception e2) {
@@ -279,7 +281,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
 
     //METODO BUSCAR Campanias planificadas
-    public void buscarCampaniasPlanificadas() {
+    public void buscarCampaniasPlanificadas(String tipo) {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
@@ -297,12 +299,25 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
             while (iter.hasNext()) {
                 planificacion = (PlanificacionCampaniaEntity) iter.next();
-                data[i][0] = planificacion.getPlanificacionId();
-                data[i][1] = planificacion.getCampania().getCnaDenominacion();
-                data[i][2] = planificacion.getCampania().getCnaFechaInicio();
-                data[i][3] = planificacion.getCampania().getCnaFechaFinReal();
+                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacion.getPlanificacionId());
+                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaId(planificacion.getPlanificacionId());
+                if (listaLaboreoLote.size() != 0 && tipo.equals("Generar")) {
+                    data[i][0] = planificacion.getPlanificacionId();
+                    data[i][1] = planificacion.getCampania().getCnaDenominacion();
+                    data[i][2] = planificacion.getCampania().getCnaFechaInicio();
+                    data[i][3] = planificacion.getCampania().getCnaFechaFinReal();
 
-                i++;
+                    i++;
+                }
+                if (listaOrdenes.size() != 0 && tipo.equals("Avance")) {
+                    data[i][0] = planificacion.getPlanificacionId();
+                    data[i][1] = planificacion.getCampania().getCnaDenominacion();
+                    data[i][2] = planificacion.getCampania().getCnaFechaInicio();
+                    data[i][3] = planificacion.getCampania().getCnaFechaFinReal();
+
+                    i++;
+                }
+
             }
             setModel(columnNames, data, tblCampPlanificadas);
         } finally {

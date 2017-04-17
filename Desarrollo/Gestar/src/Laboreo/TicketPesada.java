@@ -1,6 +1,7 @@
 package Laboreo;
 
 import Conexion.Coneccion;
+import Date.DateLabelFormatter;
 import Datos.*;
 import Insumo.Insumo;
 import Maquinaria.Maquinaria;
@@ -13,6 +14,10 @@ import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,8 +26,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,6 +72,7 @@ public class TicketPesada  extends JFrame {
     public JButton nuevaSemillaBtn;
     public JTextField txtMetrica;
     public JComboBox cbxMedida;
+    public JPanel panelIni;
     public JTextField txtNombre;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
@@ -82,7 +90,7 @@ public class TicketPesada  extends JFrame {
 //        pack();
         JPanel container = new JPanel();
 
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -93,7 +101,7 @@ public class TicketPesada  extends JFrame {
 //        cargarMaquinas();
 //        cargaComboBoxTipoLaboreo();
 //        cargaComboBoxTipoGrano();
-        setBounds(200,300,900,500);
+        setBounds(200,300,1500,800);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Registrar Orden Trabajo Realizada");
@@ -106,10 +114,10 @@ public class TicketPesada  extends JFrame {
         txtNroOrden.setText(orden.getNroOrden().toString());
         txtCampania.setText(orden.getPlanificacion().getCampania().getCnaDenominacion());
         txtLote.setText(orden.getLote().getLteDenominacion());
-        txtPeso.setText(orden.getRecursoHumano());
+//        txtPeso.setText(orden.get());
         txtFechaIni.setText(orden.getPlanificacion().getCampania().getCnaFechaInicio().toString());
         txtFechaFin.setText(orden.getPlanificacion().getCampania().getCnaFechaFinReal().toString());
-        txtMedida.setText(orden.getTiempo());
+//        txtMedida.setText(orden.getTiempo());
         txtLaboreo.setText(orden.getLaboreo().getLboNombre());
         txtSemilla.setText(orden.getGrano().getTgrNombre());
 //        PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
@@ -123,19 +131,18 @@ public class TicketPesada  extends JFrame {
 
 
         //BUTTON FECHA
-//        SqlDateModel modelIni = new SqlDateModel();
-//        modelIni.setDate(2016, 04, 20);
-//        // Need this...
-//        Properties p = new Properties();
-//        p.put("text.today", "Today");
-//        p.put("text.month", "Month");
-//        p.put("text.year", "Year");
-//        JDatePanelImpl datePanelIni = new JDatePanelImpl(modelIni, p);
-//        //the formatter,  there it is...
-//        JDatePickerImpl datePickerIni = new JDatePickerImpl(datePanelIni, new DateLabelFormatter());
+        SqlDateModel modelIni = new SqlDateModel();
+        modelIni.setDate(2016, 04, 20);
+        // Need this...
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl datePanelIni = new JDatePanelImpl(modelIni, p);
+        //the formatter,  there it is...
+        JDatePickerImpl datePickerIni = new JDatePickerImpl(datePanelIni, new DateLabelFormatter());
 
-//        buttonFecha.add(datePickerIni);
-        //
+        buttonFecha.add(datePickerIni);
 
 
         //ELIMINAR ITEM
@@ -230,82 +237,50 @@ public class TicketPesada  extends JFrame {
 
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
-            GestorLaboreo gest = new GestorLaboreo();
-            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-            Boolean sinStock = false;
-            String insumosSinStock = "";
 
-            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
-                DetalleLaboreo det = new DetalleLaboreo();
-                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
-
-                    if (insumoEntity.getInsStock() == null) {
-                        sinStock = true;
-                        if (insumosSinStock.equals("")) {
-                            insumosSinStock = insumoEntity.getInsNombre();
-                        } else {
-                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
-                        }
-                    }
-
-
-                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
-                    det.setInsumo(ins);
-                    det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-                } else {
-                    Maquinaria maq = new Maquinaria();
-                    maq.setNombre((String) tblDetalles.getValueAt(i, 1));
-                    det.setMaquinaria(maq);
-                    det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-
-                }
-                detalles.add(det);
+            java.sql.Date fecha = (java.sql.Date) datePickerIni.getModel().getValue();
+            if(fecha == null){
+                showMessage("Debe completar la fecha antes de continuar");
+                return;
             }
 
-//            if (sinStock){
-////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-//                int respuesta =JOptionPane.showConfirmDialog(null, "Los siguientes insumos: "+insumosSinStock +" se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-//                if(respuesta == 0){
-//                    dispose();
-//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
-//                    getDefaultCloseOperation();
-//                    return;
-//                }
-////                          else {
-////                            return;
-////                        }
-//            }
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-            java.util.Date date = new java.util.Date();
-            java.util.Calendar cal = Calendar.getInstance();
-            try {
-//                date = formatter.parse(txtFecha.getText());
-            } catch (Exception exe) {
-                showMessage(exe.getMessage());
+            if(txtPeso.getText().equals("")){
+                showMessage("Debe completar el peso antes de continuar");
+                return;
             }
-            cal.setTime(date);
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-//            Date fecha = new Date(cal.getTime().getTime());
 
-//            Date fecha = (Date) datePickerIni.getModel().getValue();
+            if(txtObservaciones.getText().equals("")){
+                showMessage("Debe completar observaciones antes de continuar");
+                return;
+            }
+
+//            java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+
+            Session session = Coneccion.getSession();
+            Transaction tx = session.beginTransaction();
+
+            TicketPesadaEntity ticket = new TicketPesadaEntity();
+
+            ticket.setLaboreo(orden.getLaboreo());
+            ticket.setOrdenTrabajoEntity(orden);
+            ticket.setMedida(cbxMedida.getSelectedItem().toString());
+            ticket.setPeso(txtPeso.getText());
+            ticket.setObservaciones(txtObservaciones.getText());
+            ticket.setUsuarioAlta("Admin");
+            ticket.setFechaAlta(fecha);
+
+            session.save(ticket);
+
             try {
-                gest.registrarLaboreoPrecargado(detalles, (TipoLaboreoEntity) cboMomentos.getSelectedItem(),
-                        txtPeso.getText(), (TipoGranoEntity) cbxSemillas.getSelectedItem(), txtMetrica.getText(),
-                        (String) cbxMedida.getSelectedItem(), txtNombre.getText());
-
-
-            } catch (Exception e1) {
-                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la orden de trabajo : " + e1.toString());
-            } finally {
-                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
+                tx.commit();
+                JOptionPane.showMessageDialog(null, "El Ticket de pesada fue cargado con exito.");
                 dispose();
+            } catch (Exception ex) {
+                tx.rollback();
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar el Ticket : " + ex.toString());
+
             }
+            session.close();
         });
 
 
@@ -317,6 +292,8 @@ public class TicketPesada  extends JFrame {
 //                cargarLaboreos(listaLaboreoEntity);
 //            }
 //        });
+
+
         btnGenerarOrden.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

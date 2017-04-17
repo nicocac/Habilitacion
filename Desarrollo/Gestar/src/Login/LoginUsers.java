@@ -12,7 +12,6 @@ public class LoginUsers extends JFrame {
     private JPasswordField jpassClave;
     private JButton btnIngresar;
     private JPanel panel1;
-    private JPanel panel2;
 
     public LoginUsers() {
 

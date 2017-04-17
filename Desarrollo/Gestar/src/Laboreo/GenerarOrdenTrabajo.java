@@ -67,6 +67,7 @@ public class GenerarOrdenTrabajo extends JFrame {
     public JTextField txtObservaciones;
     public JTextField txtLote;
     public JTextField txtSemilla;
+    public JPanel panelIni;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -95,7 +96,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -194,6 +195,24 @@ public class GenerarOrdenTrabajo extends JFrame {
 
             //GUARDAR
             btnFinalizar.addActionListener(e -> {
+                if(lstLaboreos.getSelectedValuesList().size() == 0){
+                    showMessage("Debe seleccionar el laboreo antes de continuar");
+                    return;
+                }
+
+                if(txtRRHH.getText().equals("")){
+                    showMessage("Debe completar RRHH antes de continuar");
+                    return;
+                }
+                if(txtTiempo.getText().equals("")){
+                    showMessage("Debe completar tiempo antes de continuar");
+                    return;
+                }
+                if(txtObservaciones.getText().equals("")){
+                    showMessage("Debe completar las observaciones antes de continuar");
+                    return;
+                }
+
                 GestorLaboreo gest = new GestorLaboreo();
                 ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
                 Boolean sinStock = false;
@@ -258,6 +277,10 @@ public class GenerarOrdenTrabajo extends JFrame {
 //            Date fecha = new Date(cal.getTime().getTime());
 
                 Date fecha = (Date) datePickerIni.getModel().getValue();
+                if(fecha == null){
+                    showMessage("Debe completar la fecha antes de continuar");
+                    return;
+                }
                 try {
 
                     OrdenTrabajoLaboreo laboreo = (OrdenTrabajoLaboreo) lstLaboreos.getSelectedValue();
@@ -301,7 +324,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                         PdfTemplate template = contentByte.createTemplate(700, 300);
                         Graphics2D g2 = template.createGraphics(700, 300);
                         g2.scale(0.25, 0.25);
-                        panel1.print(g2);
+                        panelIni.print(g2);
                         g2.dispose();
                         contentByte.addTemplate(template, 30, 500);
                         try {
@@ -316,7 +339,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                             document.close();
                         }
                     }
-                    dispose();
+//                    dispose();
                 }
             });
         }

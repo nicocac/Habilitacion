@@ -217,7 +217,8 @@ public class GestorLaboreo {
         Session session = Coneccion.getSession();
         Transaction tx = session.beginTransaction();
 
-//        CampaniaEntity campaniaEntity;
+        CampaniaEntity campaniaEntity;
+
         PlanificacionCampaniaEntity planificacionCampaniaEntity = new PlanificacionCampaniaEntity();
         DetallePlanificacionCampaniaLoteEntity detallePlanificacionCampaniaLoteEntity;
         DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
@@ -304,6 +305,11 @@ public class GestorLaboreo {
 
 
         session.update(planificacionCampaniaEntity);
+
+        campaniaEntity = planificacion.getCampania();
+        campaniaEntity.setEstaPlanificada(true);
+        session.update(campaniaEntity);
+
         try {
             tx.commit();
         } catch (Exception ex) {
@@ -586,7 +592,7 @@ public class GestorLaboreo {
         orden.setRecursoHumano(txtRRHH);
         orden.setFechaAlta(fecha);
         orden.setTiempo(txtTiempo);
-        orden.setEstaRegistrada(true);
+//        orden.setEstaRegistrada(true);
 
         session.update(orden);
 

@@ -167,7 +167,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                         pdfTable.addCell(tblInsumos.getColumnName(i));
                     }
                     //extracting data from the JTable and inserting it to PdfPTable
-                    for (int rows = 0; rows < tblInsumos.getRowCount() ; rows++) {
+                    for (int rows = 0; rows < tblInsumos.getRowCount(); rows++) {
                         for (int cols = 0; cols < tblInsumos.getColumnCount(); cols++) {
                             pdfTable.addCell(tblInsumos.getModel().getValueAt(rows, cols).toString());
 
@@ -183,7 +183,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListado.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
-                    }catch (IOException io) {
+                    } catch (IOException io) {
                         Logger.getLogger(PantallaAdministrarInsumo.class.getName()).log(Level.SEVERE, null, io);
                     }
 
@@ -196,8 +196,6 @@ public class PantallaAdministrarInsumo extends JFrame {
 
             }
         });
-
-
 
 
         bntAyuda.addActionListener(new ActionListener() {
@@ -302,7 +300,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                 data[i][1] = insumo.getInsNombre();
                 data[i][2] = insumo.getInsDescripcion();
                 data[i][3] = insumo.getInsUnidadMedida();
-                if(insumo.getTipoInsumoByInsTinId() == null){
+                if (insumo.getTipoInsumoByInsTinId() == null) {
                     data[i][4] = null;
                 } else {
                     data[i][4] = insumo.getTipoInsumoByInsTinId().getTinNombre();

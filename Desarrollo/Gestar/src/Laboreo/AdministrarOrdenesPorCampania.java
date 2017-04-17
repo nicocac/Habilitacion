@@ -49,6 +49,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
     public JTextField txtLaboreo;
     public JTextField txtLote;
     public JList lstOrdenes;
+    public JPanel panelIni;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -77,7 +78,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -326,9 +327,25 @@ public class AdministrarOrdenesPorCampania extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
-//                avanceCampania.setVisible(true);
-//                getDefaultCloseOperation();
+                if(lstOrdenes.getSelectedValuesList().size() == 0){
+                    showMessage("Debe seleccionar una orden antes de continuar");
+                    return;
+                }
+
+                if(txtLaboreo.getText().equals("")){
+                    showMessage("Debe completar el laboreo antes de continuar");
+                    return;
+                }
+
+                if(txtLote.getText().equals("")){
+                    showMessage("Debe completar lote antes de continuar");
+                    return;
+                }
+
+                if(txtRRHH.getText().equals("")){
+                    showMessage("Debe completar El personal antes de continuar");
+                    return;
+                }
 
                 OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
 
@@ -336,7 +353,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
                 setBounds(200,300,900,900);
                 registrarAvanceCampania.setVisible(true);
                 getDefaultCloseOperation();
-//                dispose();
+                dispose();
             }
         });
     }

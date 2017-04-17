@@ -30,7 +30,6 @@ import java.util.Date;
  * Created by jagm on 23/10/2016.
  */
 public class RegistrarAvanceCampania extends JFrame {
-    private JPanel panel1;
     private JButton btnFinalizar;
     private JList lstLotes;
     private JLabel lblLotes;
@@ -47,20 +46,27 @@ public class RegistrarAvanceCampania extends JFrame {
     public JTextField txtCantidad;
     public JComboBox cbxEstado;
     public JTable tblDetalles;
-    public JComboBox cbxMedida;
     public JButton btnCargarPesada;
     public JTextField txtSemilla;
     public JTextField txtNroOrden;
     public JTextField txtLote;
     public JTextField txtRRHH;
     public JTextField txtLaboreo;
-    public JTextField txtObservaciones;
     public JTextField txtTiempo;
     public JComboBox cbxAcopio;
     public JButton nvoBtnAcopio;
     public JTextField txtTipoAcopio;
     public JButton btnActualizar;
     public JButton btnActualizarPeso;
+    public JButton btnFinalizarOrden;
+    public JPanel panel1;
+    public JComboBox cbxMedida;
+    public JTextField txtObservaciones;
+    public JPanel panelIni;
+    public JTextField txtNroAcopio;
+    public JTextField txtNombreAcopio;
+    public JTextField txtCantidadAcopioSoportdada;
+    public JTextField txtCantidadActualAcopio;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestorLab = new GestorLaboreo();
     private DefaultTableModel modelInsumoMaquinaria;
@@ -78,6 +84,7 @@ public class RegistrarAvanceCampania extends JFrame {
     OrdenRepository ordenRepository = new OrdenRepository();
     TipoAcopioRepository tipoAcopioRepository = new TipoAcopioRepository();
     AcopioRepository acopioRepository = new AcopioRepository();
+    TicketPesadaRepository ticketPesadaRepository = new TicketPesadaRepository();
 
     public RegistrarAvanceCampania(String operacion, OrdenTrabajoEntity orden) {
 
@@ -85,7 +92,7 @@ public class RegistrarAvanceCampania extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -194,6 +201,18 @@ public class RegistrarAvanceCampania extends JFrame {
                 try {
 
 
+                    if(txtCantidad.getText().equals("")){
+                        showMessage("Debe completar Cantidad antes de continuar");
+                        return;
+                    }
+                    if(txtTiempo.getText().equals("")){
+                        showMessage("Debe completar tiempo antes de continuar");
+                        return;
+                    }
+                    if(txtObservaciones.getText().equals("")){
+                        showMessage("Debe completar las observaciones antes de continuar");
+                        return;
+                    }
 //                    Date selectedDateIni = (Date) datePickerIni.getModel().getValue();
 //                    Date selectedDateFin = (Date) datePickerFin.getModel().getValue();
 //                    Date selectedDateFinReal = (Date) datePickerFin.getModel().getValue();
@@ -310,7 +329,6 @@ public class RegistrarAvanceCampania extends JFrame {
 //        });
 
 
-
         cbxAcopio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -337,15 +355,79 @@ public class RegistrarAvanceCampania extends JFrame {
         cbxAcopio.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(cbxAcopio.getSelectedItem() == null){
+                if (cbxAcopio.getSelectedItem() == null) {
                     return;
                 }
                 AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
-                if (acopioEntity != null){
+                if (acopioEntity != null) {
                     txtTipoAcopio.setText(acopioEntity.getTipoAcopioEntity().getTipoAcopioNombre());
+                    txtNroAcopio.setText(acopioEntity.getCodigo().toString());
+                    txtNombreAcopio.setText(acopioEntity.getNombre());
+                    txtCantidadAcopioSoportdada.setText(acopioEntity.getCantidadSoportada().toString());
+                    txtCantidadActualAcopio.setText(acopioEntity.getCantidadGrano().toString());
+
                 } else {
                     txtTipoAcopio.setText("No encontrado");
                 }
+            }
+        });
+
+
+        //FINALIZAR ALL ORDEN
+        btnFinalizarOrden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+
+                if(fecha == null){
+                    showMessage("Debe completar la fecha antes de continuar");
+                    return;
+                }
+
+                if(txtCantidad.getText().equals("")){
+                    showMessage("Debe completar Cantidad antes de continuar");
+                    return;
+                }
+                if(txtTiempo.getText().equals("")){
+                    showMessage("Debe completar tiempo antes de continuar");
+                    return;
+                }
+                if(txtObservaciones.getText().equals("")){
+                    showMessage("Debe completar las observaciones antes de continuar");
+                    return;
+                }
+
+                Session session = Coneccion.getSession();
+                Transaction tx = session.beginTransaction();
+
+                orden.setObservaciones("Modifica de una orden");
+                orden.setRecursoHumano(txtRRHH.getText());
+                orden.setFechaAlta(fecha);
+                orden.setTiempo(txtTiempo.getText());
+                orden.setEstaRegistrada(true);
+
+                session.update(orden);
+
+                try {
+                    tx.commit();
+                    JOptionPane.showMessageDialog(null, "El Ticket de pesada fue cargado con exito.");
+                    dispose();
+                } catch (Exception ex) {
+                    tx.rollback();
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar el avance de la orden : " + ex.toString());
+
+                }
+                session.close();
+
+            }
+        });
+        btnActualizarPeso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+//                find ticket by orden
+                TicketPesadaEntity ticket = ticketPesadaRepository.getTicketByOrdenId(orden.getId());
+                txtCantidad.setText(ticket.getPeso());
             }
         });
     }
@@ -506,7 +588,6 @@ public class RegistrarAvanceCampania extends JFrame {
     private void borrarComboBoxAcopio() {
         cbxAcopio.removeAllItems();
     }
-
 
 
     private void showMessage(String mensaje) {

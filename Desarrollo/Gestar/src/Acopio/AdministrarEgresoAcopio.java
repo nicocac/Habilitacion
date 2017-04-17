@@ -1,6 +1,7 @@
 package Acopio;
 
 import Conexion.Coneccion;
+import Datos.EgresoAcopioEntity;
 import Datos.TipoInsumoEntity;
 import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Query;
@@ -24,7 +25,6 @@ public class AdministrarEgresoAcopio extends JFrame {
     private JButton btnCancelar;
     private JTable tblTipos;
     private JButton btnEliminar;
-    private JButton btnNuevo;
     private TipoInsumoEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -48,14 +48,14 @@ public class AdministrarEgresoAcopio extends JFrame {
 //        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
-        this.setTitle("Consultar Tipo de Insumo");
+        this.setTitle("Consultar Egresos Granos Realizados");
         inicializaTabla();
 
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Coneccion.getSession();
-            buscarTiposInsumo();
+            buscarEgresos();
         });
 
 
@@ -65,6 +65,8 @@ public class AdministrarEgresoAcopio extends JFrame {
             txtBuscar.setText("");
         });
 
+
+
         //EDITAR
         btnEditar.addActionListener(e -> {
             int fila = tblTipos.getSelectedRow();
@@ -72,10 +74,9 @@ public class AdministrarEgresoAcopio extends JFrame {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return;
             }
-            int tinId = (int) tblTipos.getModel().getValueAt(fila, 0);
-            String nombre = (String) tblTipos.getModel().getValueAt(fila, 1);
-            String descripcion = (String) tblTipos.getModel().getValueAt(fila, 2);
-            CargaTipoInsumo carga = new CargaTipoInsumo("Modificacion", nombre, descripcion, tinId);
+
+            Integer tinId = (Integer) tblTipos.getModel().getValueAt(fila, 0);
+            PantallaEgresoAcopio carga = new PantallaEgresoAcopio("Modificacion", tinId);
             carga.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
@@ -107,19 +108,19 @@ public class AdministrarEgresoAcopio extends JFrame {
         });
 
 
-        //NUEVO
-        btnNuevo.addActionListener(e -> {
-            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
-            cargaTipoInsumo.setVisible(true);
-            getDefaultCloseOperation();
-            inicializaTabla();
-        });
+//        //NUEVO
+//        btnNuevo.addActionListener(e -> {
+//            CargaTipoInsumo cargaTipoInsumo = new CargaTipoInsumo("Carga", "", "", 0);
+//            cargaTipoInsumo.setVisible(true);
+//            getDefaultCloseOperation();
+//            inicializaTabla();
+//        });
     }
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Descripcion"};
-        Object[][] data = new Object[1][3];
+        String[] columnNames = {"Cod", "Cliente", "Cantidad", "Fecha"};
+        Object[][] data = new Object[1][4];
         setModel(columnNames, data, tblTipos);
     }
 
@@ -127,10 +128,11 @@ public class AdministrarEgresoAcopio extends JFrame {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
         tblTipos.setModel(model);
-        tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblTipos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblTipos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(500);
+        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblTipos.getColumnModel().getColumn(2).setPreferredWidth(100);
     }
 
     private void showMessage(String error) {
@@ -157,7 +159,7 @@ public class AdministrarEgresoAcopio extends JFrame {
             tipo.setTinUsuarioUtlMod("adminBAJA");
             tipo.setTinFechaBaja(fechaActual);
             tipo.setTinUsuarioBaja("adminBAJA");
-            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del tipo de insumo: " + tblTipos.getModel().getValueAt(fila, 1));
+            int i = JOptionPane.showConfirmDialog(null, "Confirma la baja delegreso: " + tblTipos.getModel().getValueAt(fila, 1));
             if (i == 0) {
                 tx = session.beginTransaction();
                 session.update(tipo);
@@ -167,7 +169,7 @@ public class AdministrarEgresoAcopio extends JFrame {
                 return 1;
             }
         } catch (Exception e) {
-            showMessage("Ocurrio un error al dar de baja el tipo de insumo: " + e.toString());
+            showMessage("Ocurrio un error al dar de baja el egreso: " + e.toString());
             return 2;
         } finally {
             session.close();
@@ -178,23 +180,28 @@ public class AdministrarEgresoAcopio extends JFrame {
 
 
     //METODO BUSCAR TIPOS
-    public void buscarTiposInsumo() {
+    public void buscarEgresos() {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            tipo = new TipoInsumoEntity();
-            Query query = session.createQuery("select t from TipoInsumoEntity t where ucase(tinNombre) like ucase(:pNombre) and tinFechaBaja is null");
+            EgresoAcopioEntity egreso;
+            Query query = session.createQuery("select t from EgresoAcopioEntity t where (cliente.clienteNombre like ucase(:pNombre) or cliente.clienteCuitCuil like ucase(:pNombre)) and egresoFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Descripcion"};
-            Object[][] data = new Object[list.size()][3];
+            String[] columnNames = {"Cod", "Cliente", "Cantidad", "Fecha"};
+            Object[][] data = new Object[list.size()][4];
 
             while (iter.hasNext()) {
-                tipo = (TipoInsumoEntity) iter.next();
-                data[i][0] = tipo.getTinId();
-                data[i][1] = tipo.getTinNombre();
-                data[i][2] = tipo.getTinDescripcion();
+                egreso = (EgresoAcopioEntity) iter.next();
+                data[i][0] = egreso.getEgresoId();
+                if (egreso.getCliente() != null){
+                    data[i][1] = egreso.getCliente().getClienteNombre();
+                } else {
+                    data[i][1] = "Sin Datos";
+                }
+                data[i][2] = egreso.getEgresoCantidadTotal();
+                data[i][3] = egreso.getEgresoFecha();
                 i++;
             }
             setModel(columnNames, data, tblTipos);

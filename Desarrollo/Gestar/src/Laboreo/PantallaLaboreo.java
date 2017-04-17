@@ -10,6 +10,8 @@ import Insumo.CargaInsumo;
 import Insumo.Insumo;
 import Maquinaria.CargaMaquinaria;
 import Maquinaria.Maquinaria;
+import Procesos.PantallaAdministrarSolicitudInsumos;
+import Procesos.PantallaSolicitudInsumos;
 import Repository.CampaniaRepository;
 import Repository.InsumoRepository;
 import Repository.LaboreoRepository;
@@ -66,8 +68,9 @@ public class PantallaLaboreo extends JFrame {
     public JTextField txtFechaFin;
     public JButton btnQuitarInsumosOMaq;
     public JButton btnQuitarLaboreos;
-    public JButton btnGenerarOrden;
     public JButton actualizarLaboreo;
+    public JButton btnGenerarPedidoInsumo;
+    public JTextField textField1;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
@@ -155,19 +158,33 @@ public class PantallaLaboreo extends JFrame {
             while (iter.hasNext()) {
                 Insumo ins = (Insumo) iter.next();
 //                if (permiteSeleccion("Insumo", ins.getNombre())) {
-                    if (fila == 0) {
-                        tblDetalles.setValueAt("Insumo", fila, 0);
-                        tblDetalles.setValueAt(ins.getNombre(), fila, 1);
+                if (fila == 0) {
+                    tblDetalles.setValueAt("Insumo", fila, 0);
+                    tblDetalles.setValueAt(ins.getNombre(), fila, 1);
+
+//                    Integer tipoId = 1;
+//                    //FIND ALL INSUMOS BY TIPO
+//                    List<InsumoEntity> listaInsumos = insumoRepository.getAllInsumosByTipo(tipoId);
                         tblDetalles.setValueAt(ins.getUnidadMedida(), fila, 2);
-                        tblDetalles.setValueAt("0", fila, 3);
-                        fila++;
-                    } else {
-                        modelDetalle.addRow(new Object[]{"Insumo"
-                                , ins.getNombre()
-                                , ins.getUnidadMedida()
-                                , "0"});
-                        fila++;
-                    }
+////                            String[] DATA = { "Dato 1", "Dato 2", "Dato 3", "Dato 4" };
+//                    String[] DATA = {};
+//                    int i = 0;
+//                    for (InsumoEntity nombreInsumo : listaInsumos) {
+//                        DATA[i] = nombreInsumo.getInsNombre();
+//                        i++;
+//                    }
+//                    JComboBox comboBox = new JComboBox(DATA);
+//                    DefaultCellEditor defaultCellEditor = new DefaultCellEditor(comboBox);
+//                    tblDetalles.getColumnModel().getColumn(2).setCellEditor(defaultCellEditor);
+                    tblDetalles.setValueAt("0", fila, 3);
+                    fila++;
+                } else {
+                    modelDetalle.addRow(new Object[]{"Insumo"
+                            , ins.getNombre()
+                            , ins.getUnidadMedida()
+                            , "0"});
+                    fila++;
+                }
 //                }
             }
         });
@@ -196,7 +213,7 @@ public class PantallaLaboreo extends JFrame {
             java.util.List listaSeleccion;
             listaSeleccion = lstMaquinarias.getSelectedValuesList();
             Iterator iter = listaSeleccion.iterator();
-            int fila = tblDetalles.getRowCount() -1;
+            int fila = tblDetalles.getRowCount() - 1;
             if (tblDetalles.getValueAt(fila, 1) != null) {
                 if (!tblDetalles.getValueAt(fila, 1).equals("")) {
                     fila++;
@@ -207,20 +224,20 @@ public class PantallaLaboreo extends JFrame {
             while (iter.hasNext()) {
                 Maquinaria maq = (Maquinaria) iter.next();
 //                if (permiteSeleccion("Maquinaria", maq.getNombre())) {
-                    if (fila == 0) {
-                        tblDetalles.setValueAt("Maquinaria", fila, 0);
-                        tblDetalles.setValueAt(maq.getNombre(), fila, 1);
-                        tblDetalles.setValueAt(maq.getMarca(), fila, 2);
-                        tblDetalles.setValueAt("0", fila, 3);
-                        fila++;
-                    } else {
+                if (fila == 0) {
+                    tblDetalles.setValueAt("Maquinaria", fila, 0);
+                    tblDetalles.setValueAt(maq.getNombre(), fila, 1);
+                    tblDetalles.setValueAt(maq.getMarca(), fila, 2);
+                    tblDetalles.setValueAt("0", fila, 3);
+                    fila++;
+                } else {
 //                        model
-                        modelDetalle.addRow(new Object[]{"Maquinaria"
-                                , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
-                                , maq.getMarca()
-                                , "0"});
-                        fila++;
-                    }
+                    modelDetalle.addRow(new Object[]{"Maquinaria"
+                            , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
+                            , maq.getMarca()
+                            , "0"});
+                    fila++;
+                }
 //                }
             }
         });
@@ -369,6 +386,29 @@ public class PantallaLaboreo extends JFrame {
 
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
+
+                    if(cboCampania.getSelectedItem() == null){
+                        showMessage("Debe seleccionar campaña antes de continuar");
+                        return;
+                    }
+                    if(lstLotes.getSelectedValuesList().size() == 0){
+                        showMessage("Debe seleccionar lote antes de continuar");
+                        return;
+                    }
+                    if(cboMomentos.getSelectedItem() == null){
+                        showMessage("Debe seleccionar laboreo antes de continuar");
+                        return;
+                    }
+                    if(cbxSemillas.getSelectedItem() == null){
+                        showMessage("Debe seleccionar semilla antes de continuar");
+                        return;
+                    }
+                    if(txtDescripcion.getText().equals("")){
+                        showMessage("Debe completar la descripcion antes de continuar");
+                        return;
+                    }
+
+
                     GestorLaboreo gest = new GestorLaboreo();
 
                     Campania camp = (Campania) cboCampania.getSelectedItem();
@@ -456,6 +496,10 @@ public class PantallaLaboreo extends JFrame {
 //            Date fecha = new Date(cal.getTime().getTime());
 
                     Date fecha = (Date) datePickerIni.getModel().getValue();
+                    if(fecha == null){
+                        showMessage("Debe completar la fecha antes de continuar");
+                        return;
+                    }
                     try {
                         gest.registrarLaboreo(planificacion, fecha, txtDescripcion.getText());
 
@@ -658,7 +702,7 @@ public class PantallaLaboreo extends JFrame {
 //                DefaultTableModel model = new DefaultTableModel();
 //                model.setDataVector(data, columnNames);
 //                tblDetalles.setModel(model);
-                 modelDetalle = new DefaultTableModel();
+                modelDetalle = new DefaultTableModel();
                 modelDetalle.setDataVector(data, columnNames);
                 tblDetalles.setModel(modelDetalle);
 //            return;
@@ -714,6 +758,16 @@ public class PantallaLaboreo extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 borrarComboBoxTipoLaboreo();
                 cargaComboBoxLaboreo();
+            }
+        });
+
+        //GENERAR PEDIDO INSUMO
+        btnGenerarPedidoInsumo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos();
+                pantallaSolicitudInsumos.setVisible(true);
+                getDefaultCloseOperation();
             }
         });
     }

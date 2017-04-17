@@ -13,8 +13,9 @@ import Lote.Lote;
 import Maquinaria.Maquinaria;
 import Repository.*;
 import Transporte.CargaTransporte;
-import com.itextpdf.text.Document;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Session;
@@ -28,15 +29,20 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by jagm on 24/10/2016.
@@ -77,6 +83,8 @@ public class PantallaEgresoAcopio extends JFrame {
     public JButton btnAgregarParcial;
     public JTextField cantidadSemillaParcialTotal;
     public JTextField txtEstado;
+    public JButton btnRemito;
+    public JLabel lblDetallesEgresos;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
 
     private String tipoOperacion;
@@ -93,12 +101,12 @@ public class PantallaEgresoAcopio extends JFrame {
     AcopioRepository acopioRepository = new AcopioRepository();
     ClienteRepository clienteRepository = new ClienteRepository();
     TransporteRepository transporteRepository = new TransporteRepository();
+    EgresoAcopioRepository egresoAcopioRepository = new EgresoAcopioRepository();
 
     Long cantidad = null;
     Long cantidadPesoTotal = 0L;
 
-    public PantallaEgresoAcopio(String operacion, int camId, String denominacion) {
-//    public PantallaEgresoAcopio(String operacion, int camId, String denominacion, java.sql.Date fechaInicio, java.sql.Date fechaFin, java.sql.Date fechaFinReal) {
+    public PantallaEgresoAcopio(String operacion, int egresoId) {
 
         //INICIO
         JPanel container = new JPanel();
@@ -114,7 +122,7 @@ public class PantallaEgresoAcopio extends JFrame {
 //        setContentPane(panel1);
         pack();
         setBounds(200, 300, 1500, 900);
-        inicializaTablaSemillas();
+//        inicializaTablaSemillas();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Egreso de Semillas");
@@ -143,60 +151,66 @@ public class PantallaEgresoAcopio extends JFrame {
         BtnFechaIni.add(datePickerIni);
         //----------------------------------------------------------------------
 
-        if (denominacion.length() > 1 && camId != 0) {
-
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-//            Date dateInicio = new java.sql.Date(2016,10,20);
-//            Date dateFin = new java.sql.Date(2016,10,20);
-//
-//            try {
-//
-//                 dateInicio = formatter.parse(fechaInicio);
-//                 dateFin = formatter.parse(fechaFin);
-//
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-
-
-//            txtCampania.setText(denominacion);
-//            txtFechaIni.setText(fechaInicio.toString());
-//            txtFechaFin.setText(fechaFin.toString());
-//            modelIni.setValue(fechaInicio);
-//            modelIni.setValue((java.sql.Date) dateInicio);
-//            modelFin.setValue((java.sql.Date) dateFin);
-//            modelFin.setValue(fechaFin);
-            cnaId = camId;
-        }
-
-//        lstLotes.addListSelectionListener(e -> buscarLaboreoPorLote(camId));
-
-
-//        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
 
         //MODIFICAR
-        if (denominacion.length() > 1 && camId != 0) {
+        if (egresoId != 0) {
 
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-//            Date dateInicio = new java.sql.Date(2016,10,20);
-//            Date dateFin = new java.sql.Date(2016,10,20);
-//
-//            try {
-//
-//                 dateInicio = formatter.parse(fechaInicio);
-//                 dateFin = formatter.parse(fechaFin);
-//
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
+            EgresoAcopioEntity egreso = egresoAcopioRepository.getEgresoById(egresoId);
+            cbxCliente.setSelectedItem(egreso.getCliente());
+            cbxTransporte.setSelectedItem(egreso.getTransporte());
+            //DEBERIA SER SIEMPRE 1
+            List<DetalleEgresoAcopioEntity> listaDetalles = egresoAcopioRepository.getAllDetallesByEgresoId(egresoId);
+            DetalleEgresoAcopioEntity detalle = listaDetalles.get(0);
+            TipoGranoEntity semilla = detalle.getTipoGrano();
+            AcopioEntity acopio = detalle.getAcopio();
 
+            inicializaTablaSemillas();
+            int fila = tblDetalles.getRowCount() - 1;
+            if (tblDetalles.getRowCount() != 0) {
+                fila = tblDetalles.getRowCount() - 1;
+                if (tblDetalles.getValueAt(fila, 1) != null) {
+                    if (!tblDetalles.getValueAt(fila, 1).equals("")) {
+                        fila++;
+                    }
+                }
+            }
 
-            txtCampania.setText(denominacion);
-//            modelIni.setValue(fechaInicio);
-//            modelIni.setValue((java.sql.Date) dateInicio);
-//            modelFin.setValue((java.sql.Date) dateFin);
-//            modelFin.setValue(fechaFin);
-            cnaId = camId;
+            if (fila == 0) {
+                tblDetalles.setValueAt("Egreso", fila, 0);
+                tblDetalles.setValueAt(semilla.getTgrNombre(), fila, 1);
+                tblDetalles.setValueAt(egreso.getEgresoCantidadTotal(), fila, 2);
+                tblDetalles.setValueAt(acopio.getCodigo(), fila, 3);
+
+                fila++;
+            } else {
+                modelDetalle.addRow(new Object[]{"Egreso"
+                        , semilla.getTgrNombre()
+                        , cantidadSemillaParcialTotal.getText()
+                        , acopio.getCodigo()});
+                fila++;
+            }
+
+            cantidadTotal.setText(egreso.getEgresoCantidadTotal().toString());
+//            BtnFechaIni.setText(egreso.getEgresoFecha().toString());
+            JTextField btnFechaInicio = new JTextField(egreso.getEgresoFecha().toString());
+            btnFechaInicio.setVisible(true);
+            btnFechaInicio.setBounds(50,30,15,10);
+
+//
+
+//
+            cbxSemilla.hide();
+            cbxAcopio.hide();
+            txtTipoAcopio.hide();
+            txtStock.hide();
+            txtCantidad.hide();
+            txtEstado.hide();
+            btnAgregarSemilla.hide();
+            btnAgregarParcial.hide();
+            cantidadSemillaParcialTotal.hide();
+            cbxMedida.hide();
+            lblDetallesEgresos.hide();
+            BtnFechaIni.hide();
         }
 
 
@@ -205,12 +219,44 @@ public class PantallaEgresoAcopio extends JFrame {
             if (validaCarga().equals("S")) {
                 try {
 
+                    if(cbxTransporte.getSelectedItem() == null){
+                        showMessage("Debe seleccionar Transporte antes de continuar");
+                        return;
+                    }
+
+                    if(cbxSemilla.getSelectedItem() == null){
+                        showMessage("Debe seleccionar Semilla antes de continuar");
+                        return;
+                    }
+                    if(cbxAcopio.getSelectedItem() == null){
+                        showMessage("Debe seleccionar Acopio antes de continuar");
+                        return;
+                    }
+                    if(txtCantidad.getText().equals("")){
+                        showMessage("Debe completar la cantidad parcial antes de continuar");
+                        return;
+                    }
+
+                    if(txtObserv.getText().equals("")){
+                        showMessage("Debe completar observaciones antes de continuar");
+                        return;
+                    }
+
+                    if(tblDetalles.getRowCount() == 0){
+                        showMessage("Debe agregar al menos una semilla para exportar antes de continuar");
+                        return;
+                    }
+
                     //-------------------------------------------------------
                     GestorLaboreo gest = new GestorLaboreo();
 
                     EgresoAcopioEntity egreso = new EgresoAcopioEntity();
 //
                     java.util.Date selectedDateIni = (java.util.Date) datePickerIni.getModel().getValue();
+                    if(selectedDateIni == null){
+                        showMessage("Debe seleccionar la fecha antes de continuar");
+                        return;
+                    }
                     egreso.setEgresoFecha((java.sql.Date) selectedDateIni);
 
                     egreso.setCliente((ClienteEntity) cbxCliente.getSelectedItem());
@@ -246,49 +292,48 @@ public class PantallaEgresoAcopio extends JFrame {
 
                     try {
                         gest.registrarEgresoSemillas(detalles, acopio, egreso, tipoGrano);
-
+                        JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                        dispose();
 
                     } catch (Exception e1) {
                         JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el egreso de semillas: " + e1.toString());
-                    } finally {
-                        JOptionPane.showMessageDialog(null, "La operacio fue realizada con exito.");
-                        dispose();
+                        return;
                     }
                     // ------------------------------------------------------
 
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el egreso de semillas: " + e1.toString());
-                } finally {
-                    JOptionPane.showMessageDialog(null, "El Egreso de Acopio para el cliente: " + cbxCliente.getSelectedItem().toString() + " fue guardado con exito.");
-                    dispose();
+                    return;
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
+                return;
+
             }
         });
 
 
-        //IMPRIMIR
-        btnImprimir.addActionListener(e -> {
-            Document document = new Document();
-            try {
-                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
-                document.open();
-                PdfContentByte contentByte = writer.getDirectContent();
-                PdfTemplate template = contentByte.createTemplate(500, 500);
-                Graphics2D g2 = template.createGraphics(500, 500);
-                panel1.print(g2);
-                g2.dispose();
-                contentByte.addTemplate(template, 30, 300);
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            } finally {
-                if (document.isOpen()) {
-                    document.close();
-                }
-            }
-            dispose();
-        });
+//        //IMPRIMIR
+//        btnImprimir.addActionListener(e -> {
+//            Document document = new Document();
+//            try {
+//                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
+//                document.open();
+//                PdfContentByte contentByte = writer.getDirectContent();
+//                PdfTemplate template = contentByte.createTemplate(500, 500);
+//                Graphics2D g2 = template.createGraphics(500, 500);
+//                panel1.print(g2);
+//                g2.dispose();
+//                contentByte.addTemplate(template, 30, 300);
+//            } catch (Exception e2) {
+//                e2.printStackTrace();
+//            } finally {
+//                if (document.isOpen()) {
+//                    document.close();
+//                }
+//            }
+//            dispose();
+//        });
 
 
         //NUEVO CLIENTE
@@ -360,6 +405,7 @@ public class PantallaEgresoAcopio extends JFrame {
         btnAgregarSemilla.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inicializaTablaSemillas();
                 if (cbxSemilla.getSelectedItem() == null) {
                     showMessage("Debe seleccionar al menos una semilla para continuar.");
                     return;
@@ -477,6 +523,74 @@ public class PantallaEgresoAcopio extends JFrame {
 
                 cantidad = cantidad + Long.parseLong(txtCantidad.getText());
                 cantidadSemillaParcialTotal.setText(cantidad.toString());
+            }
+        });
+
+        //BUTTON REMITO
+        btnRemito.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    // Creacion del parrafo
+                    Paragraph paragraph = new Paragraph();
+                    com.itextpdf.text.Font fontTitulos = FontFactory.getFont(
+                            FontFactory.COURIER_BOLD, 14, com.itextpdf.text.Font.UNDERLINE,
+                            BaseColor.BLACK);
+
+                    com.itextpdf.text.Font categoryFont = FontFactory.getFont(
+                            FontFactory.TIMES_ROMAN, 11, com.itextpdf.text.Font.NORMAL,
+                            BaseColor.BLACK);
+
+
+                    paragraph.add(new Phrase("Remito Transporte Granos:", fontTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    paragraph.add(new Phrase("Transporte: " + cbxTransporte.getSelectedItem().toString(), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    paragraph.add(new Phrase("Cliente: " + cbxCliente.getSelectedItem().toString(), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    Chunk chunk = new Chunk("This is the title", fontTitulos);
+                    chunk.setBackground(BaseColor.GRAY);
+
+
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\remito.pdf"));
+                    doc.open();
+//                    PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
+//                    //adding table headers
+//                    for (int i = 0; i < tblInsumos.getColumnCount(); i++) {
+//                        pdfTable.addCell(tblInsumos.getColumnName(i));
+//                    }
+//                    //extracting data from the JTable and inserting it to PdfPTable
+//                    for (int rows = 0; rows < tblInsumos.getRowCount() ; rows++) {
+//                        for (int cols = 0; cols < tblInsumos.getColumnCount(); cols++) {
+//                            pdfTable.addCell(tblInsumos.getModel().getValueAt(rows, cols).toString());
+//
+//                        }
+//                    }
+
+                    doc.add(paragraph);
+//                    doc.add(pdfTable);
+                    doc.close();
+                    showMessage("Remito Egreso Granos");
+                    System.out.println("Remito Egreso Granos");
+//                    doc.open();
+                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\remito.pdf";
+                    try {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
+                    } catch (IOException io) {
+                        Logger.getLogger(PantallaEgresoAcopio.class.getName()).log(Level.SEVERE, null, io);
+                    }
+
+                } catch (DocumentException ex) {
+                    Logger.getLogger(PantallaEgresoAcopio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(PantallaEgresoAcopio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

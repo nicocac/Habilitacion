@@ -5,19 +5,32 @@ import Acopio.TipoAcopio.CargaTipoAcopio;
 import Conexion.Coneccion;
 import Datos.AcopioEntity;
 import Datos.TipoAcopioEntity;
+import Imagenes.ImageFondo;
 import Laboreo.GestorLaboreo;
 import Repository.AcopioRepository;
 import TipoInsumo.CargaTipoInsumo;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by jagm on 17/02/2017.
@@ -32,6 +45,9 @@ public class AdministrarAcopio extends JFrame {
     private JTable tblTipos;
     private JButton btnEliminar;
     private JButton btnNuevo;
+    public JPanel panel3;
+    public JButton imprimirStockAcopioButton;
+    public JPanel panelImage;
     private AcopioEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -49,7 +65,7 @@ public class AdministrarAcopio extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panel3);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -62,6 +78,16 @@ public class AdministrarAcopio extends JFrame {
         this.setTitle("Consultar Acopios");
         inicializaTabla();
         buscarTiposAcopio();
+
+
+//        ImageFondo image = new ImageFondo();
+//        image.setImage("/Imagenes/MenuPrincipalBanner.jpg");
+//        image.setAlignmentX(10);
+////
+////        panelImage.paint(image); //setContentPane(image);
+////        panelImage.setVisible(true);
+//        this.add(image);
+        setTitle("Sistema de Administracion");
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
@@ -125,12 +151,69 @@ public class AdministrarAcopio extends JFrame {
             getDefaultCloseOperation();
             inicializaTabla();
         });
+
+
+
+        imprimirStockAcopioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    // Creacion del parrafo
+                    Paragraph paragraph = new Paragraph();
+                    com.itextpdf.text.Font fontTitulos = FontFactory.getFont(
+                            FontFactory.COURIER_BOLD, 14, com.itextpdf.text.Font.UNDERLINE,
+                            BaseColor.BLACK);
+
+                    paragraph.add(new Phrase("Reporte Stock de Acopios:", fontTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListadoAcopio.pdf"));
+                    doc.open();
+                    PdfPTable pdfTable = new PdfPTable(tblTipos.getColumnCount());
+                    //adding table headers
+                    for (int i = 0; i < tblTipos.getColumnCount(); i++) {
+                        pdfTable.addCell(tblTipos.getColumnName(i));
+                    }
+                    //extracting data from the JTable and inserting it to PdfPTable
+                    for (int rows = 0; rows < tblTipos.getRowCount() ; rows++) {
+                        for (int cols = 0; cols < tblTipos.getColumnCount(); cols++) {
+                            pdfTable.addCell(tblTipos.getModel().getValueAt(rows, cols).toString());
+
+                        }
+                    }
+
+                    doc.add(paragraph);
+                    doc.add(pdfTable);
+                    doc.close();
+                    showMessage("Listado De stock de Acopios Impreso");
+                    System.out.println("Listado De stock de Acopios Impreso");
+//                    doc.open();
+                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListadoAcopio.pdf";
+                    try {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
+                    }catch (IOException io) {
+                        Logger.getLogger(AdministrarAcopio.class.getName()).log(Level.SEVERE, null, io);
+                    }
+
+                } catch (DocumentException ex) {
+                    Logger.getLogger(AdministrarAcopio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(AdministrarAcopio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+
+            }
+
+        });
     }
 
     //METODOS
     private void inicializaTabla() {
         String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
-        Object[][] data = new Object[1][7];
+        Object[][] data = new Object[1][6];
         setModel(columnNames, data, tblTipos);
     }
 
@@ -138,7 +221,7 @@ public class AdministrarAcopio extends JFrame {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
         tblTipos.setModel(model);
-        tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblTipos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblTipos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblTipos.getColumnModel().getColumn(1).setPreferredWidth(100);
         tblTipos.getColumnModel().getColumn(2).setPreferredWidth(100);
