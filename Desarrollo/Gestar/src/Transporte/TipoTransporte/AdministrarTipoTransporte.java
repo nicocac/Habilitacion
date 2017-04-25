@@ -25,6 +25,7 @@ public class AdministrarTipoTransporte extends JFrame {
     private JTable tblTipos;
     private JButton btnEliminar;
     private JButton btnNuevo;
+    public JPanel panelIni;
     private TipoInsumoEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -36,12 +37,13 @@ public class AdministrarTipoTransporte extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
+        setContentPane(panelIni);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Tipo de Transporte");
         inicializaTabla();
-
+//        this.setPreferredSize(this.getParen/t().getPreferredSize());
+        this.pack();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {

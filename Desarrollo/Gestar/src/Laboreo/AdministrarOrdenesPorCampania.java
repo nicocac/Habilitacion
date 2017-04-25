@@ -10,6 +10,7 @@ import Repository.LaboreoRepository;
 import Repository.PlanificacionRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -50,6 +51,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
     public JTextField txtLote;
     public JList lstOrdenes;
     public JPanel panelIni;
+    public JButton btnFinalizarOrden;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -307,7 +309,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //                JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la orden de trabajo : " + e1.toString());
 //            } finally {
 //                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
-                dispose();
+            dispose();
 //            }
         });
 
@@ -322,27 +324,72 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //        });
 
 
+        //FINALIZAR ALL ORDEN
+        btnFinalizarOrden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+
+                if (lstOrdenes.getSelectedValuesList().size() == 0) {
+                    showMessage("Debe seleccionar una orden antes de continuar");
+                    return;
+                }
+
+                int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea Finalizar la orden ?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (respuesta == 0) {
+
+                    OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
+
+                    Session session = Coneccion.getSession();
+                    Transaction tx = session.beginTransaction();
+
+                    String obs = orden.getObservaciones();
+                    orden.setObservaciones(obs + " - Finalizacion de orden");
+                    orden.setFechaUltMod(fecha);
+                    orden.setUsuarioUltMod("Admin que Finaliza la orden");
+                    orden.setEstaRegistrada(true);
+
+                    session.update(orden);
+
+                    try {
+                        tx.commit();
+                        JOptionPane.showMessageDialog(null, "La orden fue finalizada en forma definitiva con exito.");
+                        session.close();
+                        dispose();
+
+
+                    } catch (Exception ex) {
+                        tx.rollback();
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error al finalizar la orden : " + ex.toString());
+                    }
+                } else {
+                    return;
+                }
+            }
+        });
+
+
         //REGISTRAR EL AVANCE
         btnRegistrarAvance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(lstOrdenes.getSelectedValuesList().size() == 0){
+                if (lstOrdenes.getSelectedValuesList().size() == 0) {
                     showMessage("Debe seleccionar una orden antes de continuar");
                     return;
                 }
 
-                if(txtLaboreo.getText().equals("")){
+                if (txtLaboreo.getText().equals("")) {
                     showMessage("Debe completar el laboreo antes de continuar");
                     return;
                 }
 
-                if(txtLote.getText().equals("")){
+                if (txtLote.getText().equals("")) {
                     showMessage("Debe completar lote antes de continuar");
                     return;
                 }
 
-                if(txtRRHH.getText().equals("")){
+                if (txtRRHH.getText().equals("")) {
                     showMessage("Debe completar El personal antes de continuar");
                     return;
                 }
@@ -350,7 +397,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
                 OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
 
                 RegistrarAvanceCampania registrarAvanceCampania = new RegistrarAvanceCampania("Carga", orden);
-                setBounds(200,300,900,900);
+                setBounds(200, 300, 900, 900);
                 registrarAvanceCampania.setVisible(true);
                 getDefaultCloseOperation();
                 dispose();

@@ -89,16 +89,16 @@ public class OrdenRepository {
     }
 
 
-    public InsumoEntity getInsumoById(Integer id){
+    public OrdenTrabajoEntity getOrdenById(Integer id){
          session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x " +
-                "where ucase(insId) like ucase(:pId) and insFechaBaja is null");
+        OrdenTrabajoEntity insumo = new OrdenTrabajoEntity();
+        Query query = session.createQuery("select x from OrdenTrabajoEntity x " +
+                "where ucase(id) like ucase(:pId) and fechaBaja is null");
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            insumo = (OrdenTrabajoEntity) iter.next();
         }
         session.close();
         return insumo;

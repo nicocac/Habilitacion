@@ -89,6 +89,7 @@ public class GestorCompras {
 
         IngresoInsumoEntity ingresoInsumoEntity = new IngresoInsumoEntity();
         ingresoInsumoEntity.setIngresoCantidadItems(ingreso.getCantidadItems());
+        ingresoInsumoEntity.setIngresoNroRemito(ingreso.getIngresoNroRemito());
         ingresoInsumoEntity.setIngresoFecha(ingreso.getFechaOperacion());
         ingresoInsumoEntity.setIngresoFechaAlta(new java.sql.Date(utilDate.getTime()));
         ingresoInsumoEntity.setIngresoFechaUltMod(new java.sql.Date(utilDate.getTime()));

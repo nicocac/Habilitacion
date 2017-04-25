@@ -25,6 +25,7 @@ public class AdministrarEgresoAcopio extends JFrame {
     private JButton btnCancelar;
     private JTable tblTipos;
     private JButton btnEliminar;
+    public JPanel panelIni;
     private TipoInsumoEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -39,7 +40,7 @@ public class AdministrarEgresoAcopio extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -50,7 +51,7 @@ public class AdministrarEgresoAcopio extends JFrame {
         pack();
         this.setTitle("Consultar Egresos Granos Realizados");
         inicializaTabla();
-
+        buscarEgresos();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {

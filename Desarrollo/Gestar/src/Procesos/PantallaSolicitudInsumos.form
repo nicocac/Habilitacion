@@ -6,8 +6,8 @@
       <xy x="20" y="20" width="1214" height="835"/>
     </constraints>
     <properties>
-      <opaque value="true"/>
-      <preferredSize width="1250" height="750"/>
+      <opaque value="false"/>
+      <preferredSize width="1250" height="950"/>
       <requestFocusEnabled value="true"/>
     </properties>
     <border type="none" title="Solicitud insumos"/>

@@ -24,6 +24,14 @@ public class EgresoAcopioEntity {
     private Date    egresoFechaBaja;
     private String  egresoUsuarioBaja;
 
+    private String calle;
+    private String nro;
+    private String localidad;
+    private String codPostal;
+    private String provincia;
+    private String chofer;
+
+
     private List<DetalleEgresoAcopioEntity> listaDetalleEgresoAcopioEntity;
 
 //    private TipoAcopioEntity tipoAcopio;
@@ -149,6 +157,58 @@ public class EgresoAcopioEntity {
         this.transporte = transporte;
     }
 
+    @Column(name = "calle")
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    @Column(name = "nro")
+    public String getNro() {
+        return nro;
+    }
+
+    public void setNro(String nro) {
+        this.nro = nro;
+    }
+
+    @Column(name = "localidad")
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    @Column(name = "cod_postal")
+    public String getCodPostal() {
+        return codPostal;
+    }
+
+    public void setCodPostal(String codPostal) {
+        this.codPostal = codPostal;
+    }
+
+    @Column(name = "provincia")
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
 
 
+    @Column(name = "chofer")
+    public String getChofer() {
+        return chofer;
+    }
+
+    public void setChofer(String chofer) {
+        this.chofer = chofer;
+    }
 }

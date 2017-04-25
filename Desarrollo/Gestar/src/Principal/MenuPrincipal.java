@@ -21,6 +21,7 @@ import Lote.PantallaAdministrarLote;
 import Maquinaria.PantallaAdministrarMaquinaria;
 import Maquinaria.PantallaTipoEstado.PantallaAdministrarEstadoMaquinaria;
 import Maquinaria.PantallaTipoMaquinaria.PantallaAdministrarTipoMaquinaria;
+import Ordenes.AdministrarOrdenes;
 import Procesos.PantallaAdministrarSolicitudInsumos;
 import Procesos.PantallaRegistrarIngresoInsumo;
 import Procesos.PantallaSolicitudInsumos;
@@ -97,6 +98,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         //BUTTON REGISTRAR AVANCE
         JButton btnRegistrarAvance = new JButton("Registrar Avance de Campa\u00f1a");
         btnRegistrarAvance.setBounds(600, 200, 215, 70);
+        btnRegistrarAvance.getBaselineResizeBehavior();
         image.add(btnRegistrarAvance);
 
         btnRegistrarAvance.addActionListener(e -> {
@@ -484,7 +486,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == AdmOrdenesXCamp) {
-            PantallaAdministrarCampaniaPlanificada administrarOrdenesPorCampania = new PantallaAdministrarCampaniaPlanificada("");
+            AdministrarOrdenes administrarOrdenesPorCampania = new AdministrarOrdenes();
             administrarOrdenesPorCampania.setVisible(true);
             getDefaultCloseOperation();
         }

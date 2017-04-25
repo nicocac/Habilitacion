@@ -4,6 +4,7 @@ import Acopio.TipoAcopio.CargaTipoAcopio;
 import Conexion.Coneccion;
 import Datos.AcopioEntity;
 import Datos.TipoAcopioEntity;
+import Datos.TipoGranoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -56,6 +57,7 @@ public class CargaAcopio extends JFrame {
         } else {
             this.setTitle("Modificar Acopio");
         }
+        cargaComboBoxSemilla();
 
 
         //NEVO TIPO ACOPIO
@@ -112,6 +114,7 @@ public class CargaAcopio extends JFrame {
                 tipo.setTipoAcopioEntity((TipoAcopioEntity) cbxTipoAcopio.getSelectedItem());
                 tipo.setCantidadSoportada(Integer.parseInt(cantidadPeso.getText()));
 //                tipo.setCantidadGrano(Integer.parseInt(cantidadActual.getText()));
+                tipo.setTipoGrano((TipoGranoEntity)cbxGrano.getSelectedItem());
                 tipo.setAcopioFechaAlta(fechaActual);
                 tipo.setAcopioUsuarioAlta("admin");
                 Transaction tx = session.beginTransaction();
@@ -170,6 +173,20 @@ public class CargaAcopio extends JFrame {
         cbxTipoAcopio.removeAllItems();
     }
 
+
+    private void cargaComboBoxSemilla() {
+        Session session = Coneccion.getSession();
+        Query query = session.createQuery("SELECT p FROM TipoGranoEntity p");
+        java.util.List<TipoGranoEntity> listaTipoMaquinaria = query.list();
+
+        Vector<String> miVectorTipoMaquinaria = new Vector<>();
+        for (TipoGranoEntity tipoMaquinaria : listaTipoMaquinaria) {
+            //System.out.println(tipoMaquinaria.getTeMaNombre());
+            miVectorTipoMaquinaria.add(tipoMaquinaria.getTgrNombre());
+            cbxTipoAcopio.addItem(tipoMaquinaria);
+        }
+
+    }
 
 
 }

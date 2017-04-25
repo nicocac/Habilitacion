@@ -68,6 +68,7 @@ public class GenerarOrdenTrabajo extends JFrame {
     public JTextField txtLote;
     public JTextField txtSemilla;
     public JPanel panelIni;
+    public JTextField txtTiempoGastado;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -89,6 +90,8 @@ public class GenerarOrdenTrabajo extends JFrame {
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
     OrdenRepository ordenRepository = new OrdenRepository();
 
+    PlanificacionCampaniaEntity planificacion = null;
+
     public GenerarOrdenTrabajo(String operacion, Integer planificacionId) {
 
 
@@ -106,19 +109,20 @@ public class GenerarOrdenTrabajo extends JFrame {
         pack();
         inicializaTabla();
 
-        tipoOperacion = operacion;
+
+                tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Generar Ordenes de Trabajo");
-//        } else {
-//            this.setTitle("Modificar Ordenes de Trabajo");
 
-            PlanificacionCampaniaEntity planificacion = planificacionRepository.getPlanificadaById(planificacionId);
+            txtTiempoGastado.disable();
+
+            planificacion = planificacionRepository.getPlanificadaById(planificacionId);
             txtCamp.setText(planificacion.getCampania().getCnaDenominacion());
             txtFechaIni.setText(planificacion.getCampania().getCnaFechaInicio().toString());
             txtFechaFin.setText(planificacion.getCampania().getCnaFechaFinReal().toString());
             //buscar size de todas las ordenes mas 1
             Integer orden = ordenRepository.getAllOrdenes().size();
-            orden = orden + 1 ;
+            orden = orden + 1;
             txtNroOrden.setText(orden.toString());
 
             List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacionId);
@@ -148,25 +152,47 @@ public class GenerarOrdenTrabajo extends JFrame {
             });
 
 
+
 //        this.setExtendedState(MAXIMIZED_BOTH);
             this.setTitle("Registrar Orden de trabajo");
 
 
-            //BUTTON FECHA
-            SqlDateModel modelIni = new SqlDateModel();
-            modelIni.setDate(2016, 04, 20);
-            // Need this...
-            Properties p = new Properties();
-            p.put("text.today", "Today");
-            p.put("text.month", "Month");
-            p.put("text.year", "Year");
-            JDatePanelImpl datePanelIni = new JDatePanelImpl(modelIni, p);
-            //the formatter,  there it is...
-            JDatePickerImpl datePickerIni = new JDatePickerImpl(datePanelIni, new DateLabelFormatter());
 
-            buttonFecha.add(datePickerIni);
-            //
 
+        } else {
+            this.setTitle("Modificar Ordenes de Trabajo");
+
+            OrdenTrabajoEntity orden = ordenRepository.getOrdenById(planificacionId);
+            txtCamp.setText(orden.getPlanificacion().getCampania().getCnaDenominacion());
+            txtFechaIni.setText(orden.getPlanificacion().getCampania().getCnaFechaInicio().toString());
+            txtFechaFin.setText(orden.getPlanificacion().getCampania().getCnaFechaFinReal().toString());
+            txtNroOrden.setText(orden.getNroOrden().toString());
+            txtTiempo.setText(orden.getTiempo().toString());
+            txtTiempoGastado.setText((orden.getTiempoGastado() == null) ? "0" : orden.getTiempoGastado().toString());
+            txtRRHH.setText(orden.getRecursoHumano().toString());
+            txtObservaciones.setText(orden.getObservaciones().toString());
+            txtSemilla.setText(orden.getGrano().toString());
+            txtLote.setText((orden.getLote() == null ) ? "" : orden.getLote().toString());
+            Object[] laboreos = new Object[1];
+            laboreos[0] = orden.getLaboreo().getLboNombre();
+            lstLaboreos.setListData(laboreos);
+//            breakEdit();
+        }
+
+        //BUTTON FECHA
+        SqlDateModel modelIni = new SqlDateModel();
+        modelIni.setDate(2016, 04, 20);
+        // Need this...
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl datePanelIni = new JDatePanelImpl(modelIni, p);
+        //the formatter,  there it is...
+        JDatePickerImpl datePickerIni = new JDatePickerImpl(datePanelIni, new DateLabelFormatter());
+
+        buttonFecha.add(datePickerIni);
+        //
 
             //ELIMINAR ITEM
 //        btnEliminar.addActionListener(e -> {
@@ -195,20 +221,20 @@ public class GenerarOrdenTrabajo extends JFrame {
 
             //GUARDAR
             btnFinalizar.addActionListener(e -> {
-                if(lstLaboreos.getSelectedValuesList().size() == 0){
+                if (lstLaboreos.getSelectedValuesList().size() == 0) {
                     showMessage("Debe seleccionar el laboreo antes de continuar");
                     return;
                 }
 
-                if(txtRRHH.getText().equals("")){
+                if (txtRRHH.getText().equals("")) {
                     showMessage("Debe completar RRHH antes de continuar");
                     return;
                 }
-                if(txtTiempo.getText().equals("")){
+                if (txtTiempo.getText().equals("")) {
                     showMessage("Debe completar tiempo antes de continuar");
                     return;
                 }
-                if(txtObservaciones.getText().equals("")){
+                if (txtObservaciones.getText().equals("")) {
                     showMessage("Debe completar las observaciones antes de continuar");
                     return;
                 }
@@ -277,7 +303,7 @@ public class GenerarOrdenTrabajo extends JFrame {
 //            Date fecha = new Date(cal.getTime().getTime());
 
                 Date fecha = (Date) datePickerIni.getModel().getValue();
-                if(fecha == null){
+                if (fecha == null) {
                     showMessage("Debe completar la fecha antes de continuar");
                     return;
                 }
@@ -298,7 +324,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                     return;
                 } finally {
                     JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
-                    dispose();
+//                    dispose();
                 }
             });
 
@@ -342,7 +368,8 @@ public class GenerarOrdenTrabajo extends JFrame {
 //                    dispose();
                 }
             });
-        }
+
+
 
     }
 
@@ -360,6 +387,12 @@ public class GenerarOrdenTrabajo extends JFrame {
         setModelDetalles(columnNamesCompra, data);
 
     }
+
+    private void breakEdit() {
+        return;
+
+    }
+
 
     private boolean permiteSeleccion(String tipo, String descripcion) {
         for (int i = 0; i <= tblDetalles.getRowCount() - 1; i++) {

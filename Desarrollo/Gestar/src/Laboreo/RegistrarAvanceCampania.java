@@ -1,6 +1,7 @@
 package Laboreo;
 
 import Acopio.Acopio.CargaAcopio;
+import Acopio.AdministrarAcopio;
 import Campania.Campania;
 import Campania.GestorCampania;
 import Conexion.Coneccion;
@@ -75,6 +76,8 @@ public class RegistrarAvanceCampania extends JFrame {
     private String tipoOperacion;
     private int cnaId;
     private GestorCampania gestor = new GestorCampania();
+    GestorLaboreo gest = new GestorLaboreo();
+
     LaboreoLoteCampaniaRepository laboreoLoteCampaniaRepository = new LaboreoLoteCampaniaRepository();
     LoteRepository loteRepository = new LoteRepository();
     TipoGranoRepository tipoGranoRepository = new TipoGranoRepository();
@@ -116,7 +119,7 @@ public class RegistrarAvanceCampania extends JFrame {
         txtRRHH.setText(orden.getRecursoHumano());
         txtFechaIni.setText(orden.getPlanificacion().getCampania().getCnaFechaInicio().toString());
         txtFechaFin.setText(orden.getPlanificacion().getCampania().getCnaFechaFinReal().toString());
-        txtTiempo.setText(orden.getTiempo());
+        txtTiempo.setText("");
         txtLaboreo.setText(orden.getLaboreo().getLboNombre());
         txtSemilla.setText(orden.getGrano().getTgrNombre());
 
@@ -347,7 +350,7 @@ public class RegistrarAvanceCampania extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 borrarComboBoxAcopio();
-                cargaComboBoxAcopio();
+                cargaComboBoxAcopio(orden);
             }
         });
 
@@ -364,7 +367,19 @@ public class RegistrarAvanceCampania extends JFrame {
                     txtNroAcopio.setText(acopioEntity.getCodigo().toString());
                     txtNombreAcopio.setText(acopioEntity.getNombre());
                     txtCantidadAcopioSoportdada.setText(acopioEntity.getCantidadSoportada().toString());
-                    txtCantidadActualAcopio.setText(acopioEntity.getCantidadGrano().toString());
+                    Integer cantidadGrano = acopioEntity.getCantidadGrano();
+                    if (cantidadGrano == null){
+                        cantidadGrano = 0;
+                    }
+
+                    Object[][] data = stockAcopio();
+                    for(Object[] dato : data){
+                        if (dato[0] == acopioEntity.getAcopioId()){
+                            txtCantidadActualAcopio.setText(dato[6].toString());
+
+                        }
+                    }
+//                    txtCantidadActualAcopio.setText(cantidadGrano.toString());
 
                 } else {
                     txtTipoAcopio.setText("No encontrado");
@@ -421,6 +436,8 @@ public class RegistrarAvanceCampania extends JFrame {
 
             }
         });
+
+
         btnActualizarPeso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -448,11 +465,54 @@ public class RegistrarAvanceCampania extends JFrame {
 //    }
 
 
-    private boolean existeLote() {
-        if (lstLotes.getSelectedValuesList().size() == 0) {
-            return false;
+    private Object[][] stockAcopio() {
+        Session session = Coneccion.getSession();
+        int i = 0;
+        List<Object[]> listStockFinal = new ArrayList<>();
+        Object[][] data = null;
+
+        try {
+            java.util.List<Object[]> list;
+            Object[] acopio;
+
+            list = gest.getStockByAcopio();
+            //
+            List<Object[]> listEgreso = gest.getStockEgresoByAcopio();
+
+
+            for(Object[] ingreso: list){
+
+                for(Object[] egreso: listEgreso){
+                    if(ingreso[0].equals(egreso[0])){
+
+                        Long cantidadFinal = (Long)ingreso[6] -(Long)egreso[1];
+                        ingreso[6] = cantidadFinal;
+                    }
+
+                }
+                listStockFinal.add(ingreso);
+            }
+            //
+
+            Iterator iter = listStockFinal.iterator();
+            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+            data = new Object[listStockFinal.size()][7];
+            while (iter.hasNext()) {
+                acopio = (Object[]) iter.next();
+                data[i][0] = acopio[0];
+                data[i][1] = acopio[1];
+                data[i][2] = acopio[2];
+                data[i][3] = acopio[3];
+                data[i][4] = acopio[4];
+                data[i][5] = acopio[5];
+                data[i][6] = acopio[6];
+                i++;
+            }
+//            setModel(columnNames, data, tblTipos);
+        } finally {
+            session.close();
         }
-        return true;
+        return data;
     }
 
 //    private void limpiarPantalla() {
@@ -571,16 +631,19 @@ public class RegistrarAvanceCampania extends JFrame {
     //---CARGA DE COMBO BOXS
 
     //METODO CARGA COMBO  Acopio
-    private void cargaComboBoxAcopio() {
+    private void cargaComboBoxAcopio(OrdenTrabajoEntity orden) {
         Session session = Coneccion.getSession();
         Query query = session.createQuery("SELECT p FROM AcopioEntity p");
-        java.util.List<AcopioEntity> listaTipoMaquinaria = query.list();
+        java.util.List<AcopioEntity> listaAcopio = query.list();
 
         Vector<String> miVectorTipoMaquinaria = new Vector<>();
-        for (AcopioEntity tipoMaquinaria : listaTipoMaquinaria) {
-            //System.out.println(tipoMaquinaria.getTeMaNombre());
-            miVectorTipoMaquinaria.add(tipoMaquinaria.getNombre());
-            cbxAcopio.addItem(tipoMaquinaria);
+        for (AcopioEntity acopio : listaAcopio) {
+            if(acopio.getTipoGrano() != null) {
+                if (acopio.getTipoGrano().equals(orden.getGrano())) {
+                    miVectorTipoMaquinaria.add(acopio.getNombre());
+                    cbxAcopio.addItem(acopio);
+                }
+            }
         }
 
     }

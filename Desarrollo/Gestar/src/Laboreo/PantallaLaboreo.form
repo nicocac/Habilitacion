@@ -615,7 +615,7 @@
           <toolTipText value="Nueva Semilla"/>
         </properties>
       </component>
-      <component id="9703d" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="9703d" class="javax.swing.JTextField" binding="txtDescripcion">
         <constraints>
           <grid row="16" column="4" row-span="2" col-span="18" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>

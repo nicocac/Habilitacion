@@ -46,14 +46,6 @@
         <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
         <colspec value="fill:max(d;4px):noGrow"/>
         <colspec value="left:4dlu:noGrow"/>
         <colspec value="fill:max(d;4px):noGrow"/>
@@ -254,7 +246,7 @@
           </component>
           <component id="b4eae" class="javax.swing.JButton" binding="btnLimpiar">
             <constraints>
-              <grid row="40" column="2" row-span="1" col-span="42" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="32" column="2" row-span="1" col-span="42" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -292,7 +284,7 @@
           </component>
           <component id="16bc5" class="javax.swing.JButton" binding="btnCancelar">
             <constraints>
-              <grid row="42" column="2" row-span="1" col-span="39" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="34" column="2" row-span="1" col-span="39" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -456,20 +448,6 @@
             </constraints>
             <properties/>
           </component>
-          <scrollpane id="c5ea">
-            <constraints>
-              <grid row="28" column="2" row-span="8" col-span="42" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false" defaultalign-vert="false"/>
-            </constraints>
-            <properties/>
-            <border type="none" title="Tipos de Laboreos"/>
-            <children>
-              <component id="1497b" class="javax.swing.JTable">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
           <component id="643e5" class="javax.swing.JButton" binding="btnEliminar">
             <constraints>
               <grid row="22" column="45" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -484,7 +462,7 @@
           </component>
           <component id="2eedb" class="javax.swing.JButton" binding="btnFinalizar">
             <constraints>
-              <grid row="42" column="43" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="34" column="43" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>

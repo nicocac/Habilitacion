@@ -587,11 +587,21 @@ public class GestorLaboreo {
 
         }
 
-
-        orden.setObservaciones("Modifica de una orden");
+        String obs = orden.getObservaciones();
+        if (obs == null) {
+            obs = "";
+        }
+        orden.setObservaciones(obs + " - Ingreso temp ");
         orden.setRecursoHumano(txtRRHH);
         orden.setFechaAlta(fecha);
-        orden.setTiempo(txtTiempo);
+        String tiempo = orden.getTiempoGastado();
+        if (tiempo == null) {
+            tiempo = txtTiempo;
+        } else {
+            Integer tiempoInt = Integer.parseInt(tiempo) + Integer.parseInt(txtTiempo);
+            tiempo = tiempoInt.toString();
+        }
+        orden.setTiempoGastado(tiempo);
 //        orden.setEstaRegistrada(true);
 
         session.update(orden);
@@ -745,10 +755,10 @@ public class GestorLaboreo {
     }
 
 
-    public List <Object[]> getStockByAcopio() {
+    public List<Object[]> getStockByAcopio() {
         session = Coneccion.getSession();
 
-        java.util.List <Object[]>list;
+        java.util.List<Object[]> list;
 
         Query query = session.createQuery("select a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre," +
                 " i.tipoGrano.tgrNombre, i.estadoSemilla, SUM(i.ingresoCantidadTotal) " +
@@ -756,7 +766,7 @@ public class GestorLaboreo {
                 "where (a.acopioId = i.acopio.acopioId)" +
                 "group by a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre, i.tipoGrano.tgrNombre, i.estadoSemilla");
 
-        list =  query.list();
+        list = query.list();
 
         session.close();
 
@@ -764,17 +774,17 @@ public class GestorLaboreo {
     }
 
 
-    public List <Object[]> getStockIngresoByAcopio() {
+    public List<Object[]> getStockIngresoByAcopio() {
         session = Coneccion.getSession();
 
-        java.util.List <Object[]>list;
+        java.util.List<Object[]> list;
 
         Query query = session.createQuery("select a.acopioId, SUM(i.ingresoCantidadTotal) " +
                 "from AcopioEntity a, IngresoAcopioEntity i " +
                 "where (a.acopioId = i.acopio.acopioId)" +
                 "group by a.acopioId ");
 
-        list =  query.list();
+        list = query.list();
 
         session.close();
 
@@ -782,17 +792,17 @@ public class GestorLaboreo {
     }
 
 
-    public List <Object[]> getStockEgresoByAcopio() {
+    public List<Object[]> getStockEgresoByAcopio() {
         session = Coneccion.getSession();
 
-        java.util.List <Object[]>list;
+        java.util.List<Object[]> list;
 
         Query query = session.createQuery("select a.acopioId, SUM(d.detalleEgresoCantidad) " +
                 "from AcopioEntity a, DetalleEgresoAcopioEntity d " +
                 "where (a.acopioId = d.acopio.acopioId)" +
                 "group by a.acopioId ");
 
-        list =  query.list();
+        list = query.list();
 
         session.close();
 

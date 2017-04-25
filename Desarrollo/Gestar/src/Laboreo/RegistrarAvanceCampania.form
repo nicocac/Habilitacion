@@ -567,6 +567,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <icon value="Imagenes/rsz_guardar.png"/>
                   <text value="Finalizar Orden"/>
                 </properties>

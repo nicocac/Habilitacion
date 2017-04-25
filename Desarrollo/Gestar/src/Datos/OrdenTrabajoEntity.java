@@ -16,6 +16,7 @@ public class OrdenTrabajoEntity {
     private String  observaciones;
     private String  recursoHumano;
     private String  tiempo;
+    private String  tiempoGastado;
     private Boolean estaRegistrada;
 
     private Date    fechaAlta;
@@ -204,6 +205,16 @@ public class OrdenTrabajoEntity {
 
     public void setEstaRegistrada(Boolean estaRegistrada) {
         this.estaRegistrada = estaRegistrada;
+    }
+
+
+    @Column(name = "tiempo_gastado")
+    public String getTiempoGastado() {
+        return tiempoGastado;
+    }
+
+    public void setTiempoGastado(String tiempoGastado) {
+        this.tiempoGastado = tiempoGastado;
     }
 
     @Override

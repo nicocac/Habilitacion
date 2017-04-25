@@ -230,7 +230,7 @@ public class PantallaSolicitudInsumos extends JFrame {
         txtRemito.setText("");
         txtBuscar.setText("");
         jlCantidadItems.setText("0");
-        jlTotal.setText("0");
+//        jlTotal.setText("0");
         cantItems = 0;
 
     }

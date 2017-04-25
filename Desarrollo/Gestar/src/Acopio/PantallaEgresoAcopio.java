@@ -85,6 +85,20 @@ public class PantallaEgresoAcopio extends JFrame {
     public JTextField txtEstado;
     public JButton btnRemito;
     public JLabel lblDetallesEgresos;
+    public JLabel lblSemillas;
+    public JLabel lblAcopio;
+    public JLabel lblStock;
+    public JLabel lblCantidad;
+    public JLabel lblEstado;
+    public JLabel lblTAcopio;
+    public JLabel lblCanTotalSemilla;
+    public JTextField txtChofer;
+    public JTextField txtGrano;
+    public JLabel lblGrano;
+    public JTextField txtCalle;
+    public JTextField txtNro;
+    public JComboBox cbxProvincia;
+    public JComboBox cbxLocalidad;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
 
     private String tipoOperacion;
@@ -121,7 +135,7 @@ public class PantallaEgresoAcopio extends JFrame {
 
 //        setContentPane(panel1);
         pack();
-        setBounds(200, 300, 1500, 900);
+        setBounds(200, 50, 1500, 900);
 //        inicializaTablaSemillas();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
@@ -194,17 +208,33 @@ public class PantallaEgresoAcopio extends JFrame {
 //            BtnFechaIni.setText(egreso.getEgresoFecha().toString());
             JTextField btnFechaInicio = new JTextField(egreso.getEgresoFecha().toString());
             btnFechaInicio.setVisible(true);
-            btnFechaInicio.setBounds(50,30,15,10);
+            btnFechaInicio.setBounds(50, 30, 15, 10);
+            txtCalle.setText(egreso.getCalle());
+            txtNro.setText(egreso.getNro());
+            txtObserv.setText("Egreso Editado");
+            cbxProvincia.setSelectedItem(egreso.getProvincia());
+            cbxLocalidad.setSelectedItem(egreso.getLocalidad());
+            cbxLocalidad.disable();
+//            txtChofer.setText(egreso.getc());
 
 //
 
 //
             cbxSemilla.hide();
+            lblSemillas.hide();
             cbxAcopio.hide();
+            lblAcopio.hide();
             txtTipoAcopio.hide();
+            lblTAcopio.hide();
             txtStock.hide();
+            lblStock.hide();
             txtCantidad.hide();
+            lblCanTotalSemilla.hide();
+            lblCantidad.hide();
             txtEstado.hide();
+            lblEstado.hide();
+//            txtGrano.hide();
+//            lblGrano.hide();
             btnAgregarSemilla.hide();
             btnAgregarParcial.hide();
             cantidadSemillaParcialTotal.hide();
@@ -267,6 +297,11 @@ public class PantallaEgresoAcopio extends JFrame {
                     egreso.setEgresoFechaAlta(fechaActual);
                     egreso.setEgresoUsuarioAlta("admin");
                     egreso.setEgresoFechaUltMod(fechaActual);
+                    egreso.setCalle(txtCalle.getText());
+                    egreso.setNro(txtNro.getText());
+                    egreso.setChofer(txtChofer.getText());
+                    egreso.setProvincia(cbxProvincia.getSelectedItem().toString());
+                    egreso.setLocalidad(cbxLocalidad.getSelectedItem().toString());
 
                     TipoGranoEntity tipoGrano = null;
                     AcopioEntity acopio = null;
@@ -292,7 +327,7 @@ public class PantallaEgresoAcopio extends JFrame {
 
                     try {
                         gest.registrarEgresoSemillas(detalles, acopio, egreso, tipoGrano);
-                        JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
+                        JOptionPane.showMessageDialog(null, "El Egreso del grano: " + cbxSemilla.getSelectedItem().toString() + " fue realizado con exito.");
                         dispose();
 
                     } catch (Exception e1) {
@@ -501,6 +536,7 @@ public class PantallaEgresoAcopio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 cantidad = 0L;
                 String nombreSemilla = cbxSemilla.getSelectedItem().toString();
+//                txtGrano.setText();
                 listaAcopios = buscarAcopios();
                 for (Object[] acopio : listaAcopios) {
                     //String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
@@ -550,8 +586,21 @@ public class PantallaEgresoAcopio extends JFrame {
                     paragraph.add(new Phrase("Transporte: " + cbxTransporte.getSelectedItem().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
+                    paragraph.add(new Phrase("Chofer: " + txtChofer.getText().toString(), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
                     paragraph.add(new Phrase("Cliente: " + cbxCliente.getSelectedItem().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    paragraph.add(new Phrase("Direccion: " + cbxProvincia.getSelectedItem().toString() + " ," + cbxLocalidad.getSelectedItem().toString(), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    paragraph.add(new Phrase("Semilla: " + tblDetalles.getValueAt(0, 1)
+                            + " ," + "Tipo Movimiento: "+ tblDetalles.getValueAt(0, 0) + " ,"
+                            + " Cantidad: "+ tblDetalles.getValueAt(0, 2) + " ,"
+                            + " Acopio Nro: " +tblDetalles.getValueAt(0, 3), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
 
                     Chunk chunk = new Chunk("This is the title", fontTitulos);
                     chunk.setBackground(BaseColor.GRAY);
@@ -576,8 +625,8 @@ public class PantallaEgresoAcopio extends JFrame {
                     doc.add(paragraph);
 //                    doc.add(pdfTable);
                     doc.close();
-                    showMessage("Remito Egreso Granos");
-                    System.out.println("Remito Egreso Granos");
+                    showMessage("Impresion del Remito Egreso Granos");
+                    System.out.println("Se imprime Remito Egreso Granos");
 //                    doc.open();
                     String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\remito.pdf";
                     try {

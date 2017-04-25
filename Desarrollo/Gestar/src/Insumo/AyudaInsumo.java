@@ -8,7 +8,7 @@ import javax.swing.*;
 public class AyudaInsumo extends JFrame{
 
     public JPanel panel1;
-    public JTextArea ayudaPantallaAdministrarInsumosTextArea;
+    public JEditorPane txtDescrip;
 
     public AyudaInsumo() {
 
