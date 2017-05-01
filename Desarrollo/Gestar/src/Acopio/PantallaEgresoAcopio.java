@@ -574,6 +574,10 @@ public class PantallaEgresoAcopio extends JFrame {
                             FontFactory.COURIER_BOLD, 14, com.itextpdf.text.Font.UNDERLINE,
                             BaseColor.BLACK);
 
+                    com.itextpdf.text.Font fontSubTitulos = FontFactory.getFont(
+                            FontFactory.COURIER_BOLD, 12, com.itextpdf.text.Font.NORMAL,
+                            BaseColor.BLACK);
+
                     com.itextpdf.text.Font categoryFont = FontFactory.getFont(
                             FontFactory.TIMES_ROMAN, 11, com.itextpdf.text.Font.NORMAL,
                             BaseColor.BLACK);
@@ -582,26 +586,63 @@ public class PantallaEgresoAcopio extends JFrame {
                     paragraph.add(new Phrase("Remito Transporte Granos:", fontTitulos));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
 
+                    paragraph.add(new Phrase("Datos Transporte: ", fontSubTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase("Transporte: " + cbxTransporte.getSelectedItem().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-
                     paragraph.add(new Phrase("Chofer: " + txtChofer.getText().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
 
+                    paragraph.add(new Phrase("Datos Cliente: ", fontSubTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase("Cliente: " + cbxCliente.getSelectedItem().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-
                     paragraph.add(new Phrase("Direccion: " + cbxProvincia.getSelectedItem().toString() + " ," + cbxLocalidad.getSelectedItem().toString(), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-
-                    paragraph.add(new Phrase("Semilla: " + tblDetalles.getValueAt(0, 1)
-                            + " ," + "Tipo Movimiento: "+ tblDetalles.getValueAt(0, 0) + " ,"
-                            + " Cantidad: "+ tblDetalles.getValueAt(0, 2) + " ,"
-                            + " Acopio Nro: " +tblDetalles.getValueAt(0, 3), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+//                    paragraph.add(new Phrase("Semilla: " + tblDetalles.getValueAt(0, 1)
+//                            + " ," + "Tipo Movimiento: "+ tblDetalles.getValueAt(0, 0) + " ,"
+//                            + " Cantidad: "+ tblDetalles.getValueAt(0, 2) + " ,"
+//                            + " Acopio Nro: " +tblDetalles.getValueAt(0, 3), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Datos Semilla: ", fontSubTitulos));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Semilla: " +tblDetalles.getValueAt(0, 1), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Tipo Movimiento: " +tblDetalles.getValueAt(0, 0), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Cantidad: " +tblDetalles.getValueAt(0, 2), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Medida: Toneladas", categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase("Acopio Nro: " +tblDetalles.getValueAt(0, 3), categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
 
+
+                    paragraph.add(new Phrase("El titular de los granos a transportar deberá ingresar a la web de afip, acceder al servicio con Clave Fiscal “JAUKE - Emisión de Cartas de Porte”," +
+                            " e informar :\n" +
+                            "Datos del adquirente:\n" +
+                            "CUIT;\n" +
+                            "Apellido y nombres, denominación o razón social.\n" +
+                            "Datos de la solicitud\n" +
+                            "Carácter de la solicitud: si se trata de un productor de granos, de un operador del comercio de granos o de un sujeto autorizado por la ONCCA o por la AFIP;\n" +
+                            "punto de venta;\n" +
+                            "cantidad." , categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
+
+                    paragraph.add(new Phrase("https://www.afip.gob.ar/sitio/externos/default.asp" , categoryFont));
+                    paragraph.add(new Phrase(Chunk.NEWLINE));
                     Chunk chunk = new Chunk("This is the title", fontTitulos);
                     chunk.setBackground(BaseColor.GRAY);
 
