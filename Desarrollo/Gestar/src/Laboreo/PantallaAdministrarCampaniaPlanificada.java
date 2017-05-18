@@ -50,6 +50,18 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
     public PantallaAdministrarCampaniaPlanificada(String tipo) {
 
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panelIni);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
+        pack();
+
 
         //INICIO
         if(tipo.equals("Generar")){
@@ -59,9 +71,9 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
                 this.btnNuevaOrden.hide();
             }
         }
-        setContentPane(panelIni);
+//        setContentPane(panelIni);
 //        this.setExtendedState(MAXIMIZED_BOTH);
-        pack();
+//        pack();
         this.setTitle("Consultar Campa\u00f1as planificadas");
         inicializaTabla();
         buscarCampaniasPlanificadas(tipo);
@@ -219,8 +231,8 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin"};
-        Object[][] data = new Object[1][4];
+        String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin", "Estado"};
+        Object[][] data = new Object[1][5];
         setModel(columnNames, data, tblCampPlanificadas);
     }
 
@@ -233,7 +245,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
         tblCampPlanificadas.getColumnModel().getColumn(1).setPreferredWidth(150);
         tblCampPlanificadas.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblCampPlanificadas.getColumnModel().getColumn(3).setPreferredWidth(150);
-//        tblCampPlanificadas.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tblCampPlanificadas.getColumnModel().getColumn(4).setPreferredWidth(100);
     }
 
     private void showMessage(String error) {
@@ -294,8 +306,8 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin"};
-            Object[][] data = new Object[list.size()][4];
+            String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin", "Estado"};
+            Object[][] data = new Object[list.size()][5];
 
             while (iter.hasNext()) {
                 planificacion = (PlanificacionCampaniaEntity) iter.next();
@@ -306,6 +318,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
                     data[i][1] = planificacion.getCampania().getCnaDenominacion();
                     data[i][2] = planificacion.getCampania().getCnaFechaInicio();
                     data[i][3] = planificacion.getCampania().getCnaFechaFinReal();
+                    data[i][4] = planificacion.getCampania().getEstado();
 
                     i++;
                 }
@@ -314,6 +327,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
                     data[i][1] = planificacion.getCampania().getCnaDenominacion();
                     data[i][2] = planificacion.getCampania().getCnaFechaInicio();
                     data[i][3] = planificacion.getCampania().getCnaFechaFinReal();
+                    data[i][4] = planificacion.getCampania().getEstado();
 
                     i++;
                 }
@@ -321,7 +335,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
             }
             setModel(columnNames, data, tblCampPlanificadas);
         } finally {
-            session.close();
+//            session.close();
         }
 
     }

@@ -13,11 +13,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class InsumoRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -32,7 +32,7 @@ public class InsumoRepository {
 
 
     public InsumoEntity getInsumoByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -47,7 +47,7 @@ public class InsumoRepository {
 
 
     public InsumoEntity getInsumoById(Integer id){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);
@@ -62,7 +62,7 @@ public class InsumoRepository {
 
     public List<InsumoEntity> getAllInsumosByTipo(Integer tipoId){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x where x.tipoInsumoByInsTinId.id = :tipoId");
         List list = query.list();

@@ -14,11 +14,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class LaboreoLoteCampaniaRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<LaboreoEntity> getAllLaboreoByLoteAndCampania(Integer nroLote, int camId){
         List<LaboreoEntity> listaLaboreo = new ArrayList<>();
-        session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         LaboreoEntity laboreo;
         Query query = session.createQuery("select x.laboreo from PlanificacionCampaniaEntity x " +
                 "where (x.loteCampania.loteByLcpLteId.id = :pId and x.loteCampania.campaniaByLcpCnaId.id = :pCamId)");
@@ -36,7 +36,7 @@ public class LaboreoLoteCampaniaRepository {
 
 
     public InsumoEntity getInsumoByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -51,7 +51,7 @@ public class LaboreoLoteCampaniaRepository {
 
 
     public InsumoEntity getInsumoById(Integer id){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);

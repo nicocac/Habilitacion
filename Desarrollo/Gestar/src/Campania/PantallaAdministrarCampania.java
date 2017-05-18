@@ -5,6 +5,7 @@ import Datos.*;
 import Laboreo.AdministrarOrdenesPorCampania;
 import Laboreo.RegistrarAvanceCampania;
 import Maquinaria.CargaMaquinaria;
+import Repository.CampaniaRepository;
 import TipoInsumo.CargaTipoInsumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 
 /**
@@ -39,6 +41,7 @@ public class PantallaAdministrarCampania extends JFrame {
 
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
+    CampaniaRepository campaniaRepository = new CampaniaRepository();
 
     public PantallaAdministrarCampania() {
 
@@ -139,32 +142,48 @@ public class PantallaAdministrarCampania extends JFrame {
                 return;
             }
 
+            java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
 
-            int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
-            String denominacion = (String) tblCampania.getModel().getValueAt(fila, 1);
-            Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 2);
-            Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 3);
-            Date fechaFinReal = (Date) tblCampania.getModel().getValueAt(fila, 4);
+            int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea Finalizar la Campaña ?", "Advertencia", JOptionPane.YES_NO_OPTION);
+            if (respuesta == 0) {
 
-//           CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
+                int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
 
-            AdministrarOrdenesPorCampania ordenesCampania = new AdministrarOrdenesPorCampania("Carga", camId);
-            ordenesCampania.setVisible(true);
-            getDefaultCloseOperation();
+                Session session = Coneccion.getSession();
+                Transaction tx = session.beginTransaction();
 
-//            RegistrarAvanceCampania avanceCampania = new RegistrarAvanceCampania("Carga",camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
-//            avanceCampania.setVisible(true);
-//            getDefaultCloseOperation();
+                CampaniaEntity campaniaEntity = campaniaRepository.getCampaniaById(camId);
+                campaniaEntity.setCnaFechaUltMod(fecha);
+                campaniaEntity.setCnaUsuarioUltMod("Admin que Finaliza la orden");
+                campaniaEntity.setEstado("CANCELADA");
 
-            inicializaTabla();
+                session.update(campaniaEntity);
 
+                try {
+                    tx.commit();
+                    JOptionPane.showMessageDialog(null, "La Campaña fue cancelada en forma definitiva con exito.");
+                    session.flush();
+//                        session.close();
+                    dispose();
+
+
+                } catch (Exception ex) {
+                    tx.rollback();
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al finalizar la Campaña : " + ex.toString());
+                } finally {
+                    session.close();
+                }
+            } else {
+                return;
+            }
         });
+
     }
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Fecha Inicio", "Fecha Fin Estimada", "Fecha Fin Real", "Cantidad de lotes"};
+        String[] columnNames = {"Cod", "Nombre", "Estado", "Fecha Inicio", "Fecha Fin Real", "Cantidad de lotes"};
         Object[][] data = new Object[1][3];
         setModel(columnNames, data, tblCampania);
     }
@@ -175,8 +194,11 @@ public class PantallaAdministrarCampania extends JFrame {
         tblCampania.setModel(model);
         tblCampania.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCampania.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblCampania.getColumnModel().getColumn(1).setPreferredWidth(500);
+        tblCampania.getColumnModel().getColumn(1).setPreferredWidth(150);
         tblCampania.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tblCampania.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tblCampania.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tblCampania.getColumnModel().getColumn(5).setPreferredWidth(100);
     }
 
     private void showMessage(String error) {
@@ -237,14 +259,14 @@ public class PantallaAdministrarCampania extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Fecha Inicio", "Fecha Fin Estimada", "Fecha Fin Real", "Cantidad de lotes"};
+            String[] columnNames = {"Cod", "Nombre", "Estado", "Fecha Inicio", "Fecha Fin Real", "Cantidad de lotes"};
             Object[][] data = new Object[list.size()][6];
             while (iter.hasNext()) {
                 campania = (CampaniaEntity) iter.next();
                 data[i][0] = campania.getCnaId();
                 data[i][1] = campania.getCnaDenominacion();
-                data[i][2] = campania.getCnaFechaInicio();
-                data[i][3] = campania.getCnaFechaFinEstimada();
+                data[i][2] = campania.getEstado();
+                data[i][3] = campania.getCnaFechaInicio();
                 data[i][4] = campania.getCnaFechaFinReal();
                 data[i][5] = campania.getLoteCampaniasByCnaId().size();
                 i++;

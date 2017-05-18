@@ -220,7 +220,8 @@ public class OrdenTrabajoEntity {
     @Override
     public String toString() {
         return
-                this.getNroOrden().toString();
+                "Nro: " + this.getNroOrden().toString() +"  Laboreo: " + this.getLaboreo().getLboNombre().toString()
+                +"  Lote: " + this.getLote().getLteDenominacion().toString() + "  Recurso: " + this.getRecursoHumano().toString();
     }
 
 }

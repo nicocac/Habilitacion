@@ -23,6 +23,7 @@ public class CampaniaEntity {
     private String cnaUsuarioBaja;
 
     private Boolean estaPlanificada;
+    private String estado;
 
     private Collection<LoteCampaniaEntity> loteCampaniasByCnaId;
 
@@ -145,8 +146,14 @@ public class CampaniaEntity {
         this.estaPlanificada = estaPlanificada;
     }
 
+    @Column(name = "estado")
+    public String getEstado() {
+        return estado;
+    }
 
-
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     @OneToMany(mappedBy = "campaniaByLcpCnaId")
     public Collection<LoteCampaniaEntity> getLoteCampaniasByCnaId() {

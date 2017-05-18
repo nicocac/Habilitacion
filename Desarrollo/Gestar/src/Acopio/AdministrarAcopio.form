@@ -18,7 +18,7 @@
           </grid>
         </constraints>
         <properties/>
-        <border type="none" title="Administrar Acopios">
+        <border type="none" title="Administrar Silos">
           <font/>
           <color color="-14907371"/>
         </border>
@@ -231,8 +231,8 @@
             <properties>
               <icon value="Imagenes/imprimir.jpg"/>
               <inheritsPopupMenu value="true"/>
-              <label value="Imprimir Stock Acopio"/>
-              <text value="Imprimir Stock Acopio"/>
+              <label value="Imprimir Stock Semillas"/>
+              <text value="Imprimir Stock Semillas"/>
             </properties>
           </component>
         </children>

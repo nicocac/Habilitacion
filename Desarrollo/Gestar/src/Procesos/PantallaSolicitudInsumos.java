@@ -8,8 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
@@ -18,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.util.Iterator;
 
 /**
  * Created by jagm on 6/11/2016.
@@ -55,7 +53,7 @@ public class PantallaSolicitudInsumos extends JFrame {
     private float precio = 0;
     private int cantItems = 0;
 
-    public PantallaSolicitudInsumos() {
+    public PantallaSolicitudInsumos(String insumos) {
 
 
         //INICIO
@@ -73,13 +71,15 @@ public class PantallaSolicitudInsumos extends JFrame {
 //        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Solicitud de Insumos");
         inicializaTabla(0);
-        buscarInsumos();
+
+
+        buscarInsumos(insumos);
 
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Coneccion.getSession();
-            buscarInsumos();
+            buscarInsumos(insumos);
         });
 
 
@@ -342,11 +342,20 @@ public class PantallaSolicitudInsumos extends JFrame {
     }
 
     //METODO BUSCAR INSUMOS
-    private void buscarInsumos() {
+    private void buscarInsumos(String insumos) {
         Session session = Coneccion.getSession();
         int i = 0;
         try {
-            insumo = new InsumoEntity();
+//            java.util.List<String> listaInsumos = new ArrayList<>();
+            String[] objectoInsumos = null;
+            if(insumos!=null){
+                objectoInsumos = insumos.split(", ");
+//                for(String obj : objectoInsumos){
+//                    listaInsumos.add(obj);
+//                }
+            }
+
+            InsumoEntity insumo = new InsumoEntity();
             Query query = session.createQuery("select t from InsumoEntity t where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
@@ -356,13 +365,27 @@ public class PantallaSolicitudInsumos extends JFrame {
 
             while (iter.hasNext()) {
                 insumo = (InsumoEntity) iter.next();
-                data[i][0] = insumo.getInsId();
-                data[i][1] = insumo.getInsNombre();
-                data[i][2] = insumo.getInsDescripcion();
-                data[i][3] = insumo.getInsUnidadMedida();
-                data[i][4] = insumo.getTipoInsumoByInsTinId();
-                data[i][5] = insumo.getInsStock();
-                i++;
+                if(objectoInsumos != null) {
+                    for (String obj : objectoInsumos) {
+                        if (insumo.getInsNombre().equals(obj)) {
+                            data[i][0] = insumo.getInsId();
+                            data[i][1] = insumo.getInsNombre();
+                            data[i][2] = insumo.getInsDescripcion();
+                            data[i][3] = insumo.getInsUnidadMedida();
+                            data[i][4] = insumo.getTipoInsumoByInsTinId();
+                            data[i][5] = insumo.getInsStock();
+                            i++;
+                        }
+                    }
+                } else {
+                    data[i][0] = insumo.getInsId();
+                    data[i][1] = insumo.getInsNombre();
+                    data[i][2] = insumo.getInsDescripcion();
+                    data[i][3] = insumo.getInsUnidadMedida();
+                    data[i][4] = insumo.getTipoInsumoByInsTinId();
+                    data[i][5] = insumo.getInsStock();
+                    i++;
+                }
             }
             setModelInsumo(columnNames, data);
         } finally {

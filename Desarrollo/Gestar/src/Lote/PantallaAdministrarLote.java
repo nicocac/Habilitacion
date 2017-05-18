@@ -119,8 +119,8 @@ public class PantallaAdministrarLote extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Metros"};
-        Object[][] data = new Object[1][3];
+        String[] columnNames = {"Cod", "Nombre", "Metros", "Estado"};
+        Object[][] data = new Object[1][4];
         setModel(columnNames, data, tblLote);
     }
 
@@ -128,9 +128,10 @@ public class PantallaAdministrarLote extends JFrame {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
         tblLote.setModel(model);
-        tblLote.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblLote.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblLote.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblLote.getColumnModel().getColumn(1).setPreferredWidth(450);
+        tblLote.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblLote.getColumnModel().getColumn(2).setPreferredWidth(200);
         tblLote.getColumnModel().getColumn(2).setPreferredWidth(200);
     }
 
@@ -190,7 +191,7 @@ public class PantallaAdministrarLote extends JFrame {
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
             java.util.List list = query.list();
             Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Metros"};
+            String[] columnNames = {"Cod", "Nombre", "Metros", "Estado"};
             Object[][] data = new Object[list.size()][8];
 
             while (iter.hasNext()) {
@@ -198,6 +199,7 @@ public class PantallaAdministrarLote extends JFrame {
                 data[i][0] = lote.getLteId();
                 data[i][1] = lote.getLteDenominacion();
                 data[i][2] = lote.getLteCantMetros();
+                data[i][3] = lote.getEstado();
                 i++;
             }
             setModel(columnNames, data, tblLote);

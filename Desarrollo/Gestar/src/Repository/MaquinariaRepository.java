@@ -14,11 +14,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class MaquinariaRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -33,7 +33,7 @@ public class MaquinariaRepository {
 
 
     public MaquinariaEntity getMaquinariaByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         MaquinariaEntity maquinaria = new MaquinariaEntity();
         Query query = session.createQuery("select x from MaquinariaEntity x where ucase(maqNombre) like ucase(:pNombre) and maqFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -49,7 +49,7 @@ public class MaquinariaRepository {
 
 
     public InsumoEntity getInsumoById(Long id){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = null;
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);

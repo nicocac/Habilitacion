@@ -21,6 +21,7 @@ public class LoteEntity {
     private String lteUsuarioUltMod;
     private Date lteFechaBaja;
     private String lteUsuarioBaja;
+    private String estado;
 
     private Collection<LoteCampaniaEntity> loteCampaniasByLteId;
 
@@ -146,6 +147,15 @@ public class LoteEntity {
 
     public void setLteUsuarioBaja(String lteUsuarioBaja) {
         this.lteUsuarioBaja = lteUsuarioBaja;
+    }
+
+    @Column(name = "estado")
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @OneToMany(mappedBy = "loteByLcpLteId")

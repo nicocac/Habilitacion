@@ -1,7 +1,10 @@
 package Campania;
 
 import Date.DateLabelFormatter;
+import Datos.LoteEntity;
 import Lote.CargaLote;
+import Lote.Lote;
+import Repository.LoteRepository;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
@@ -12,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 //import java.sql.Date;
@@ -35,7 +39,7 @@ public class CargaCampania extends JFrame {
     private String tipoOperacion;
     private int cnaId;
     private GestorCampania gestor = new GestorCampania();
-
+    LoteRepository loteRepository = new LoteRepository();
     public CargaCampania(String operacion, int camId, String denominacion, java.sql.Date fechaInicio, java.sql.Date fechaFin, java.sql.Date fechaFinReal) {
 
         //INICIO
@@ -72,7 +76,21 @@ public class CargaCampania extends JFrame {
         //
 
 
-        lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
+        lstLotes.addListSelectionListener(e -> {
+                    lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size()));
+                    List<Lote> lotes = lstLotes.getSelectedValuesList();
+                    for (Lote lote : lotes) {
+                        LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
+                        if (loteEntity.getEstado().equals("OCUPADO")){
+                            JOptionPane.showMessageDialog(this, "El lote: " + loteEntity.getLteDenominacion() + " seleccionado" +
+                                    " no se puede incluir en la campaña ya que el mismo esta siendo utilizado para otra campaña." +
+                                    " Por favor seleccione otro.");
+                            lstLotes.removeSelectionInterval(lstLotes.getLeadSelectionIndex(), lstLotes.getLeadSelectionIndex());
+                        }
+
+                    }
+                }
+        );
 
         //MODIFICAR
         if (denominacion.length() > 1 && camId != 0) {
@@ -113,7 +131,6 @@ public class CargaCampania extends JFrame {
                     campania.setFechaInicio((java.sql.Date) selectedDateIni);
                     campania.setFechaFinEstimada((java.sql.Date) selectedDateFin);
                     campania.setFechaFinReal((java.sql.Date) selectedDateFinReal);
-
 
                     gestor.registrarCampania(campania, tipoOperacion, cnaId);
 

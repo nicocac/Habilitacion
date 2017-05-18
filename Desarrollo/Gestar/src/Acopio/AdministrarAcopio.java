@@ -75,7 +75,7 @@ public class AdministrarAcopio extends JFrame {
 //        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
-        this.setTitle("Consultar Acopios");
+        this.setTitle("Consultar Silos");
         inicializaTabla();
         buscarTiposAcopio();
 
@@ -127,7 +127,7 @@ public class AdministrarAcopio extends JFrame {
         btnEliminar.addActionListener(e -> {
             switch (darBaja()) {
                 case 0: {
-                    showMessage("Se dio de baja exitosamente el  Acopio.");
+                    showMessage("Se dio de baja exitosamente el  Silo.");
                     inicializaTabla();
                     break;
                 }
@@ -136,7 +136,7 @@ public class AdministrarAcopio extends JFrame {
                     break;
                 }
                 case 2: {
-                    showMessage("No se pudo dar de baja el  Acopio.");
+                    showMessage("No se pudo dar de baja el  Silo.");
                     break;
                 }
             }
@@ -165,7 +165,7 @@ public class AdministrarAcopio extends JFrame {
                             FontFactory.COURIER_BOLD, 14, com.itextpdf.text.Font.UNDERLINE,
                             BaseColor.BLACK);
 
-                    paragraph.add(new Phrase("Reporte Stock de Acopios:", fontTitulos));
+                    paragraph.add(new Phrase("Reporte Stock de Semillas:", fontTitulos));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
@@ -188,8 +188,8 @@ public class AdministrarAcopio extends JFrame {
                     doc.add(paragraph);
                     doc.add(pdfTable);
                     doc.close();
-                    showMessage("Listado De stock de Acopios Impreso");
-                    System.out.println("Listado De stock de Acopios Impreso");
+                    showMessage("Listado De stock de Semillas Impreso");
+                    System.out.println("Listado De stock de Semillas Impreso");
 //                    doc.open();
                     String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes\\testListadoAcopio.pdf";
                     try {
@@ -212,7 +212,7 @@ public class AdministrarAcopio extends JFrame {
 
     //METODOS
     private void inicializaTabla() {
-        String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+        String[] columnNames = {"Cod", "Nombre", "Codigo", "Tipo Silo", "Semilla", "Estado", "Cantidad Total"};
         Object[][] data = new Object[1][6];
         setModel(columnNames, data, tblTipos);
     }
@@ -303,7 +303,7 @@ public class AdministrarAcopio extends JFrame {
             //
 
             Iterator iter = listStockFinal.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
+            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Silos", "Semilla", "Estado", "Cantidad Total"};
             Object[][] data = new Object[listStockFinal.size()][7];
 
             while (iter.hasNext()) {

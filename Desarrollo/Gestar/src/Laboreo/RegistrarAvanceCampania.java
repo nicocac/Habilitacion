@@ -121,6 +121,16 @@ public class RegistrarAvanceCampania extends JFrame {
         txtFechaFin.setText(orden.getPlanificacion().getCampania().getCnaFechaFinReal().toString());
         txtTiempo.setText("");
         txtLaboreo.setText(orden.getLaboreo().getLboNombre());
+        if (txtLaboreo.getText().equals("SIEMBRA") || txtLaboreo.getText().equals("Preparacion del Terreno")|| txtLaboreo.getText().equals("Control")){
+            btnCargarPesada.setEnabled(false);
+            txtCantidad.setEnabled(false);
+            btnActualizarPeso.setEnabled(false);
+            cbxMedida.setEnabled(false);
+            cbxEstado.setEnabled(false);
+            cbxAcopio.setEnabled(false);
+            nvoBtnAcopio.setEnabled(false);
+            btnActualizar.setEnabled(false);
+        }
         txtSemilla.setText(orden.getGrano().getTgrNombre());
 
         buscarInsumosMaquinariasPorLaboreo(orden.getLaboreo(), orden.getPlanificacion().getPlanificacionId());
@@ -204,10 +214,10 @@ public class RegistrarAvanceCampania extends JFrame {
                 try {
 
 
-                    if(txtCantidad.getText().equals("")){
-                        showMessage("Debe completar Cantidad antes de continuar");
-                        return;
-                    }
+//                    if(txtCantidad.getText().equals("")){
+//                        showMessage("Debe completar Cantidad antes de continuar");
+//                        return;
+//                    }
                     if(txtTiempo.getText().equals("")){
                         showMessage("Debe completar tiempo antes de continuar");
                         return;
@@ -275,8 +285,10 @@ public class RegistrarAvanceCampania extends JFrame {
 //            }
 
                     try {
-                        AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
-
+                        AcopioEntity acopioEntity = null;
+                        if(!cbxAcopio.getSelectedItem().equals("..")) {
+                            acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
+                        }
                         java.sql.Time time = new java.sql.Time(Calendar.getInstance().getTime().getTime());
 
                         java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
@@ -541,30 +553,30 @@ public class RegistrarAvanceCampania extends JFrame {
 
     //METODO BUSCAR LABOREO DE LOTE
     private void buscarLaboreoPorLote(int camId) {
-        Session session = Coneccion.getSession();
-        LaboreoEntity laboreo;
-        Lote lote = (Lote) lstLotes.getSelectedValue();
-        LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
-        Integer nroLote = loteEntity.getLteId();
-        int i = 0;
-        try {
-            List<LaboreoEntity> listaLaboreoEntity;
-            listaLaboreoEntity = laboreoLoteCampaniaRepository.getAllLaboreoByLoteAndCampania(nroLote, camId);
-
-//            for(LaboreoEntity lab:listaLaboreoEntity){
-//                lab.getTipoGrano()
+//        Session session = Coneccion.getSession();
+//        LaboreoEntity laboreo;
+//        Lote lote = (Lote) lstLotes.getSelectedValue();
+//        LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
+//        Integer nroLote = loteEntity.getLteId();
+//        int i = 0;
+//        try {
+//            List<LaboreoEntity> listaLaboreoEntity;
+////            listaLaboreoEntity = laboreoLoteCampaniaRepository.getAllLaboreoByLoteAndCampania(nroLote, camId);
+//
+////            for(LaboreoEntity lab:listaLaboreoEntity){
+////                lab.getTipoGrano()
+////            }
+//
+//            Iterator iter = listaLaboreoEntity.iterator();
+//            while (iter.hasNext()) {
+//                laboreo = (LaboreoEntity) iter.next();
+//                cboMomentos.addItem(laboreo.getTipoLaboreoEntity());
+//                cbxSemillas.addItem(laboreo.getTipoGrano());
+//                i++;
 //            }
-
-            Iterator iter = listaLaboreoEntity.iterator();
-            while (iter.hasNext()) {
-                laboreo = (LaboreoEntity) iter.next();
-                cboMomentos.addItem(laboreo.getTipoLaboreoEntity());
-                cbxSemillas.addItem(laboreo.getTipoGrano());
-                i++;
-            }
-        } finally {
-            session.close();
-        }
+//        } finally {
+//            session.close();
+//        }
     }
 
 

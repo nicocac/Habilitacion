@@ -14,11 +14,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class TipoInsumoRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<TipoInsumoEntity> getAllTipoInsumos(){
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session   session = Coneccion.getSession();
         TipoInsumoEntity tipoInsumo;
         Query query = session.createQuery("select x from TipoInsumoEntity x");
         List list = query.list();
@@ -33,7 +33,7 @@ public class TipoInsumoRepository {
 
 
     public TipoInsumoEntity getTipoInsumoByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session    session = Coneccion.getSession();
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
         Query query = session.createQuery("select x from TipoInsumoEntity x where ucase(tinNombre) like ucase(:pNombre) and tinFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -48,7 +48,7 @@ public class TipoInsumoRepository {
 
 
     public TipoInsumoEntity getTipoInsumoById(Long id){
-         session = Coneccion.getSession();
+        Session   session = Coneccion.getSession();
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
         Query query = session.createQuery("select x from TipoInsumoEntity x where ucase(tinId) like ucase(:pId) and tinFechaBaja is null");
         query.setParameter("pId", id);

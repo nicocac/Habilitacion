@@ -234,8 +234,9 @@
                               </grid>
                             </constraints>
                             <properties>
-                              <icon value="Imagenes/rsz_new.png"/>
-                              <text value="Registrar Avance Campaña"/>
+                              <hideActionText value="false"/>
+                              <icon value="Imagenes/rsz_cancelar.png"/>
+                              <text value="Cancelar Campaña"/>
                             </properties>
                           </component>
                         </children>

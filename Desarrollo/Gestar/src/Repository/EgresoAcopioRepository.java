@@ -16,11 +16,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class EgresoAcopioRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<DetalleEgresoAcopioEntity> getAllDetallesByEgresoId(Integer egresoId){
         List<DetalleEgresoAcopioEntity> listaTipoInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         DetalleEgresoAcopioEntity tipoInsumo;
         Query query = session.createQuery("select x from DetalleEgresoAcopioEntity x where x.egresoAcopio.id = :egresoId");
         query.setParameter("egresoId", egresoId);
@@ -37,7 +37,7 @@ public class EgresoAcopioRepository {
 
 
     public AcopioEntity getAcopioByCodigo(Integer codigo){
-         session = Coneccion.getSession();
+        Session   session = Coneccion.getSession();
         AcopioEntity tipoGrano = new AcopioEntity();
         Query query = session.createQuery("select x from AcopioEntity x where ucase(codigo) like ucase(:pNombre) and acopioFechaBaja is null");
         query.setParameter("pNombre", codigo);
@@ -52,7 +52,7 @@ public class EgresoAcopioRepository {
 
 
     public EgresoAcopioEntity getEgresoById(Integer id){
-         session = Coneccion.getSession();
+        Session    session = Coneccion.getSession();
         EgresoAcopioEntity tipoInsumo = new EgresoAcopioEntity();
         Query query = session.createQuery("select x from EgresoAcopioEntity x where ucase(egresoId) like ucase(:pId) and egresoFechaBaja is null");
         query.setParameter("pId", id);

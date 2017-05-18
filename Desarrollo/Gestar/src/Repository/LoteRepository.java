@@ -15,11 +15,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class LoteRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -34,7 +34,7 @@ public class LoteRepository {
 
 
     public LoteEntity getLoteByDenominacion(String denominacion){
-         session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         LoteEntity lote = new LoteEntity();
         Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
         query.setParameter("pNombre", denominacion);
@@ -51,7 +51,7 @@ public class LoteRepository {
 
 
     public InsumoEntity getInsumoById(Long id){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);

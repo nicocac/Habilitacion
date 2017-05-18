@@ -15,11 +15,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class TipoGranoRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<TipoGranoEntity> getAllTipoGranos(){
         List<TipoGranoEntity> listaTipoInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         TipoGranoEntity tipoInsumo;
         Query query = session.createQuery("select x from TipoGranoEntity x");
         List list = query.list();
@@ -34,7 +34,7 @@ public class TipoGranoRepository {
 
 
     public TipoGranoEntity getTipoGranoByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         TipoGranoEntity tipoGrano = new TipoGranoEntity();
         Query query = session.createQuery("select x from TipoGranoEntity x where ucase(tgrNombre) like ucase(:pNombre) and tgrFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -49,7 +49,7 @@ public class TipoGranoRepository {
 
 
     public TipoInsumoEntity getTipoInsumoById(Long id){
-         session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
         Query query = session.createQuery("select x from TipoInsumoEntity x where ucase(tinId) like ucase(:pId) and tinFechaBaja is null");
         query.setParameter("pId", id);

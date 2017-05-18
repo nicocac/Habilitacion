@@ -102,7 +102,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
 
         //NUEVO
         btnNuevo.addActionListener(e -> {
-            PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos();
+            PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos(null);
             pantallaSolicitudInsumos.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();

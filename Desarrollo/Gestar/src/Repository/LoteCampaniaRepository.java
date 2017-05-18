@@ -19,11 +19,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class LoteCampaniaRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos() {
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -38,7 +38,7 @@ public class LoteCampaniaRepository {
 
 
     public LoteEntity getLoteByDenominacion(String denominacion) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         LoteEntity lote = new LoteEntity();
         Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
         query.setParameter("pNombre", denominacion);
@@ -53,7 +53,7 @@ public class LoteCampaniaRepository {
 
 
     public void deleteAllByCampania(int id) {
-        session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
 
         LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
         Query query = session.createQuery("DELETE FROM LoteCampaniaEntity where ucase(lcpCnaId) like ucase(:pId)");
@@ -64,7 +64,7 @@ public class LoteCampaniaRepository {
 
 
     public LoteCampaniaEntity getLoteCampaniaById(Long id) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
         Query query = session.createQuery("select x from LoteCampaniaEntity x where ucase(lcpCnaId) like ucase(:pId) and lcpFechaBaja is null");
         query.setParameter("pId", id);
@@ -79,7 +79,7 @@ public class LoteCampaniaRepository {
 
 
     public List<LoteEntity> getLotesByCampaniaId(int id) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         LoteEntity lote;
 
@@ -99,7 +99,7 @@ public class LoteCampaniaRepository {
 
 
     public List<LoteCampaniaEntity> getLotesCampaniasByLote(int id) {
-        session = Coneccion.getSession();
+        Session  session = Coneccion.getSession();
         java.util.List list;
         LoteCampaniaEntity loteCampania;
 

@@ -28,10 +28,10 @@ public class GestorLaboreo {
     LoteCampaniaRepository loteCampaniaRepository = new LoteCampaniaRepository();
     TipoGranoRepository tipoGranoRepository = new TipoGranoRepository();
     OrdenRepository ordenRepository = new OrdenRepository();
-    Session session;
+//    Session session;
 
     public List getInsumos() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         InsumoEntity insumo;
         Insumo ins;
@@ -52,7 +52,7 @@ public class GestorLaboreo {
     }
 
     public List getMaquinaria() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         MaquinariaEntity maq;
         Maquinaria maquinaria;
@@ -73,7 +73,7 @@ public class GestorLaboreo {
     }
 
     public List getCampanias() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
         LinkedList lkLotes;
@@ -107,7 +107,7 @@ public class GestorLaboreo {
     }
 
     public List getLotesCampania(Campania camp) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         java.util.Collection col;
         LinkedList retorno = new LinkedList();
@@ -146,7 +146,7 @@ public class GestorLaboreo {
     }
 
     public List getMomentos() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
         TipoLaboreoEntity te;
@@ -169,7 +169,7 @@ public class GestorLaboreo {
 
 
     public List<TipoGranoEntity> getSemillas() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
 //        LinkedList retorno = new LinkedList();
         List<TipoGranoEntity> listaTipoGrano = new ArrayList<>();
@@ -191,7 +191,7 @@ public class GestorLaboreo {
 
 
     public TipoLaboreoEntity getMomentoByNombre(String pMomento) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         LinkedList retorno = new LinkedList();
         TipoLaboreoEntity te = new TipoLaboreoEntity();
@@ -240,6 +240,16 @@ public class GestorLaboreo {
         for (DetalleLote lote : planificacion.getListaDetallesLote()) {
             detallePlanificacionCampaniaLoteEntity = new DetallePlanificacionCampaniaLoteEntity();
             detallePlanificacionCampaniaLoteEntity.setLote(lote.getLoteEntity());
+            LoteEntity loteEntity = lote.getLoteEntity();
+            loteEntity.setEstado("OCUPADO");
+            try {
+                session.saveOrUpdate(loteEntity);
+
+            } catch (Exception ex) {
+                tx.rollback();
+                session.close();
+            }
+
             detallePlanificacionCampaniaLoteEntity.setPlanificacion(planificacionCampaniaEntity);
             detallePlanificacionCampaniaLoteEntity.setObservaciones("Carga de Lotes");
             detallePlanificacionCampaniaLoteEntity.setFechaAlta(fechaPlan);
@@ -308,12 +318,15 @@ public class GestorLaboreo {
 
         campaniaEntity = planificacion.getCampania();
         campaniaEntity.setEstaPlanificada(true);
+        campaniaEntity.setEstado("PLANIFICADA");
         session.update(campaniaEntity);
 
         try {
             tx.commit();
         } catch (Exception ex) {
             tx.rollback();
+            session.close();
+
         }
         session.close();
     }
@@ -544,10 +557,12 @@ public class GestorLaboreo {
 
         try {
             tx.commit();
+            session.flush();
         } catch (Exception ex) {
             tx.rollback();
+        } finally {
+            session.close();
         }
-        session.close();
     }
 
 
@@ -624,12 +639,16 @@ public class GestorLaboreo {
 
 
         IngresoAcopioEntity ingresoAcopioEntity = new IngresoAcopioEntity();
-        ingresoAcopioEntity.setAcopio(acopioEntity);
+        if(acopioEntity != null) {
+            ingresoAcopioEntity.setAcopio(acopioEntity);
+        }
         ingresoAcopioEntity.setTipoGrano(orden.getGrano());
         ingresoAcopioEntity.setLaboreo(orden.getLaboreo());
         ingresoAcopioEntity.setCampania(orden.getPlanificacion().getCampania());
         ingresoAcopioEntity.setLote(orden.getLote());
-        ingresoAcopioEntity.setIngresoCantidadTotal(Integer.parseInt(cantidad));
+        if(!cantidad.equals("")) {
+            ingresoAcopioEntity.setIngresoCantidadTotal(Integer.parseInt(cantidad));
+        }
         ingresoAcopioEntity.setEstadoSemilla(estadoSemilla);
         ingresoAcopioEntity.setIngresoFecha(fecha);
         ingresoAcopioEntity.setIngresoUsuarioAlta("admin");
@@ -669,7 +688,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getInsumosByLaboreo(Long labId) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List list;
         Query queryInsumoByLaboreo = session.createQuery("select t.insumoByDboInsId , t.dboCantidadInsumo " +
@@ -685,7 +704,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getMaquinariasByLaboreo(Long labId) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List list;
         Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinariaByDboMaqId, t.dboCantidadMaquinaria" +
@@ -701,7 +720,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getInsumosByLaboreoAndPlanificacion(Long labId, Integer planificacionId) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List list;
         Query queryInsumoByLaboreo = session.createQuery("select t.insumo , t.cantidadInsumo " +
@@ -719,7 +738,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getMaquinariasByLaboreoAndPlanificacion(Long labId, Integer planificacionId) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List list;
         Query queryMaquinariaByLaboreo = session.createQuery("select t.maquinaria, t.cantidadMaquinaria" +
@@ -736,7 +755,7 @@ public class GestorLaboreo {
     }
 
     public DetallePlanificacionCampaniaLaboreosEntity getLaboreoByPlanificacionAndLote(Long labId, Integer planificacionId, Integer loteId) {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         DetallePlanificacionCampaniaLaboreosEntity detallePlanificacionCampaniaLaboreosEntity;
         java.util.List list;
@@ -756,7 +775,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getStockByAcopio() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List<Object[]> list;
 
@@ -775,7 +794,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getStockIngresoByAcopio() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List<Object[]> list;
 
@@ -793,7 +812,7 @@ public class GestorLaboreo {
 
 
     public List<Object[]> getStockEgresoByAcopio() {
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
 
         java.util.List<Object[]> list;
 

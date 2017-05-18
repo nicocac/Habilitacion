@@ -69,6 +69,7 @@ public class GenerarOrdenTrabajo extends JFrame {
     public JTextField txtSemilla;
     public JPanel panelIni;
     public JTextField txtTiempoGastado;
+    public JComboBox cbxRRHH;
     public JButton nuevaCampaniaBtn;
     public JButton nuevoTipoLaboreoBtn;
     public JButton nuevoInsumoBtn;
@@ -169,7 +170,7 @@ public class GenerarOrdenTrabajo extends JFrame {
             txtNroOrden.setText(orden.getNroOrden().toString());
             txtTiempo.setText(orden.getTiempo().toString());
             txtTiempoGastado.setText((orden.getTiempoGastado() == null) ? "0" : orden.getTiempoGastado().toString());
-            txtRRHH.setText(orden.getRecursoHumano().toString());
+            cbxRRHH.setSelectedItem(orden.getRecursoHumano().toString());
             txtObservaciones.setText(orden.getObservaciones().toString());
             txtSemilla.setText(orden.getGrano().toString());
             txtLote.setText((orden.getLote() == null ) ? "" : orden.getLote().toString());
@@ -226,7 +227,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                     return;
                 }
 
-                if (txtRRHH.getText().equals("")) {
+                if (cbxRRHH.getSelectedItem().toString().equals("")) {
                     showMessage("Debe completar RRHH antes de continuar");
                     return;
                 }
@@ -316,7 +317,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                     TipoGranoEntity tipoGranoEntity = laboreo.getSemilla();
 
                     gest.registrarOrden(detalles, txtNroOrden.getText(), planificacion,
-                            txtRRHH.getText(), fecha, txtTiempo.getText(), laboreoEntity, loteEntity, tipoGranoEntity);
+                            cbxRRHH.getSelectedItem().toString(), fecha, txtTiempo.getText(), laboreoEntity, loteEntity, tipoGranoEntity);
 
 
                 } catch (Exception e1) {

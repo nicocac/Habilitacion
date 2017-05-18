@@ -164,7 +164,7 @@ public class PantallaLaboreo extends JFrame {
 //                    Integer tipoId = 1;
 //                    //FIND ALL INSUMOS BY TIPO
 //                    List<InsumoEntity> listaInsumos = insumoRepository.getAllInsumosByTipo(tipoId);
-                        tblDetalles.setValueAt(ins.getUnidadMedida(), fila, 2);
+                    tblDetalles.setValueAt(ins.getUnidadMedida(), fila, 2);
 ////                            String[] DATA = { "Dato 1", "Dato 2", "Dato 3", "Dato 4" };
 //                    String[] DATA = {};
 //                    int i = 0;
@@ -176,12 +176,14 @@ public class PantallaLaboreo extends JFrame {
 //                    DefaultCellEditor defaultCellEditor = new DefaultCellEditor(comboBox);
 //                    tblDetalles.getColumnModel().getColumn(2).setCellEditor(defaultCellEditor);
                     tblDetalles.setValueAt("0", fila, 3);
+                    tblDetalles.setValueAt(ins.getStock(), fila, 4);
                     fila++;
                 } else {
                     modelDetalle.addRow(new Object[]{"Insumo"
                             , ins.getNombre()
                             , ins.getUnidadMedida()
-                            , "0"});
+                            , "0"
+                            ,ins.getStock()});
                     fila++;
                 }
 //                }
@@ -318,7 +320,10 @@ public class PantallaLaboreo extends JFrame {
 //                        ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
                 ArrayList<DetalleLaboreo> listaDetallesInsMaq = new ArrayList<>();
                 Boolean sinStock = false;
+                Boolean stockFaltante = false;
                 String insumosSinStock = "";
+                String insumosFaltantes = "";
+
 
                 for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
                     DetalleLaboreo det = new DetalleLaboreo();
@@ -331,6 +336,17 @@ public class PantallaLaboreo extends JFrame {
                                 insumosSinStock = insumoEntity.getInsNombre();
                             } else {
                                 insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
+                            }
+                        }
+
+                        Integer stockIns = (insumoEntity.getInsStock() == null)? 0 : insumoEntity.getInsStock().intValue();
+                        Integer cantidadFaltante = stockIns - Integer.parseInt((String) tblDetalles.getValueAt(i, 3));
+                        if (cantidadFaltante < 0) {
+                            stockFaltante = true;
+                            if (insumosFaltantes.equals("")) {
+                                insumosFaltantes = insumoEntity.getInsNombre();
+                            } else {
+                                insumosFaltantes = insumosFaltantes + ", " + insumoEntity.getInsNombre();
                             }
                         }
 
@@ -379,6 +395,31 @@ public class PantallaLaboreo extends JFrame {
                     fila++;
                 }
 
+                if (sinStock) {
+//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                    if (respuesta == 0) {
+//                        dispose();
+                        PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosSinStock);
+                        pantallaAdministrarSolicitudInsumos.setVisible(true);
+                        getDefaultCloseOperation();
+//                        return;
+                    }
+//                          else {
+//                            return;
+//                        }
+                }
+
+                if (stockFaltante) {
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " no alcanzan la cantidad solicitada en stock. Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                    if (respuesta == 0) {
+                        PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosFaltantes);
+                        pantallaAdministrarSolicitudInsumos.setVisible(true);
+                        getDefaultCloseOperation();
+//                        return;
+                    }
+                }
+
             }
         });
 
@@ -386,23 +427,23 @@ public class PantallaLaboreo extends JFrame {
         //GUARDAR
         btnFinalizar.addActionListener(e -> {
 
-                    if(cboCampania.getSelectedItem() == null){
+                    if (cboCampania.getSelectedItem() == null) {
                         showMessage("Debe seleccionar campaña antes de continuar");
                         return;
                     }
-                    if(lstLotes.getSelectedValuesList().size() == 0){
+                    if (lstLotes.getSelectedValuesList().size() == 0) {
                         showMessage("Debe seleccionar lote antes de continuar");
                         return;
                     }
-                    if(cboMomentos.getSelectedItem() == null){
+                    if (cboMomentos.getSelectedItem() == null) {
                         showMessage("Debe seleccionar laboreo antes de continuar");
                         return;
                     }
-                    if(cbxSemillas.getSelectedItem() == null){
+                    if (cbxSemillas.getSelectedItem() == null) {
                         showMessage("Debe seleccionar semilla antes de continuar");
                         return;
                     }
-                    if(txtDescripcion.getText().equals("")){
+                    if (txtDescripcion.getText().equals("")) {
                         showMessage("Debe completar la descripcion antes de continuar");
                         return;
                     }
@@ -463,7 +504,7 @@ public class PantallaLaboreo extends JFrame {
 //                }
 
 
-                    //METODO RECHAZADO :(
+                    //METODO  maneja stock
 //            if (sinStock) {
 ////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
 //                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
@@ -495,7 +536,7 @@ public class PantallaLaboreo extends JFrame {
 //            Date fecha = new Date(cal.getTime().getTime());
 
                     Date fecha = (Date) datePickerIni.getModel().getValue();
-                    if(fecha == null){
+                    if (fecha == null) {
                         showMessage("Debe completar la fecha antes de continuar");
                         return;
                     }
@@ -507,6 +548,7 @@ public class PantallaLaboreo extends JFrame {
 
                     } catch (Exception e1) {
                         JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la Planificacion de Campaña: " + e1.toString());
+
                     } finally {
                         //  dispose();
                     }
@@ -526,6 +568,7 @@ public class PantallaLaboreo extends JFrame {
                 tblDetalles.setValueAt("", 0, 1);
                 tblDetalles.setValueAt("", 0, 2);
                 tblDetalles.setValueAt("", 0, 3);
+                tblDetalles.setValueAt("", 0, 4);
             } else {
                 DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
                 modelo.removeRow(tblDetalles.getSelectedRow());
@@ -666,7 +709,7 @@ public class PantallaLaboreo extends JFrame {
                 listaMaq = gestor.getMaquinariasByLaboreo(laboreoEntity.getLboId());
 
 
-                Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
+                Object[][] data = new Object[listaIns.size() + listaMaq.size()][5];
                 int i = 0;
                 if (listaIns.size() != 0) {
                     for (Object[] row : listaIns) {
@@ -677,6 +720,7 @@ public class PantallaLaboreo extends JFrame {
                         data[i][1] = insumoEntity.getInsNombre();
                         data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                         data[i][3] = String.valueOf(cantidad);
+                        data[i][4] = String.valueOf(insumoEntity.getInsStock());
                         i++;
                     }
                 }
@@ -697,7 +741,7 @@ public class PantallaLaboreo extends JFrame {
 //                }
 //            }
 
-                String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
+                String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
 //                DefaultTableModel model = new DefaultTableModel();
 //                model.setDataVector(data, columnNames);
 //                tblDetalles.setModel(model);
@@ -723,6 +767,7 @@ public class PantallaLaboreo extends JFrame {
                     tblDetalles.setValueAt("", 0, 1);
                     tblDetalles.setValueAt("", 0, 2);
                     tblDetalles.setValueAt("", 0, 3);
+                    tblDetalles.setValueAt("", 0, 4);
                 } else {
                     DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
                     modelo.removeRow(tblDetalles.getSelectedRow());
@@ -764,7 +809,7 @@ public class PantallaLaboreo extends JFrame {
         btnGenerarPedidoInsumo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos();
+                PantallaSolicitudInsumos pantallaSolicitudInsumos = new PantallaSolicitudInsumos(null);
                 pantallaSolicitudInsumos.setVisible(true);
                 getDefaultCloseOperation();
             }
@@ -1007,6 +1052,7 @@ public class PantallaLaboreo extends JFrame {
             miVectorLaboreo.add(laboreo.getLboNombre());
             cboMomentos.addItem(laboreo);
         }
+        session.close();
     }
 
 
@@ -1023,6 +1069,7 @@ public class PantallaLaboreo extends JFrame {
 
 //            cboCampania.setSelectedItem(null);
         }
+//        session.close();
 
     }
 

@@ -14,11 +14,11 @@ import java.util.List;
  * Created by jagm on 07/10/2016.
  */
 public class PlanificacionRepository {
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<TipoInsumoEntity> getAllTipoInsumos(){
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-         session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         TipoInsumoEntity tipoInsumo;
         Query query = session.createQuery("select x from TipoInsumoEntity x");
         List list = query.list();
@@ -33,7 +33,7 @@ public class PlanificacionRepository {
 
 
     public TipoLaboreoEntity getTipoLaboreoByNombre(String nombre){
-         session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         TipoLaboreoEntity tipoLaboreo = new TipoLaboreoEntity();
         Query query = session.createQuery("select x from TipoLaboreoEntity x where ucase(tpoNombre) like ucase(:pNombre) and tpoFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -48,7 +48,7 @@ public class PlanificacionRepository {
 
 
     public PlanificacionCampaniaEntity getPlanificadaById(Integer id){
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         List<PlanificacionCampaniaEntity> listaPlanificacion = new ArrayList<>();
         PlanificacionCampaniaEntity planificacionCampania = new PlanificacionCampaniaEntity();
         Query query = session.createQuery("select x from PlanificacionCampaniaEntity x " +
@@ -65,7 +65,7 @@ public class PlanificacionRepository {
     }
 
     public List<OrdenTrabajoLaboreo> getLaboreosByCampIdPlanificadaId(Integer id){
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         List<OrdenTrabajoLaboreo> listaLaboreoLoteEntity = new ArrayList<>();
         LaboreoEntity laboreo = new LaboreoEntity();
         LoteEntity lote = new LoteEntity();
@@ -88,9 +88,33 @@ public class PlanificacionRepository {
         return listaLaboreoLoteEntity;
     }
 
+    public List<OrdenTrabajoLaboreo> getLaboreosByCampIdPlanificadaIdAndLoteId(Integer planId, Integer loteId){
+        Session session = Coneccion.getSession();
+        List<OrdenTrabajoLaboreo> listaLaboreoLoteEntity = new ArrayList<>();
+        LaboreoEntity laboreo = new LaboreoEntity();
+        LoteEntity lote = new LoteEntity();
+        Query query = session.createQuery("select x.laboreo, x.tipoGrano, x.detallePlanificacionCampaniaLote.lote from DetallePlanificacionCampaniaLaboreosEntity x " +
+                "where ucase(x.detallePlanificacionCampaniaLote.planificacion.planificacionId) like ucase(:pId) and ucase(x.detallePlanificacionCampaniaLote.lote.lteId) like ucase(:lId) " +
+                "and x.fechaBaja is null and x.tieneOrdenTrabajo = false");
+        query.setParameter("pId", planId);
+        query.setParameter("lId", loteId);
+        List list = query.list();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            OrdenTrabajoLaboreo orden = new OrdenTrabajoLaboreo();
+            Object[] array = (Object[]) iter.next();
+            orden.setLaboreoEntity((LaboreoEntity)array[0]);
+            orden.setSemilla((TipoGranoEntity) array[1]);
+            orden.setLoteEntity((LoteEntity) array[2]);
+
+            listaLaboreoLoteEntity.add(orden);
+        }
+        session.close();
+        return listaLaboreoLoteEntity;
+    }
 
     public List<OrdenTrabajoEntity> getOrdenesByPlanificadaId(Integer planId){
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         List<OrdenTrabajoEntity> listaOrdenes = new ArrayList<>();
         OrdenTrabajoEntity ordenTrabajoEntity = new OrdenTrabajoEntity();
 

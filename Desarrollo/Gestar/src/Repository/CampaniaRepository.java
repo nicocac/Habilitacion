@@ -15,11 +15,11 @@ import java.util.List;
  */
 public class CampaniaRepository {
 
-    Session session = Coneccion.getSession();
+//    Session session = Coneccion.getSession();
 
     public List<InsumoEntity> getAllInsumos(){
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -34,7 +34,7 @@ public class CampaniaRepository {
 
 
     public CampaniaEntity getCampaniaByNombre (String nombre){
-        session = Coneccion.getSession();
+        Session session = Coneccion.getSession();
         java.util.List list;
         CampaniaEntity camp = new CampaniaEntity();
         try {
@@ -52,15 +52,15 @@ public class CampaniaRepository {
     }
 
 
-    public InsumoEntity getInsumoById(Long id){
-        session = Coneccion.getSession();
-        InsumoEntity insumo = new InsumoEntity();
-        Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
+    public CampaniaEntity getCampaniaById(Integer id){
+        Session session = Coneccion.getSession();
+        CampaniaEntity insumo = new CampaniaEntity();
+        Query query = session.createQuery("select x from CampaniaEntity x where ucase(cnaId) like ucase(:pId) and cnaFechaBaja is null");
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (InsumoEntity) iter.next();
+            insumo = (CampaniaEntity) iter.next();
         }
         session.close();
         return insumo;
