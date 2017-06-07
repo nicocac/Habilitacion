@@ -179,7 +179,7 @@ public class PantallaAdministrarCliente extends JFrame {
                 tx = session.beginTransaction();
                 session.update(cliente);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

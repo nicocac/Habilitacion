@@ -125,7 +125,7 @@ public class CargaInsumo extends JFrame {
                 }
 
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
                 guardado = true;
 //                session.close();
             } catch (Exception e) {

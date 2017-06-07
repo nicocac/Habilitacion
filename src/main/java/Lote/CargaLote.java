@@ -174,7 +174,7 @@ public class CargaLote extends JFrame{
                     session.update(lote);
                 }
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
 //                session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el lote: " + e.toString());

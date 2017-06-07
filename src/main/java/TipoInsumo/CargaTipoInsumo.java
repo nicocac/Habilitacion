@@ -78,8 +78,8 @@ public class CargaTipoInsumo extends JFrame {
                     session.update(tipo);
                 }
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
 //            session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo: " + e.toString());

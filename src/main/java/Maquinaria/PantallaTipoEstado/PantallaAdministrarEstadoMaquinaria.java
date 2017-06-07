@@ -150,8 +150,8 @@ public class PantallaAdministrarEstadoMaquinaria extends JFrame{
                 tx = session.beginTransaction();
                 session.update(tipo);
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
             } else {
                 return 1;
             }

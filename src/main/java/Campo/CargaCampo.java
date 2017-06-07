@@ -116,8 +116,8 @@ public class CargaCampo  extends JFrame {
                     session.update(campo);
                 }
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
 //                session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el Campo: " + e.toString());

@@ -119,7 +119,7 @@ public class CargaCliente extends JFrame {
                 }
 
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
                 guardado = true;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al cargar el cliente: " + e.toString());

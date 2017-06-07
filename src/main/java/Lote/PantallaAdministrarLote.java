@@ -162,7 +162,7 @@ public class PantallaAdministrarLote extends JFrame {
                 tx = session.beginTransaction();
                 session.update(lote);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

@@ -262,8 +262,8 @@ public class AdministrarAcopio extends JFrame {
                 tx = session.beginTransaction();
                 session.update(acopioEntity);
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
             } else {
                 return 1;
             }

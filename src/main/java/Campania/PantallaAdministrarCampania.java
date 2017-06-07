@@ -228,7 +228,7 @@ public class PantallaAdministrarCampania extends JFrame {
                 tx = session.beginTransaction();
                 session.update(campania);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

@@ -168,7 +168,7 @@ public class AdministrarCampo extends JFrame {
                 tx = session.beginTransaction();
                 session.update(campo);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

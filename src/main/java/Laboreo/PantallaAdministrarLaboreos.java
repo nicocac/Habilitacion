@@ -167,7 +167,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
                 tx = session.beginTransaction();
                 session.update(insumo);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

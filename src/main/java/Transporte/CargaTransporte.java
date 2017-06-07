@@ -121,8 +121,8 @@ public class CargaTransporte extends JFrame {
                 }
 
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
 //                session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al cargar el Transporte: " + e.toString());

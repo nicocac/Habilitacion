@@ -164,7 +164,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
                 tx = session.beginTransaction();
                 session.update(compra);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

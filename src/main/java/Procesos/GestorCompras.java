@@ -141,8 +141,8 @@ public class GestorCompras {
             tx.rollback();
         }
         session.close();
-//        return tx.wasCommitted();
-        return true;
+        return tx.wasCommitted();
+//        return true;
     }
 
 

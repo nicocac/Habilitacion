@@ -152,7 +152,7 @@ public class PantallaAdministrarTipoLaboreo extends JFrame {
                 tx = session.beginTransaction();
                 session.update(tipo);
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

@@ -147,8 +147,8 @@ public class CargaMaquinaria extends JFrame {
                 }
 
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
 //                session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la maquinaria: " + e.toString());

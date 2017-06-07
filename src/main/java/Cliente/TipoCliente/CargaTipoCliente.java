@@ -80,7 +80,7 @@ public class CargaTipoCliente extends JFrame {
                     session.update(tipo);
                 }
                 tx.commit();
-//                guardado = tx.wasCommitted();
+                guardado = tx.wasCommitted();
                 guardado = true;
 //            session.close();
             } catch (Exception e) {

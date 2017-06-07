@@ -80,8 +80,8 @@ public class CargaMedio extends JFrame {
                     session.update(tipo);
                 }
                 tx.commit();
-//                guardado = tx.wasCommitted();
-                guardado = true;
+                guardado = tx.wasCommitted();
+//                guardado = true;
 //            session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el tipo de Medio Almacenamiento: " + e.toString());
