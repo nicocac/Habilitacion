@@ -45,9 +45,9 @@ public class GestorCompras {
             DetalleSolicitudInsumoEntity detalleEntity = new DetalleSolicitudInsumoEntity();
             InsumoEntity insumoEntity = new InsumoEntity();
             insumoEntity = insumoRepository.getInsumoByNombre(vectorDetalles.get(i).getInsumo().getNombre());
-            BigDecimal stock;
+            Long stock;
             if(insumoEntity.getInsStock() == null){
-                stock = BigDecimal.valueOf(0);
+                stock = Long.valueOf(0);
             }else {
                 stock = insumoEntity.getInsStock();
             }
@@ -115,10 +115,10 @@ public class GestorCompras {
             if(insumoEntity.getInsStock() == null){
                 stock = BigDecimal.valueOf(0);
             }else {
-                stock = insumoEntity.getInsStock();
+                stock = BigDecimal.valueOf(insumoEntity.getInsStock());
             }
 
-            insumoEntity.setInsStock(stock.add(BigDecimal.valueOf(vectorDetalles.get(i).getCantidadIngresada())));
+            insumoEntity.setInsStock(stock.add(BigDecimal.valueOf(vectorDetalles.get(i).getCantidadIngresada())).longValue());
             session.update(insumoEntity);
 
             detalleEntity.setInsumo(insumoEntity);

@@ -42,7 +42,7 @@ public class GestorLaboreo {
             Iterator iter = list.iterator();
             while (iter.hasNext()) {
                 insumo = (InsumoEntity) iter.next();
-                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida());
+                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida(), insumo.getInsStock(), insumo.getInsStockDisponible());
                 retorno.add(ins);
             }
         } finally {
@@ -268,6 +268,11 @@ public class GestorLaboreo {
                     try {
                         String nombreInsumo = insOmaq.getInsumo().getNombre();
                         insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                        Long stockDisponible = ((insumoEntity.getInsStockDisponible()==null)? 0: insumoEntity.getInsStockDisponible());
+                        insumoEntity.setInsStockDisponible(stockDisponible - insOmaq.getCantidadIsumo());
+                        session.update(insumoEntity);
+
+
                         detalleLaboreosInsumoDePlanificacionCampaniaEntity = new DetalleLaboreosInsumoDePlanificacionCampaniaEntity();
                         detalleLaboreosInsumoDePlanificacionCampaniaEntity.setInsumo(insumoEntity);
                         detalleLaboreosInsumoDePlanificacionCampaniaEntity.setCantidadInsumo(insOmaq.getCantidadIsumo());
@@ -280,6 +285,7 @@ public class GestorLaboreo {
                     } catch (NullPointerException npe) {
                         String nombreMaquinaria = insOmaq.getMaquinaria().getNombre();
                         maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity = new DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity();
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setMaquinaria(maquinariaEntity);
                         detalleLaboreosMaquinariaDePlanificacionCampaniaEntity.setCantidadMaquinaria(insOmaq.getCantidadMaquinaria());
@@ -586,6 +592,12 @@ public class GestorLaboreo {
             try {
                 String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
                 insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+
+                Long stockDisponible = ((insumoEntity.getInsStockDisponible()==null)? 0: insumoEntity.getInsStockDisponible());
+                insumoEntity.setInsStockDisponible(stockDisponible - detallesLaboreo.get(i).getCantidadIsumo());
+
+                session.update(insumoEntity);
+
                 detalleOrdenEntity.setInsumo(insumoEntity);
                 detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
 

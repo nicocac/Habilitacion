@@ -108,7 +108,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         inicializaTabla();
 
 
-                tipoOperacion = operacion;
+        tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Generar Ordenes de Trabajo");
 
@@ -150,11 +150,8 @@ public class GenerarOrdenTrabajo extends JFrame {
             });
 
 
-
 //        this.setExtendedState(MAXIMIZED_BOTH);
             this.setTitle("Registrar Orden de trabajo");
-
-
 
 
         } else {
@@ -170,7 +167,7 @@ public class GenerarOrdenTrabajo extends JFrame {
             cbxRRHH.setSelectedItem(orden.getRecursoHumano().toString());
             txtObservaciones.setText(orden.getObservaciones().toString());
             txtSemilla.setText(orden.getGrano().toString());
-            txtLote.setText((orden.getLote() == null ) ? "" : orden.getLote().toString());
+            txtLote.setText((orden.getLote() == null) ? "" : orden.getLote().toString());
             Object[] laboreos = new Object[1];
             laboreos[0] = orden.getLaboreo().getLboNombre();
             lstLaboreos.setListData(laboreos);
@@ -194,7 +191,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         buttonFecha.add(datePickerIni);
         //
 
-            //ELIMINAR ITEM
+        //ELIMINAR ITEM
 //        btnEliminar.addActionListener(e -> {
 //            if (!isCellSelected(tblDetalles)) {
 //                showMessage("Debe seleccionar un item para continuar.");
@@ -212,145 +209,144 @@ public class GenerarOrdenTrabajo extends JFrame {
 //            }
 //        });
 
-            //LIMPIAR
-            btnLimpiar.addActionListener(e -> limpiarPantalla());
+        //LIMPIAR
+        btnLimpiar.addActionListener(e -> limpiarPantalla());
 
-            //CANCELAR
-            btnCancelar.addActionListener(e -> dispose());
+        //CANCELAR
+        btnCancelar.addActionListener(e -> dispose());
 
 
-            //GUARDAR
-            btnFinalizar.addActionListener(e -> {
-                if (lstLaboreos.getSelectedValuesList().size() == 0) {
-                    showMessage("Debe seleccionar el laboreo antes de continuar");
-                    return;
-                }
+        //GUARDAR
+        btnFinalizar.addActionListener(e -> {
+            if (lstLaboreos.getSelectedValuesList().size() == 0) {
+                showMessage("Debe seleccionar el laboreo antes de continuar");
+                return;
+            }
 
-                if (cbxRRHH.getSelectedItem().toString().equals("")) {
-                    showMessage("Debe completar RRHH antes de continuar");
-                    return;
-                }
-                if (txtTiempo.getText().equals("")) {
-                    showMessage("Debe completar tiempo antes de continuar");
-                    return;
-                }
-                if (txtObservaciones.getText().equals("")) {
-                    showMessage("Debe completar las observaciones antes de continuar");
-                    return;
-                }
+            if (cbxRRHH.getSelectedItem().toString().equals("")) {
+                showMessage("Debe completar RRHH antes de continuar");
+                return;
+            }
+            if (txtTiempo.getText().equals("")) {
+                showMessage("Debe completar tiempo antes de continuar");
+                return;
+            }
+            if (txtObservaciones.getText().equals("")) {
+                showMessage("Debe completar las observaciones antes de continuar");
+                return;
+            }
 
-                GestorLaboreo gest = new GestorLaboreo();
-                ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-                Boolean sinStock = false;
-                Boolean stockFaltante = false;
-                String insumosSinStock = "";
-                String insumosFaltantes = "";
+            GestorLaboreo gest = new GestorLaboreo();
+            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
+            Boolean sinStock = false;
+            Boolean stockFaltante = false;
+            String insumosSinStock = "";
+            String insumosFaltantes = "";
 
-                for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
-                    DetalleLaboreo det = new DetalleLaboreo();
-                    if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-                        InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
+            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
+                DetalleLaboreo det = new DetalleLaboreo();
+                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
+                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
 
-                        if (insumoEntity.getInsStock() == null) {
-                            sinStock = true;
-                            if (insumosSinStock.equals("")) {
-                                insumosSinStock = insumoEntity.getInsNombre();
-                            } else {
-                                insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
-                            }
+                    if (insumoEntity.getInsStock() == null) {
+                        sinStock = true;
+                        if (insumosSinStock.equals("")) {
+                            insumosSinStock = insumoEntity.getInsNombre();
+                        } else {
+                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
                         }
-
-                        Integer stockIns = (insumoEntity.getInsStock() == null)? 0 : insumoEntity.getInsStock().intValue();
-                        Integer cantidadFaltante = stockIns - Integer.parseInt((String) tblDetalles.getValueAt(i, 3));
-                        if (cantidadFaltante < 0) {
-                            stockFaltante = true;
-                            if (insumosFaltantes.equals("")) {
-                                insumosFaltantes = insumoEntity.getInsNombre();
-                            } else {
-                                insumosFaltantes = insumosFaltantes + ", " + insumoEntity.getInsNombre();
-                            }
-                        }
-
-
-                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
-                        det.setInsumo(ins);
-                        det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-                    } else {
-                        Maquinaria maq = new Maquinaria();
-                        maq.setNombre((String) tblDetalles.getValueAt(i, 1));
-                        det.setMaquinaria(maq);
-                        det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-
                     }
-                    detalles.add(det);
-                }
 
-                if (sinStock) {
-                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                    if (respuesta == 0) {
+                    Integer stockIns = (insumoEntity.getInsStock() == null) ? 0 : insumoEntity.getInsStock().intValue();
+                    Integer cantidadFaltante = stockIns - Integer.parseInt((String) tblDetalles.getValueAt(i, 3));
+                    if (cantidadFaltante < 0) {
+                        stockFaltante = true;
+                        if (insumosFaltantes.equals("")) {
+                            insumosFaltantes = insumoEntity.getInsNombre();
+                        } else {
+                            insumosFaltantes = insumosFaltantes + ", " + insumoEntity.getInsNombre();
+                        }
+                    }
+
+
+                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null);
+                    det.setInsumo(ins);
+                    det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                } else {
+                    Maquinaria maq = new Maquinaria();
+                    maq.setNombre((String) tblDetalles.getValueAt(i, 1));
+                    det.setMaquinaria(maq);
+                    det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+
+                }
+                detalles.add(det);
+            }
+
+            if (sinStock) {
+                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                if (respuesta == 0) {
 //                        dispose();
-                        PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
-                        pantallaAdministrarSolicitudInsumos.setVisible(true);
-                        getDefaultCloseOperation();
-                        return;
-                    }
-                          else {
-                            return;
-                        }
+                    PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
+                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+                    getDefaultCloseOperation();
+                    return;
+                } else {
+                    return;
                 }
+            }
 
-                if (stockFaltante) {
-                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " a la fecha no alcanzan la cantidad solicitada en stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                    if (respuesta == 0) {
-                        PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
-                        pantallaAdministrarSolicitudInsumos.setVisible(true);
-                        getDefaultCloseOperation();
-                        return;
-                    } else {
-                        return;
-                    }
+            if (stockFaltante) {
+                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " a la fecha no alcanzan la cantidad solicitada en stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                if (respuesta == 0) {
+                    PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
+                    pantallaAdministrarSolicitudInsumos.setVisible(true);
+                    getDefaultCloseOperation();
+                    return;
+                } else {
+                    return;
                 }
+            }
 
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-                java.util.Date date = new java.util.Date();
-                java.util.Calendar cal = Calendar.getInstance();
-                try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            java.util.Date date = new java.util.Date();
+            java.util.Calendar cal = Calendar.getInstance();
+            try {
 //                date = formatter.parse(txtFecha.getText());
-                } catch (Exception exe) {
-                    showMessage(exe.getMessage());
-                }
-                cal.setTime(date);
-                cal.set(Calendar.HOUR_OF_DAY, 0);
-                cal.set(Calendar.MINUTE, 0);
-                cal.set(Calendar.SECOND, 0);
-                cal.set(Calendar.MILLISECOND, 0);
+            } catch (Exception exe) {
+                showMessage(exe.getMessage());
+            }
+            cal.setTime(date);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
 //            Date fecha = new Date(cal.getTime().getTime());
 
-                Date fecha = (Date) datePickerIni.getModel().getValue();
-                if (fecha == null) {
-                    showMessage("Debe completar la fecha antes de continuar");
-                    return;
-                }
-                try {
+            Date fecha = (Date) datePickerIni.getModel().getValue();
+            if (fecha == null) {
+                showMessage("Debe completar la fecha antes de continuar");
+                return;
+            }
+            try {
 
-                    OrdenTrabajoLaboreo laboreo = (OrdenTrabajoLaboreo) lstLaboreos.getSelectedValue();
+                OrdenTrabajoLaboreo laboreo = (OrdenTrabajoLaboreo) lstLaboreos.getSelectedValue();
 
-                    LaboreoEntity laboreoEntity = laboreo.getLaboreoEntity();
-                    LoteEntity loteEntity = laboreo.getLoteEntity();
-                    TipoGranoEntity tipoGranoEntity = laboreo.getSemilla();
+                LaboreoEntity laboreoEntity = laboreo.getLaboreoEntity();
+                LoteEntity loteEntity = laboreo.getLoteEntity();
+                TipoGranoEntity tipoGranoEntity = laboreo.getSemilla();
 
-                    gest.registrarOrden(detalles, txtNroOrden.getText(), planificacion,
-                            cbxRRHH.getSelectedItem().toString(), fecha, txtTiempo.getText(), laboreoEntity, loteEntity, tipoGranoEntity);
+                gest.registrarOrden(detalles, txtNroOrden.getText(), planificacion,
+                        cbxRRHH.getSelectedItem().toString(), fecha, txtTiempo.getText(), laboreoEntity, loteEntity, tipoGranoEntity);
 
 
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la orden de trabajo : " + e1.toString());
-                    return;
-                } finally {
-                    JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
-                    dispose();
-                }
-            });
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar la orden de trabajo : " + e1.toString());
+                return;
+            } finally {
+                JOptionPane.showMessageDialog(null, "La Orden de trabajo fue cargada con exito.");
+                dispose();
+            }
+        });
 
 
 //        btnActualizar.addActionListener(new ActionListener() {
@@ -363,36 +359,35 @@ public class GenerarOrdenTrabajo extends JFrame {
 //        });
 
 
-            btnGenerarOrden.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Document document = new Document();
+        btnGenerarOrden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Document document = new Document();
+                try {
+                    PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
+                    document.open();
+                    PdfContentByte contentByte = writer.getDirectContent();
+                    PdfTemplate template = contentByte.createTemplate(700, 300);
+                    Graphics2D g2 = template.createGraphics(700, 300);
+                    g2.scale(0.25, 0.25);
+                    panelIni.print(g2);
+                    g2.dispose();
+                    contentByte.addTemplate(template, 30, 500);
                     try {
-                        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\jagm\\Desktop\\test.pdf"));
-                        document.open();
-                        PdfContentByte contentByte = writer.getDirectContent();
-                        PdfTemplate template = contentByte.createTemplate(700, 300);
-                        Graphics2D g2 = template.createGraphics(700, 300);
-                        g2.scale(0.25, 0.25);
-                        panelIni.print(g2);
-                        g2.dispose();
-                        contentByte.addTemplate(template, 30, 500);
-                        try {
-                            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\jagm\\Desktop\\test.pdf");
-                        } catch (IOException io) {
-                            Logger.getLogger(GenerarOrdenTrabajo.class.getName()).log(Level.SEVERE, null, io);
-                        }
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
-                    } finally {
-                        if (document.isOpen()) {
-                            document.close();
-                        }
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\jagm\\Desktop\\test.pdf");
+                    } catch (IOException io) {
+                        Logger.getLogger(GenerarOrdenTrabajo.class.getName()).log(Level.SEVERE, null, io);
                     }
-//                    dispose();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                } finally {
+                    if (document.isOpen()) {
+                        document.close();
+                    }
                 }
-            });
-
+//                    dispose();
+            }
+        });
 
 
     }
@@ -406,8 +401,8 @@ public class GenerarOrdenTrabajo extends JFrame {
     }
 
     private void inicializaTabla() {
-        String[] columnNamesCompra = {"Tipo", "Nombre", "Unidad de Medida", "Cantidad Necesaria"};
-        Object[][] data = new Object[1][5];
+        String[] columnNamesCompra = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
+        Object[][] data = new Object[1][6];
         setModelDetalles(columnNamesCompra, data);
 
     }
@@ -441,62 +436,30 @@ public class GenerarOrdenTrabajo extends JFrame {
         TableColumn col;
         modelDetalle.setDataVector(data, columnames);
         tblDetalles.setModel(modelDetalle);
-        //tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(180);
         tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(350);
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(60);
-        col = tblDetalles.getColumnModel().getColumn(3);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(60);
+        col = tblDetalles.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
-        //  tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
 
-//    private boolean existeLote() {
-//        if (lstLotes.getSelectedValuesList().size() == 0) {
-//            return false;
-//        }
-//        return true;
-//    }
+
 
     private void limpiarPantalla() {
         inicializaTabla();
     }
 
-//    private void cargarCampanias() {
-//        CampaniaEntity camp;
-//        Campania campania = new Campania();
-//        java.util.List listaItems;
-//        listaItems = gestor.getCampanias();
-//
-//        Iterator iter = listaItems.iterator();
-//        while (iter.hasNext()) {
-//            cboCampania.addItem(iter.next());
-//        }
-//
-//        cboCampania.setSelectedItem(null);
-//
-//    }
 
 
     private void showMessage(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
-
-//    private void cargarLaboreos(List<LaboreoEntity> listaLaboreoEntity) {
-//        DefaultListModel modelo = new DefaultListModel();
-////        List<LaboreoEntity> listaLaboreoSinOrden = new ArrayList<>();
-////        for(LaboreoEntity laboreo :listaLaboreoSinOrden){
-////            if(laboreo.)
-////        }
-//        Iterator iter = listaLaboreoEntity.iterator();
-//        while (iter.hasNext()) {
-//            modelo.addElement(iter.next());
-//        }
-//        lstLaboreos.setModel(modelo);
-//    }
 
     private void cargarLaboreos(List<OrdenTrabajoLaboreo> listaLaboreoEntity) {
         DefaultListModel modelo = new DefaultListModel();
@@ -533,7 +496,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         listaMaq = gestor.getMaquinariasByLaboreoAndPlanificacion(laboreoEntity.getLboId(), planificacionId);
 
 
-        Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
+        Object[][] data = new Object[listaIns.size() + listaMaq.size()][5];
         int i = 0;
         if (listaIns.size() != 0) {
             for (Object[] row : listaIns) {
@@ -544,6 +507,7 @@ public class GenerarOrdenTrabajo extends JFrame {
                 data[i][1] = insumoEntity.getInsNombre();
                 data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                 data[i][3] = String.valueOf(cantidad);
+                data[i][4] = String.valueOf(insumoEntity.getInsStock());
                 i++;
             }
         }
@@ -562,7 +526,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);
@@ -576,7 +540,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         modelInsumoMaquinaria = new DefaultTableModel();
         modelInsumoMaquinaria.setDataVector(data, columnames);
         tblDetalles.setModel(modelInsumoMaquinaria);
-        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(300);

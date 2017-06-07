@@ -37,6 +37,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
     private JTable tblMaquinaria;
     private JButton btnCancelar;
     public JButton imprimirInformeMaquinariasButton;
+    public JPanel panelIni;
 
     private JTable table1;
     private MaquinariaEntity maquinaria;
@@ -51,9 +52,10 @@ public class PantallaAdministrarMaquinaria extends JFrame {
 
         //INICIO
         JPanel container = new JPanel();
+
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -65,7 +67,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
         this.setTitle("Consultar Maquinaria");
         inicializaTabla();
         buscarMaquinarias();
-
+        container.repaint();
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Conexion.getSessionFactory().openSession()

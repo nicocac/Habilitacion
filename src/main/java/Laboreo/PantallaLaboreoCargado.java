@@ -342,7 +342,7 @@ public class PantallaLaboreoCargado extends JFrame {
                     }
 
 
-                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null,null,null);
                     det.setInsumo(ins);
                     det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                 } else {

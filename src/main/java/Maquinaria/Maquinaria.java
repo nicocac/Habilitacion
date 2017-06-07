@@ -12,6 +12,9 @@ public class Maquinaria {
     private TipoMaquinaria tipo;
     private EstadoMaquinaria estado;
 
+    private Long stock;
+    private Long stockDisponible;
+
     public Maquinaria() {
     }
 
@@ -80,6 +83,22 @@ public class Maquinaria {
 
     public void setEstado(EstadoMaquinaria estado) {
         this.estado = estado;
+    }
+
+    public Long getStock() {
+        return stock;
+    }
+
+    public void setStock(Long stock) {
+        this.stock = stock;
+    }
+
+    public Long getStockDisponible() {
+        return stockDisponible;
+    }
+
+    public void setStockDisponible(Long stockDisponible) {
+        this.stockDisponible = stockDisponible;
     }
 
     public String toString (){

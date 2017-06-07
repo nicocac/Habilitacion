@@ -3,7 +3,6 @@ package Datos;
 import org.hibernate.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -25,7 +24,9 @@ public class InsumoEntity {
     private String insUsuarioUtlMod;
     private Date insFechaBaja;
     private String insUsuarioBaja;
-    private BigDecimal insStock;
+    private Long insStock;
+    private Long insStockDisponible;
+
 
     private TipoInsumoEntity tipoInsumoByInsTinId;
 
@@ -56,7 +57,7 @@ public class InsumoEntity {
 
     //======================================================================================
 
-    public boolean updateStock(Session ses, BigDecimal insStock){
+    public boolean updateStock(Session ses, Long insStock){
         Session session = ses;
         this.setInsStock(insStock);
         session.update(this);
@@ -167,12 +168,21 @@ public class InsumoEntity {
 
     @Basic
     @Column(name = "ins_stock")
-    public BigDecimal getInsStock() {
+    public Long getInsStock() {
         return insStock;
     }
 
-    public void setInsStock(BigDecimal insStock) {
+    public void setInsStock(Long insStock) {
         this.insStock = insStock;
+    }
+
+    @Column(name = "ins_stock_disponible")
+    public Long getInsStockDisponible() {
+        return insStockDisponible;
+    }
+
+    public void setInsStockDisponible(Long insStockDisponible) {
+        this.insStockDisponible = insStockDisponible;
     }
 
     @ManyToOne

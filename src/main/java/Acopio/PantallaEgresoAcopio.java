@@ -127,7 +127,7 @@ public class PantallaEgresoAcopio extends JFrame {
 
 //        setContentPane(panel1);
         pack();
-        setBounds(200, 50, 1500, 900);
+        setBounds(200, 50, 1100, 1300);
 //        inicializaTablaSemillas();
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {

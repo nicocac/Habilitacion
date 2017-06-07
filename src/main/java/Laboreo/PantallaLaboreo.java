@@ -82,6 +82,11 @@ public class PantallaLaboreo extends JFrame {
     DetalleLote detalleLote = null;
     ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
 
+    Boolean sinStock = false;
+    Boolean stockFaltante = false;
+    String insumosSinStock = "";
+    String insumosFaltantes = "";
+
     public PantallaLaboreo() {
 
 
@@ -119,6 +124,7 @@ public class PantallaLaboreo extends JFrame {
 //        cargarMomentos();
         cargaComboBoxLaboreo();
 
+
         Planificacion planificacion = new Planificacion();
         ArrayList<DetalleLote> listaDetalleDeLotes = new ArrayList<>();
 //        ArrayList<DetalleLaboreos> listaDetalleDeLaboreos = new ArrayList<>();
@@ -137,6 +143,23 @@ public class PantallaLaboreo extends JFrame {
 //        );
 
         lstLotes.addListSelectionListener(e -> lblLotes.setText(String.valueOf(lstLotes.getSelectedValuesList().size())));
+
+        //BUTTON FECHA
+        net.sourceforge.jdatepicker.impl.SqlDateModel modelIni = new net.sourceforge.jdatepicker.impl.SqlDateModel();
+        modelIni.setDate(2017, 05, 28);
+        // Need this...
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        net.sourceforge.jdatepicker.impl.JDatePanelImpl datePanelIni =
+                new net.sourceforge.jdatepicker.impl.JDatePanelImpl(modelIni);
+        //the formatter,  there it is...
+        net.sourceforge.jdatepicker.impl.JDatePickerImpl datePickerIni =
+                new net.sourceforge.jdatepicker.impl.JDatePickerImpl(datePanelIni, new DateLabelFormatter());
+
+        buttonFecha.add(datePickerIni);
+        //
 
         //AGREGAR INSUMO
         btnAgregarItem.addActionListener(e -> {
@@ -174,14 +197,16 @@ public class PantallaLaboreo extends JFrame {
 //                    JComboBox comboBox = new JComboBox(DATA);
 //                    DefaultCellEditor defaultCellEditor = new DefaultCellEditor(comboBox);
 //                    tblDetalles.getColumnModel().getColumn(2).setCellEditor(defaultCellEditor);
-                    tblDetalles.setValueAt("0", fila, 3);
+                    tblDetalles.setValueAt("1", fila, 3);
                     tblDetalles.setValueAt(ins.getStock(), fila, 4);
+                    tblDetalles.setValueAt(ins.getStock(), fila, 5);
                     fila++;
                 } else {
                     modelDetalle.addRow(new Object[]{"Insumo"
                             , ins.getNombre()
                             , ins.getUnidadMedida()
-                            , "0"
+                            , "1"
+                            , ins.getStockDisponible()
                             , ins.getStock()});
                     fila++;
                 }
@@ -189,22 +214,6 @@ public class PantallaLaboreo extends JFrame {
             }
         });
 
-        //BUTTON FECHA
-        net.sourceforge.jdatepicker.impl.SqlDateModel modelIni = new net.sourceforge.jdatepicker.impl.SqlDateModel();
-        modelIni.setDate(2017, 05, 28);
-        // Need this...
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        net.sourceforge.jdatepicker.impl.JDatePanelImpl datePanelIni =
-                new net.sourceforge.jdatepicker.impl.JDatePanelImpl(modelIni);
-        //the formatter,  there it is...
-        net.sourceforge.jdatepicker.impl.JDatePickerImpl datePickerIni =
-                new net.sourceforge.jdatepicker.impl.JDatePickerImpl(datePanelIni, new DateLabelFormatter());
-
-        buttonFecha.add(datePickerIni);
-        //
 
         //AGREGAR MAQUINARIA
         btnAgregarMaquinaria.addActionListener(e -> {
@@ -230,14 +239,14 @@ public class PantallaLaboreo extends JFrame {
                     tblDetalles.setValueAt("Maquinaria", fila, 0);
                     tblDetalles.setValueAt(maq.getNombre(), fila, 1);
                     tblDetalles.setValueAt(maq.getMarca(), fila, 2);
-                    tblDetalles.setValueAt("0", fila, 3);
+                    tblDetalles.setValueAt("1", fila, 3);
                     fila++;
                 } else {
 //                        model
                     modelDetalle.addRow(new Object[]{"Maquinaria"
                             , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
                             , maq.getMarca()
-                            , "0"});
+                            , "1"});
                     fila++;
                 }
 //                }
@@ -320,10 +329,6 @@ public class PantallaLaboreo extends JFrame {
                 //Cargar detalles de insumos y maquinarias
 //                        ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
                 ArrayList<DetalleLaboreo> listaDetallesInsMaq = new ArrayList<>();
-                Boolean sinStock = false;
-                Boolean stockFaltante = false;
-                String insumosSinStock = "";
-                String insumosFaltantes = "";
 
 
                 for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
@@ -340,7 +345,7 @@ public class PantallaLaboreo extends JFrame {
                             }
                         }
 
-                        Integer stockIns = (insumoEntity.getInsStock() == null) ? 0 : insumoEntity.getInsStock().intValue();
+                        Integer stockIns = (insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible().intValue();
                         Integer cantidadFaltante = stockIns - Integer.parseInt((String) tblDetalles.getValueAt(i, 3));
                         if (cantidadFaltante < 0) {
                             stockFaltante = true;
@@ -352,7 +357,7 @@ public class PantallaLaboreo extends JFrame {
                         }
 
 
-                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null);
                         det.setInsumo(ins);
                         det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                     } else {
@@ -396,30 +401,6 @@ public class PantallaLaboreo extends JFrame {
                     fila++;
                 }
 
-                if (sinStock) {
-//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                    if (respuesta == 0) {
-//                        dispose();
-                        PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosSinStock);
-                        pantallaAdministrarSolicitudInsumos.setVisible(true);
-                        getDefaultCloseOperation();
-//                        return;
-                    }
-//                          else {
-//                            return;
-//                        }
-                }
-
-                if (stockFaltante) {
-                    int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " no alcanzan la cantidad solicitada en stock. Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
-                    if (respuesta == 0) {
-                        PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosFaltantes);
-                        pantallaAdministrarSolicitudInsumos.setVisible(true);
-                        getDefaultCloseOperation();
-//                        return;
-                    }
-                }
 
             }
         });
@@ -449,6 +430,34 @@ public class PantallaLaboreo extends JFrame {
                         return;
                     }
 
+                    ////////
+                    if (sinStock) {
+//                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                        int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. No puede completar la planificacion de la misma. Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                        if (respuesta == 0) {
+//                        dispose();
+                            PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosSinStock);
+                            pantallaAdministrarSolicitudInsumos.setVisible(true);
+                            getDefaultCloseOperation();
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+
+                    if (stockFaltante) {
+                        int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " no alcanzan la cantidad solicitada en stock.No puede completar la planificacion de la misma Desea Solicitar el Pedido de los mismos?", "Cuidado", JOptionPane.YES_NO_OPTION);
+                        if (respuesta == 0) {
+                            PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosFaltantes);
+                            pantallaAdministrarSolicitudInsumos.setVisible(true);
+                            getDefaultCloseOperation();
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+
+                    /////////
 
                     GestorLaboreo gest = new GestorLaboreo();
 
@@ -457,69 +466,11 @@ public class PantallaLaboreo extends JFrame {
                     ArrayList lotes = (ArrayList) lstLotes.getSelectedValuesList();
 
 //            ArrayList<DetalleLaboreo> detalles = new ArrayList<DetalleLaboreo>();
-                    Boolean sinStock = false;
-                    String insumosSinStock = "";
+
 
                     planificacion.setCampania(campania);
                     planificacion.setListaDetallesLote(listaDetalleDeLotes);
 
-
-//            //Cargar detalles de insumos y maquinarias
-//            for (int i = 0; i < tblDetalles.getModel().getRowCount(); i++) {
-//                DetalleLaboreo det = new DetalleLaboreo();
-//                if (tblDetalles.getValueAt(i, 0).equals("Insumo")) {
-//                    InsumoEntity insumoEntity = insumoRepository.getInsumoByNombre((String) tblDetalles.getValueAt(i, 1));
-//
-//                    if (insumoEntity.getInsStock() == null) {
-//                        sinStock = true;
-//                        if (insumosSinStock.equals("")) {
-//                            insumosSinStock = insumoEntity.getInsNombre();
-//                        } else {
-//                            insumosSinStock = insumosSinStock + ", " + insumoEntity.getInsNombre();
-//                        }
-//                    }
-//
-//
-//                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
-//                    det.setInsumo(ins);
-////                    det.setCantidad(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
-//                } else {
-//                    Maquinaria maq = new Maquinaria();
-//                    maq.setDescripcion((String) tblDetalles.getValueAt(i, 1));
-//                    det.setMaquinaria(maq);
-//                }
-//                detalles.add(det);
-//            }
-
-
-//            //Cargar detalles de laboreos
-//            ArrayList<DetalleDelLaboreo> detalleLaboreo = new ArrayList<>();
-//
-//            for (int i = 0; i < tableLaboreos.getModel().getRowCount(); i++) {
-//                DetalleDelLaboreo lab = new DetalleDelLaboreo();
-//                if (tableLaboreos.getValueAt(i, 0).equals("Laboreo")) {
-//                    LaboreoEntity laboreoEntity = laboreoRepository.getLaboreoByNombre((String) tblDetalles.getValueAt(i, 1));
-//                    lab.setLaboreoEntity(laboreoEntity);
-//                    lab.setNombreLote(String.valueOf(lstLotes.getSelectedValue()));
-//                    detalleLaboreo.add(lab);
-//                }
-
-
-                    //METODO  maneja stock
-//            if (sinStock) {
-////                        JOptionPane.showOptionDialog(null, "Se encuentran insumos sin stock. Desea Solicitar el Pedido del mismo", "Cuidado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
-//                int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Solicitar el Pedido de los mismo?", "Cuidado", JOptionPane.YES_NO_OPTION);
-//                if (respuesta == 0) {
-//                    dispose();
-//                    PantallaAdministrarSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaAdministrarSolicitudInsumos();
-//                    pantallaAdministrarSolicitudInsumos.setVisible(true);
-//                    getDefaultCloseOperation();
-//                    return;
-//                }
-////                          else {
-////                            return;
-////                        }
-//            }
 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
                     java.util.Date date = new java.util.Date();
@@ -655,12 +606,7 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-        //NUEVA SEMILLA
-        nuevaSemillaBtn.addActionListener(e -> {
-            CargaTipoGrano cargaTipoGrano = new CargaTipoGrano("Carga", "", "", 0);
-            cargaTipoGrano.setVisible(true);
-            getDefaultCloseOperation();
-        });
+
 
         cbxSemillas.addFocusListener(new FocusAdapter() {
             @Override
@@ -682,16 +628,6 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-//        //Metodo Campania
-//        cboCampania.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                CampaniaEntity campaniaEntity = (CampaniaEntity) cboCampania.getSelectedItem();
-//                txtFechaIni.setText(campaniaEntity.getCnaFechaInicio().toString());
-//                txtFechaFin.setText(campaniaEntity.getCnaFechaFinEstimada().toString());
-//            }
-//        });
-
 
         //Metodo Tipo Laboreo
         cboMomentos.addItemListener(new ItemListener() {
@@ -711,7 +647,7 @@ public class PantallaLaboreo extends JFrame {
                 listaMaq = gestor.getMaquinariasByLaboreo(laboreoEntity.getLboId());
 
 
-                Object[][] data = new Object[listaIns.size() + listaMaq.size()][5];
+                Object[][] data = new Object[listaIns.size() + listaMaq.size()][6];
                 int i = 0;
                 if (listaIns.size() != 0) {
                     for (Object[] row : listaIns) {
@@ -722,7 +658,8 @@ public class PantallaLaboreo extends JFrame {
                         data[i][1] = insumoEntity.getInsNombre();
                         data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                         data[i][3] = String.valueOf(cantidad);
-                        data[i][4] = String.valueOf(insumoEntity.getInsStock());
+                        data[i][4] = String.valueOf(insumoEntity.getInsStockDisponible());
+                        data[i][5] = String.valueOf(insumoEntity.getInsStock());
                         i++;
                     }
                 }
@@ -743,7 +680,7 @@ public class PantallaLaboreo extends JFrame {
 //                }
 //            }
 
-                String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
+                String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock Disponible", "Stock Real"};
 //                DefaultTableModel model = new DefaultTableModel();
 //                model.setDataVector(data, columnNames);
 //                tblDetalles.setModel(model);
@@ -770,6 +707,7 @@ public class PantallaLaboreo extends JFrame {
                     tblDetalles.setValueAt("", 0, 2);
                     tblDetalles.setValueAt("", 0, 3);
                     tblDetalles.setValueAt("", 0, 4);
+                    tblDetalles.setValueAt("", 0, 5);
                 } else {
                     DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
                     modelo.removeRow(tblDetalles.getSelectedRow());
@@ -807,6 +745,7 @@ public class PantallaLaboreo extends JFrame {
             }
         });
 
+
         //GENERAR PEDIDO INSUMO
         btnGenerarPedidoInsumo.addActionListener(new ActionListener() {
             @Override
@@ -828,8 +767,8 @@ public class PantallaLaboreo extends JFrame {
     }
 
     private void inicializaTabla() {
-        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad"};
-        Object[][] data = new Object[1][5];
+        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad", "Stock Disponible", "Stock Real"};
+        Object[][] data = new Object[1][6];
         setModelDetalles(columnNamesCompra, data);
 
     }
@@ -867,15 +806,16 @@ public class PantallaLaboreo extends JFrame {
         TableColumn col;
         modelDetalle.setDataVector(data, columnames);
         tblDetalles.setModel(modelDetalle);
-        //tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(180);
         tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(350);
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(60);
-        col = tblDetalles.getColumnModel().getColumn(3);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(60);
+        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(60);
+        col = tblDetalles.getColumnModel().getColumn(5);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
-        //  tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     private void setModelLaboreos(String[] columnames, Object[][] data) {
@@ -883,7 +823,7 @@ public class PantallaLaboreo extends JFrame {
 
         modelLaboreos.setDataVector(data, columnames);
         tableLaboreos.setModel(modelLaboreos);
-        //tableLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tableLaboreos.getColumnModel().getColumn(0).setPreferredWidth(180);
         tableLaboreos.getColumnModel().getColumn(1).setPreferredWidth(350);
         tableLaboreos.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -892,7 +832,6 @@ public class PantallaLaboreo extends JFrame {
         col = tableLaboreos.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tableLaboreos.setCellSelectionEnabled(true);
-        //  tableLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     private void cargarItems() {

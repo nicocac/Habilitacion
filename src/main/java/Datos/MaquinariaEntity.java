@@ -22,6 +22,8 @@ public class MaquinariaEntity {
     private String maqUsuarioUtlMod;
     private Date maqFechaBaja;
     private String maqUsuarioBaja;
+    private Long maqStock;
+    private Long maqStockDisponible;
 
     private TipoEstadoMaquinariaEntity tipoEstadoMaquinariaByMaqTestadoId;
     private TipoMaquinariaEntity tipoMaquinariaByMaqTmaqId;
@@ -148,6 +150,24 @@ public class MaquinariaEntity {
 
     public void setMaqUsuarioBaja(String maqUsuarioBaja) {
         this.maqUsuarioBaja = maqUsuarioBaja;
+    }
+
+    @Column(name = "maq_stock")
+    public Long getMaqStock() {
+        return maqStock;
+    }
+
+    public void setMaqStock(Long maqStock) {
+        this.maqStock = maqStock;
+    }
+
+    @Column(name = "maq_stock_disponible")
+    public Long getMaqStockDisponible() {
+        return maqStockDisponible;
+    }
+
+    public void setMaqStockDisponible(Long maqStockDisponible) {
+        this.maqStockDisponible = maqStockDisponible;
     }
 
     @ManyToOne

@@ -10,13 +10,16 @@ public class Insumo {
     private String observaciones;
     private TipoInsumo tipoInsumo;
     private String unidadMedida;
-    private double stock;
+    private Long stock;
+    private Long stockDisponible;
 
-    public Insumo(String nombre, String observaciones, TipoInsumo tipoInsumo, String unidadMedida) {
+    public Insumo(String nombre, String observaciones, TipoInsumo tipoInsumo, String unidadMedida, Long stock, Long stockDisponible) {
         this.nombre = nombre;
         this.observaciones = observaciones;
         this.tipoInsumo = tipoInsumo;
         this.unidadMedida = unidadMedida;
+        this.stock = stock;
+        this.stockDisponible = stockDisponible;
     }
 
     public String getNombre() {
@@ -51,12 +54,20 @@ public class Insumo {
         this.unidadMedida = unidadMedida;
     }
 
-    public double getStock() {
+    public Long getStock() {
         return stock;
     }
 
-    public void setStock(double stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
+    }
+
+    public Long getStockDisponible() {
+        return stockDisponible;
+    }
+
+    public void setStockDisponible(Long stockDisponible) {
+        this.stockDisponible = stockDisponible;
     }
 
     public String toString(){

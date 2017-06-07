@@ -279,7 +279,7 @@ public class RegistrarAvanceCampania extends JFrame {
                             }
 
 
-                            Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null);
+                            Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null,null,null);
                             det.setInsumo(ins);
                             det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                         } else {
@@ -641,6 +641,8 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][1] = insumoEntity.getInsNombre();
                 data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                 data[i][3] = String.valueOf(cantidad);
+                data[i][4] = String.valueOf(insumoEntity.getInsStock());
+
                 i++;
             }
         }
@@ -659,7 +661,7 @@ public class RegistrarAvanceCampania extends JFrame {
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad",};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);
