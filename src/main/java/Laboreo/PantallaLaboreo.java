@@ -634,8 +634,9 @@ public class PantallaLaboreo extends JFrame {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 LaboreoEntity laboreoEntity = (LaboreoEntity) cboMomentos.getSelectedItem();
-                cbxSemillas.setSelectedItem(laboreoEntity.getTipoGrano());
-
+                if (laboreoEntity != null) {
+                    cbxSemillas.setSelectedItem(laboreoEntity.getTipoGrano());
+                }
                 //Carga insumos
                 List<Object[]> listaIns;
                 //getInsumos por laboreo
@@ -965,7 +966,9 @@ public class PantallaLaboreo extends JFrame {
     }
 
     private void borrarComboBoxTipoLaboreo() {
-        cboMomentos.removeAllItems();
+        if(cboMomentos != null) {
+            cboMomentos.removeAllItems();
+        }
     }
 
     private void borrarComboBoxTipoGrano() {

@@ -593,8 +593,8 @@ public class GestorLaboreo {
                 String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
                 insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
 
-                Long stockDisponible = ((insumoEntity.getInsStockDisponible()==null)? 0: insumoEntity.getInsStockDisponible());
-                insumoEntity.setInsStockDisponible(stockDisponible - detallesLaboreo.get(i).getCantidadIsumo());
+                Long stock = ((insumoEntity.getInsStock()==null)? 0: insumoEntity.getInsStock());
+                insumoEntity.setInsStock(stock - detallesLaboreo.get(i).getCantidadIsumo());
 
                 session.update(insumoEntity);
 

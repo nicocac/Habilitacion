@@ -115,7 +115,8 @@ public class RegistrarAvanceCampania extends JFrame {
         txtTiempo.setText("");
         tiempoEstimado.setText(orden.getTiempo());
         tiempoTotal.setText(orden.getTiempoGastado());
-        if (txtLaboreo.getText().equals("SIEMBRA") || txtLaboreo.getText().equals("Preparacion del Terreno")|| txtLaboreo.getText().equals("Control")|| txtLaboreo.getText().equals("Arado")){
+        if (txtLaboreo.getText().equals("SIEMBRA") || txtLaboreo.getText().equals("Preparacion del Terreno")
+                || txtLaboreo.getText().equals("Control")|| txtLaboreo.getText().equals("Arado")){
             btnCargarPesada.setEnabled(false);
             txtCantidad.setEnabled(false);
             btnActualizarPeso.setEnabled(false);
@@ -641,7 +642,8 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][1] = insumoEntity.getInsNombre();
                 data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                 data[i][3] = String.valueOf(cantidad);
-                data[i][4] = String.valueOf(insumoEntity.getInsStock());
+                data[i][4] = "0";
+                data[i][5] = String.valueOf(insumoEntity.getInsStock());
 
                 i++;
             }
@@ -656,12 +658,13 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][1] = maquinariaEntity.getMaqNombre();
                 data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                 data[i][3] = String.valueOf(cantidad);
+                data[i][4] = "0";
                 i++;
             }
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);

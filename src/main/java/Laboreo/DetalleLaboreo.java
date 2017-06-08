@@ -9,6 +9,7 @@ import Maquinaria.Maquinaria;
 public class DetalleLaboreo {
     private String observaciones;
     private int cantidadIsumo;
+    private int cantidadIsumoOriginal;
     private int cantidadMaquinaria;
     private Insumo insumo;
     private Maquinaria maquinaria;
@@ -17,9 +18,10 @@ public class DetalleLaboreo {
     public DetalleLaboreo() {
     }
 
-    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria) {
+    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadIsumoOriginal, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria) {
         this.observaciones = observaciones;
         this.cantidadIsumo = cantidadIsumo;
+        this.cantidadIsumoOriginal = cantidadIsumoOriginal;
         this.cantidadMaquinaria = cantidadMaquinaria;
         this.insumo = insumo;
         this.maquinaria = maquinaria;
@@ -64,5 +66,13 @@ public class DetalleLaboreo {
 
     public void setMaquinaria(Maquinaria maquinaria) {
         this.maquinaria = maquinaria;
+    }
+
+    public int getCantidadIsumoOriginal() {
+        return cantidadIsumoOriginal;
+    }
+
+    public void setCantidadIsumoOriginal(int cantidadIsumoOriginal) {
+        this.cantidadIsumoOriginal = cantidadIsumoOriginal;
     }
 }
