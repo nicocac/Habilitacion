@@ -268,7 +268,7 @@ public class GestorLaboreo {
                     try {
                         String nombreInsumo = insOmaq.getInsumo().getNombre();
                         insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
-                        Long stockDisponible = ((insumoEntity.getInsStockDisponible()==null)? 0: insumoEntity.getInsStockDisponible());
+                        Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
                         insumoEntity.setInsStockDisponible(stockDisponible - insOmaq.getCantidadIsumo());
                         session.update(insumoEntity);
 
@@ -593,8 +593,12 @@ public class GestorLaboreo {
                 String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
                 insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
 
-                Long stock = ((insumoEntity.getInsStock()==null)? 0: insumoEntity.getInsStock());
+                Long stock = ((insumoEntity.getInsStock() == null) ? 0 : insumoEntity.getInsStock());
                 insumoEntity.setInsStock(stock - detallesLaboreo.get(i).getCantidadIsumo());
+
+                Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
+                insumoEntity.setInsStockDisponible(stockDisponible + detallesLaboreo.get(i).getCantidadIsumoOriginal());
+                insumoEntity.setInsStockDisponible(insumoEntity.getInsStockDisponible() - detallesLaboreo.get(i).getCantidadIsumo());
 
                 session.update(insumoEntity);
 
@@ -670,14 +674,14 @@ public class GestorLaboreo {
 
 
         IngresoAcopioEntity ingresoAcopioEntity = new IngresoAcopioEntity();
-        if(acopioEntity != null) {
+        if (acopioEntity != null) {
             ingresoAcopioEntity.setAcopio(acopioEntity);
         }
         ingresoAcopioEntity.setTipoGrano(orden.getGrano());
         ingresoAcopioEntity.setLaboreo(orden.getLaboreo());
         ingresoAcopioEntity.setCampania(orden.getPlanificacion().getCampania());
         ingresoAcopioEntity.setLote(orden.getLote());
-        if(!cantidad.equals("")) {
+        if (!cantidad.equals("")) {
             ingresoAcopioEntity.setIngresoCantidadTotal(Integer.parseInt(cantidad));
         }
         ingresoAcopioEntity.setEstadoSemilla(estadoSemilla);

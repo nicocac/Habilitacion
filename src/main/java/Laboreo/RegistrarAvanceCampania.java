@@ -282,12 +282,14 @@ public class RegistrarAvanceCampania extends JFrame {
 
                             Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null,null,null);
                             det.setInsumo(ins);
-                            det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                            det.setCantidadIsumoOriginal(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                            det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 4)));
                         } else {
                             Maquinaria maq = new Maquinaria();
                             maq.setNombre((String) tblDetalles.getValueAt(i, 1));
                             det.setMaquinaria(maq);
-                            det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                            det.setCantidadMaquinariaOriginal(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
+                            det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 4)));
 
                         }
                         detalles.add(det);
@@ -664,7 +666,7 @@ public class RegistrarAvanceCampania extends JFrame {
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock"};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock", "Cantidad Total Utiliza"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);

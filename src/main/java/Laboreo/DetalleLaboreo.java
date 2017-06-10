@@ -10,6 +10,7 @@ public class DetalleLaboreo {
     private String observaciones;
     private int cantidadIsumo;
     private int cantidadIsumoOriginal;
+    private int cantidadMaquinariaOriginal;
     private int cantidadMaquinaria;
     private Insumo insumo;
     private Maquinaria maquinaria;
@@ -18,10 +19,11 @@ public class DetalleLaboreo {
     public DetalleLaboreo() {
     }
 
-    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadIsumoOriginal, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria) {
+    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadIsumoOriginal, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria, int cantidadMaquinariaOriginal) {
         this.observaciones = observaciones;
         this.cantidadIsumo = cantidadIsumo;
         this.cantidadIsumoOriginal = cantidadIsumoOriginal;
+        this.cantidadMaquinariaOriginal = cantidadMaquinariaOriginal;
         this.cantidadMaquinaria = cantidadMaquinaria;
         this.insumo = insumo;
         this.maquinaria = maquinaria;
@@ -74,5 +76,13 @@ public class DetalleLaboreo {
 
     public void setCantidadIsumoOriginal(int cantidadIsumoOriginal) {
         this.cantidadIsumoOriginal = cantidadIsumoOriginal;
+    }
+
+    public int getCantidadMaquinariaOriginal() {
+        return cantidadMaquinariaOriginal;
+    }
+
+    public void setCantidadMaquinariaOriginal(int cantidadMaquinariaOriginal) {
+        this.cantidadMaquinariaOriginal = cantidadMaquinariaOriginal;
     }
 }
