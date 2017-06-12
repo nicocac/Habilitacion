@@ -15,6 +15,7 @@ public class DetalleOrdenEntity {
     private String observaciones;
     private int cantidadInsumo;
     private int cantidadMaquinaria;
+    private int cantidadHorasMaquinaria;
 
     private Date dboFechaAlta;
     private String dboUsuarioAlta;
@@ -27,11 +28,6 @@ public class DetalleOrdenEntity {
     private InsumoEntity insumo;
     private MaquinariaEntity maquinaria;
     private OrdenTrabajoEntity orden;
-    //=================================================================
-//    private Integer dboInsId;
-//    private Integer dboLboId;
-//    private Integer dboMaqId;
-    //======================================================================================
 
     @Id
     @GeneratedValue
@@ -69,6 +65,15 @@ public class DetalleOrdenEntity {
 
     public void setCantidadMaquinaria(int cantidadMaquinaria) {
         this.cantidadMaquinaria = cantidadMaquinaria;
+    }
+
+    @Column(name = "cantidadHorasMaquinaria")
+    public int getCantidadHorasMaquinaria() {
+        return cantidadHorasMaquinaria;
+    }
+
+    public void setCantidadHorasMaquinaria(int cantidadHorasMaquinaria) {
+        this.cantidadHorasMaquinaria = cantidadHorasMaquinaria;
     }
 
 

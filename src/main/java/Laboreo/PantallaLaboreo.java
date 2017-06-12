@@ -69,6 +69,8 @@ public class PantallaLaboreo extends JFrame {
     public JButton btnQuitarLaboreos;
     public JButton actualizarLaboreo;
     public JButton btnGenerarPedidoInsumo;
+    public JButton btnAbajo;
+    public JButton btnArriba;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
@@ -146,12 +148,8 @@ public class PantallaLaboreo extends JFrame {
 
         //BUTTON FECHA
         net.sourceforge.jdatepicker.impl.SqlDateModel modelIni = new net.sourceforge.jdatepicker.impl.SqlDateModel();
-        modelIni.setDate(2017, 05, 28);
-        // Need this...
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
+        modelIni.setDate(2017, 12, 28);
+
         net.sourceforge.jdatepicker.impl.JDatePanelImpl datePanelIni =
                 new net.sourceforge.jdatepicker.impl.JDatePanelImpl(modelIni);
         //the formatter,  there it is...
@@ -242,7 +240,6 @@ public class PantallaLaboreo extends JFrame {
                     tblDetalles.setValueAt("1", fila, 3);
                     fila++;
                 } else {
-//                        model
                     modelDetalle.addRow(new Object[]{"Maquinaria"
                             , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
                             , maq.getMarca()
@@ -386,14 +383,14 @@ public class PantallaLaboreo extends JFrame {
                 }
 //                Laboreo laboreo = (Laboreo) iter.next();
                 if (fila == 0) {
-                    tableLaboreos.setValueAt("Laboreo", fila, 0);
+                    tableLaboreos.setValueAt(fila+1, fila, 0);
                     tableLaboreos.setValueAt(laboreo.getLboNombre(), fila, 1);
                     tableLaboreos.setValueAt(laboreo.getLboDescripcion(), fila, 2);
                     tableLaboreos.setValueAt(loteEntity.getLteDenominacion(), fila, 3);
                     tableLaboreos.setValueAt(grano.getTgrNombre(), fila, 4);
                     fila++;
                 } else {
-                    modelLaboreos.addRow(new Object[]{"Laboreo"
+                    modelLaboreos.addRow(new Object[]{fila+1
                             , laboreo.getLboNombre()
                             , laboreo.getLboDescripcion()
                             , loteEntity.getLteDenominacion()
@@ -681,7 +678,7 @@ public class PantallaLaboreo extends JFrame {
 //                }
 //            }
 
-                String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock Disponible", "Stock Real"};
+                String[] columnNames = {"Secuencia", "Nombre", "Tipo", "Cantidad", "Stock Disponible", "Stock Real"};
 //                DefaultTableModel model = new DefaultTableModel();
 //                model.setDataVector(data, columnNames);
 //                tblDetalles.setModel(model);
@@ -756,6 +753,23 @@ public class PantallaLaboreo extends JFrame {
                 getDefaultCloseOperation();
             }
         });
+
+
+        btnArriba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(),tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() -1);
+                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow()-1, tableLaboreos.getSelectedRow()-1);
+
+            }
+        });
+        btnAbajo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(),tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() +1);
+                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow()+1, tableLaboreos.getSelectedRow()+1);
+            }
+        });
     }
 
 
@@ -775,8 +789,13 @@ public class PantallaLaboreo extends JFrame {
     }
 
 
+//    @Override
+//    public void componentMoved(ComponentEvent e) {
+//        super.componentMoved(e);
+//    }
+
     private void inicializaTablaLaboreos() {
-        String[] columnNamesLaboreo = {"Clasificacion", "Nombre", "Descripcion", "Lote", "Semilla"};
+        String[] columnNamesLaboreo = {"Secuencia", "Nombre", "Descripcion", "Lote", "Semilla"};
         Object[][] data = new Object[1][5];
         setModelLaboreos(columnNamesLaboreo, data);
 

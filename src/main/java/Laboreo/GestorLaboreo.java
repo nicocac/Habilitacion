@@ -226,7 +226,11 @@ public class GestorLaboreo {
         DetalleLaboreosMaquinariaDePlanificacionCampaniaEntity detalleLaboreosMaquinariaDePlanificacionCampaniaEntity;
 
         MaquinariaEntity maquinariaEntity;
+        ArrayList<MaquinariaEntity> listaMaqActualizar = new ArrayList<>();
+
         InsumoEntity insumoEntity;
+        ArrayList<InsumoEntity> listaInsumosActualizar = new ArrayList<>();
+
 
         ArrayList<DetallePlanificacionCampaniaLoteEntity> listaLotes = new ArrayList<>();
         ArrayList<DetallePlanificacionCampaniaLaboreosEntity> listaLaboreos = new ArrayList<>();
@@ -255,6 +259,7 @@ public class GestorLaboreo {
             detallePlanificacionCampaniaLoteEntity.setFechaAlta(fechaPlan);
 
             for (DetalleLaboreos laboreo : lote.getListaDetalleLaboreos()) {
+                Boolean flag = false;
                 detallePlanificacionCampaniaLaboreosEntity = new DetallePlanificacionCampaniaLaboreosEntity();
                 detallePlanificacionCampaniaLaboreosEntity.setLaboreo(laboreo.getLaboreoEntity());
                 detallePlanificacionCampaniaLaboreosEntity.setDetallePlanificacionCampaniaLote(detallePlanificacionCampaniaLoteEntity);
@@ -264,13 +269,18 @@ public class GestorLaboreo {
                 detallePlanificacionCampaniaLaboreosEntity.setTieneOrdenTrabajo(false);
 
                 for (DetalleLaboreo insOmaq : laboreo.getListaDetalleLaboreo()) {
-
+                    flag = false;
                     try {
                         String nombreInsumo = insOmaq.getInsumo().getNombre();
                         insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
                         Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
                         insumoEntity.setInsStockDisponible(stockDisponible - insOmaq.getCantidadIsumo());
-                        session.update(insumoEntity);
+                        for (InsumoEntity insumo : listaInsumosActualizar) {
+                            if (insumo.getInsId() == insumoEntity.getInsId()) {
+                                flag = true;
+                            }
+                        }
+//                        session.update(insumoEntity);
 
 
                         detalleLaboreosInsumoDePlanificacionCampaniaEntity = new DetalleLaboreosInsumoDePlanificacionCampaniaEntity();
@@ -281,6 +291,10 @@ public class GestorLaboreo {
                         detalleLaboreosInsumoDePlanificacionCampaniaEntity.setDetallePlanificacionCampaniaLaboreos(detallePlanificacionCampaniaLaboreosEntity);
 
                         listaInsumos.add(detalleLaboreosInsumoDePlanificacionCampaniaEntity);
+
+                        if (!flag) {
+                            listaInsumosActualizar.add(insumoEntity);
+                        }
 
                     } catch (NullPointerException npe) {
                         String nombreMaquinaria = insOmaq.getMaquinaria().getNombre();
@@ -295,8 +309,13 @@ public class GestorLaboreo {
 
                         listaMaquinarias.add(detalleLaboreosMaquinariaDePlanificacionCampaniaEntity);
                     }
+
                 }
                 listaLaboreos.add(detallePlanificacionCampaniaLaboreosEntity);
+
+                for (InsumoEntity insumo : listaInsumosActualizar) {
+                    session.update(insumo);
+                }
             }
             listaLotes.add(detallePlanificacionCampaniaLoteEntity);
         }
@@ -603,7 +622,8 @@ public class GestorLaboreo {
                 session.update(insumoEntity);
 
                 detalleOrdenEntity.setInsumo(insumoEntity);
-                detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
+                Integer cantidadTotal = detallesLaboreo.get(i).getCantidadInsumoTotal() + detallesLaboreo.get(i).getCantidadIsumo();
+                detalleOrdenEntity.setCantidadInsumo(cantidadTotal);
 
 
             } catch (NullPointerException npe) {

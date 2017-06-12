@@ -34,20 +34,20 @@ public class OrdenRepository {
 
 
     public List<DetalleOrdenEntity> getAllDetalleOrdenesByOrdenID(Integer ordenID){
-        List<DetalleOrdenEntity> listaInsumo = new ArrayList<>();
+        List<DetalleOrdenEntity> listaDetalleOrden = new ArrayList<>();
         Session session = Conexion.getSessionFactory().openSession();
-        DetalleOrdenEntity insumo;
+        DetalleOrdenEntity detalleOrden;
         Query query = session.createQuery("select x from DetalleOrdenEntity x where x.orden = (:ordenID) ");
         query.setParameter("ordenID", ordenID);
 
         List list = query.list();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            insumo = (DetalleOrdenEntity) iter.next();
-            listaInsumo.add(insumo);
+            detalleOrden = (DetalleOrdenEntity) iter.next();
+            listaDetalleOrden.add(detalleOrden);
         }
         session.close();
-        return listaInsumo;
+        return listaDetalleOrden;
     }
 
 

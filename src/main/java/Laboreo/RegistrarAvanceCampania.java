@@ -135,7 +135,7 @@ public class RegistrarAvanceCampania extends JFrame {
         avance.setValue((orden.getCantidadP() == null) ? 0 : orden.getCantidadP());
         avance.setString((orden.getPorcentaje() == null) ? "0" : orden.getPorcentaje());
 
-        buscarInsumosMaquinariasPorLaboreo(orden.getLaboreo(), orden.getPlanificacion().getPlanificacionId());
+        buscarInsumosMaquinariasPorLaboreo(orden.getLaboreo(), orden.getPlanificacion().getPlanificacionId(), orden);
 
 //        if (denominacion.length() > 1 && camId != 0) {
 
@@ -284,12 +284,15 @@ public class RegistrarAvanceCampania extends JFrame {
                             det.setInsumo(ins);
                             det.setCantidadIsumoOriginal(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                             det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 4)));
+                            det.setCantidadInsumoTotal(Integer.parseInt((String) tblDetalles.getValueAt(i, 6)));
                         } else {
                             Maquinaria maq = new Maquinaria();
                             maq.setNombre((String) tblDetalles.getValueAt(i, 1));
                             det.setMaquinaria(maq);
                             det.setCantidadMaquinariaOriginal(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                             det.setCantidadMaquinaria(Integer.parseInt((String) tblDetalles.getValueAt(i, 4)));
+                            det.setCantidadMaquinariaTotal(Integer.parseInt((String) tblDetalles.getValueAt(i, 6)));
+                            det.setCantidadHorasMaquinariaTotal(Integer.parseInt((String) tblDetalles.getValueAt(i, 7)));
 
                         }
                         detalles.add(det);
@@ -539,7 +542,6 @@ public class RegistrarAvanceCampania extends JFrame {
             //
 
             Iterator iter = listStockFinal.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Nro", "Tipo Acopio", "Semilla", "Estado", "Cantidad Total"};
             data = new Object[listStockFinal.size()][7];
             while (iter.hasNext()) {
                 acopio = (Object[]) iter.next();
@@ -564,63 +566,11 @@ public class RegistrarAvanceCampania extends JFrame {
 //    }
 
 
-    private void cargarLotes(int camId) {
-        java.util.List lista;
-        DefaultListModel modelo = new DefaultListModel();
-
-        if (tipoOperacion.equals("Carga")) {
-            lista = gestor.getLotes();
-        } else {
-            lista = gestor.getLotesByCampania(camId);
-        }
-        Iterator iter = lista.iterator();
-        while (iter.hasNext()) {
-            modelo.addElement(iter.next());
-        }
-        lstLotes.setModel(modelo);
-
-
-    }
-
-
-    //METODO BUSCAR LABOREO DE LOTE
-    private void buscarLaboreoPorLote(int camId) {
-//        Session session = Conexion.getSessionFactory().openSession()
-//        LaboreoEntity laboreo;
-//        Lote lote = (Lote) lstLotes.getSelectedValue();
-//        LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
-//        Integer nroLote = loteEntity.getLteId();
-//        int i = 0;
-//        try {
-//            List<LaboreoEntity> listaLaboreoEntity;
-////            listaLaboreoEntity = laboreoLoteCampaniaRepository.getAllLaboreoByLoteAndCampania(nroLote, camId);
-//
-////            for(LaboreoEntity lab:listaLaboreoEntity){
-////                lab.getTipoGrano()
-////            }
-//
-//            Iterator iter = listaLaboreoEntity.iterator();
-//            while (iter.hasNext()) {
-//                laboreo = (LaboreoEntity) iter.next();
-//                cboMomentos.addItem(laboreo.getTipoLaboreoEntity());
-//                cbxSemillas.addItem(laboreo.getTipoGrano());
-//                i++;
-//            }
-//        } finally {
-//            session.close();
-//        }
-    }
 
 
     //METODO BUSCAR INSUMOS DE SOLICUTUDES
-    private void buscarInsumosMaquinariasPorLaboreo(LaboreoEntity laboreoEntity, Integer planificacionId) {
+    private void buscarInsumosMaquinariasPorLaboreo(LaboreoEntity laboreoEntity, Integer planificacionId, OrdenTrabajoEntity orden) {
 
-//        LaboreoEntity laboreoEntity = laboreo.getLaboreoEntity();
-//        LoteEntity loteEntity = laboreo.getLoteEntity();
-//        TipoGranoEntity tipoGranoEntity = laboreo.getSemilla();
-
-//        txtLote.setText(loteEntity.getLteDenominacion());
-//        txtSemilla.setText(tipoGranoEntity.getTgrNombre());
 
         //Carga insumos
         java.util.List<Object[]> listaIns;
@@ -632,6 +582,7 @@ public class RegistrarAvanceCampania extends JFrame {
         //getMaquinaria por laboreo
         listaMaq = gestorLab.getMaquinariasByLaboreoAndPlanificacion(laboreoEntity.getLboId(), planificacionId);
 
+        List<DetalleOrdenEntity> listaDetallesOrden = ordenRepository.getAllDetalleOrdenesByOrdenID(orden.getNroOrden());
 
         Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
         int i = 0;
@@ -646,7 +597,11 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][3] = String.valueOf(cantidad);
                 data[i][4] = "0";
                 data[i][5] = String.valueOf(insumoEntity.getInsStock());
-
+                for (DetalleOrdenEntity dorden : listaDetallesOrden) {
+                    if(dorden.getInsumo().equals(insumoEntity)) {
+                        data[i][6] = String.valueOf(dorden.getCantidadInsumo());
+                    }
+                }
                 i++;
             }
         }
@@ -661,12 +616,19 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                 data[i][3] = String.valueOf(cantidad);
                 data[i][4] = "0";
+                data[i][5] = String.valueOf(maquinariaEntity.getMaqStock());
+                for (DetalleOrdenEntity dorden : listaDetallesOrden) {
+                    if(dorden.getMaquinaria().equals(maquinariaEntity)) {
+                        data[i][6] = String.valueOf(dorden.getCantidadInsumo());
+                        data[i][7] = String.valueOf(dorden.getCantidadHorasMaquinaria());
+                    }
+                }
                 i++;
             }
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock", "Cantidad Total Utiliza"};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock", "Cantidad Total Utiliza", "Hs Maq"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);

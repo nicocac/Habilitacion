@@ -9,8 +9,11 @@ import Maquinaria.Maquinaria;
 public class DetalleLaboreo {
     private String observaciones;
     private int cantidadIsumo;
+    private int cantidadInsumoTotal;
     private int cantidadIsumoOriginal;
     private int cantidadMaquinariaOriginal;
+    private int cantidadMaquinariaTotal;
+    private int cantidadHorasMaquinariaTotal;
     private int cantidadMaquinaria;
     private Insumo insumo;
     private Maquinaria maquinaria;
@@ -19,14 +22,12 @@ public class DetalleLaboreo {
     public DetalleLaboreo() {
     }
 
-    public DetalleLaboreo(String observaciones, int cantidadIsumo, int cantidadIsumoOriginal, int cantidadMaquinaria, Insumo insumo, Maquinaria maquinaria, int cantidadMaquinariaOriginal) {
-        this.observaciones = observaciones;
-        this.cantidadIsumo = cantidadIsumo;
-        this.cantidadIsumoOriginal = cantidadIsumoOriginal;
-        this.cantidadMaquinariaOriginal = cantidadMaquinariaOriginal;
-        this.cantidadMaquinaria = cantidadMaquinaria;
-        this.insumo = insumo;
-        this.maquinaria = maquinaria;
+    public int getCantidadHorasMaquinariaTotal() {
+        return cantidadHorasMaquinariaTotal;
+    }
+
+    public void setCantidadHorasMaquinariaTotal(int cantidadHorasMaquinariaTotal) {
+        this.cantidadHorasMaquinariaTotal = cantidadHorasMaquinariaTotal;
     }
 
     public String getObservaciones() {
@@ -84,5 +85,21 @@ public class DetalleLaboreo {
 
     public void setCantidadMaquinariaOriginal(int cantidadMaquinariaOriginal) {
         this.cantidadMaquinariaOriginal = cantidadMaquinariaOriginal;
+    }
+
+    public int getCantidadInsumoTotal() {
+        return cantidadInsumoTotal;
+    }
+
+    public void setCantidadInsumoTotal(int cantidadInsumoTotal) {
+        this.cantidadInsumoTotal = cantidadInsumoTotal;
+    }
+
+    public int getCantidadMaquinariaTotal() {
+        return cantidadMaquinariaTotal;
+    }
+
+    public void setCantidadMaquinariaTotal(int cantidadMaquinariaTotal) {
+        this.cantidadMaquinariaTotal = cantidadMaquinariaTotal;
     }
 }
