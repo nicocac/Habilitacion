@@ -8,7 +8,7 @@ import java.util.List;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "ingreso_insumo", schema = "", catalog = "gestar")
+@Table(name = "ingreso_insumo")
 public class IngresoInsumoEntity {
 
 

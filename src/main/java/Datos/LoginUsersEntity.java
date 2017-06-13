@@ -4,7 +4,7 @@ package Datos;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "login_users", schema = "", catalog = "gestar")
+@Table(name = "login_users")
 public class LoginUsersEntity {
 
 

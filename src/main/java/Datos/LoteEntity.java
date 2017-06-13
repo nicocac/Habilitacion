@@ -6,7 +6,7 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "lote", schema = "", catalog = "gestar")
+@Table(name = "lote")
 public class LoteEntity {
 
     private Integer lteId;

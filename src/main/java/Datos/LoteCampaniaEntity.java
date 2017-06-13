@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "lote_campania", schema = "", catalog = "gestar")
+@Table(name = "lote_campania")
 public class LoteCampaniaEntity {
 
     private Integer lcpId;

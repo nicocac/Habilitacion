@@ -76,7 +76,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setContentPane(image);
         setTitle("Sistema de Administracion");
 //        finalizarCampanias();
-        liberarLotes();
+//        liberarLotes();
 
         //BUTTONS
 

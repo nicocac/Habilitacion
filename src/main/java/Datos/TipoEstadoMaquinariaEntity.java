@@ -6,7 +6,7 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "tipo_estado_maquinaria", schema = "", catalog = "gestar")
+@Table(name = "tipo_estado_maquinaria")
 public class TipoEstadoMaquinariaEntity {
 
     private Integer teMaId;

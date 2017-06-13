@@ -10,7 +10,7 @@ import java.util.List;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "ingreso_acopio", schema = "", catalog = "gestar")
+@Table(name = "ingreso_acopio")
 public class IngresoAcopioEntity {
 
 

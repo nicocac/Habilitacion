@@ -8,7 +8,7 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "tipo_acopio", schema = "", catalog = "gestar")
+@Table(name = "tipo_acopio")
 public class TipoAcopioEntity {
 
     private Integer tipoAcopioId;

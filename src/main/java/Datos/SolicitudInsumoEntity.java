@@ -9,7 +9,7 @@ import java.util.List;
  * Created by OWNER on 7/3/2016.
  */
 @Entity
-@Table(name = "solicitud_insumo", schema = "", catalog = "gestar")
+@Table(name = "solicitud_insumo")
 public class SolicitudInsumoEntity {
 
 

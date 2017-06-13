@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "tipo_grano", schema = "", catalog = "gestar")
+@Table(name = "tipo_grano")
 public class TipoGranoEntity {
     private Integer tgrId;
     private String tgrNombre;

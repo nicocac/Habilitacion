@@ -7,7 +7,7 @@ import java.sql.Date;
 
 
 @Entity
-@Table(name = "laboreo_ins_maq", schema = "", catalog = "gestar")
+@Table(name = "laboreo_ins_maq")
 public class LaboreoInsumoMaqEntity {
 
     private Integer id;

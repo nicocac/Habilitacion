@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "campania", schema = "", catalog = "gestar")
+@Table(name = "campania")
 public class CampaniaEntity {
     private Integer cnaId;
     private String cnaDenominacion;

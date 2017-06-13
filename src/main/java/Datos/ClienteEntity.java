@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by OWNER on 8/9/2016.
  */
 @Entity
-@Table(name = "cliente", schema = "", catalog = "gestar")
+@Table(name = "cliente")
 public class ClienteEntity {
 
     private Integer clienteId;

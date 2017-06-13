@@ -10,7 +10,7 @@ import java.util.Collection;
  * Created by OWNER on 5/30/2016.
  */
 @Entity
-@Table(name = "insumo", schema = "", catalog = "gestar")
+@Table(name = "insumo")
 public class InsumoEntity {
 
 
