@@ -3,12 +3,12 @@
   <grid id="27dc6" binding="panelIni" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="2136" height="1075"/>
+      <xy x="20" y="20" width="2136" height="896"/>
     </constraints>
     <properties>
       <doubleBuffered value="false"/>
       <enabled value="true"/>
-      <preferredSize width="1623" height="1100"/>
+      <preferredSize width="1200" height="850"/>
     </properties>
     <border type="none"/>
     <children>
@@ -37,14 +37,8 @@
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4cm):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
-        <rowspec value="center:39px:noGrow"/>
         <rowspec value="center:44px:noGrow"/>
-        <rowspec value="center:max(d;4px):noGrow"/>
-        <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
@@ -53,7 +47,7 @@
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;5cm):noGrow"/>
         <rowspec value="center:67px:noGrow"/>
-        <rowspec value="center:67px:noGrow"/>
+        <rowspec value="center:75px:noGrow"/>
         <colspec value="fill:max(d;4px):noGrow"/>
         <colspec value="left:4dlu:noGrow"/>
         <colspec value="fill:max(d;4px):noGrow"/>
@@ -98,56 +92,6 @@
         <colspec value="left:4dlu:noGrow"/>
         <colspec value="fill:d:grow"/>
         <colspec value="left:9dlu:noGrow"/>
-        <colspec value="fill:298px:noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:d:grow"/>
-        <colspec value="left:4dlu:noGrow"/>
-        <colspec value="fill:max(d;4px):noGrow"/>
-        <colspec value="left:4dlu:noGrow"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -156,7 +100,7 @@
         <children>
           <component id="67297" class="javax.swing.JLabel">
             <constraints>
-              <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <forms defaultalign-horz="false"/>
             </constraints>
             <properties>
@@ -196,7 +140,7 @@
           </grid>
           <scrollpane id="5c54f">
             <constraints>
-              <grid row="4" column="4" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="4" row-span="1" col-span="39" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <forms defaultalign-horz="false" defaultalign-vert="false"/>
             </constraints>
             <properties/>
@@ -223,64 +167,6 @@
               <enabled value="true"/>
             </properties>
           </component>
-          <component id="919f9" class="javax.swing.JButton" binding="btnActualizar">
-            <constraints>
-              <grid row="6" column="4" row-span="1" col-span="17" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <hideActionText value="false"/>
-              <icon value="Imagenes/rsz_clean.png"/>
-              <text value="Actualizar"/>
-            </properties>
-          </component>
-          <component id="674cd" class="javax.swing.JTextField" binding="txtLote">
-            <constraints>
-              <grid row="8" column="4" row-span="1" col-span="41" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-              <enabled value="true"/>
-            </properties>
-          </component>
-          <component id="577ba" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <labelFor value="42235"/>
-              <text value="Lote"/>
-            </properties>
-          </component>
-          <component id="3b83c" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="2" column="44" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <labelFor value="78c3d"/>
-              <text value="Fecha Inicio"/>
-            </properties>
-          </component>
-          <component id="8ead" class="javax.swing.JTextField" binding="txtFechaIni">
-            <constraints>
-              <grid row="2" column="46" row-span="1" col-span="16" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <forms defaultalign-horz="false" defaultalign-vert="false"/>
-            </constraints>
-            <properties>
-              <doubleBuffered value="false"/>
-              <dragEnabled value="true"/>
-              <editable value="false"/>
-              <enabled value="true"/>
-              <horizontalAlignment value="0"/>
-            </properties>
-          </component>
           <component id="76a12" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -303,22 +189,9 @@
               <enabled value="true"/>
             </properties>
           </component>
-          <component id="dd353" class="javax.swing.JTextField" binding="txtFechaFin">
-            <constraints>
-              <grid row="2" column="64" row-span="1" col-span="20" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <dragEnabled value="true"/>
-              <editable value="false"/>
-              <enabled value="true"/>
-            </properties>
-          </component>
           <component id="389ae" class="javax.swing.JTextField" binding="txtTiempo">
             <constraints>
-              <grid row="14" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="10" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <forms defaultalign-horz="false"/>
@@ -329,7 +202,7 @@
           </component>
           <component id="cc8c7" class="javax.swing.JLabel">
             <constraints>
-              <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -339,7 +212,7 @@
           </component>
           <component id="76fb" class="javax.swing.JTextField" binding="txtObservaciones">
             <constraints>
-              <grid row="18" column="4" row-span="2" col-span="40" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="12" column="4" row-span="2" col-span="36" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <forms defaultalign-horz="false"/>
@@ -348,7 +221,7 @@
           </component>
           <component id="81aa4" class="javax.swing.JLabel">
             <constraints>
-              <grid row="18" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -358,7 +231,7 @@
           </component>
           <component id="d6660" class="javax.swing.JButton" binding="btnLimpiar">
             <constraints>
-              <grid row="21" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="15" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <forms defaultalign-vert="false"/>
             </constraints>
             <properties>
@@ -369,7 +242,7 @@
           </component>
           <component id="e7edb" class="javax.swing.JButton" binding="btnCancelar">
             <constraints>
-              <grid row="22" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="16" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -379,63 +252,9 @@
               <text value="Salir"/>
             </properties>
           </component>
-          <component id="e63e4" class="javax.swing.JButton" binding="btnGenerarOrden">
-            <constraints>
-              <grid row="22" column="44" row-span="1" col-span="48" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-vert="false"/>
-            </constraints>
-            <properties>
-              <icon value="Imagenes/item.png"/>
-              <inheritsPopupMenu value="true"/>
-              <label value="Imprimir Orden"/>
-              <text value="Imprimir Orden"/>
-            </properties>
-          </component>
-          <component id="31898" class="javax.swing.JButton" binding="btnFinalizar">
-            <constraints>
-              <grid row="21" column="44" row-span="1" col-span="48" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <icon value="Imagenes/Guardar48.png"/>
-              <text value="Guardar"/>
-            </properties>
-          </component>
-          <component id="e83a" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="2" column="62" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <labelFor value="78c3d"/>
-              <text value="Fecha Fin  "/>
-            </properties>
-          </component>
-          <component id="c1d78" class="javax.swing.JTextField" binding="txtSemilla">
-            <constraints>
-              <grid row="10" column="4" row-span="1" col-span="41" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-              <enabled value="true"/>
-            </properties>
-          </component>
-          <component id="33cff" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <labelFor value="42235"/>
-              <text value="Semilla"/>
-            </properties>
-          </component>
           <component id="f8432" class="javax.swing.JLabel">
             <constraints>
-              <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -444,7 +263,7 @@
           </component>
           <component id="8dabe" class="javax.swing.JButton" binding="buttonFecha">
             <constraints>
-              <grid row="11" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -452,37 +271,16 @@
               <text value="fecha"/>
             </properties>
           </component>
-          <component id="b4e5" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="11" column="44" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <font style="1"/>
-              <text value="Cantidad de Laboreos Seleccionados:"/>
-            </properties>
-          </component>
-          <component id="35283" class="javax.swing.JLabel" binding="lblLotes">
-            <constraints>
-              <grid row="11" column="46" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <enabled value="true"/>
-              <font style="1"/>
-              <text value="0"/>
-            </properties>
-          </component>
           <scrollpane id="75f9d">
             <constraints>
-              <grid row="20" column="2" row-span="1" col-span="90" vsize-policy="7" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="14" column="2" row-span="1" col-span="42" vsize-policy="7" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <forms defaultalign-horz="false" defaultalign-vert="false"/>
             </constraints>
             <properties>
               <enabled value="false"/>
               <focusable value="false"/>
-              <maximumSize width="320" height="320"/>
-              <preferredSize width="160" height="167"/>
+              <maximumSize width="100" height="320"/>
+              <preferredSize width="100" height="167"/>
               <requestFocusEnabled value="true"/>
             </properties>
             <border type="none" title="Insumos y Maquinarias Necesarias"/>
@@ -492,37 +290,16 @@
                 <properties>
                   <enabled value="false"/>
                   <focusable value="false"/>
-                  <maximumSize width="214" height="32"/>
-                  <preferredScrollableViewportSize width="150" height="100"/>
+                  <maximumSize width="100" height="32"/>
+                  <preferredScrollableViewportSize width="100" height="100"/>
                   <rowSelectionAllowed value="false"/>
                 </properties>
               </component>
             </children>
           </scrollpane>
-          <component id="2b5c9" class="javax.swing.JTextField" binding="txtTiempoGastado">
-            <constraints>
-              <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <forms defaultalign-horz="false"/>
-            </constraints>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="35f93" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="16" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <forms/>
-            </constraints>
-            <properties>
-              <labelFor value="78c3d"/>
-              <text value="Tiempo Gastado"/>
-            </properties>
-          </component>
           <component id="a3712" class="javax.swing.JComboBox" binding="cbxRRHH">
             <constraints>
-              <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -535,7 +312,7 @@
           </component>
           <component id="cf328" class="javax.swing.JComboBox" default-binding="true">
             <constraints>
-              <grid row="14" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="10" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
@@ -544,12 +321,127 @@
               </model>
             </properties>
           </component>
-          <component id="492d9" class="javax.swing.JComboBox" default-binding="true">
+          <component id="4bdc6" class="javax.swing.JTextField" binding="txtTiempoGastado">
             <constraints>
-              <grid row="16" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="10" column="34" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <editable value="true"/>
+              <enabled value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="e83a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="34" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <labelFor value="78c3d"/>
+              <text value="Fecha Fin  "/>
+            </properties>
+          </component>
+          <component id="dd353" class="javax.swing.JTextField" binding="txtFechaFin">
+            <constraints>
+              <grid row="2" column="36" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <dragEnabled value="true"/>
+              <editable value="false"/>
+              <enabled value="true"/>
+            </properties>
+          </component>
+          <component id="b4e5" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="7" column="34" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <text value="Cantidad de Laboreos Seleccionados:"/>
+            </properties>
+          </component>
+          <component id="35283" class="javax.swing.JLabel" binding="lblLotes">
+            <constraints>
+              <grid row="7" column="38" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <font style="1"/>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="31898" class="javax.swing.JButton" binding="btnFinalizar">
+            <constraints>
+              <grid row="15" column="34" row-span="1" col-span="10" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <icon value="Imagenes/Guardar48.png"/>
+              <text value="Guardar"/>
+            </properties>
+          </component>
+          <component id="e63e4" class="javax.swing.JButton" binding="btnGenerarOrden">
+            <constraints>
+              <grid row="16" column="34" row-span="1" col-span="10" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <icon value="Imagenes/item.png"/>
+              <inheritsPopupMenu value="true"/>
+              <label value="Imprimir Orden"/>
+              <text value="Imprimir Orden"/>
+            </properties>
+          </component>
+          <component id="8ead" class="javax.swing.JTextField" binding="txtFechaIni">
+            <constraints>
+              <grid row="2" column="28" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <doubleBuffered value="false"/>
+              <dragEnabled value="true"/>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+            </properties>
+          </component>
+          <component id="3b83c" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="26" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <labelFor value="78c3d"/>
+              <text value="Fecha Inicio"/>
+            </properties>
+          </component>
+          <component id="f3f79" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="10" column="30" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <labelFor value="78c3d"/>
+              <text value="Tiempo Gastado"/>
+            </properties>
+          </component>
+          <component id="d15e3" class="javax.swing.JComboBox" default-binding="true">
+            <constraints>
+              <grid row="10" column="36" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <editable value="true"/>
               <model>
                 <item value="HS"/>
               </model>

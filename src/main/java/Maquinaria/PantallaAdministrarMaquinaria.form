@@ -29,7 +29,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="4db1a" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="4db1a" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="14" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
@@ -47,7 +47,7 @@
                   <grid id="8c437" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                     <border type="none"/>
@@ -84,33 +84,10 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="1b221" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                        <minimum-size width="700" height="50"/>
-                        <preferred-size width="700" height="50"/>
-                        <maximum-size width="700" height="50"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children>
-                      <component id="ad12e" class="javax.swing.JButton" binding="btnBuscar">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <icon value="Imagenes/rsz_buscar.png"/>
-                          <text value="Buscar"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
                   <grid id="d738e" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <minimum-size width="700" height="50"/>
                         <preferred-size width="700" height="50"/>
                         <maximum-size width="700" height="50"/>
@@ -163,7 +140,7 @@
                   <grid id="f7417" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <minimum-size width="700" height="300"/>
                         <preferred-size width="700" height="300"/>
                         <maximum-size width="700" height="300"/>
@@ -199,7 +176,7 @@
                   <grid id="e0f77" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <minimum-size width="700" height="70"/>
                         <preferred-size width="700" height="70"/>
                         <maximum-size width="700" height="70"/>
@@ -224,7 +201,7 @@
                   <grid id="b68e5" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                     <border type="none"/>
@@ -232,13 +209,22 @@
                   </grid>
                   <component id="4057d" class="javax.swing.JButton" binding="imprimirInformeMaquinariasButton" default-binding="true">
                     <constraints>
-                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <icon value="Imagenes/imprimir.jpg"/>
                       <inheritsPopupMenu value="true"/>
                       <label value="Imprimir Informe Maquinarias"/>
                       <text value="Imprimir Informe Maquinarias"/>
+                    </properties>
+                  </component>
+                  <component id="ad12e" class="javax.swing.JButton" binding="btnBuscar">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_buscar.png"/>
+                      <text value="Buscar"/>
                     </properties>
                   </component>
                 </children>

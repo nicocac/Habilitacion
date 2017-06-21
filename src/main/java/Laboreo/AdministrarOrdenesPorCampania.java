@@ -79,8 +79,8 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 //        setContentPane(panel1);
@@ -119,7 +119,6 @@ public class AdministrarOrdenesPorCampania extends JFrame {
 
 //        this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("Registrar Orden de trabajo");
-
 
 
         //LIMPIAR
@@ -236,8 +235,12 @@ public class AdministrarOrdenesPorCampania extends JFrame {
                 }
 
 
-
                 OrdenTrabajoEntity orden = (OrdenTrabajoEntity) lstOrdenes.getSelectedValue();
+
+                if (orden.getPorcentaje().equals("100")) {
+                    showMessage("La orden esta completa al 100% a la fecha. Debe Finalizar la orden");
+                    return;
+                }
 
                 RegistrarAvanceCampania registrarAvanceCampania = new RegistrarAvanceCampania("Carga", orden);
                 setBounds(200, 300, 900, 900);

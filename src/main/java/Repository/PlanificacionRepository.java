@@ -76,13 +76,15 @@ public class PlanificacionRepository {
         query.setParameter("pId", id);
         List list = query.list();
         Iterator iter = list.iterator();
+        Integer i =0;
         while (iter.hasNext()) {
             OrdenTrabajoLaboreo orden = new OrdenTrabajoLaboreo();
             Object[] array = (Object[]) iter.next();
             orden.setLaboreoEntity((LaboreoEntity)array[0]);
             orden.setSemilla((TipoGranoEntity) array[1]);
             orden.setLoteEntity((LoteEntity) array[2]);
-
+            orden.setSecuencia(i+1);
+            i++;
             listaLaboreoLoteEntity.add(orden);
         }
         session.close();

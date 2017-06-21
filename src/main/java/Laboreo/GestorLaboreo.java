@@ -616,14 +616,17 @@ public class GestorLaboreo {
                 insumoEntity.setInsStock(stock - detallesLaboreo.get(i).getCantidadIsumo());
 
                 Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
-                insumoEntity.setInsStockDisponible(stockDisponible + detallesLaboreo.get(i).getCantidadIsumoOriginal());
-                insumoEntity.setInsStockDisponible(insumoEntity.getInsStockDisponible() - detallesLaboreo.get(i).getCantidadIsumo());
+                if (!orden.isPrimerRegistro()) {
+                    insumoEntity.setInsStockDisponible(stockDisponible + detallesLaboreo.get(i).getCantidadIsumoOriginal());
+                    orden.setPrimerRegistro(true);
+                }
+                insumoEntity.setInsStockDisponible(stockDisponible - detallesLaboreo.get(i).getCantidadIsumo());
 
                 session.update(insumoEntity);
 
                 detalleOrdenEntity.setInsumo(insumoEntity);
-                Integer cantidadTotal = detallesLaboreo.get(i).getCantidadInsumoTotal() + detallesLaboreo.get(i).getCantidadIsumo();
-                detalleOrdenEntity.setCantidadInsumo(cantidadTotal);
+//                Integer cantidadTotal = detallesLaboreo.get(i).getCantidadInsumoTotal() + detallesLaboreo.get(i).getCantidadIsumo();
+                detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
 
 
             } catch (NullPointerException npe) {
@@ -631,6 +634,7 @@ public class GestorLaboreo {
                 maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
                 detalleOrdenEntity.setMaquinaria(maquinariaEntity);
                 detalleOrdenEntity.setCantidadMaquinaria(detallesLaboreo.get(i).getCantidadMaquinaria());
+                detalleOrdenEntity.setCantidadHorasMaquinaria(detallesLaboreo.get(i).getCantidadHorasMaquinariaTotal());
 //                session.update(maquinariaEntity);
 
             }
@@ -678,19 +682,19 @@ public class GestorLaboreo {
 
         //Borramos los detalles viejos
 //        int delete = ordenRepository.deleteAllDetalleOrdenesByOrdenID(orden.getId());
-        int result = 0;
-        Query queryDelete = session.createQuery("delete from DetalleOrdenEntity x " +
-                "where x.orden.id = (:ordenID) ");
-        queryDelete.setParameter("ordenID", orden.getId());
-        result = queryDelete.executeUpdate();
-
-        if (result > 0) {
-            //Guardamos la orden a los detalles nuevo
-            for (DetalleOrdenEntity detalleLaboreo : listaDetallesLaboreoEntity) {
-                detalleLaboreo.setOrden(orden);
-                session.save(detalleLaboreo);
-            }
+//        int result = 0;
+//        Query queryDelete = session.createQuery("delete from DetalleOrdenEntity x " +
+//                "where x.orden.id = (:ordenID) ");
+//        queryDelete.setParameter("ordenID", orden.getId());
+//        result = queryDelete.executeUpdate();
+//
+//        if (result > 0) {
+        //Guardamos la orden a los detalles nuevo
+        for (DetalleOrdenEntity detalleLaboreo : listaDetallesLaboreoEntity) {
+            detalleLaboreo.setOrden(orden);
+            session.save(detalleLaboreo);
         }
+//        }
 
 
         IngresoAcopioEntity ingresoAcopioEntity = new IngresoAcopioEntity();

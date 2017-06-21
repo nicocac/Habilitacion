@@ -13,6 +13,7 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.event.*;
 import java.util.*;
 
@@ -89,8 +90,8 @@ public class RegistrarAvanceCampania extends JFrame {
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 //        setContentPane(panel1);
@@ -115,7 +116,7 @@ public class RegistrarAvanceCampania extends JFrame {
         txtTiempo.setText("");
         tiempoEstimado.setText(orden.getTiempo());
         tiempoTotal.setText(orden.getTiempoGastado());
-        if (txtLaboreo.getText().equals("SIEMBRA") || txtLaboreo.getText().equals("Preparacion del Terreno")
+        if (txtLaboreo.getText().equals("Siembra") || txtLaboreo.getText().equals("Preparacion del Terreno")
                 || txtLaboreo.getText().equals("Control")|| txtLaboreo.getText().equals("Arado")){
             btnCargarPesada.setEnabled(false);
             txtCantidad.setEnabled(false);
@@ -582,9 +583,9 @@ public class RegistrarAvanceCampania extends JFrame {
         //getMaquinaria por laboreo
         listaMaq = gestorLab.getMaquinariasByLaboreoAndPlanificacion(laboreoEntity.getLboId(), planificacionId);
 
-        List<DetalleOrdenEntity> listaDetallesOrden = ordenRepository.getAllDetalleOrdenesByOrdenID(orden.getNroOrden());
+        List<DetalleOrdenEntity> listaDetallesOrden = ordenRepository.getAllDetalleOrdenesByOrdenID(orden.getId());
 
-        Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
+        Object[][] data = new Object[listaIns.size() + listaMaq.size()][8];
         int i = 0;
         if (listaIns.size() != 0) {
             for (Object[] row : listaIns) {
@@ -597,11 +598,17 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][3] = String.valueOf(cantidad);
                 data[i][4] = "0";
                 data[i][5] = String.valueOf(insumoEntity.getInsStock());
+                Integer cantidadT = 0;
                 for (DetalleOrdenEntity dorden : listaDetallesOrden) {
-                    if(dorden.getInsumo().equals(insumoEntity)) {
-                        data[i][6] = String.valueOf(dorden.getCantidadInsumo());
+
+                    if(dorden.getInsumo()!=null) {
+                        if (dorden.getInsumo().equals(insumoEntity)) {
+                            cantidadT += dorden.getCantidadInsumo();
+
+                        }
                     }
                 }
+                data[i][6] = String.valueOf(cantidadT);
                 i++;
             }
         }
@@ -610,17 +617,26 @@ public class RegistrarAvanceCampania extends JFrame {
             for (Object[] row : listaMaq) {
                 MaquinariaEntity maquinariaEntity = (MaquinariaEntity) row[0];
                 Integer cantidad = (Integer) row[1];
-
+                Integer stock =0;
+                if(cantidad == null) {
+                    cantidad=0;
+                }
                 data[i][0] = "Maquinaria";
                 data[i][1] = maquinariaEntity.getMaqNombre();
                 data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                 data[i][3] = String.valueOf(cantidad);
                 data[i][4] = "0";
-                data[i][5] = String.valueOf(maquinariaEntity.getMaqStock());
+                if(maquinariaEntity.getMaqStock() == null) {
+                    data[i][5] = stock;
+                } else {
+                    data[i][5] =String.valueOf(maquinariaEntity.getMaqStock());
+                }
                 for (DetalleOrdenEntity dorden : listaDetallesOrden) {
-                    if(dorden.getMaquinaria().equals(maquinariaEntity)) {
-                        data[i][6] = String.valueOf(dorden.getCantidadInsumo());
-                        data[i][7] = String.valueOf(dorden.getCantidadHorasMaquinaria());
+                    if(dorden.getMaquinaria()!=null) {
+                        if (dorden.getMaquinaria().equals(maquinariaEntity)) {
+                            data[i][6] = String.valueOf(dorden.getCantidadInsumo());
+                            data[i][7] = String.valueOf(dorden.getCantidadHorasMaquinaria());
+                        }
                     }
                 }
                 i++;
@@ -628,10 +644,25 @@ public class RegistrarAvanceCampania extends JFrame {
         }
 
 
-        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock", "Cantidad Total Utiliza", "Hs Maq"};
+        String[] columnNames = {"Clasificacion", "Nombre", "Tipo", "Cantidad Original", "Cantidad Utilizada", "Stock", "Cantidad Total Utilizada", "Hs Maq"};
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);
+
+        TableColumn col;
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(180);
+        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(120);
+        tblDetalles.getColumnModel().getColumn(6).setPreferredWidth(200);
+        tblDetalles.getColumnModel().getColumn(7).setPreferredWidth(100);
+
+        col = tblDetalles.getColumnModel().getColumn(7);
+        col.setCellEditor(new MyTableCellEditor());
+        tblDetalles.setCellSelectionEnabled(true);
 
 //            return;
 

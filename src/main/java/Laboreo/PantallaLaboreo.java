@@ -100,8 +100,8 @@ public class PantallaLaboreo extends JFrame {
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panel1);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 
@@ -148,7 +148,7 @@ public class PantallaLaboreo extends JFrame {
 
         //BUTTON FECHA
         net.sourceforge.jdatepicker.impl.SqlDateModel modelIni = new net.sourceforge.jdatepicker.impl.SqlDateModel();
-        modelIni.setDate(2017, 12, 28);
+        modelIni.setDate(2017, 05, 28);
 
         net.sourceforge.jdatepicker.impl.JDatePanelImpl datePanelIni =
                 new net.sourceforge.jdatepicker.impl.JDatePanelImpl(modelIni);
@@ -383,14 +383,14 @@ public class PantallaLaboreo extends JFrame {
                 }
 //                Laboreo laboreo = (Laboreo) iter.next();
                 if (fila == 0) {
-                    tableLaboreos.setValueAt(fila+1, fila, 0);
+                    tableLaboreos.setValueAt(fila, fila, 0);
                     tableLaboreos.setValueAt(laboreo.getLboNombre(), fila, 1);
                     tableLaboreos.setValueAt(laboreo.getLboDescripcion(), fila, 2);
                     tableLaboreos.setValueAt(loteEntity.getLteDenominacion(), fila, 3);
                     tableLaboreos.setValueAt(grano.getTgrNombre(), fila, 4);
                     fila++;
                 } else {
-                    modelLaboreos.addRow(new Object[]{fila+1
+                    modelLaboreos.addRow(new Object[]{fila
                             , laboreo.getLboNombre()
                             , laboreo.getLboDescripcion()
                             , loteEntity.getLteDenominacion()
@@ -761,13 +761,18 @@ public class PantallaLaboreo extends JFrame {
                 modelLaboreos.moveRow(tableLaboreos.getSelectedRow(),tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() -1);
                 tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow()-1, tableLaboreos.getSelectedRow()-1);
 
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(),0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow()+1, tableLaboreos.getSelectedRow()+1,0);
             }
         });
         btnAbajo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(),tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() +1);
-                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow()+1, tableLaboreos.getSelectedRow()+1);
+                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() + 1);
+                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow() + 1, tableLaboreos.getSelectedRow() + 1);
+
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(),0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow()-1, tableLaboreos.getSelectedRow()-1,0);
             }
         });
     }

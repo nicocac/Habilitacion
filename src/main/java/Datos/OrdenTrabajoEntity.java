@@ -21,6 +21,7 @@ public class OrdenTrabajoEntity {
 
     private Integer  cantidadP;
     private String  porcentaje;
+    private boolean primerRegistro;
 
 
     private Date    fechaAlta;
@@ -239,11 +240,21 @@ public class OrdenTrabajoEntity {
         this.porcentaje = porcentaje;
     }
 
+    @Column(name = "primer_registro")
+    public boolean isPrimerRegistro() {
+        return primerRegistro;
+    }
+
+    public void setPrimerRegistro(boolean primerRegistro) {
+        this.primerRegistro = primerRegistro;
+    }
+
     @Override
     public String toString() {
         return
                 "Nro: " + this.getNroOrden().toString() +"  Laboreo: " + this.getLaboreo().getLboNombre().toString()
-                +"  Lote: " + this.getLote().getLteDenominacion().toString() + "  Recurso: " + this.getRecursoHumano().toString();
+                +"  Lote: " + this.getLote().getLteDenominacion().toString() + "  Recurso: " + this.getRecursoHumano().toString()
+                +"     --Avance: " + this.getPorcentaje() + "%";
     }
 
 }

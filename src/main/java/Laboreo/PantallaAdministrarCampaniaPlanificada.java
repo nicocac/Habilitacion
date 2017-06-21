@@ -26,7 +26,6 @@ import java.util.*;
  * Created by jagm on 23/10/2016.
  */
 public class PantallaAdministrarCampaniaPlanificada extends JFrame {
-    private JPanel panel1;
     private JTextField txtBuscar;
     private JButton btnBuscar;
     private JButton btnEliminar;
@@ -37,6 +36,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
     private JButton btnCancelar;
     public JButton btnRegistrarAvance;
     public JPanel panelIni;
+    public JPanel panel1;
     public JButton btnRegistrarOrden;
     private JTable table1;
     private InsumoEntity insumo;
@@ -49,14 +49,15 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
 
     public PantallaAdministrarCampaniaPlanificada(String tipo) {
+        this.setExtendedState(MAXIMIZED_BOTH);
 
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 //        setContentPane(panel1);

@@ -12,6 +12,7 @@ public class OrdenTrabajoLaboreo {
     private LaboreoEntity laboreoEntity;
     private LoteEntity loteEntity;
     private TipoGranoEntity semilla;
+    private Integer secuencia;
 
     public LaboreoEntity getLaboreoEntity() {
         return laboreoEntity;
@@ -37,10 +38,17 @@ public class OrdenTrabajoLaboreo {
         this.semilla = semilla;
     }
 
+    public Integer getSecuencia() {
+        return secuencia;
+    }
+
+    public void setSecuencia(Integer secuencia) {
+        this.secuencia = secuencia;
+    }
 
     @Override
     public String toString() {
         return
-                laboreoEntity.getLboNombre();
+                "Secuencia: "  +this.getSecuencia() + " LABOREO: "+laboreoEntity.getLboNombre() + " --- LOTE: " + loteEntity.getLteDenominacion()+ " --- SEMILLA: "+semilla.getTgrNombre();
     }
 }

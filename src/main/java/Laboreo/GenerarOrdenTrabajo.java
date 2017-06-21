@@ -54,7 +54,6 @@ public class GenerarOrdenTrabajo extends JFrame {
     private JComboBox cboMomentos;
     public JList lstLaboreos;
     public JButton buttonFecha;
-    public JButton btnActualizar;
     public JButton btnGenerarOrden;
     public JTextField txtFechaIni;
     public JTextField txtFechaFin;
@@ -99,8 +98,8 @@ public class GenerarOrdenTrabajo extends JFrame {
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 //        setContentPane(panel1);
@@ -166,8 +165,6 @@ public class GenerarOrdenTrabajo extends JFrame {
             txtTiempoGastado.setText((orden.getTiempoGastado() == null) ? "0" : orden.getTiempoGastado().toString());
             cbxRRHH.setSelectedItem(orden.getRecursoHumano().toString());
             txtObservaciones.setText(orden.getObservaciones().toString());
-            txtSemilla.setText(orden.getGrano().toString());
-            txtLote.setText((orden.getLote() == null) ? "" : orden.getLote().toString());
             Object[] laboreos = new Object[1];
             laboreos[0] = orden.getLaboreo().getLboNombre();
             lstLaboreos.setListData(laboreos);
@@ -402,7 +399,7 @@ public class GenerarOrdenTrabajo extends JFrame {
 
     private void inicializaTabla() {
         String[] columnNamesCompra = {"Clasificacion", "Nombre", "Tipo", "Cantidad", "Stock"};
-        Object[][] data = new Object[1][6];
+        Object[][] data = new Object[1][5];
         setModelDetalles(columnNamesCompra, data);
 
     }
@@ -437,11 +434,11 @@ public class GenerarOrdenTrabajo extends JFrame {
         modelDetalle.setDataVector(data, columnames);
         tblDetalles.setModel(modelDetalle);
         tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(180);
-        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(60);
-        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(60);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(150);
         col = tblDetalles.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
@@ -481,9 +478,6 @@ public class GenerarOrdenTrabajo extends JFrame {
         LaboreoEntity laboreoEntity = laboreo.getLaboreoEntity();
         LoteEntity loteEntity = laboreo.getLoteEntity();
         TipoGranoEntity tipoGranoEntity = laboreo.getSemilla();
-
-        txtLote.setText(loteEntity.getLteDenominacion());
-        txtSemilla.setText(tipoGranoEntity.getTgrNombre());
 
         //Carga insumos
         java.util.List<Object[]> listaIns;
@@ -530,6 +524,15 @@ public class GenerarOrdenTrabajo extends JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.setDataVector(data, columnNames);
         tblDetalles.setModel(model);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(150);
+        TableColumn col= tblDetalles.getColumnModel().getColumn(4);
+        col.setCellEditor(new MyTableCellEditor());
+        tblDetalles.setCellSelectionEnabled(true);
 
 //            return;
 
@@ -540,13 +543,12 @@ public class GenerarOrdenTrabajo extends JFrame {
         modelInsumoMaquinaria = new DefaultTableModel();
         modelInsumoMaquinaria.setDataVector(data, columnames);
         tblDetalles.setModel(modelInsumoMaquinaria);
-        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblDetalles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblDetalles.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(300);
-        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(200);
-        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(60);
+        tblDetalles.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(50);
     }
 
     private void createUIComponents() {

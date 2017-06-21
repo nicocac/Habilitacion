@@ -16,6 +16,7 @@ public class DetalleOrdenEntity {
     private int cantidadInsumo;
     private int cantidadMaquinaria;
     private int cantidadHorasMaquinaria;
+    private boolean primerRegistro;
 
     private Date dboFechaAlta;
     private String dboUsuarioAlta;
@@ -173,5 +174,12 @@ public class DetalleOrdenEntity {
         this.dboUsuarioBaja = dboUsuarioBaja;
     }
 
+    @Column(name = "primer_registro")
+    public boolean isPrimerRegistro() {
+        return primerRegistro;
+    }
 
+    public void setPrimerRegistro(boolean primerRegistro) {
+        this.primerRegistro = primerRegistro;
+    }
 }

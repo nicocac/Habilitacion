@@ -44,7 +44,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
-
+import javax.swing.UIManager;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
@@ -63,8 +63,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             tipoCliente, tipoTransporte, AdmCampaniaPlanificada, campaniaPlanificada, AdmOrdenesXCamp;
 
     public MenuPrincipal() {
-//        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
+//            UIManager.setLookAndFeel( "com.seaglasslookandfeel.SeaGlassLookAndFeel" );
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +83,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON PLANIFICAR CAMPANA
         JButton btnRegistrarLaboreo = new JButton("Planificar Campa\u00f1a");
-        btnRegistrarLaboreo.setBounds(600, 100, 215, 70);
+        btnRegistrarLaboreo.setBounds(650, 100, 215, 70);
         image.add(btnRegistrarLaboreo);
 
         btnRegistrarLaboreo.addActionListener(e -> {
@@ -94,7 +95,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR ORDEN DE TRABAJO
         JButton btnRegistrarOrdenTrabajo = new JButton("Generar orden de Trabajo");
-        btnRegistrarOrdenTrabajo.setBounds(850, 100, 215, 70);
+        btnRegistrarOrdenTrabajo.setBounds(900, 100, 215, 70);
         image.add(btnRegistrarOrdenTrabajo);
 
         btnRegistrarOrdenTrabajo.addActionListener(e -> {
@@ -106,7 +107,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR AVANCE
         JButton btnRegistrarAvance = new JButton("Registrar Avance de Campa\u00f1a");
-        btnRegistrarAvance.setBounds(600, 200, 215, 70);
+        btnRegistrarAvance.setBounds(650, 200, 215, 70);
         btnRegistrarAvance.getBaselineResizeBehavior();
         image.add(btnRegistrarAvance);
 
@@ -121,7 +122,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR EGRESO
         JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
-        btnAdministrarAcopios.setBounds(850, 200, 215, 70);
+        btnAdministrarAcopios.setBounds(900, 200, 215, 70);
         image.add(btnAdministrarAcopios);
 
         btnAdministrarAcopios.addActionListener(e -> {
@@ -133,7 +134,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON EXIT
         JButton btnExit = new JButton("Salir");
-        btnExit.setBounds(950, 425, 115, 30);
+        btnExit.setBounds(1000, 425, 115, 30);
 //        ImageIcon exitIcon = new ImageIcon("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes.Imagenes\\exit5.jpg");
 //        Image img = exitIcon.getImage();
 //        Image newimg = img.getScaledInstance(230, 100, java.awt.Image.SCALE_SMOOTH);
@@ -148,7 +149,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON ADMINISTRAR ACOPIOS
         JButton btnAdmAcopios = new JButton("Administrar Stock Silos");
-        btnAdmAcopios.setBounds(600, 300, 215, 70);
+        btnAdmAcopios.setBounds(650, 300, 215, 70);
         image.add(btnAdmAcopios);
 
         btnAdmAcopios.addActionListener(e -> {
@@ -160,7 +161,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON ADMINISTRAR EGRESOS
         JButton btnAdmEgreso = new JButton("Administrar Egresos Semillas");
-        btnAdmEgreso.setBounds(850, 300, 215, 70);
+        btnAdmEgreso.setBounds(900, 300, 215, 70);
         image.add(btnAdmEgreso);
 
         btnAdmEgreso.addActionListener(e -> {

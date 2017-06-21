@@ -37,7 +37,7 @@ public class OrdenRepository {
         List<DetalleOrdenEntity> listaDetalleOrden = new ArrayList<>();
         Session session = Conexion.getSessionFactory().openSession();
         DetalleOrdenEntity detalleOrden;
-        Query query = session.createQuery("select x from DetalleOrdenEntity x where x.orden = (:ordenID) ");
+        Query query = session.createQuery("select x from DetalleOrdenEntity x where x.orden.id = (:ordenID) ");
         query.setParameter("ordenID", ordenID);
 
         List list = query.list();
