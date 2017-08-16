@@ -87,7 +87,7 @@ public class CargaCampania extends JFrame {
                         if (loteEntity != null) {
                             if (loteEntity.getEstado().equals("OCUPADO")) {
                                 JOptionPane.showMessageDialog(this, "El lote: " + loteEntity.getLteDenominacion() + " seleccionado" +
-                                        " no se puede incluir en la campaña ya que el mismo esta siendo utilizado para otra campaña." +
+                                        " no se puede incluir en la campa\u00f1a ya que el mismo esta siendo utilizado para otra campa\u00f1a." +
                                         " Por favor seleccione otro.");
                                 lstLotes.removeSelectionInterval(lstLotes.getLeadSelectionIndex(), lstLotes.getLeadSelectionIndex());
                             }

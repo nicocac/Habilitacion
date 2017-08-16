@@ -245,7 +245,7 @@ public class GestorLaboreo {
             detallePlanificacionCampaniaLoteEntity = new DetallePlanificacionCampaniaLoteEntity();
             detallePlanificacionCampaniaLoteEntity.setLote(lote.getLoteEntity());
             LoteEntity loteEntity = lote.getLoteEntity();
-            loteEntity.setEstado("OCUPADO");
+//            loteEntity.setEstado("OCUPADO");
             try {
                 session.update(loteEntity);
 
@@ -567,6 +567,7 @@ public class GestorLaboreo {
         ordenTrabajoEntity.setLaboreo(laboreoEntity);
         ordenTrabajoEntity.setLote(loteEntity);
         ordenTrabajoEntity.setGrano(tipoGranoEntity);
+        ordenTrabajoEntity.setPorcentaje("0");
 
         session.save(ordenTrabajoEntity);
 

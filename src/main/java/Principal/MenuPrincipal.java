@@ -6,6 +6,7 @@ import Acopio.PantallaCargaAcopio;
 import Acopio.PantallaEgresoAcopio;
 import Acopio.TipoAcopio.AdministrarTipoAcopio;
 import Ayuda.AcercaDe;
+import Campania.CargaCampania;
 import Campania.PantallaAdministrarCampania;
 import Campo.AdministrarCampo;
 import Cliente.PantallaAdministrarCliente;
@@ -58,7 +59,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             mediosAlmacenamientos, acopios, ayuda, transportes, campos, laboreos, ordenes;
     private JMenuItem laboreoTemp, laboreo, tipoLaboreo, lote, compra,
             salir, insumo, tipoInsumo, solicitudInsumo, ingresoInsumo, compraInsumo, compraInsumo2, maquinaria, tipoMaquinaria,
-            estadoMaquinaria, tipoGrano, campania, cliente, medioAlmacenamiento,
+            estadoMaquinaria, tipoGrano, campania, cargaCamp, cliente, medioAlmacenamiento,
             acopio, manual, acercaDe, transporte, administrarAcopios, tipoAcopio, campo, tipoCampo,
             tipoCliente, tipoTransporte, AdmCampaniaPlanificada, campaniaPlanificada, AdmOrdenesXCamp;
 
@@ -76,18 +77,30 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         image.setImage("/ImagenesPantallas/MenuPrincipalFondo2.jpg");
         setContentPane(image);
         setTitle("Sistema de Administracion");
-//        finalizarCampanias();
+        finalizarCampanias();
 //        liberarLotes();
 
         //BUTTONS
 
+        //BUTTON Administrar  CAMPANA
+        JButton btnAdmCampania = new JButton("Administrar Campa\u00f1as");
+        btnAdmCampania.setBounds(780, 100, 215, 70);
+        image.add(btnAdmCampania);
+
+        btnAdmCampania.addActionListener(e -> {
+            PantallaAdministrarCampania pantallaAdministrarCampania = new PantallaAdministrarCampania();
+            pantallaAdministrarCampania.setVisible(true);
+            getDefaultCloseOperation();
+        });
+
+
         //BUTTON PLANIFICAR CAMPANA
         JButton btnRegistrarLaboreo = new JButton("Planificar Campa\u00f1a");
-        btnRegistrarLaboreo.setBounds(650, 100, 215, 70);
+        btnRegistrarLaboreo.setBounds(650, 200, 215, 70);
         image.add(btnRegistrarLaboreo);
 
         btnRegistrarLaboreo.addActionListener(e -> {
-            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo(null);
             pantallaLaboreo.setVisible(true);
             getDefaultCloseOperation();
         });
@@ -95,7 +108,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR ORDEN DE TRABAJO
         JButton btnRegistrarOrdenTrabajo = new JButton("Generar orden de Trabajo");
-        btnRegistrarOrdenTrabajo.setBounds(900, 100, 215, 70);
+        btnRegistrarOrdenTrabajo.setBounds(900, 200, 215, 70);
         image.add(btnRegistrarOrdenTrabajo);
 
         btnRegistrarOrdenTrabajo.addActionListener(e -> {
@@ -107,7 +120,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR AVANCE
         JButton btnRegistrarAvance = new JButton("Registrar Avance de Campa\u00f1a");
-        btnRegistrarAvance.setBounds(650, 200, 215, 70);
+        btnRegistrarAvance.setBounds(650, 300, 215, 70);
         btnRegistrarAvance.getBaselineResizeBehavior();
         image.add(btnRegistrarAvance);
 
@@ -122,7 +135,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON REGISTRAR EGRESO
         JButton btnAdministrarAcopios = new JButton("Registrar Egreso de Semillas");
-        btnAdministrarAcopios.setBounds(900, 200, 215, 70);
+        btnAdministrarAcopios.setBounds(900, 300, 215, 70);
         image.add(btnAdministrarAcopios);
 
         btnAdministrarAcopios.addActionListener(e -> {
@@ -134,7 +147,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON EXIT
         JButton btnExit = new JButton("Salir");
-        btnExit.setBounds(1000, 425, 115, 30);
+        btnExit.setBounds(1000, 525, 115, 30);
 //        ImageIcon exitIcon = new ImageIcon("C:\\Users\\jagm\\Documents\\Habilitacion\\Desarrollo\\Gestar\\src\\Imagenes.Imagenes\\exit5.jpg");
 //        Image img = exitIcon.getImage();
 //        Image newimg = img.getScaledInstance(230, 100, java.awt.Image.SCALE_SMOOTH);
@@ -149,7 +162,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON ADMINISTRAR ACOPIOS
         JButton btnAdmAcopios = new JButton("Administrar Stock Silos");
-        btnAdmAcopios.setBounds(650, 300, 215, 70);
+        btnAdmAcopios.setBounds(650, 400, 215, 70);
         image.add(btnAdmAcopios);
 
         btnAdmAcopios.addActionListener(e -> {
@@ -161,7 +174,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //BUTTON ADMINISTRAR EGRESOS
         JButton btnAdmEgreso = new JButton("Administrar Egresos Semillas");
-        btnAdmEgreso.setBounds(900, 300, 215, 70);
+        btnAdmEgreso.setBounds(900, 400, 215, 70);
         image.add(btnAdmEgreso);
 
         btnAdmEgreso.addActionListener(e -> {
@@ -261,6 +274,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         campaniaPlanificada = new JMenuItem("Planificar Campa\u00f1a");
         campaniaPlanificada.addActionListener(this);
         campanias.add(campaniaPlanificada);
+
+        cargaCamp = new JMenuItem("Carga Campa\u00f1a");
+        cargaCamp.addActionListener(this);
+        campanias.add(cargaCamp);
 
 //            AdmCampaniaPlanificada = new JMenuItem("Administrar Campa\u00f1as Planificadas");
 //            AdmCampaniaPlanificada.addActionListener(this);
@@ -416,7 +433,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == laboreoTemp) {
-            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo();
+            PantallaLaboreo pantallaLaboreo = new PantallaLaboreo(null);
             pantallaLaboreo.setVisible(true);
             getDefaultCloseOperation();
         }
@@ -499,7 +516,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 
         if (e.getSource() == campaniaPlanificada) {
-            PantallaLaboreo administrarOrdenesPorCampania = new PantallaLaboreo();
+            PantallaLaboreo administrarOrdenesPorCampania = new PantallaLaboreo(null);
             administrarOrdenesPorCampania.setVisible(true);
             getDefaultCloseOperation();
         }
@@ -534,6 +551,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             administrarOrdenesPorCampania.setVisible(true);
             getDefaultCloseOperation();
         }
+
+        if (e.getSource() == cargaCamp) {
+            CargaCampania cargaCampania = new CargaCampania("Carga", 0, "", null, null, null);
+            cargaCampania.setVisible(true);
+            getDefaultCloseOperation();
+        }
 //
 //        if (e.getSource() == manual) {
 //             Manual = new AdministrarTipoTransporte();
@@ -564,18 +587,18 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         List<PlanificacionCampaniaEntity> list = query.list();
 //        Iterator iter = list.iterator();
 
-        for (PlanificacionCampaniaEntity plan : list) {
-            CampaniaEntity campaniaEntity = plan.getCampania();
-            campaniaEntity.setEstado("FINALIZADA");
-            campaniaEntity.setCnaFechaBaja(fecha);
-
-            session.saveOrUpdate(campaniaEntity);
-
-        }
+//        for (PlanificacionCampaniaEntity plan : list) {
+//            CampaniaEntity campaniaEntity = plan.getCampania();
+//            campaniaEntity.setEstado("FINALIZADA");
+//            campaniaEntity.setCnaFechaBaja(fecha);
+//
+//            session.saveOrUpdate(campaniaEntity);
+//
+//        }
 
         try {
             tx.commit();
-            session.close();
+//            session.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();

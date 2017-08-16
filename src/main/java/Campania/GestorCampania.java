@@ -203,6 +203,16 @@ public class GestorCampania {
             LoteCampaniaEntity loteCampaniaEntity = new LoteCampaniaEntity();
 
             LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
+
+            loteEntity.setEstado("OCUPADO");
+            try {
+                session.update(loteEntity);
+
+            } catch (Exception ex) {
+                tx.rollback();
+                session.close();
+            }
+
             loteCampaniaEntity.setLcpFechaInicio(campania.getFechaInicio());
             loteCampaniaEntity.setLcpFechaFin(campania.getFechaFinEstimada());
             loteCampaniaEntity.setLcpFechaAlta(fechaActual);

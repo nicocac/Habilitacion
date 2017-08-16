@@ -89,7 +89,7 @@ public class PantallaLaboreo extends JFrame {
     String insumosSinStock = "";
     String insumosFaltantes = "";
 
-    public PantallaLaboreo() {
+    public PantallaLaboreo(String denominacion) {
 
 
         //INICIO
@@ -121,7 +121,13 @@ public class PantallaLaboreo extends JFrame {
         inicializaTablaLaboreos();
         cargarItems();
         cargarMaquinas();
-        cargarCampanias();
+        if (denominacion != null) {
+            Campania campania = cargarCampaniasModificar(denominacion);
+            cboCampania.setSelectedIndex(0);
+        } else {
+            cargarCampanias();
+
+        }
         cargarCbxSemillas();
 //        cargarMomentos();
         cargaComboBoxLaboreo();
@@ -560,7 +566,9 @@ public class PantallaLaboreo extends JFrame {
                 super.mouseClicked(e);
 //                borrarComboBoxCampania();
 //                cargarCampanias();
-                agregarCampanias();
+                if (denominacion == null) {
+                    agregarCampanias();
+                }
             }
         });
 
@@ -603,8 +611,6 @@ public class PantallaLaboreo extends JFrame {
         });
 
 
-
-
         cbxSemillas.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -623,7 +629,6 @@ public class PantallaLaboreo extends JFrame {
 //                txtDescripcion.setText(laboreoEntity.getLboNombre());
             }
         });
-
 
 
         //Metodo Tipo Laboreo
@@ -758,11 +763,11 @@ public class PantallaLaboreo extends JFrame {
         btnArriba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(),tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() -1);
-                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow()-1, tableLaboreos.getSelectedRow()-1);
+                modelLaboreos.moveRow(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() - 1);
+                tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow() - 1, tableLaboreos.getSelectedRow() - 1);
 
-                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(),0);
-                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow()+1, tableLaboreos.getSelectedRow()+1,0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(), 0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow() + 1, tableLaboreos.getSelectedRow() + 1, 0);
             }
         });
         btnAbajo.addActionListener(new ActionListener() {
@@ -771,8 +776,8 @@ public class PantallaLaboreo extends JFrame {
                 modelLaboreos.moveRow(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow() + 1);
                 tableLaboreos.setRowSelectionInterval(tableLaboreos.getSelectedRow() + 1, tableLaboreos.getSelectedRow() + 1);
 
-                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(),0);
-                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow()-1, tableLaboreos.getSelectedRow()-1,0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow(), tableLaboreos.getSelectedRow(), 0);
+                tableLaboreos.setValueAt(tableLaboreos.getSelectedRow() - 1, tableLaboreos.getSelectedRow() - 1, 0);
             }
         });
     }
@@ -902,11 +907,38 @@ public class PantallaLaboreo extends JFrame {
 
         Iterator iter = listaItems.iterator();
         while (iter.hasNext()) {
-            cboCampania.addItem(iter.next());
+            campania = (Campania) iter.next();
+            camp = campaniaRepository.getCampaniaByNombre(campania.getDenominacion());
+            if (!camp.getEstado().equals("CANCELADA") && !camp.getEstado().equals("FINALIZADA") && !camp.getEstado().equals("PLANIFICADA")) {
+                cboCampania.addItem(campania);
+            }
         }
 
         cboCampania.setSelectedItem(null);
 
+    }
+
+
+    private Campania cargarCampaniasModificar(String denominacion) {
+        CampaniaEntity camp;
+        Campania campania = new Campania();
+        java.util.List listaItems;
+        listaItems = gestor.getCampanias();
+
+        Iterator iter = listaItems.iterator();
+        while (iter.hasNext()) {
+            campania = (Campania) iter.next();
+            camp = campaniaRepository.getCampaniaByNombre(campania.getDenominacion());
+            if (!camp.getEstado().equals("CANCELADA") && !camp.getEstado().equals("FINALIZADA") && !camp.getEstado().equals("PLANIFICADA")) {
+                if (camp.getCnaDenominacion().equals(denominacion)) {
+                    cboCampania.addItem(campania);
+                    break;
+                }
+            }
+        }
+
+        cboCampania.setSelectedItem(null);
+        return campania;
     }
 
     private void agregarCampanias() {
@@ -921,23 +953,27 @@ public class PantallaLaboreo extends JFrame {
         int size = model.getSize();
 
         while (iter.hasNext()) {
-            boolean flag = false;
-            Campania campania = (Campania) iter.next();
-            for (int i = 0; i < size; i++) {
-                Campania element = (Campania) model.getElementAt(i);
+            Campania campania2 = (Campania) iter.next();
+            CampaniaEntity camp = campaniaRepository.getCampaniaByNombre(campania2.getDenominacion());
+            if (!camp.getEstado().equals("CANCELADA") && !camp.getEstado().equals("FINALIZADA") && !camp.getEstado().equals("PLANIFICADA")) {
 
-                if (campania.getDenominacion().equals(element.getDenominacion())) {
-                    flag = true;
+                boolean flag = false;
+                Campania campania = (Campania) iter.next();
+                for (int i = 0; i < size; i++) {
+                    Campania element = (Campania) model.getElementAt(i);
+
+                    if (campania.getDenominacion().equals(element.getDenominacion())) {
+                        flag = true;
+                    }
                 }
-            }
 
-            if (!flag) {
-                cboCampania.addItem(campania);
+                if (!flag) {
+                    cboCampania.addItem(campania);
+                }
             }
         }
 
         cboCampania.setSelectedItem(null);
-
 
     }
 
@@ -990,7 +1026,7 @@ public class PantallaLaboreo extends JFrame {
     }
 
     private void borrarComboBoxTipoLaboreo() {
-        if(cboMomentos != null) {
+        if (cboMomentos != null) {
             cboMomentos.removeAllItems();
         }
     }
@@ -1018,8 +1054,11 @@ public class PantallaLaboreo extends JFrame {
         for (CampaniaEntity campania : listaCampaniaEntity) {
             //System.out.println(tipoEstado.getTeMaNombre());
 //            miVectorcampania.add(campania.getCnaDenominacion());
-            cboCampania.addItem(campania);
-            cboCampania.setSelectedItem(null);
+            if (!campania.getEstado().equals("CANCELADA") || !campania.getEstado().equals("FINALIZADA") || !campania.getEstado().equals("PLANIFICADA")) {
+                cboCampania.addItem(campania);
+                cboCampania.setSelectedItem(null);
+            }
+
         }
 
     }
