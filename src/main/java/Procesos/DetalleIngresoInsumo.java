@@ -5,6 +5,7 @@ import Datos.InsumoEntity;
 import Insumo.Insumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.Date;
 
@@ -125,7 +126,9 @@ public class DetalleIngresoInsumo {
     }
 
     public int getLastId(){
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         int max = 0;
         try {
@@ -139,7 +142,7 @@ public class DetalleIngresoInsumo {
         }catch (Exception e){
             return -1;
         }finally {
-            session.close();
+            //session.close();
         }
     }
 }

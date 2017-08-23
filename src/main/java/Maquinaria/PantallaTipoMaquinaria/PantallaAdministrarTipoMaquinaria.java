@@ -126,7 +126,9 @@ public class PantallaAdministrarTipoMaquinaria extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             tipo = new TipoMaquinariaEntity();
@@ -157,7 +159,7 @@ public class PantallaAdministrarTipoMaquinaria extends JFrame {
             showMessage("Ocurrio un error al dar de baja el tipo de maquinaria: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -166,7 +168,9 @@ public class PantallaAdministrarTipoMaquinaria extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposMaquinaria() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             tipo = new TipoMaquinariaEntity();
@@ -186,7 +190,7 @@ public class PantallaAdministrarTipoMaquinaria extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

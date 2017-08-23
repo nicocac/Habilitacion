@@ -128,7 +128,9 @@ public class CargaLote extends JFrame{
 
     //METODO CARGA COMBO CAMPO
     private void cargaComboBoxCampo() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM CampoEntity p");
         java.util.List<CampoEntity> listaTipoMaquinaria = query.list();
 
@@ -148,7 +150,9 @@ public class CargaLote extends JFrame{
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         LoteEntity lote = new LoteEntity();
         if (validaCarga().equals("S")) {
@@ -166,7 +170,7 @@ public class CargaLote extends JFrame{
                 CampoEntity campoEntity = campoRepository.getCampoByNombre(campo);
                 lote.setCampo(campoEntity);
 
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(lote);
                 } else {
@@ -175,11 +179,11 @@ public class CargaLote extends JFrame{
                 }
                 tx.commit();
                 guardado = tx.wasCommitted();
-//                session.close();
+//                //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el lote: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");

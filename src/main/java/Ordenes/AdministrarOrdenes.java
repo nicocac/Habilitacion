@@ -195,7 +195,9 @@ public class AdministrarOrdenes extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             int fila = tblCampPlanificadas.getSelectedRow();
@@ -225,7 +227,7 @@ public class AdministrarOrdenes extends JFrame {
             showMessage("Ocurrio un error al dar de baja la orden: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -234,7 +236,9 @@ public class AdministrarOrdenes extends JFrame {
 
     //METODO BUSCAR Campanias planificadas
     public void buscarOrdenes() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             OrdenTrabajoEntity planificacion;
@@ -260,7 +264,7 @@ public class AdministrarOrdenes extends JFrame {
             }
             setModel(columnNames, data, tblCampPlanificadas);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

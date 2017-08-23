@@ -115,7 +115,9 @@ public class CargaMaquinaria extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         MaquinariaEntity maquinaria = new MaquinariaEntity();
         if (validaCarga().equals("S")) {
@@ -138,7 +140,7 @@ public class CargaMaquinaria extends JFrame {
                 maquinaria.setTipoEstadoMaquinariaByMaqTestadoId(tipoEstadoMaquinariaEntity);
 
 
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(maquinaria);
                 } else {
@@ -149,11 +151,11 @@ public class CargaMaquinaria extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//                session.close();
+//                //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurri? un error al cargar la maquinaria: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
                 //guardaStock(insumo);
             }
         } else {
@@ -176,7 +178,9 @@ public class CargaMaquinaria extends JFrame {
 
     //METODO CARGA COMBO TIPO MAQUINARIA
     private void cargaComboBoxTipoMaquinaria() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoMaquinariaEntity p");
         java.util.List<TipoMaquinariaEntity> listaTipoMaquinaria = query.list();
 
@@ -201,7 +205,9 @@ public class CargaMaquinaria extends JFrame {
 
     //METODO CARGA COMBO TIPO ESTADO MAQUINARIA
     private void cargaComboBoxTipoEstado() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoEstadoMaquinariaEntity p");
         java.util.List<TipoEstadoMaquinariaEntity> listaTipoEstadoMaquinaria = query.list();
 

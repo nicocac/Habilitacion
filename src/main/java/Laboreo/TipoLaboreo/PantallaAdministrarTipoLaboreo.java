@@ -129,7 +129,9 @@ public class PantallaAdministrarTipoLaboreo extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             tipo = new TipoLaboreoEntity();
@@ -160,7 +162,7 @@ public class PantallaAdministrarTipoLaboreo extends JFrame {
             showMessage("Ocurrio un error al dar de baja el tipo de Laboreo: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -169,7 +171,9 @@ public class PantallaAdministrarTipoLaboreo extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposLaboreo() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             tipo = new TipoLaboreoEntity();
@@ -189,7 +193,7 @@ public class PantallaAdministrarTipoLaboreo extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

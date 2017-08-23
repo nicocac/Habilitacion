@@ -63,7 +63,8 @@ public class CargaTipoGrano extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
@@ -82,11 +83,11 @@ public class CargaTipoGrano extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//            session.close();
+//            //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el tipo de Grano: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");

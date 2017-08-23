@@ -152,7 +152,9 @@ public class PantallaAdministrarCliente extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             cliente = new ClienteEntity();
@@ -187,7 +189,7 @@ public class PantallaAdministrarCliente extends JFrame {
             showMessage("Ocurrio un error al dar de baja el cliente: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -196,7 +198,9 @@ public class PantallaAdministrarCliente extends JFrame {
 
     //METODO BUSCAR CLIENTES
     public void buscarClientes() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             cliente = new ClienteEntity();
@@ -222,7 +226,7 @@ public class PantallaAdministrarCliente extends JFrame {
             }
             setModel(columnNames, data, tblClientes);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

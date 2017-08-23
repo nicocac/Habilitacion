@@ -227,7 +227,9 @@ public class PantallaAdministrarMaquinaria extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             maquinaria = new MaquinariaEntity();
@@ -264,7 +266,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
             showMessage("Ocurrio un error al dar de baja la maquinaria: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -273,7 +275,9 @@ public class PantallaAdministrarMaquinaria extends JFrame {
 
     //METODO BUSCAR MAQUINARIAS
     public void buscarMaquinarias() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             maquinaria = new MaquinariaEntity();
@@ -298,7 +302,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
             }
             setModel(columnNames, data, tblMaquinaria);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

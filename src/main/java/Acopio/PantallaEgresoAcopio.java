@@ -6,12 +6,16 @@ import Conexion.Conexion;
 import Date.DateLabelFormatter;
 import Datos.*;
 import Laboreo.GestorLaboreo;
+import Laboreo.TicketPesada;
+import Laboreo.TicketPesadaEgreso;
 import Repository.*;
 import Transporte.CargaTransporte;
 import com.itextpdf.text.*;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
@@ -28,6 +32,7 @@ import java.awt.event.FocusEvent;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.Date;
 import java.util.*;
 import java.util.List;
@@ -91,6 +96,7 @@ public class PantallaEgresoAcopio extends JFrame {
     public JComboBox cbxLocalidad;
     public JButton btnCargarPesada;
     public JButton btnActualizarPeso;
+    public JTextField txtNroTicket;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
 
     private String tipoOperacion;
@@ -108,6 +114,7 @@ public class PantallaEgresoAcopio extends JFrame {
     ClienteRepository clienteRepository = new ClienteRepository();
     TransporteRepository transporteRepository = new TransporteRepository();
     EgresoAcopioRepository egresoAcopioRepository = new EgresoAcopioRepository();
+    TicketPesadaRepository ticketPesadaRepository = new TicketPesadaRepository();
 
     Long cantidad = null;
     Long cantidadPesoTotal = 0L;
@@ -239,30 +246,30 @@ public class PantallaEgresoAcopio extends JFrame {
             if (validaCarga().equals("S")) {
                 try {
 
-                    if(cbxTransporte.getSelectedItem() == null){
+                    if (cbxTransporte.getSelectedItem() == null) {
                         showMessage("Debe seleccionar Transporte antes de continuar");
                         return;
                     }
 
-                    if(cbxSemilla.getSelectedItem() == null){
+                    if (cbxSemilla.getSelectedItem() == null) {
                         showMessage("Debe seleccionar Semilla antes de continuar");
                         return;
                     }
-                    if(cbxAcopio.getSelectedItem() == null){
+                    if (cbxAcopio.getSelectedItem() == null) {
                         showMessage("Debe seleccionar Acopio antes de continuar");
                         return;
                     }
-                    if(txtCantidad.getText().equals("")){
+                    if (txtCantidad.getText().equals("")) {
                         showMessage("Debe completar la cantidad parcial antes de continuar");
                         return;
                     }
 
-                    if(txtObserv.getText().equals("")){
+                    if (txtObserv.getText().equals("")) {
                         showMessage("Debe completar observaciones antes de continuar");
                         return;
                     }
 
-                    if(tblDetalles.getRowCount() == 0){
+                    if (tblDetalles.getRowCount() == 0) {
                         showMessage("Debe agregar al menos una semilla para exportar antes de continuar");
                         return;
                     }
@@ -273,7 +280,7 @@ public class PantallaEgresoAcopio extends JFrame {
                     EgresoAcopioEntity egreso = new EgresoAcopioEntity();
 //
                     java.util.Date selectedDateIni = (java.util.Date) datePickerIni.getModel().getValue();
-                    if(selectedDateIni == null){
+                    if (selectedDateIni == null) {
                         showMessage("Debe seleccionar la fecha antes de continuar");
                         return;
                     }
@@ -601,20 +608,19 @@ public class PantallaEgresoAcopio extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase("Datos Semilla: ", fontSubTitulos));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-                    paragraph.add(new Phrase("Semilla: " +tblDetalles.getValueAt(0, 1), categoryFont));
+                    paragraph.add(new Phrase("Semilla: " + tblDetalles.getValueAt(0, 1), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-                    paragraph.add(new Phrase("Tipo Movimiento: " +tblDetalles.getValueAt(0, 0), categoryFont));
+                    paragraph.add(new Phrase("Tipo Movimiento: " + tblDetalles.getValueAt(0, 0), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-                    paragraph.add(new Phrase("Cantidad: " +tblDetalles.getValueAt(0, 2), categoryFont));
+                    paragraph.add(new Phrase("Cantidad: " + tblDetalles.getValueAt(0, 2), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase("Medida: Kilogramos", categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-                    paragraph.add(new Phrase("Acopio Nro: " +tblDetalles.getValueAt(0, 3), categoryFont));
+                    paragraph.add(new Phrase("Acopio Nro: " + tblDetalles.getValueAt(0, 3), categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
-
 
 
                     paragraph.add(new Phrase("El titular de los granos a transportar deberá ingresar a la web de afip, acceder al servicio con Clave Fiscal “JAUKE - Emisión de Cartas de Porte”," +
@@ -625,21 +631,24 @@ public class PantallaEgresoAcopio extends JFrame {
                             "Datos de la solicitud\n" +
                             "Carácter de la solicitud: si se trata de un productor de granos, de un operador del comercio de granos o de un sujeto autorizado por la ONCCA o por la AFIP;\n" +
                             "punto de venta;\n" +
-                            "cantidad." , categoryFont));
+                            "cantidad.", categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
-                    paragraph.add(new Phrase("https://www.afip.gob.ar/sitio/externos/default.asp" , categoryFont));
+                    paragraph.add(new Phrase("https://www.afip.gob.ar/sitio/externos/default.asp", categoryFont));
                     paragraph.add(new Phrase(Chunk.NEWLINE));
                     Chunk chunk = new Chunk("This is the title", fontTitulos);
                     chunk.setBackground(BaseColor.GRAY);
 
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\remito.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("src/main/resources/ListadosPDF/remito.pdf"));
                     doc.open();
+                    Image img = Image.getInstance("src/main/resources/Imagenes/MenuPrincipalBannerReporte.jpg");
+//                    doc.add(new Paragraph("Sample 1: This is simple image demo."));
+                    doc.add(img);
 //                    PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
 //                    //adding table headers
 //                    for (int i = 0; i < tblInsumos.getColumnCount(); i++) {
@@ -670,6 +679,39 @@ public class PantallaEgresoAcopio extends JFrame {
                     Logger.getLogger(PantallaEgresoAcopio.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(PantallaEgresoAcopio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+
+        btnCargarPesada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TicketPesadaEgreso cargaTicketPesada = new TicketPesadaEgreso("Carga", "0", cbxAcopio.getSelectedItem().toString(), cbxSemilla.getSelectedItem().toString(), fecha.toString());
+                cargaTicketPesada.setVisible(true);
+                getDefaultCloseOperation();
+            }
+        });
+
+
+        btnActualizarPeso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (txtNroTicket.getText().equals("")) {
+                    showMessage("Debe completar el num de ticket");
+                    return;
+                }
+
+                Integer nro = Integer.parseInt(txtNroTicket.getText());
+                TicketPesadaEntity ticket = ticketPesadaRepository.getTicketByNro(nro);
+                if (ticket == null) {
+                    showMessage("Ese nro de ticket es inexistente, intente nuevamente");
+                } else {
+                    txtCantidad.setText(ticket.getPeso());
                 }
             }
         });
@@ -825,10 +867,14 @@ public class PantallaEgresoAcopio extends JFrame {
 
     //METODO BUSCAR ACOPIOS
     public List<Object[]> buscarAcopios() {
-        Session session = Conexion.getSessionFactory().openSession();
         java.util.List<Object[]> listaAcopios = null;
+        Session session = null;
+        Transaction tx =null;
         int i = 0;
         try {
+             session = Conexion.getSessionFactory().getCurrentSession();
+             tx = session.beginTransaction();
+
             java.util.List<Object[]> list;
             listaAcopios = new ArrayList<>();
             Object[] acopio;
@@ -862,9 +908,12 @@ public class PantallaEgresoAcopio extends JFrame {
                 listaAcopios.add(acopio);
                 i++;
             }
+            tx.rollback();
+
+        } catch (Exception e) {
 
         } finally {
-            session.close();
+            ////session.close();
             return listaAcopios;
         }
 

@@ -6,6 +6,7 @@ import Datos.LoteEntity;
 import Laboreo.MomentoLaboreo;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Iterator;
 
@@ -16,7 +17,9 @@ public class GestorLote {
     Session session;
 
     public LoteEntity getLoteByDenominacion (String denominacion){
-        session = Conexion.getSessionFactory().openSession();
+        session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LoteEntity te = new LoteEntity();
         MomentoLaboreo mom;
@@ -29,13 +32,16 @@ public class GestorLote {
                 te = (LoteEntity)iter.next();
             }
         }finally {
-            session.close();}
+            //session.close();
+            }
 
         return te;
     }
 
     public LoteCampaniaEntity getLoteCampania (int idLote, int idCampania){
-        session = Conexion.getSessionFactory().openSession();
+        session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LoteCampaniaEntity te = new LoteCampaniaEntity();
         MomentoLaboreo mom;
@@ -49,7 +55,8 @@ public class GestorLote {
                 te = (LoteCampaniaEntity)iter.next();
             }
         }finally {
-            session.close();}
+            //session.close();
+            }
 
         return te;
     }

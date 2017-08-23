@@ -55,7 +55,7 @@ public class AdministrarTipoAcopio extends JFrame {
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
-//            Session session = Conexion.getSessionFactory().openSession();
+//            Session session = Conexion.getSessionFactory().getCurrentSession();
             buscarTiposAcopio();
         });
 
@@ -140,7 +140,9 @@ public class AdministrarTipoAcopio extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             tipo = new TipoAcopioEntity();
@@ -171,7 +173,7 @@ public class AdministrarTipoAcopio extends JFrame {
             showMessage("Ocurrio un error al dar de baja el tipo de Acopio: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            ////session.close();
         }
 
         return 0;
@@ -180,7 +182,9 @@ public class AdministrarTipoAcopio extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposAcopio() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             tipo = new TipoAcopioEntity();
@@ -200,7 +204,7 @@ public class AdministrarTipoAcopio extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            session.close();
+            ////session.close();
         }
 
     }

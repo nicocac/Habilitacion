@@ -26,7 +26,7 @@ public class GestorCampania {
     LoteCampaniaRepository loteCampaniaRepository = new LoteCampaniaRepository();
 //
 //    public CampaniaEntity getCampaniaByCnaName(String cnaName){
-//        session = Conexion.getSessionFactory().openSession();
+//        session = Conexion.getSessionFactory().getCurrentSession();
 //        java.util.List list;
 //        CampaniaEntity camp = new CampaniaEntity();
 //        try {
@@ -34,7 +34,7 @@ public class GestorCampania {
 //            query.setParameter("pCnaName", cnaName);
 //            list = query.list();
 //        } finally {
-//            session.close();
+//            //session.close();
 //        }
 //        Iterator iter = list.iterator();
 //        while (iter.hasNext()) {
@@ -44,7 +44,9 @@ public class GestorCampania {
 //    }
 
     public List getCampanias() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LinkedList retorno = new LinkedList();
         LinkedList lkLotes;
@@ -72,13 +74,15 @@ public class GestorCampania {
                 retorno.add(campania);
             }
         } finally {
-            session.close();
+            //session.close();
         }
         return retorno;
     }
 
     public List getLotesCampania(Campania camp) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         Collection col;
         LinkedList retorno = new LinkedList();
@@ -105,36 +109,47 @@ public class GestorCampania {
             }
 
         } finally {
-            session.close();
+            //session.close();
         }
 
         return retorno;
 
     }
-
 
 
     public List getLotesByCampania(int camp) {
-        Session session = Conexion.getSessionFactory().openSession();
         List retorno = new ArrayList();
-        List<LoteEntity> listaLotesEntity = loteCampaniaRepository.getLotesByCampaniaId(camp);
-        LoteEntity loteEntity;
-        Lote lote;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
 
-        Iterator iter = listaLotesEntity.iterator();
-        while (iter.hasNext()) {
-            loteEntity = (LoteEntity) iter.next();
-            lote = new Lote(loteEntity.getLteDenominacion(), loteEntity.getLteCantMetros(), loteEntity.getLteUbicacion(), loteEntity.getLteFechaDesde(), loteEntity.getLteFechaHasta());
-            retorno.add(lote);
+            List<LoteEntity> listaLotesEntity = loteCampaniaRepository.getLotesByCampaniaId(camp);
+            LoteEntity loteEntity;
+            Lote lote;
+
+            Iterator iter = listaLotesEntity.iterator();
+            while (iter.hasNext()) {
+                loteEntity = (LoteEntity) iter.next();
+                lote = new Lote(loteEntity.getLteDenominacion(), loteEntity.getLteCantMetros(), loteEntity.getLteUbicacion(), loteEntity.getLteFechaDesde(), loteEntity.getLteFechaHasta());
+                retorno.add(lote);
+            }
+            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+            return retorno;
+
         }
-        return retorno;
 
     }
 
 
-
     public List getMomentos() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LinkedList retorno = new LinkedList();
         TipoLaboreoEntity te;
@@ -149,19 +164,23 @@ public class GestorCampania {
                 retorno.add(mom);
             }
         } finally {
-            session.close();
+            //session.close();
         }
 
         return retorno;
     }
 
     public List getLotes() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = null;
+        Transaction tx = null;
+
         java.util.List list;
         LoteEntity loteEntity;
         Lote lote;
         LinkedList retorno = new LinkedList();
         try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
             Query query = session.createQuery("select t from LoteEntity t where lteFechaBaja is null");
             list = query.list();
             Iterator iter = list.iterator();
@@ -170,72 +189,79 @@ public class GestorCampania {
                 lote = new Lote(loteEntity.getLteDenominacion(), loteEntity.getLteCantMetros(), loteEntity.getLteUbicacion(), loteEntity.getLteFechaDesde(), loteEntity.getLteFechaHasta());
                 retorno.add(lote);
             }
+            tx.rollback();
+        } catch (Exception e) {
+
         } finally {
-            session.close();
+            //session.close();
+            return retorno;
+
         }
 
-        return retorno;
     }
 
 
     public void registrarCampania(Campania campania, String tipoOperacion, int cnaId) {
-        Session session = Conexion.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
 
-        CampaniaEntity campaniaEntity = new CampaniaEntity();
+            CampaniaEntity campaniaEntity = new CampaniaEntity();
 
-        campaniaEntity.setCnaDenominacion(campania.getDenominacion());
-        campaniaEntity.setCnaFechaInicio(campania.getFechaInicio());
-        campaniaEntity.setCnaFechaFinEstimada(campania.getFechaFinEstimada());
-        campaniaEntity.setCnaFechaFinReal(campania.getFechaFinReal());
-        campaniaEntity.setCnaFechaAlta(fechaActual);
-        campaniaEntity.setCnaUsuarioAlta("admin");
-        campaniaEntity.setEstaPlanificada(false);
-        campaniaEntity.setEstado("INICIALIZADA");
+            campaniaEntity.setCnaDenominacion(campania.getDenominacion());
+            campaniaEntity.setCnaFechaInicio(campania.getFechaInicio());
+            campaniaEntity.setCnaFechaFinEstimada(campania.getFechaFinEstimada());
+            campaniaEntity.setCnaFechaFinReal(campania.getFechaFinReal());
+            campaniaEntity.setCnaFechaAlta(fechaActual);
+            campaniaEntity.setCnaUsuarioAlta("admin");
+            campaniaEntity.setEstaPlanificada(false);
+            campaniaEntity.setEstado("CREADA");
 
-        for (Lote lote : campania.getLotes()) {
-            //Si estamos modificando la campaa borrar y crear de nuevo todos los lotescampanias
+            for (Lote lote : campania.getLotes()) {
+                //Si estamos modificando la campaa borrar y crear de nuevo todos los lotescampanias
 
-            if (!tipoOperacion.equals("Carga")) {
-                loteCampaniaRepository.deleteAllByCampania(campaniaEntity.getCnaId());
-            }
+                if (!tipoOperacion.equals("Carga")) {
+                    loteCampaniaRepository.deleteAllByCampania(campaniaEntity.getCnaId());
+                }
 
-            LoteCampaniaEntity loteCampaniaEntity = new LoteCampaniaEntity();
+                LoteCampaniaEntity loteCampaniaEntity = new LoteCampaniaEntity();
 
-            LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
+                LoteEntity loteEntity = loteRepository.getLoteByDenominacionEnRegistrarCampania(lote.getDenominacion());
 
-            loteEntity.setEstado("OCUPADO");
-            try {
+                loteEntity.setEstado("OCUPADO");
+
                 session.update(loteEntity);
 
-            } catch (Exception ex) {
-                tx.rollback();
-                session.close();
+
+                loteCampaniaEntity.setLcpFechaInicio(campania.getFechaInicio());
+                loteCampaniaEntity.setLcpFechaFin(campania.getFechaFinEstimada());
+                loteCampaniaEntity.setLcpFechaAlta(fechaActual);
+                loteCampaniaEntity.setLcpUsuarioAlta("admin");
+                loteCampaniaEntity.setCampaniaByLcpCnaId(campaniaEntity);
+                loteCampaniaEntity.setLoteByLcpLteId(loteEntity);
+
+                session.save(loteCampaniaEntity);
             }
 
-            loteCampaniaEntity.setLcpFechaInicio(campania.getFechaInicio());
-            loteCampaniaEntity.setLcpFechaFin(campania.getFechaFinEstimada());
-            loteCampaniaEntity.setLcpFechaAlta(fechaActual);
-            loteCampaniaEntity.setLcpUsuarioAlta("admin");
-            loteCampaniaEntity.setCampaniaByLcpCnaId(campaniaEntity);
-            loteCampaniaEntity.setLoteByLcpLteId(loteEntity);
+            if (tipoOperacion.equals("Carga"))
 
-            session.save(loteCampaniaEntity);
-        }
+            {
+                session.save(campaniaEntity);
+            } else
 
-        if (tipoOperacion.equals("Carga")) {
-            session.save(campaniaEntity);
-        } else {
-            campaniaEntity.setCnaId(cnaId);
-            session.update(campaniaEntity);
-        }
+            {
+                campaniaEntity.setCnaId(cnaId);
+                session.update(campaniaEntity);
+            }
 
-        try {
+
             tx.commit();
         } catch (Exception ex) {
             tx.rollback();
         }
-        session.close();
+        //session.close();
 
 
     }

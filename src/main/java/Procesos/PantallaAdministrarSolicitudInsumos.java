@@ -141,7 +141,9 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             compra = new SolicitudInsumoEntity();
@@ -172,7 +174,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
             showMessage("Ocurrio un error al dar de baja la solicitud de insumos: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -181,7 +183,9 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
 
     //METODO BUSCAR Compras
     public void buscarNotasCompra() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             compra = new SolicitudInsumoEntity();
@@ -204,7 +208,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
             }
             setModel(columnNames, data, tblCompras);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

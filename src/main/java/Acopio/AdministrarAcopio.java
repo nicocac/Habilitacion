@@ -86,7 +86,7 @@ public class AdministrarAcopio extends JFrame {
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
-//            Session session = Conexion.getSessionFactory().openSession();
+//            Session session = Conexion.getSessionFactory().getCurrentSession();
             buscarTiposAcopio();
         });
 
@@ -148,7 +148,6 @@ public class AdministrarAcopio extends JFrame {
         });
 
 
-
         imprimirStockAcopioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -173,7 +172,7 @@ public class AdministrarAcopio extends JFrame {
                         pdfTable.addCell(tblTipos.getColumnName(i));
                     }
                     //extracting data from the JTable and inserting it to PdfPTable
-                    for (int rows = 0; rows < tblTipos.getRowCount() ; rows++) {
+                    for (int rows = 0; rows < tblTipos.getRowCount(); rows++) {
                         for (int cols = 0; cols < tblTipos.getColumnCount(); cols++) {
                             pdfTable.addCell(tblTipos.getModel().getValueAt(rows, cols).toString());
 
@@ -189,7 +188,7 @@ public class AdministrarAcopio extends JFrame {
                     String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListadoAcopio.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
-                    }catch (IOException io) {
+                    } catch (IOException io) {
                         Logger.getLogger(AdministrarAcopio.class.getName()).log(Level.SEVERE, null, io);
                     }
 
@@ -240,7 +239,9 @@ public class AdministrarAcopio extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             tipo = new AcopioEntity();
@@ -271,7 +272,7 @@ public class AdministrarAcopio extends JFrame {
             showMessage("Ocurrio un error al dar de baja el Acopio: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            ////session.close();
         }
 
         return 0;
@@ -280,7 +281,9 @@ public class AdministrarAcopio extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposAcopio() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             java.util.List<Object[]> list;
@@ -292,17 +295,17 @@ public class AdministrarAcopio extends JFrame {
 
             List<Object[]> listStockFinal = new ArrayList<>();
 
-            for(Object[] ingreso: list){
+            for (Object[] ingreso : list) {
 
-                for(Object[] egreso: listEgreso){
-                    if(ingreso[0].equals(egreso[0])){
+                for (Object[] egreso : listEgreso) {
+                    if (ingreso[0].equals(egreso[0])) {
 
-                        Long cantidadFinal = (Long)ingreso[6] -(Long)egreso[1];
+                        Long cantidadFinal = (Long) ingreso[6] - (Long) egreso[1];
                         ingreso[6] = cantidadFinal;
                     }
 
                 }
-            listStockFinal.add(ingreso);
+                listStockFinal.add(ingreso);
             }
             //
 
@@ -322,8 +325,10 @@ public class AdministrarAcopio extends JFrame {
                 i++;
             }
             setModel(columnNames, data, tblTipos);
+            tx.rollback();
+        } catch (Exception e) {
         } finally {
-            session.close();
+            ////session.close();
         }
 
     }

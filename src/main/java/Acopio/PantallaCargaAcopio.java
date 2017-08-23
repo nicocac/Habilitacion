@@ -275,7 +275,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO GUARDAR
     private Boolean save(net.sourceforge.jdatepicker.impl.JDatePickerImpl datePickerIni) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         IngresoAcopioEntity ingreso = new IngresoAcopioEntity();
         if (validaCarga().equals("S")) {
@@ -320,7 +322,7 @@ public class PantallaCargaAcopio extends JFrame {
 
 
 
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(ingreso);
 
@@ -339,11 +341,11 @@ public class PantallaCargaAcopio extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//                session.close();
+//                ////session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el ingreso: " + e.toString());
             } finally {
-                session.close();
+                ////session.close();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
@@ -368,7 +370,9 @@ public class PantallaCargaAcopio extends JFrame {
     //METODO CARGA COMBO  Acopio
 
     private void cargaComboBoxAcopio() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM AcopioEntity p");
         java.util.List<AcopioEntity> listaTipoMaquinaria = query.list();
 
@@ -388,7 +392,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO TIPO Acopio
     private void cargaComboBoxTipoAcopio() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoAcopioEntity p");
         java.util.List<TipoAcopioEntity> listaTipoMaquinaria = query.list();
 
@@ -408,7 +414,7 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO TIPO ESTADO
 //    private void cargaComboBoxTipoEstado() {
-//        Session session = Conexion.getSessionFactory().openSession();
+//        Session session = Conexion.getSessionFactory().getCurrentSession();
 //        Query query = session.createQuery("SELECT p FROM TipoEstadoMaquinariaEntity p");
 //        java.util.List<TipoEstadoMaquinariaEntity> listaTipoEstadoMaquinaria = query.list();
 //
@@ -427,7 +433,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO TIPO Grano
     private void cargaComboBoxTipoGrano() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoGranoEntity p");
         java.util.List<TipoGranoEntity> listaTipoMaquinaria = query.list();
 
@@ -447,7 +455,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO TIPO Campania
     private void cargaComboBoxCamp() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM CampaniaEntity p");
         java.util.List<CampaniaEntity> listaTipoMaquinaria = query.list();
 
@@ -467,7 +477,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO Lote
     private void cargaComboBoxLote() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM LoteEntity p");
         java.util.List<LoteEntity> listaTipoMaquinaria = query.list();
 
@@ -487,7 +499,9 @@ public class PantallaCargaAcopio extends JFrame {
 
     //METODO CARGA COMBO Cliente
     private void cargaComboBoxCliente() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM ClienteEntity p");
         java.util.List<ClienteEntity> listaTipoMaquinaria = query.list();
 

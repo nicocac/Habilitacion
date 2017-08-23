@@ -179,7 +179,7 @@ public class PantallaSolicitudInsumos extends JFrame {
                 return;
             }
 
-            Insumo ins = new Insumo("(Sin datos)", null, null, null,null,null);
+            Insumo ins = new Insumo("(Sin datos)", null, null, null, null, null);
             DetalleCompra detalle;
             Compra compra = new Compra();
             ArrayList<DetalleCompra> detalles = new ArrayList<>();
@@ -190,7 +190,7 @@ public class PantallaSolicitudInsumos extends JFrame {
             compra.setNroSolicitud(Integer.valueOf(txtSolicitud.getText()));
             try {
                 for (int i = 0; i < tblCompra.getRowCount(); i++) {
-                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null,null,null);
+                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null, null, null);
                     detalle = new DetalleCompra();
                     detalle.setCantidad(BigDecimal.valueOf(Double.valueOf((String) tblCompra.getValueAt(i, 4))));
 //                    detalle.setPrecio(BigDecimal.valueOf(Double.valueOf((String)tblCompra.getValueAt(i,5))));
@@ -341,12 +341,19 @@ public class PantallaSolicitudInsumos extends JFrame {
 
     //METODO BUSCAR INSUMOS
     private void buscarInsumos(String insumos) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = null;
+
+        Transaction tx = null;
+
+
         int i = 0;
         try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+
+            tx = session.beginTransaction();
 //            java.util.List<String> listaInsumos = new ArrayList<>();
             String[] objectoInsumos = null;
-            if(insumos!=null){
+            if (insumos != null) {
                 objectoInsumos = insumos.split(", ");
 //                for(String obj : objectoInsumos){
 //                    listaInsumos.add(obj);
@@ -363,7 +370,7 @@ public class PantallaSolicitudInsumos extends JFrame {
 
             while (iter.hasNext()) {
                 insumo = (InsumoEntity) iter.next();
-                if(objectoInsumos != null) {
+                if (objectoInsumos != null) {
                     for (String obj : objectoInsumos) {
                         if (insumo.getInsNombre().equals(obj)) {
                             data[i][0] = insumo.getInsId();
@@ -386,8 +393,10 @@ public class PantallaSolicitudInsumos extends JFrame {
                 }
             }
             setModelInsumo(columnNames, data);
+            tx.rollback();
+        } catch (Exception e) {
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

@@ -5,6 +5,7 @@ import Datos.InsumoEntity;
 import Datos.LaboreoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +19,9 @@ public class LaboreoLoteCampaniaRepository {
 
     public List<LaboreoEntity> getAllLaboreoByLoteAndCampania(Integer nroLote, int camId){
         List<LaboreoEntity> listaLaboreo = new ArrayList<>();
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         LaboreoEntity laboreo;
         Query query = session.createQuery("select x.laboreo from PlanificacionCampaniaEntity x " +
                 "where (x.loteCampania.loteByLcpLteId.id = :pId and x.loteCampania.campaniaByLcpCnaId.id = :pCamId)");
@@ -30,13 +33,15 @@ public class LaboreoLoteCampaniaRepository {
             laboreo = (LaboreoEntity) iter.next();
             listaLaboreo.add(laboreo);
         }
-        session.close();
+        //session.close();
         return listaLaboreo;
     }
 
 
     public InsumoEntity getInsumoByNombre(String nombre){
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insNombre) like ucase(:pNombre) and insFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -45,13 +50,15 @@ public class LaboreoLoteCampaniaRepository {
         while (iter.hasNext()) {
             insumo = (InsumoEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return insumo;
     }
 
 
     public InsumoEntity getInsumoById(Integer id){
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select x from InsumoEntity x where ucase(insId) like ucase(:pId) and insFechaBaja is null");
         query.setParameter("pId", id);
@@ -60,7 +67,7 @@ public class LaboreoLoteCampaniaRepository {
         while (iter.hasNext()) {
             insumo = (InsumoEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return insumo;
     }
 

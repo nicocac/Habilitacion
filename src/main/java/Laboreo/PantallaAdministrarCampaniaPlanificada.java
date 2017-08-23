@@ -65,10 +65,10 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
 
         //INICIO
-        if(tipo.equals("Generar")){
+        if (tipo.equals("Generar")) {
             btnRegistrarAvance.setVisible(false);
         } else {
-            if (tipo.equals("Avance")){
+            if (tipo.equals("Avance")) {
                 this.btnNuevaOrden.setVisible(false);
             }
         }
@@ -78,7 +78,6 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
         this.setTitle("Consultar Campa\u00f1as planificadas");
         inicializaTabla();
         buscarCampaniasPlanificadas(tipo);
-
 
 
         //BUSCAR
@@ -256,7 +255,9 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             int fila = tblCampPlanificadas.getSelectedRow();
@@ -286,7 +287,7 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
             showMessage("Ocurrio un error al dar de baja la campania planificada: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -295,9 +296,14 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
     //METODO BUSCAR Campanias planificadas
     public void buscarCampaniasPlanificadas(String tipo) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = null;
+        Transaction tx = null;
+
         int i = 0;
         try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
             PlanificacionCampaniaEntity planificacion;
 
             Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
@@ -312,8 +318,8 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
             while (iter.hasNext()) {
                 planificacion = (PlanificacionCampaniaEntity) iter.next();
-                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacion.getPlanificacionId());
-                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaId(planificacion.getPlanificacionId());
+                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaIdSinTX(planificacion.getPlanificacionId());
+                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaIdSinTX(planificacion.getPlanificacionId());
                 if (listaLaboreoLote.size() != 0 && tipo.equals("Generar")) {
                     data[i][0] = planificacion.getPlanificacionId();
                     data[i][1] = planificacion.getCampania().getCnaDenominacion();
@@ -335,8 +341,10 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
 
             }
             setModel(columnNames, data, tblCampPlanificadas);
+            tx.rollback();
+        } catch (Exception e) {
         } finally {
-//            session.close();
+//            //session.close();
         }
 
     }

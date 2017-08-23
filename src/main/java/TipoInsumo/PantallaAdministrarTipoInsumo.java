@@ -127,7 +127,9 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             tipo = new TipoInsumoEntity();
@@ -158,7 +160,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
             showMessage("Ocurrio un error al dar de baja el tipo de insumo: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -167,7 +169,9 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposInsumo() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             tipo = new TipoInsumoEntity();
@@ -187,7 +191,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

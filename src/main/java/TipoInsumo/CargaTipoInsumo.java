@@ -61,7 +61,9 @@ public class CargaTipoInsumo extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
@@ -70,7 +72,7 @@ public class CargaTipoInsumo extends JFrame {
                 tipo.setTinDescripcion(txtDescripcion.getText());
                 tipo.setTinFechaAlta(fechaActual);
                 tipo.setTinUsuarioAlta("admin");
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(tipo);
                 } else {
@@ -80,11 +82,11 @@ public class CargaTipoInsumo extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//            session.close();
+//            //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el tipo de insumo: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");

@@ -4,6 +4,7 @@ import Conexion.Conexion;
 import Datos.TipoGranoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Iterator;
 
@@ -12,7 +13,8 @@ import java.util.Iterator;
  */
 public class GestorTipoGranos {
 
-    Session session = Conexion.getSessionFactory().openSession();
+    Session session = Conexion.getSessionFactory().getCurrentSession();
+    Transaction tx = session.beginTransaction();
 
     public TipoGrano getTipoGranoByName(String nombre){
         TipoGrano tipoGr = new TipoGrano("","");
@@ -27,7 +29,7 @@ public class GestorTipoGranos {
                 tipoGr = new TipoGrano(tipo.getTgrNombre(),tipo.getTgrDescripcion());
             }
         } finally {
-            session.close();
+            //session.close();
         }
 
         return tipoGr;

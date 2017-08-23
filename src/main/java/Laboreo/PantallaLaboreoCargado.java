@@ -12,6 +12,7 @@ import Repository.InsumoRepository;
 import Repository.LaboreoRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -503,7 +504,9 @@ public class PantallaLaboreoCargado extends JFrame {
 
     //METODO CARGA COMBO TIPO LABOREO
     private void cargaComboBoxTipoLaboreo() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoLaboreoEntity p");
         java.util.List<TipoLaboreoEntity> listaTipoLaboreoEntity = query.list();
 
@@ -520,7 +523,9 @@ public class PantallaLaboreoCargado extends JFrame {
 
     //METODO CARGA COMBO TIPO GRANO
     private void cargaComboBoxTipoGrano() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoGranoEntity p");
         java.util.List<TipoGranoEntity> listaTipoGranoEntity = query.list();
 

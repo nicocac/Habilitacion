@@ -100,7 +100,9 @@ public class CargaInsumo extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         InsumoEntity insumo = new InsumoEntity();
         if (validaCarga().equals("S")) {
@@ -116,7 +118,7 @@ public class CargaInsumo extends JFrame {
                 TipoInsumoEntity tipoInsumoEntity = tipoInsumoRepository.getTipoInsumoByNombre(tipoInsumo);
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
 
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(insumo);
                 } else {
@@ -127,11 +129,11 @@ public class CargaInsumo extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
                 guardado = true;
-//                session.close();
+//                //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
                 //guardaStock(insumo);
             }
         } else {

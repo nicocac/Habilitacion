@@ -4,6 +4,7 @@ import Conexion.Conexion;
 import Datos.InsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +15,9 @@ import java.util.List;
 public class GestorInsumo {
     Session session;
     public InsumoEntity getInsumoByName(String pNombre) {
-        session = Conexion.getSessionFactory().openSession();
+        session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         InsumoEntity insumo = new InsumoEntity();
         Query query = session.createQuery("select t from InsumoEntity t where t.insNombre = :pInsNombre and t.insFechaBaja is null");
         query.setParameter("pInsNombre", pNombre);

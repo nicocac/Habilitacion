@@ -97,7 +97,9 @@ public class CargaTransporte extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         TransporteEntity transporte = new TransporteEntity();
         if (validaCarga().equals("S")) {
@@ -112,7 +114,7 @@ public class CargaTransporte extends JFrame {
                 TipoTransporteEntity tipoTransporteEntity = tipoTransporteRepository.getTipoTransporteByNombre(tipoTransporte);
                 transporte.setTipoTransporteEntity(tipoTransporteEntity);
 
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(transporte);
                 } else {
@@ -123,11 +125,11 @@ public class CargaTransporte extends JFrame {
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//                session.close();
+//                //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al cargar el Transporte: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
                 //guardaStock(insumo);
             }
         } else {

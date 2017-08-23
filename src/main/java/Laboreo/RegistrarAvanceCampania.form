@@ -773,6 +773,19 @@
                   <text value=""/>
                 </properties>
               </component>
+              <component id="3b7e3" class="javax.swing.JButton" binding="btnRellenar">
+                <constraints>
+                  <grid row="16" column="37" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <maximum-size width="50" height="25"/>
+                  </grid>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/rsz_clean.png"/>
+                  <text value=""/>
+                  <toolTipText value="Actualizar"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>

@@ -365,7 +365,9 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
 
     //METODO BUSCAR INSUMOS
     private void buscarInsumos() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             insumo = new InsumoEntity();
@@ -388,7 +390,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             }
             setModelInsumo(columnNames, data);
         } finally {
-            session.close();
+            //session.close();
         }
     }
 
@@ -411,7 +413,9 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
 
     //METODO BUSCAR INSUMOS DE SOLICUTUDES
     private void buscarInsumosPorSolicitud() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Integer nroSolicitud = (Integer)listSolicitudes.getSelectedValue();
         int i = 0;
         try {
@@ -437,7 +441,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             }
             setModelInsumo(columnNames, data);
         } finally {
-            session.close();
+            //session.close();
         }
     }
 

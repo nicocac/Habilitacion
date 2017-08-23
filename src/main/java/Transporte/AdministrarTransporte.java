@@ -140,7 +140,9 @@ public class AdministrarTransporte extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             transporte = new TransporteEntity();
@@ -175,7 +177,7 @@ public class AdministrarTransporte extends JFrame {
             showMessage("Error al dar de baja el Transporte: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -184,7 +186,9 @@ public class AdministrarTransporte extends JFrame {
 
     //METODO BUSCAR CLIENTES
     public void buscarTransportes() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             transporte = new TransporteEntity();
@@ -209,7 +213,7 @@ public class AdministrarTransporte extends JFrame {
             }
             setModel(columnNames, data, tblTransportes);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

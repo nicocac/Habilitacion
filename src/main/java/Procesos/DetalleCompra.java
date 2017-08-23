@@ -5,6 +5,7 @@ import Datos.InsumoEntity;
 import Insumo.Insumo;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.math.BigDecimal;
 
@@ -50,7 +51,9 @@ public class DetalleCompra {
     }
 
     public int getLastId(){
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         int max = 0;
         try {
@@ -64,7 +67,7 @@ public class DetalleCompra {
         }catch (Exception e){
             return -1;
         }finally {
-            session.close();
+            //session.close();
         }
     }
 }

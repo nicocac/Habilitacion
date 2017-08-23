@@ -17,6 +17,7 @@ import Repository.LaboreoRepository;
 import Repository.LoteRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
@@ -1038,7 +1039,9 @@ public class PantallaLaboreo extends JFrame {
 
     //METODO CARGA COMBO CAMPANIA
     private void cargaComboBoxCampania() {
-        Session session = Conexion.getSessionFactory().openSession();
+        try { Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM CampaniaEntity p");
         java.util.List<CampaniaEntity> listaCampaniaEntity = query.list();
 
@@ -1059,14 +1062,19 @@ public class PantallaLaboreo extends JFrame {
                 cboCampania.setSelectedItem(null);
             }
 
-        }
+        } tx.rollback();
+    }catch (Exception e){
+
+    }
 
     }
 
 
     //METODO CARGA COMBO TIPO LABOREO
     private void cargaComboBoxTipoLaboreo() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoLaboreoEntity p");
         java.util.List<TipoLaboreoEntity> listaTipoLaboreoEntity = query.list();
 
@@ -1083,22 +1091,31 @@ public class PantallaLaboreo extends JFrame {
 
     //METODO CARGA COMBO LABOREO
     private void cargaComboBoxLaboreo() {
-        Session session = Conexion.getSessionFactory().openSession();
-        Query query = session.createQuery("SELECT p FROM LaboreoEntity p");
-        java.util.List<LaboreoEntity> listaLaboreoEntity = query.list();
+       try {
+           Session session = Conexion.getSessionFactory().getCurrentSession();
+           Transaction tx = session.beginTransaction();
 
-        Vector<String> miVectorLaboreo = new Vector<>();
-        for (LaboreoEntity laboreo : listaLaboreoEntity) {
-            miVectorLaboreo.add(laboreo.getLboNombre());
-            cboMomentos.addItem(laboreo);
-        }
-        session.close();
+           Query query = session.createQuery("SELECT p FROM LaboreoEntity p");
+           java.util.List<LaboreoEntity> listaLaboreoEntity = query.list();
+
+           Vector<String> miVectorLaboreo = new Vector<>();
+           for (LaboreoEntity laboreo : listaLaboreoEntity) {
+               miVectorLaboreo.add(laboreo.getLboNombre());
+               cboMomentos.addItem(laboreo);
+           }
+           tx.rollback();
+       }catch (Exception e){
+
+       }
+        //session.close();
     }
 
 
     //METODO CARGA COMBO TIPO GRANO
     private void cargaComboBoxTipoGrano() {
-        Session session = Conexion.getSessionFactory().openSession();
+        try {  Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Query query = session.createQuery("SELECT p FROM TipoGranoEntity p");
         java.util.List<TipoGranoEntity> listaTipoGranoEntity = query.list();
 
@@ -1108,8 +1125,11 @@ public class PantallaLaboreo extends JFrame {
             cbxSemillas.addItem(tipoGrano);
 
 //            cboCampania.setSelectedItem(null);
+        } tx.rollback();
+        }catch (Exception e){
+
         }
-//        session.close();
+//        //session.close();
 
     }
 

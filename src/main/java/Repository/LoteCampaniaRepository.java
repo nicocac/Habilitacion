@@ -6,6 +6,7 @@ import Datos.LoteCampaniaEntity;
 import Datos.LoteEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +20,9 @@ public class LoteCampaniaRepository {
 
     public List<InsumoEntity> getAllInsumos() {
         List<InsumoEntity> listaInsumo = new ArrayList<>();
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         InsumoEntity insumo;
         Query query = session.createQuery("select x from InsumoEntity x");
         List list = query.list();
@@ -28,13 +31,15 @@ public class LoteCampaniaRepository {
             insumo = (InsumoEntity) iter.next();
             listaInsumo.add(insumo);
         }
-        session.close();
+        //session.close();
         return listaInsumo;
     }
 
 
     public LoteEntity getLoteByDenominacion(String denominacion) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         LoteEntity lote = new LoteEntity();
         Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
         query.setParameter("pNombre", denominacion);
@@ -43,24 +48,28 @@ public class LoteCampaniaRepository {
         while (iter.hasNext()) {
             lote = (LoteEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return lote;
     }
 
 
     public void deleteAllByCampania(int id) {
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
 
         LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
         Query query = session.createQuery("DELETE FROM LoteCampaniaEntity where ucase(lcpCnaId) like ucase(:pId)");
         query.setParameter("pId", id);
         query.executeUpdate();
-        session.close();
+        //session.close();
     }
 
 
     public LoteCampaniaEntity getLoteCampaniaById(Long id) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
         Query query = session.createQuery("select x from LoteCampaniaEntity x where ucase(lcpCnaId) like ucase(:pId) and lcpFechaBaja is null");
         query.setParameter("pId", id);
@@ -69,13 +78,15 @@ public class LoteCampaniaRepository {
         while (iter.hasNext()) {
             loteCampania = (LoteCampaniaEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return loteCampania;
     }
 
 
     public List<LoteEntity> getLotesByCampaniaId(int id) {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LoteEntity lote;
 
@@ -89,13 +100,15 @@ public class LoteCampaniaRepository {
             lote = (LoteEntity) iter.next();
             listaLotes.add(lote);
         }
-        session.close();
+        //session.close();
         return  listaLotes;
     }
 
 
     public List<LoteCampaniaEntity> getLotesCampaniasByLote(int id) {
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         java.util.List list;
         LoteCampaniaEntity loteCampania;
 
@@ -109,7 +122,7 @@ public class LoteCampaniaRepository {
             loteCampania = (LoteCampaniaEntity) iter.next();
             listaLotesCampania.add(loteCampania);
         }
-        session.close();
+        //session.close();
         return  listaLotesCampania;
     }
 

@@ -61,6 +61,8 @@ public class RegistrarAvanceCampania extends JFrame {
     public JProgressBar avance;
     public JTextField tiempoEstimado;
     public JTextField tiempoTotal;
+    public JButton btnRellenar;
+    public JButton button1;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private GestorLaboreo gestorLab = new GestorLaboreo();
     private DefaultTableModel modelInsumoMaquinaria;
@@ -117,7 +119,7 @@ public class RegistrarAvanceCampania extends JFrame {
         tiempoEstimado.setText(orden.getTiempo());
         tiempoTotal.setText(orden.getTiempoGastado());
         if (txtLaboreo.getText().equals("Siembra") || txtLaboreo.getText().equals("Preparacion del Terreno")
-                || txtLaboreo.getText().equals("Control")|| txtLaboreo.getText().equals("Arado")){
+                || txtLaboreo.getText().equals("Control") || txtLaboreo.getText().equals("Arado")) {
             btnCargarPesada.setEnabled(false);
             txtCantidad.setEnabled(false);
             btnActualizarPeso.setEnabled(false);
@@ -215,12 +217,12 @@ public class RegistrarAvanceCampania extends JFrame {
                     String porcentaje = "";
                     Integer cantidadP = 0;
 
-                    while(cantidadP==0) {
+                    while (cantidadP == 0) {
                         porcentaje = (String) JOptionPane.showInputDialog(null, "Ingrese el porcentaje % entre 0-100 avanzado de la orden", "Ingreso avance", JOptionPane.PLAIN_MESSAGE, null, null, null);
 
                         porcentaje = nvl(porcentaje, "0").replace(",", ".");
                         Integer avanceTemp = avance.getValue();
-                        if((Integer.valueOf(porcentaje) + avanceTemp) > 100){
+                        if ((Integer.valueOf(porcentaje) + avanceTemp) > 100) {
                             showMessage("El porcentaje ingresado supera el 100% del Total. Ingrese un valor menor.");
                             continue;
                         }
@@ -243,11 +245,11 @@ public class RegistrarAvanceCampania extends JFrame {
 //                        showMessage("Debe completar Cantidad antes de continuar");
 //                        return;
 //                    }
-                    if(txtTiempo.getText().equals("")){
+                    if (txtTiempo.getText().equals("")) {
                         showMessage("Debe completar tiempo antes de continuar");
                         return;
                     }
-                    if(txtObservaciones.getText().equals("")){
+                    if (txtObservaciones.getText().equals("")) {
                         showMessage("Debe completar las observaciones antes de continuar");
                         return;
                     }
@@ -281,7 +283,7 @@ public class RegistrarAvanceCampania extends JFrame {
                             }
 
 
-                            Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null,null,null);
+                            Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null);
                             det.setInsumo(ins);
                             det.setCantidadIsumoOriginal(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                             det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 4)));
@@ -316,7 +318,7 @@ public class RegistrarAvanceCampania extends JFrame {
 
                     try {
                         AcopioEntity acopioEntity = null;
-                        if(!cbxAcopio.getSelectedItem().equals("..")) {
+                        if (!cbxAcopio.getSelectedItem().equals("..")) {
                             acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
                         }
                         java.sql.Time time = new java.sql.Time(Calendar.getInstance().getTime().getTime());
@@ -397,37 +399,37 @@ public class RegistrarAvanceCampania extends JFrame {
         });
 
 
-        cbxAcopio.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (cbxAcopio.getSelectedItem() == null) {
-                    return;
-                }
-                AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
-                if (acopioEntity != null) {
-                    txtTipoAcopio.setText(acopioEntity.getTipoAcopioEntity().getTipoAcopioNombre());
-                    txtNroAcopio.setText(acopioEntity.getCodigo().toString());
-                    txtNombreAcopio.setText(acopioEntity.getNombre());
-                    txtCantidadAcopioSoportdada.setText(acopioEntity.getCantidadSoportada().toString());
-                    Integer cantidadGrano = acopioEntity.getCantidadGrano();
-                    if (cantidadGrano == null){
-                        cantidadGrano = 0;
-                    }
-
-                    Object[][] data = stockAcopio();
-                    for(Object[] dato : data){
-                        if (dato[0] == acopioEntity.getAcopioId()){
-                            txtCantidadActualAcopio.setText(dato[6].toString());
-
-                        }
-                    }
-//                    txtCantidadActualAcopio.setText(cantidadGrano.toString());
-
-                } else {
-                    txtTipoAcopio.setText("No encontrado");
-                }
-            }
-        });
+//        cbxAcopio.addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                if (cbxAcopio.getSelectedItem() == null) {
+//                    return;
+//                }
+//                AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigoSinTX(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
+//                if (acopioEntity != null) {
+//                    txtTipoAcopio.setText(acopioEntity.getTipoAcopioEntity().getTipoAcopioNombre());
+//                    txtNroAcopio.setText(acopioEntity.getCodigo().toString());
+//                    txtNombreAcopio.setText(acopioEntity.getNombre());
+//                    txtCantidadAcopioSoportdada.setText(acopioEntity.getCantidadSoportada().toString());
+//                    Integer cantidadGrano = acopioEntity.getCantidadGrano();
+//                    if (cantidadGrano == null) {
+//                        cantidadGrano = 0;
+//                    }
+//
+//                    Object[][] data = stockAcopio();
+//                    for (Object[] dato : data) {
+//                        if (dato[0] == acopioEntity.getAcopioId()) {
+//                            txtCantidadActualAcopio.setText(dato[6].toString());
+//
+//                        }
+//                    }
+////                    txtCantidadActualAcopio.setText(cantidadGrano.toString());
+//
+//                } else {
+//                    txtTipoAcopio.setText("No encontrado");
+//                }
+//            }
+//        });
 
 
         //FINALIZAR ALL ORDEN
@@ -436,25 +438,25 @@ public class RegistrarAvanceCampania extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
-                if(fecha == null){
+                if (fecha == null) {
                     showMessage("Debe completar la fecha antes de continuar");
                     return;
                 }
 
-                if(txtCantidad.getText().equals("")){
+                if (txtCantidad.getText().equals("")) {
                     showMessage("Debe completar Cantidad antes de continuar");
                     return;
                 }
-                if(txtTiempo.getText().equals("")){
+                if (txtTiempo.getText().equals("")) {
                     showMessage("Debe completar tiempo antes de continuar");
                     return;
                 }
-                if(txtObservaciones.getText().equals("")){
+                if (txtObservaciones.getText().equals("")) {
                     showMessage("Debe completar las observaciones antes de continuar");
                     return;
                 }
 
-                Session session = Conexion.getSessionFactory().openSession();
+                Session session = Conexion.getSessionFactory().getCurrentSession();
                 Transaction tx = session.beginTransaction();
 
                 orden.setObservaciones("Modifica de una orden");
@@ -474,7 +476,7 @@ public class RegistrarAvanceCampania extends JFrame {
                     JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar el avance de la orden : " + ex.toString());
 
                 }
-                session.close();
+                //session.close();
 
             }
         });
@@ -487,6 +489,40 @@ public class RegistrarAvanceCampania extends JFrame {
 //                find ticket by orden
                 TicketPesadaEntity ticket = ticketPesadaRepository.getTicketByOrdenId(orden.getId());
                 txtCantidad.setText(ticket.getPeso());
+            }
+        });
+
+
+
+        btnRellenar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cbxAcopio.getSelectedItem() == null) {
+                    return;
+                }
+                AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
+                if (acopioEntity != null) {
+                    txtTipoAcopio.setText(acopioEntity.getTipoAcopioEntity().getTipoAcopioNombre());
+                    txtNroAcopio.setText(acopioEntity.getCodigo().toString());
+                    txtNombreAcopio.setText(acopioEntity.getNombre());
+                    txtCantidadAcopioSoportdada.setText(acopioEntity.getCantidadSoportada().toString());
+                    Integer cantidadGrano = acopioEntity.getCantidadGrano();
+                    if (cantidadGrano == null) {
+                        cantidadGrano = 0;
+                    }
+
+                    Object[][] data = stockAcopio();
+                    for (Object[] dato : data) {
+                        if (dato[0] == acopioEntity.getAcopioId()) {
+                            txtCantidadActualAcopio.setText(dato[6].toString());
+
+                        }
+                    }
+//                    txtCantidadActualAcopio.setText(cantidadGrano.toString());
+
+                } else {
+                    txtTipoAcopio.setText("No encontrado");
+                }
             }
         });
     }
@@ -514,26 +550,29 @@ public class RegistrarAvanceCampania extends JFrame {
     }
 
     private Object[][] stockAcopio() {
-        Session session = Conexion.getSessionFactory().openSession();
-        int i = 0;
-        List<Object[]> listStockFinal = new ArrayList<>();
+        Session session = null;
+        Transaction tx = null;
         Object[][] data = null;
 
         try {
+
+            int i = 0;
+            List<Object[]> listStockFinal = new ArrayList<>();
+
             java.util.List<Object[]> list;
             Object[] acopio;
 
-            list = gest.getStockByAcopio();
+            list = gest.getStockByAcopioAvance();
             //
-            List<Object[]> listEgreso = gest.getStockEgresoByAcopio();
+            List<Object[]> listEgreso = gest.getStockEgresoByAcopioAvance();
 
 
-            for(Object[] ingreso: list){
+            for (Object[] ingreso : list) {
 
-                for(Object[] egreso: listEgreso){
-                    if(ingreso[0].equals(egreso[0])){
+                for (Object[] egreso : listEgreso) {
+                    if (ingreso[0].equals(egreso[0])) {
 
-                        Long cantidadFinal = (Long)ingreso[6] -(Long)egreso[1];
+                        Long cantidadFinal = (Long) ingreso[6] - (Long) egreso[1];
                         ingreso[6] = cantidadFinal;
                     }
 
@@ -555,11 +594,15 @@ public class RegistrarAvanceCampania extends JFrame {
                 data[i][6] = acopio[6];
                 i++;
             }
-//            setModel(columnNames, data, tblTipos);
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            tx.rollback();
+        } catch (Exception e) {
+
         } finally {
-            session.close();
+            //session.close();
+            return data;
         }
-        return data;
     }
 
 //    private void limpiarPantalla() {
@@ -567,9 +610,8 @@ public class RegistrarAvanceCampania extends JFrame {
 //    }
 
 
-
-
     //METODO BUSCAR INSUMOS DE SOLICUTUDES
+
     private void buscarInsumosMaquinariasPorLaboreo(LaboreoEntity laboreoEntity, Integer planificacionId, OrdenTrabajoEntity orden) {
 
 
@@ -601,7 +643,7 @@ public class RegistrarAvanceCampania extends JFrame {
                 Integer cantidadT = 0;
                 for (DetalleOrdenEntity dorden : listaDetallesOrden) {
 
-                    if(dorden.getInsumo()!=null) {
+                    if (dorden.getInsumo() != null) {
                         if (dorden.getInsumo().equals(insumoEntity)) {
                             cantidadT += dorden.getCantidadInsumo();
 
@@ -617,22 +659,22 @@ public class RegistrarAvanceCampania extends JFrame {
             for (Object[] row : listaMaq) {
                 MaquinariaEntity maquinariaEntity = (MaquinariaEntity) row[0];
                 Integer cantidad = (Integer) row[1];
-                Integer stock =0;
-                if(cantidad == null) {
-                    cantidad=0;
+                Integer stock = 0;
+                if (cantidad == null) {
+                    cantidad = 0;
                 }
                 data[i][0] = "Maquinaria";
                 data[i][1] = maquinariaEntity.getMaqNombre();
                 data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                 data[i][3] = String.valueOf(cantidad);
                 data[i][4] = "0";
-                if(maquinariaEntity.getMaqStock() == null) {
+                if (maquinariaEntity.getMaqStock() == null) {
                     data[i][5] = stock;
                 } else {
-                    data[i][5] =String.valueOf(maquinariaEntity.getMaqStock());
+                    data[i][5] = String.valueOf(maquinariaEntity.getMaqStock());
                 }
                 for (DetalleOrdenEntity dorden : listaDetallesOrden) {
-                    if(dorden.getMaquinaria()!=null) {
+                    if (dorden.getMaquinaria() != null) {
                         if (dorden.getMaquinaria().equals(maquinariaEntity)) {
                             data[i][6] = String.valueOf(dorden.getCantidadInsumo());
                             data[i][7] = String.valueOf(dorden.getCantidadHorasMaquinaria());
@@ -673,18 +715,30 @@ public class RegistrarAvanceCampania extends JFrame {
 
     //METODO CARGA COMBO  Acopio
     private void cargaComboBoxAcopio(OrdenTrabajoEntity orden) {
-        Session session = Conexion.getSessionFactory().openSession();
-        Query query = session.createQuery("SELECT p FROM AcopioEntity p");
-        java.util.List<AcopioEntity> listaAcopio = query.list();
+        Session session = null;
+        Transaction tx = null;
 
-        Vector<String> miVectorTipoMaquinaria = new Vector<>();
-        for (AcopioEntity acopio : listaAcopio) {
-            if(acopio.getTipoGrano() != null) {
-                if (acopio.getTipoGrano().equals(orden.getGrano())) {
-                    miVectorTipoMaquinaria.add(acopio.getNombre());
-                    cbxAcopio.addItem(acopio);
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            Query query = session.createQuery("SELECT p FROM AcopioEntity p");
+            java.util.List<AcopioEntity> listaAcopio = query.list();
+
+            Vector<String> miVectorTipoMaquinaria = new Vector<>();
+            for (AcopioEntity acopio : listaAcopio) {
+                if (acopio.getTipoGrano() != null) {
+                    if (acopio.getTipoGrano().equals(orden.getGrano())) {
+                        miVectorTipoMaquinaria.add(acopio.getNombre());
+                        cbxAcopio.addItem(acopio);
+                    }
                 }
             }
+            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+
         }
 
     }

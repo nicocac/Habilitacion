@@ -239,7 +239,9 @@ public class PantallaAdministrarInsumo extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
 //            insumo = new InsumoEntity();
@@ -274,7 +276,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             showMessage("Ocurrio un error al dar de baja el insumo: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -283,7 +285,9 @@ public class PantallaAdministrarInsumo extends JFrame {
 
     //METODO BUSCAR INSUMOS
     public void buscarInsumos() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             insumo = new InsumoEntity();
@@ -318,7 +322,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             }
             setModel(columnNames, data, tblInsumos);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

@@ -47,6 +47,7 @@ public class PantallaAdministrarCampania extends JFrame {
     Date fechaActual = new Date(fecha.getTime());
     CampaniaRepository campaniaRepository = new CampaniaRepository();
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
+//    Session session = Conexion.getSessionFactory().getCurrentSession();
 
     public PantallaAdministrarCampania() {
 
@@ -70,7 +71,7 @@ public class PantallaAdministrarCampania extends JFrame {
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
-//            Session session = Conexion.getSessionFactory().openSession();
+//            Session session = Conexion.getSessionFactory().getCurrentSession();
             buscarCampanias();
         });
 
@@ -154,31 +155,33 @@ public class PantallaAdministrarCampania extends JFrame {
             if (respuesta == 0) {
 
                 int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
+//                String response = campaniaRepository.darBajaCampania(camId);
+                campaniaRepository.darBajaCampania(camId, fecha);
 
-                Session session = Conexion.getSessionFactory().openSession();
-                Transaction tx = session.beginTransaction();
-
-                CampaniaEntity campaniaEntity = campaniaRepository.getCampaniaById(camId);
-                campaniaEntity.setCnaFechaUltMod(fecha);
-                campaniaEntity.setCnaUsuarioUltMod("Admin que Finaliza la orden");
-                campaniaEntity.setEstado("CANCELADA");
-
-                session.update(campaniaEntity);
-
-                try {
-                    tx.commit();
-                    JOptionPane.showMessageDialog(null, "La Campa�a fue cancelada en forma definitiva con exito.");
-//                    session.flush();
-                     session.close();
-                    dispose();
-
-
-                } catch (Exception ex) {
-                    tx.rollback();
-                    JOptionPane.showMessageDialog(null, "Ocurrio un error al finalizar la Campaa : " + ex.toString());
-                } finally {
-                    session.close();
-                }
+//                Session session = Conexion.getSessionFactory().getCurrentSession();
+//                Transaction tx = session.beginTransaction();
+//
+//                CampaniaEntity campaniaEntity = campaniaRepository.getCampaniaById(camId);
+//                campaniaEntity.setCnaFechaUltMod(fecha);
+//                campaniaEntity.setCnaUsuarioUltMod("Admin que Finaliza la orden");
+//                campaniaEntity.setEstado("CANCELADA");
+//
+//                session.update(campaniaEntity);
+//
+//                try {
+//                    tx.commit();
+//                    JOptionPane.showMessageDialog(null, "La Campa�a fue cancelada en forma definitiva con exito.");
+////                    session.flush();
+//                     //session.close();
+//                    dispose();
+//
+//
+//                } catch (Exception ex) {
+//                    tx.rollback();
+//                    JOptionPane.showMessageDialog(null, "Ocurrio un error al finalizar la Campaa : " + ex.toString());
+//                } finally {
+//                    //session.close();
+//                }
             } else {
                 return;
             }
@@ -190,7 +193,7 @@ public class PantallaAdministrarCampania extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 String column = (String) tblCampania.getValueAt(tblCampania.getSelectedRow(), 2);
-                if (column.equals("INICIALIZADA")) {
+                if (column.equals("CREADA")) {
                     btnGenerarOrdenes.setEnabled(false);
                     btnRegistrarAvance.setEnabled(false);
                     btnRegistrarEgreso.setEnabled(false);
@@ -201,7 +204,7 @@ public class PantallaAdministrarCampania extends JFrame {
                 }
                 if (column.equals("PLANIFICADA")) {
                     String msj = buscarCampaniasPlanificadas((String) tblCampania.getValueAt(tblCampania.getSelectedRow(), 1));
-                    if(msj.equals("GenOrdPen")){
+                    if (msj.equals("GenOrdPen")) {
                         btnRegistrarEgreso.setEnabled(false);
                         btnPlanificar.setEnabled(false);
                         btnGenerarOrdenes.setEnabled(true);
@@ -297,9 +300,13 @@ public class PantallaAdministrarCampania extends JFrame {
 
     //    //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = null;
+        Transaction tx = null;
+
         Boolean guardado = false;
         try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
             campania = new CampaniaEntity();
             int fila = tblCampania.getSelectedRow();
             if (fila == -1) {
@@ -327,21 +334,165 @@ public class PantallaAdministrarCampania extends JFrame {
             } else {
                 return 1;
             }
+            tx.rollback();
         } catch (Exception e) {
             showMessage("Ocurrio un error al dar de baja la campania: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
+            return 0;
+
         }
-        return 0;
+    }
+
+
+    //METODO BUSCAR Campania planificada para generar ordenes en la buscqueda general
+    public Integer buscarCampaniaPlanificadaParaGenerar(String denominacion) {
+        Session session = null;
+        Transaction tx = null;
+
+        int i = 0;
+        Integer codigoPlan = 0;
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            PlanificacionCampaniaEntity planificacion;
+
+            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
+                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
+                    "and t.campania.estaPlanificada = true");
+
+            query.setParameter("pNombre", denominacion);
+            java.util.List list = query.list();
+            Iterator iter = list.iterator();
+
+            while (iter.hasNext()) {
+                planificacion = (PlanificacionCampaniaEntity) iter.next();
+
+
+                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaIdSinTX(planificacion.getPlanificacionId());
+                if (listaLaboreoLote.size() == 0) {
+                    showMessage("La Campana planificada no posee ordenes pendientes de generar, registre el avance de las mismas " +
+                            "o seleccione otra campana planificada.");
+//                    return;
+
+                } else {
+                    codigoPlan = planificacion.getPlanificacionId();
+
+                }
+            }
+            tx.rollback();
+        } catch (Exception e) {
+            e.getMessage();
+//            //session.close();
+        } finally {
+            return codigoPlan;
+
+        }
+//        session.close();
+    }
+//}
+
+
+    //METODO BUSCAR Campania planificada con avance en la busqueda general
+    public Integer buscarCampaniaPlanificada(String denominacion) {
+        Session session = null;
+        Transaction tx = null;
+
+        int i = 0;
+        Integer codigoPlan = 0;
+        try {
+            PlanificacionCampaniaEntity planificacion;
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
+                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
+                    "and t.campania.estaPlanificada = true");
+
+            query.setParameter("pNombre", denominacion);
+            java.util.List list = query.list();
+            Iterator iter = list.iterator();
+
+            while (iter.hasNext()) {
+                planificacion = (PlanificacionCampaniaEntity) iter.next();
+
+                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaIdSinTX(planificacion.getPlanificacionId());
+                if (listaOrdenes.size() != 0) {
+
+                    codigoPlan = planificacion.getPlanificacionId();
+                }
+                i++;
+            }
+            tx.rollback();
+        } catch (Exception e) {
+            e.getMessage();
+            //session.close();
+        } finally {
+            return codigoPlan;
+        }
+//        //session.close();
+    }
+//}
+
+
+    //METODO BUSCAR Campanias planificadas
+    public String buscarCampaniasPlanificadas(String denominacion) {
+        Session session = null;
+        Transaction tx = null;
+
+        int i = 0;
+        String msj = "";
+        try {
+            PlanificacionCampaniaEntity planificacion;
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
+                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
+                    "and t.campania.estaPlanificada = true");
+
+            query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
+            java.util.List list = query.list();
+            Iterator iter = list.iterator();
+            String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin", "Estado"};
+            Object[][] data = new Object[list.size()][5];
+
+            while (iter.hasNext()) {
+                planificacion = (PlanificacionCampaniaEntity) iter.next();
+                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaIdSinTX(planificacion.getPlanificacionId());
+                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaIdSinTX(planificacion.getPlanificacionId());
+                if (listaLaboreoLote.size() != 0) {
+                    msj = "GenOrdPen";
+                    i++;
+                }
+                if (listaOrdenes.size() != 0) {
+                    msj = msj + "AvanPen";
+
+                    i++;
+                }
+
+            }
+//            setModel(columnNames, data, tblCampPlanificadas);
+            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+//            //session.close();
+            return msj;
+
+        }
+
     }
 
 
     //METODO BUSCAR Campanias
     public void buscarCampanias() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = null;
+        Transaction t = null;
+
         int i = 0;
         try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            t = session.beginTransaction();
             campania = new CampaniaEntity();
             Query query = session.createQuery("select t from CampaniaEntity t where ucase(cnaDenominacion) like ucase(:pNombre) and cnaFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
@@ -360,138 +511,15 @@ public class PantallaAdministrarCampania extends JFrame {
                 i++;
             }
             setModel(columnNames, data, tblCampania);
-        } finally {
-            session.close();
-        }
+            t.rollback();
 
-    }
-
-    //METODO BUSCAR Campania planificada para generar ordenes en la buscqueda general
-    public Integer buscarCampaniaPlanificadaParaGenerar(String denominacion) {
-        Session session = Conexion.getSessionFactory().openSession();
-        int i = 0;
-        Integer codigoPlan = 0;
-        try {
-            PlanificacionCampaniaEntity planificacion;
-
-            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
-                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
-                    "and t.campania.estaPlanificada = true");
-
-            query.setParameter("pNombre", denominacion);
-            java.util.List list = query.list();
-            Iterator iter = list.iterator();
-
-            while (iter.hasNext()) {
-                planificacion = (PlanificacionCampaniaEntity) iter.next();
-
-
-                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacion.getPlanificacionId());
-                if (listaLaboreoLote.size() == 0) {
-                    showMessage("La Campana planificada no posee ordenes pendientes de generar, registre el avance de las mismas " +
-                            "o seleccione otra campana planificada.");
-//                    return;
-
-                }else{
-                    codigoPlan = planificacion.getPlanificacionId();
-
-                }
-            }
         } catch (Exception e) {
-            e.getMessage();
-//            session.close();
-        }
-        session.close();
-        return codigoPlan;
-    }
-//}
-
-
-
-
-
-
-    //METODO BUSCAR Campania planificada con avance en la busqueda general
-    public Integer buscarCampaniaPlanificada(String denominacion) {
-        Session session = Conexion.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        int i = 0;
-        Integer codigoPlan = 0;
-        try {
-            PlanificacionCampaniaEntity planificacion;
-
-            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
-                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
-                    "and t.campania.estaPlanificada = true");
-
-            query.setParameter("pNombre", denominacion);
-            java.util.List list = query.list();
-            Iterator iter = list.iterator();
-
-            while (iter.hasNext()) {
-                planificacion = (PlanificacionCampaniaEntity) iter.next();
-
-                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaId(planificacion.getPlanificacionId());
-                if (listaOrdenes.size() != 0) {
-
-                    codigoPlan = planificacion.getPlanificacionId();
-                }
-                i++;
-            }
-        } catch (Exception e) {
-            e.getMessage();
-            session.close();
-        }
-        t.rollback();
-//        session.close();
-        return codigoPlan;
-    }
-//}
-
-
-
-
-
-
-    //METODO BUSCAR Campanias planificadas
-    public String buscarCampaniasPlanificadas(String denominacion) {
-        Session session = Conexion.getSessionFactory().openSession();
-        int i = 0;
-        String msj = "";
-        try {
-            PlanificacionCampaniaEntity planificacion;
-
-            Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
-                    "where ucase(t.campania.cnaDenominacion) like ucase(:pNombre) and t.fechaBaja is null " +
-                    "and t.campania.estaPlanificada = true");
-
-            query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");
-            java.util.List list = query.list();
-            Iterator iter = list.iterator();
-            String[] columnNames = {"Codigo Planificacion", "Campa\u00f1a", "Fecha Inicio", "Fecha Fin", "Estado"};
-            Object[][] data = new Object[list.size()][5];
-
-            while (iter.hasNext()) {
-                planificacion = (PlanificacionCampaniaEntity) iter.next();
-                java.util.List<OrdenTrabajoLaboreo> listaLaboreoLote = planificacionRepository.getLaboreosByCampIdPlanificadaId(planificacion.getPlanificacionId());
-                java.util.List<OrdenTrabajoEntity> listaOrdenes = planificacionRepository.getOrdenesByPlanificadaId(planificacion.getPlanificacionId());
-                if (listaLaboreoLote.size() != 0) {
-                    msj  = "GenOrdPen";
-                    i++;
-                }
-                if (listaOrdenes.size() != 0) {
-                    msj  = msj + "AvanPen";
-
-                    i++;
-                }
-
-            }
-//            setModel(columnNames, data, tblCampPlanificadas);
+            t.rollback();
         } finally {
-            session.close();
+//            session.flush();
         }
-        return msj;
 
     }
+
 
 }

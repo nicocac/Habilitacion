@@ -142,7 +142,9 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             insumo = new InsumoEntity();
@@ -175,7 +177,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
             showMessage("Ocurrio un error al dar de baja el insumo: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -184,7 +186,9 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODO BUSCAR Laboreos
     public void buscarLaboreos() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             LaboreoEntity laboreoEntity = new LaboreoEntity();
@@ -207,7 +211,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
             }
             setModel(columnNames, data, tblLaboreos);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

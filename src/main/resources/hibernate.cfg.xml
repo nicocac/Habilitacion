@@ -27,9 +27,9 @@
 
 
 
-        <property name="hibernate.transaction.auto_close_session">
-            true
-        </property>
+        <!--<property name="hibernate.transaction.auto_close_session">-->
+            <!--true-->
+        <!--</property>-->
 
         <!--<property name="dialect">-->
             <!--org.hibernate.dialect.MySQLDialect-->
@@ -43,7 +43,9 @@
         </property>
 
         <property name="connection.pool_size">10</property>
-        <!--<property name="current_session_context_class">thread</property>-->
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.connection.release_mode">after_transaction</property>
+
         <!--<property name="hibernate.cache.use_second_level_cache">false</property>-->
         <!--<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>-->
 

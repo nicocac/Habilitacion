@@ -7,7 +7,7 @@ import org.hibernate.Session;
  * Created by OWNER on 8/28/2016.
  */
 public class GestorTipoInsumo {
-    Session session = Conexion.getSessionFactory().openSession();
+    Session session = Conexion.getSessionFactory().getCurrentSession();
 
 //    public TipoInsumo getTipoInsumoByName(String nombre){
 //        TipoInsumo tipoIns = new TipoInsumo("","");
@@ -22,7 +22,7 @@ public class GestorTipoInsumo {
 //                tipoIns = new TipoInsumo(tipo.getTinNombre(),tipo.getTinDescripcion());
 //            }
 //        } finally {
-//            session.close();
+//            //session.close();
 //        }
 //
 //        return tipoIns;

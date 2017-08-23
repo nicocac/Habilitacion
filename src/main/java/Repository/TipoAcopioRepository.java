@@ -5,6 +5,7 @@ import Datos.TipoAcopioEntity;
 import Datos.TipoInsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +19,9 @@ public class TipoAcopioRepository {
 
     public List<TipoInsumoEntity> getAllTipoInsumos(){
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-        Session   session = Conexion.getSessionFactory().openSession();
+        Session   session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoInsumoEntity tipoInsumo;
         Query query = session.createQuery("select x from TipoInsumoEntity x");
         List list = query.list();
@@ -27,13 +30,15 @@ public class TipoAcopioRepository {
             tipoInsumo = (TipoInsumoEntity) iter.next();
             listaTipoInsumo.add(tipoInsumo);
         }
-        session.close();
+        //session.close();
         return listaTipoInsumo;
     }
 
 
     public TipoAcopioEntity getTipoAcopioByNombre(String nombre){
-        Session   session = Conexion.getSessionFactory().openSession();
+        Session   session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoAcopioEntity tipoGrano = new TipoAcopioEntity();
         Query query = session.createQuery("select x from TipoAcopioEntity x where ucase(tipoAcopioNombre) like ucase(:pNombre) and tipoAcopioFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -42,7 +47,7 @@ public class TipoAcopioRepository {
         while (iter.hasNext()) {
             tipoGrano = (TipoAcopioEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return tipoGrano;
     }
 
@@ -58,13 +63,15 @@ public class TipoAcopioRepository {
 //        while (iter.hasNext()) {
 //            tipoAcopio = (TipoAcopioEntity) iter.next();
 //        }
-//        session.close();
+//        //session.close();
 //        return tipoAcopio;
 //    }
 
 
     public TipoInsumoEntity getTipoInsumoById(Long id){
-        Session   session = Conexion.getSessionFactory().openSession();
+        Session   session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
         Query query = session.createQuery("select x from TipoInsumoEntity x where ucase(tinId) like ucase(:pId) and tinFechaBaja is null");
         query.setParameter("pId", id);
@@ -73,7 +80,7 @@ public class TipoAcopioRepository {
         while (iter.hasNext()) {
             tipoInsumo = (TipoInsumoEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return tipoInsumo;
     }
 

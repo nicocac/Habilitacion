@@ -64,7 +64,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             tipoCliente, tipoTransporte, AdmCampaniaPlanificada, campaniaPlanificada, AdmOrdenesXCamp;
 
     public MenuPrincipal() {
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 //            UIManager.setLookAndFeel( "com.seaglasslookandfeel.SeaGlassLookAndFeel" );
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -572,9 +572,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     }
 
     public void finalizarCampanias() {
-        Session session = Conexion.getSessionFactory().openSession();
-        java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
+
+        java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+//        Transaction tx = session.beginTransaction();
 
         Query query = session.createQuery("select t from PlanificacionCampaniaEntity t " +
                 "where  t.fechaBaja is null " +
@@ -598,7 +600,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         try {
             tx.commit();
-//            session.close();
+//            //session.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -606,7 +608,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     }
 
     public void liberarLotes() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+
         java.sql.Date fecha = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         Transaction tx = session.beginTransaction();
         String estado = "FINALIZADA";
@@ -646,7 +649,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         try {
             tx.commit();
-            session.close();
+            //session.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();

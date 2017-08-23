@@ -5,6 +5,7 @@ import Datos.TipoGranoEntity;
 import Datos.TipoInsumoEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +19,9 @@ public class TipoMedioRepository {
 
     public List<TipoInsumoEntity> getAllTipoInsumos(){
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-        Session    session = Conexion.getSessionFactory().openSession();
+        Session    session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoInsumoEntity tipoInsumo;
         Query query = session.createQuery("select x from TipoInsumoEntity x");
         List list = query.list();
@@ -27,13 +30,15 @@ public class TipoMedioRepository {
             tipoInsumo = (TipoInsumoEntity) iter.next();
             listaTipoInsumo.add(tipoInsumo);
         }
-        session.close();
+        //session.close();
         return listaTipoInsumo;
     }
 
 
     public TipoGranoEntity getTipoGranoByNombre(String nombre){
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoGranoEntity tipoGrano = new TipoGranoEntity();
         Query query = session.createQuery("select x from TipoGranoEntity x where ucase(tgrNombre) like ucase(:pNombre) and tgrFechaBaja is null");
         query.setParameter("pNombre", nombre);
@@ -42,13 +47,15 @@ public class TipoMedioRepository {
         while (iter.hasNext()) {
             tipoGrano = (TipoGranoEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return tipoGrano;
     }
 
 
     public TipoInsumoEntity getTipoInsumoById(Long id){
-        Session  session = Conexion.getSessionFactory().openSession();
+        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
         Query query = session.createQuery("select x from TipoInsumoEntity x where ucase(tinId) like ucase(:pId) and tinFechaBaja is null");
         query.setParameter("pId", id);
@@ -57,7 +64,7 @@ public class TipoMedioRepository {
         while (iter.hasNext()) {
             tipoInsumo = (TipoInsumoEntity) iter.next();
         }
-        session.close();
+        //session.close();
         return tipoInsumo;
     }
 

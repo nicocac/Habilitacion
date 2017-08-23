@@ -54,7 +54,7 @@ public class AdministrarCampo extends JFrame {
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
-//            Session session = Conexion.getSessionFactory().openSession();
+//            Session session = Conexion.getSessionFactory().getCurrentSession();
             buscarCampos();
         });
 
@@ -145,7 +145,9 @@ public class AdministrarCampo extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         try {
             campo = new CampoEntity();
@@ -176,7 +178,7 @@ public class AdministrarCampo extends JFrame {
             showMessage("Ocurrio un error al dar de baja el Campo: " + e.toString());
             return 2;
         } finally {
-            session.close();
+            //session.close();
         }
 
         return 0;
@@ -185,7 +187,9 @@ public class AdministrarCampo extends JFrame {
 
     //METODO BUSCAR campos
     public void buscarCampos() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         int i = 0;
         try {
             campo = new CampoEntity();
@@ -205,7 +209,7 @@ public class AdministrarCampo extends JFrame {
             }
             setModel(columnNames, data, tblLote);
         } finally {
-            session.close();
+            //session.close();
         }
 
     }

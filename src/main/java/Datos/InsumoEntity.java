@@ -50,7 +50,7 @@ public class InsumoEntity {
 //        while (iter.hasNext()) {
 //            insumo = (InsumoEntity) iter.next();
 //        }
-//        session.close();
+//        //session.close();
 //        return insumo;
 //    }
 

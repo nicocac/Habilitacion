@@ -11,6 +11,7 @@ import java.sql.Date;
 public class TicketPesadaEntity {
 
     private Integer id;
+    private Integer nroTicket;
     private String  observaciones;
     private String  peso;
     private String  medida;
@@ -38,6 +39,15 @@ public class TicketPesadaEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Column(name = "nro_ticket")
+    public Integer getNroTicket() {
+        return nroTicket;
+    }
+
+    public void setNroTicket(Integer nroTicket) {
+        this.nroTicket = nroTicket;
     }
 
     @Basic

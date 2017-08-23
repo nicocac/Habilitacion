@@ -58,7 +58,9 @@ public class CargaEstadoMaquinaria extends JFrame{
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().openSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
         Boolean guardado = false;
         if (validaCarga().equals("S")) {
             try {
@@ -67,7 +69,7 @@ public class CargaEstadoMaquinaria extends JFrame{
                 tipo.setTeMaDescripcion(txtDescripcion.getText());
                 tipo.setTeMaFechaAlta(fechaActual);
                 tipo.setTeMaUsuarioAlta("admin");
-                Transaction tx = session.beginTransaction();
+//                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(tipo);
                 } else {
@@ -77,11 +79,11 @@ public class CargaEstadoMaquinaria extends JFrame{
                 tx.commit();
                 guardado = tx.wasCommitted();
 //                guardado = true;
-//            session.close();
+//            //session.close();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ocurri� un error al guardar el tipo estado maquinaria: " + e.toString());
             } finally {
-                session.close();
+                //session.close();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
