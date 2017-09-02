@@ -16,9 +16,9 @@ import java.util.List;
 public class TipoInsumoRepository {
 //    Session session = Conexion.getSessionFactory().openSession()
 
-    public List<TipoInsumoEntity> getAllTipoInsumos(){
+    public List<TipoInsumoEntity> getAllTipoInsumos() {
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-        Session   session = Conexion.getSessionFactory().getCurrentSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo;
@@ -29,13 +29,13 @@ public class TipoInsumoRepository {
             tipoInsumo = (TipoInsumoEntity) iter.next();
             listaTipoInsumo.add(tipoInsumo);
         }
-        //session.close();
+        tx.rollback();
         return listaTipoInsumo;
     }
 
 
-    public TipoInsumoEntity getTipoInsumoByNombre(String nombre){
-        Session    session = Conexion.getSessionFactory().getCurrentSession();
+    public TipoInsumoEntity getTipoInsumoByNombre(String nombre) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
@@ -46,13 +46,14 @@ public class TipoInsumoRepository {
         while (iter.hasNext()) {
             tipoInsumo = (TipoInsumoEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
+
         return tipoInsumo;
     }
 
 
-    public TipoInsumoEntity getTipoInsumoById(Long id){
-        Session   session = Conexion.getSessionFactory().getCurrentSession();
+    public TipoInsumoEntity getTipoInsumoById(Long id) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();
@@ -63,8 +64,7 @@ public class TipoInsumoRepository {
         while (iter.hasNext()) {
             tipoInsumo = (TipoInsumoEntity) iter.next();
         }
-        //session.close();
-        return tipoInsumo;
+        tx.rollback();        return tipoInsumo;
     }
 
 }

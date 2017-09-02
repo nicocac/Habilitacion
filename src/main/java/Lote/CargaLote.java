@@ -25,7 +25,7 @@ import java.util.Vector;
 /**
  * Created by jagm on 05/09/2016.
  */
-public class CargaLote extends JFrame{
+public class CargaLote extends JFrame {
     private JPanel panel1;
     private JTextField txtNombre;
     private JTextField txtMetros;
@@ -54,7 +54,7 @@ public class CargaLote extends JFrame{
         //INICIO
         setContentPane(panel1);
         pack();
-        setBounds(200,300,450,500);
+        setBounds(200, 300, 450, 500);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Cargar Lote");
@@ -87,11 +87,10 @@ public class CargaLote extends JFrame{
         BtnFechaFin.add(datePickerFin);
 
 
-
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
-                JOptionPane.showMessageDialog(null, "Se guardo el alta del lote: "+txtNombre.getText()+" con exito.");
+                JOptionPane.showMessageDialog(null, "Se guardo el alta del lote: " + txtNombre.getText() + " con exito.");
                 dispose();
             }
         });
@@ -101,7 +100,7 @@ public class CargaLote extends JFrame{
         cancelarButton.addActionListener(e -> dispose());
 
 
-        if (nombre.length() > 1  && id != 0) {
+        if (nombre.length() > 1 && id != 0) {
             txtNombre.setText(nombre);
             txtMetros.setText(String.valueOf(metros));
 
@@ -111,7 +110,7 @@ public class CargaLote extends JFrame{
         nuevoCampoBtnn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CargaCampo cargaCampo = new CargaCampo("Carga", "",0, 0);
+                CargaCampo cargaCampo = new CargaCampo("Carga", "", 0, 0);
                 cargaCampo.setVisible(true);
                 getDefaultCloseOperation();
             }
@@ -140,7 +139,7 @@ public class CargaLote extends JFrame{
             miVectorTipoMaquinaria.add(tipoMaquinaria.getCpoNombre());
             cbxCampo.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxCampo() {
@@ -150,8 +149,8 @@ public class CargaLote extends JFrame{
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Session session = null;
+        Transaction tx = null;
 
         Boolean guardado = false;
         LoteEntity lote = new LoteEntity();
@@ -168,6 +167,9 @@ public class CargaLote extends JFrame{
 
                 String campo = cbxCampo.getSelectedItem().toString();
                 CampoEntity campoEntity = campoRepository.getCampoByNombre(campo);
+
+                session = Conexion.getSessionFactory().getCurrentSession();
+                 tx = session.beginTransaction();
                 lote.setCampo(campoEntity);
 
 //                Transaction tx = session.beginTransaction();
@@ -181,6 +183,7 @@ public class CargaLote extends JFrame{
                 guardado = tx.wasCommitted();
 //                //session.close();
             } catch (Exception e) {
+//                tx.rollback();
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el lote: " + e.toString());
             } finally {
                 //session.close();

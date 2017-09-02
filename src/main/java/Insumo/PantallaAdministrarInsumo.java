@@ -322,7 +322,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             }
             setModel(columnNames, data, tblInsumos);
         } finally {
-            //session.close();
+           tx.rollback();
         }
 
     }

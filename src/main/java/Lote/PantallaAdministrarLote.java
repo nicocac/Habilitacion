@@ -204,7 +204,7 @@ public class PantallaAdministrarLote extends JFrame {
             }
             setModel(columnNames, data, tblLote);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

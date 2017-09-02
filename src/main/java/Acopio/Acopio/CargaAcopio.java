@@ -171,7 +171,7 @@ public class CargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTipoAcopioNombre());
             cbxTipoAcopio.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxTipoAcopio() {
@@ -192,7 +192,7 @@ public class CargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTgrNombre());
             cbxTipoAcopio.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
 

@@ -347,7 +347,7 @@ public class PantallaCargaAcopio extends JFrame {
             } finally {
                 ////session.close();
             }
-        } else {
+        } else {tx.rollback();
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
         }
 
@@ -382,7 +382,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getNombre());
             cbxAcopio.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxAcopio() {
@@ -404,7 +404,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTipoAcopioNombre());
             cbxTipoAcopio.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxTipoAcopio() {
@@ -445,7 +445,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTgrNombre());
             cbxGrano.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxTipoGrano() {
@@ -467,7 +467,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getCnaDenominacion());
             cbxCamp.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxCamp() {
@@ -489,7 +489,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getLteDenominacion());
             cbxLote.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxLote() {
@@ -511,7 +511,7 @@ public class PantallaCargaAcopio extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getClienteCuitCuil());
             cbxCliente.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxCliente() {

@@ -272,8 +272,7 @@ public class AdministrarAcopio extends JFrame {
             showMessage("Ocurrio un error al dar de baja el Acopio: " + e.toString());
             return 2;
         } finally {
-            ////session.close();
-        }
+            tx.rollback();        }
 
         return 0;
     }

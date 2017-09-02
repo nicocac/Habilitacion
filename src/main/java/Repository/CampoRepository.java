@@ -47,7 +47,7 @@ public class CampoRepository {
         while (iter.hasNext()) {
             campo = (CampoEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return campo;
     }
 

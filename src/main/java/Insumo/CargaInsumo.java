@@ -100,8 +100,8 @@ public class CargaInsumo extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Session session = null;
+        Transaction tx = null;
 
         Boolean guardado = false;
         InsumoEntity insumo = new InsumoEntity();
@@ -118,7 +118,8 @@ public class CargaInsumo extends JFrame {
                 TipoInsumoEntity tipoInsumoEntity = tipoInsumoRepository.getTipoInsumoByNombre(tipoInsumo);
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
 
-//                Transaction tx = session.beginTransaction();
+                session = Conexion.getSessionFactory().getCurrentSession();
+                tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(insumo);
                 } else {
@@ -131,6 +132,7 @@ public class CargaInsumo extends JFrame {
                 guardado = true;
 //                //session.close();
             } catch (Exception e) {
+                tx.rollback();
                 JOptionPane.showMessageDialog(this, "Ocurri� un error al cargar el insumo: " + e.toString());
             } finally {
                 //session.close();
@@ -154,9 +156,6 @@ public class CargaInsumo extends JFrame {
     }
 
 
-
-
-
     //METODO CARGA COMBO
     private void cargaComboBoxTipo() {
 
@@ -171,7 +170,7 @@ public class CargaInsumo extends JFrame {
     }
 
     private void borrarComboBoxTipo() {
-            cbxTipoInsumo.removeAllItems();
+        cbxTipoInsumo.removeAllItems();
     }
 
 }
