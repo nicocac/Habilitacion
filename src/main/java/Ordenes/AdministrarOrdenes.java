@@ -264,7 +264,7 @@ public class AdministrarOrdenes extends JFrame {
             }
             setModel(columnNames, data, tblCampPlanificadas);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

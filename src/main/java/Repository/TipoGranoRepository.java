@@ -72,6 +72,34 @@ public class TipoGranoRepository {
     }
 
 
+
+    public TipoGranoEntity getTipoGranoByNombreSinTx(String nombre) {
+        Session session = null;
+//        Transaction tx = null;
+        TipoGranoEntity tipoGrano = new TipoGranoEntity();
+
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+//            tx = session.beginTransaction();
+            Query query = session.createQuery("select x from TipoGranoEntity x where ucase(tgrNombre) like ucase(:pNombre) and tgrFechaBaja is null");
+            query.setParameter("pNombre", nombre);
+            List list = query.list();
+            Iterator iter = list.iterator();
+            while (iter.hasNext()) {
+                tipoGrano = (TipoGranoEntity) iter.next();
+            }
+//            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+            return tipoGrano;
+
+        }
+
+        //session.close();
+    }
+
+
     public TipoInsumoEntity getTipoInsumoById(Long id) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();

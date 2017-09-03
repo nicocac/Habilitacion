@@ -193,7 +193,7 @@ public class PantallaAdministrarTipoGranos extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

@@ -44,7 +44,7 @@ public class AdministrarAcopio extends JFrame {
     public JButton graficoBtn;
     public JPanel panelImage;
     private AcopioEntity tipo;
-    private Transaction tx;
+//    private Transaction tx;
     private DefaultTableModel model;
 
     java.util.Date fecha = new java.util.Date();
@@ -280,17 +280,17 @@ public class AdministrarAcopio extends JFrame {
 
     //METODO BUSCAR TIPOS
     public void buscarTiposAcopio() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+//        Session session = null;
+//        Transaction tx = null;
 
         int i = 0;
         try {
             java.util.List<Object[]> list;
             Object[] acopio;
 
-            list = gest.getStockByAcopio();
+            list = gest.getStockByAcopioTX();
             //
-            List<Object[]> listEgreso = gest.getStockEgresoByAcopio();
+            List<Object[]> listEgreso = gest.getStockEgresoByAcopioTX();
 
             List<Object[]> listStockFinal = new ArrayList<>();
 
@@ -324,7 +324,7 @@ public class AdministrarAcopio extends JFrame {
                 i++;
             }
             setModel(columnNames, data, tblTipos);
-            tx.rollback();
+//            tx.rollback();
         } catch (Exception e) {
         } finally {
             ////session.close();

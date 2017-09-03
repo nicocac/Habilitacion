@@ -54,7 +54,7 @@ public class LoteCampaniaRepository {
 
 
     public void deleteAllByCampania(int id) {
-        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
 
@@ -62,6 +62,7 @@ public class LoteCampaniaRepository {
         Query query = session.createQuery("DELETE FROM LoteCampaniaEntity where ucase(lcpCnaId) like ucase(:pId)");
         query.setParameter("pId", id);
         query.executeUpdate();
+        tx.rollback();
         //session.close();
     }
 
@@ -100,13 +101,13 @@ public class LoteCampaniaRepository {
             lote = (LoteEntity) iter.next();
             listaLotes.add(lote);
         }
-        //session.close();
-        return  listaLotes;
+        tx.rollback();
+        return listaLotes;
     }
 
 
     public List<LoteCampaniaEntity> getLotesCampaniasByLote(int id) {
-        Session  session = Conexion.getSessionFactory().getCurrentSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         java.util.List list;
@@ -122,8 +123,8 @@ public class LoteCampaniaRepository {
             loteCampania = (LoteCampaniaEntity) iter.next();
             listaLotesCampania.add(loteCampania);
         }
-        //session.close();
-        return  listaLotesCampania;
+        tx.rollback();
+        return listaLotesCampania;
     }
 
 

@@ -211,7 +211,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
             }
             setModel(columnNames, data, tblLaboreos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

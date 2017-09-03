@@ -110,8 +110,8 @@ public class PantallaLaboreoCargado extends JFrame {
             Object[][] data = new Object[listaIns.size() + listaMaq.size()][4];
             int i = 0;
             if (listaIns.size() != 0) {
-                for (Object[] row: listaIns) {
-                    InsumoEntity insumoEntity = (InsumoEntity)row[0];
+                for (Object[] row : listaIns) {
+                    InsumoEntity insumoEntity = (InsumoEntity) row[0];
                     Integer cantidad = (Integer) row[1];
 
                     data[i][0] = "Insumo";
@@ -123,11 +123,11 @@ public class PantallaLaboreoCargado extends JFrame {
             }
 
             if (listaMaq.size() != 0) {
-                for (Object[] row: listaMaq) {
-                    MaquinariaEntity maquinariaEntity = (MaquinariaEntity)row[0];
+                for (Object[] row : listaMaq) {
+                    MaquinariaEntity maquinariaEntity = (MaquinariaEntity) row[0];
                     Integer cantidad = (Integer) row[1];
 
-                    data[i][0] =  "Maquinaria";
+                    data[i][0] = "Maquinaria";
                     data[i][1] = maquinariaEntity.getMaqNombre();
                     data[i][2] = maquinariaEntity.getTipoMaquinariaByMaqTmaqId().getTmaNombre();
                     data[i][3] = String.valueOf(cantidad);
@@ -265,7 +265,6 @@ public class PantallaLaboreoCargado extends JFrame {
         });
 
 
-
         //NUEVA ACTIVIDAD
         nuevoTipoLaboreoBtn.addActionListener(e -> {
             CargaTipoLaboreo cargaTipoLaboreo = new CargaTipoLaboreo("Carga", "", "", 0);
@@ -343,7 +342,7 @@ public class PantallaLaboreoCargado extends JFrame {
                     }
 
 
-                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null,null,null);
+                    Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null);
                     det.setInsumo(ins);
                     det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                 } else {
@@ -395,7 +394,6 @@ public class PantallaLaboreoCargado extends JFrame {
 
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el laboreo: " + e1.toString());
-                return;
             } finally {
                 JOptionPane.showMessageDialog(null, "La operacion fue realizada con exito.");
                 dispose();
@@ -479,17 +477,14 @@ public class PantallaLaboreoCargado extends JFrame {
     }
 
 
-
     private void limpiarPantalla() {
         inicializaTabla();
     }
 
 
-
     private void showMessage(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
-
 
 
     private void borrarComboBoxTipoLaboreo() {
@@ -499,7 +494,6 @@ public class PantallaLaboreoCargado extends JFrame {
     private void borrarComboBoxTipoGrano() {
         cbxSemillas.removeAllItems();
     }
-
 
 
     //METODO CARGA COMBO TIPO LABOREO
@@ -517,7 +511,7 @@ public class PantallaLaboreoCargado extends JFrame {
 
 //            cboCampania.setSelectedItem(null);
         }
-
+        tx.rollback();
     }
 
 
@@ -536,7 +530,7 @@ public class PantallaLaboreoCargado extends JFrame {
 
 //            cboCampania.setSelectedItem(null);
         }
-
+        tx.rollback();
     }
 
     private void createUIComponents() {

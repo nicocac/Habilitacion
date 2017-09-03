@@ -86,6 +86,7 @@ public class LoteRepository {
         }catch (Exception e){
 //            tx.rollback();
         } finally {
+
             return lote;
 
         }

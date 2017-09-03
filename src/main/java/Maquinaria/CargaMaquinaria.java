@@ -190,7 +190,7 @@ public class CargaMaquinaria extends JFrame {
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTmaNombre());
             cbxTipoMaquinaria.addItem(tipoMaquinaria);
         }
-
+        tx.rollback();
     }
 
     private void borrarComboBoxTipoMaquinaria() {
@@ -217,7 +217,7 @@ public class CargaMaquinaria extends JFrame {
             miVectorEstado.add(tipoEstado.getTeMaNombre());
             cbxEstado.addItem(tipoEstado);
         }
-
+        tx.rollback();
     }
 
 }

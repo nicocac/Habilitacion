@@ -192,7 +192,7 @@ public class PantallaAdministrarEstadoMaquinaria extends JFrame{
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

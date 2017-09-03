@@ -194,7 +194,7 @@ public class GestorLaboreo {
                 retorno.add(mom);
             }
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
         return retorno;
@@ -245,7 +245,7 @@ public class GestorLaboreo {
                 te = (TipoLaboreoEntity) iter.next();
             }
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
         return te;
@@ -518,14 +518,13 @@ public class GestorLaboreo {
             detalleLaboreoEntity = new DetalleLaboreoEntity();
             try {
                 String nombreInsumo = detallesLaboreo.get(i).getInsumo().getNombre();
-                insumoEntity = insumoRepository.getInsumoByNombre(nombreInsumo);
+                insumoEntity = insumoRepository.getInsumoByNombrePlanificar(nombreInsumo);
                 detalleLaboreoEntity.setInsumoByDboInsId(insumoEntity);
                 detalleLaboreoEntity.setDboCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
 
-
             } catch (NullPointerException npe) {
                 String nombreMaquinaria = detallesLaboreo.get(i).getMaquinaria().getNombre();
-                maquinariaEntity = maquinariaRepository.getMaquinariaByNombre(nombreMaquinaria);
+                maquinariaEntity = maquinariaRepository.getMaquinariaByNombrePlanificacion(nombreMaquinaria);
                 detalleLaboreoEntity.setMaquinariaByDboMaqId(maquinariaEntity);
                 detalleLaboreoEntity.setDboCantidadMaquinaria(detallesLaboreo.get(i).getCantidadMaquinaria());
                 session.update(maquinariaEntity);
@@ -541,8 +540,8 @@ public class GestorLaboreo {
         laboreoEntity.setMetrica(metrica);
         laboreoEntity.setLboNombre(nombre);
 
-        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombre(tipoLaboreo.getTpoNombre());
-        tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombre(tipoGrano.getTgrNombre());
+        tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombreSinTx(tipoLaboreo.getTpoNombre());
+        tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombreSinTx(tipoGrano.getTgrNombre());
         laboreoEntity.setTipoGrano(tipoGranoEntity);
         laboreoEntity.setDetalleLaboreosByLboId(listaDetallesLaboreoEntity);
         laboreoEntity.setTipoLaboreoEntity(tipoLaboreoEntity);
@@ -1063,6 +1062,34 @@ public class GestorLaboreo {
 
 
 
+    public List<Object[]> getStockByAcopioTX() {
+        java.util.List<Object[]> list = new ArrayList<>();
+
+        try {
+            Session session = Conexion.getSessionFactory().getCurrentSession();
+            Transaction tx = session.beginTransaction();
+
+            Query query = session.createQuery("select a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre," +
+                    " i.tipoGrano.tgrNombre, i.estadoSemilla, SUM(i.ingresoCantidadTotal) " +
+                    "from AcopioEntity a, IngresoAcopioEntity i " +
+                    "where (a.acopioId = i.acopio.acopioId)" +
+                    "group by a.acopioId, a.nombre, a.codigo, a.tipoAcopioEntity.tipoAcopioNombre, i.tipoGrano.tgrNombre, i.estadoSemilla");
+
+            list = query.list();
+            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+            return list;
+
+        }
+        //session.close();
+
+    }
+
+
+
+
     public List<Object[]> getStockByAcopioAvance() {
         java.util.List<Object[]> list = new ArrayList<>();
 
@@ -1121,6 +1148,31 @@ public class GestorLaboreo {
 
             list = query.list();
 //            tx.rollback();
+        } catch (Exception e) {
+
+        } finally {
+            return list;
+
+        }
+        //session.close();
+
+    }
+
+
+    public List<Object[]> getStockEgresoByAcopioTX() {
+        java.util.List<Object[]> list = new ArrayList<>();
+
+        try {
+            Session session = Conexion.getSessionFactory().getCurrentSession();
+            Transaction tx = session.beginTransaction();
+
+            Query query = session.createQuery("select a.acopioId, SUM(d.detalleEgresoCantidad) " +
+                    "from AcopioEntity a, DetalleEgresoAcopioEntity d " +
+                    "where (a.acopioId = d.acopio.acopioId)" +
+                    "group by a.acopioId ");
+
+            list = query.list();
+            tx.rollback();
         } catch (Exception e) {
 
         } finally {

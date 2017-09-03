@@ -302,7 +302,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
             }
             setModel(columnNames, data, tblMaquinaria);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

@@ -17,7 +17,7 @@ import java.util.List;
 public class LaboreoRepository {
 //    Session session = Conexion.getSessionFactory().openSession()
 
-    public List<TipoInsumoEntity> getAllTipoInsumos(){
+    public List<TipoInsumoEntity> getAllTipoInsumos() {
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -35,8 +35,8 @@ public class LaboreoRepository {
     }
 
 
-    public LaboreoEntity getLaboreoByNombre(String nombre){
-        Session  session = Conexion.getSessionFactory().getCurrentSession();
+    public LaboreoEntity getLaboreoByNombre(String nombre) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         LaboreoEntity tipoLaboreo = new LaboreoEntity();
@@ -52,7 +52,7 @@ public class LaboreoRepository {
     }
 
 
-    public LaboreoEntity getLaboreoById(Long id){
+    public LaboreoEntity getLaboreoById(Long id) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
@@ -64,7 +64,7 @@ public class LaboreoRepository {
         while (iter.hasNext()) {
             laboreoEntity = (LaboreoEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return laboreoEntity;
     }
 

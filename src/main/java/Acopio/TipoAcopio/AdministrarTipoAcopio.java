@@ -204,7 +204,7 @@ public class AdministrarTipoAcopio extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            ////session.close();
+           tx.rollback();
         }
 
     }

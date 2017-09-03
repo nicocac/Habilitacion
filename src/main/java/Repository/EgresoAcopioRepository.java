@@ -38,6 +38,7 @@ public class EgresoAcopioRepository {
         } catch (Exception e) {
 
         } finally {
+            tx.rollback();
             return listaTipoInsumo;
 
         }

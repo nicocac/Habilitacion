@@ -16,13 +16,13 @@ import java.util.List;
 public class TransporteRepository {
 //    Session session = Conexion.getSessionFactory().openSession()
 
-    public List<TransporteEntity> getAllTransportes(){
+    public List<TransporteEntity> getAllTransportes() {
         List<TransporteEntity> listaInsumo = new ArrayList<>();
         Session session = null;
         Transaction tx = null;
         try {
-             session = Conexion.getSessionFactory().getCurrentSession();
-             tx = session.beginTransaction();
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
 
             TransporteEntity insumo;
             Query query = session.createQuery("select x from TransporteEntity x");
@@ -33,7 +33,7 @@ public class TransporteRepository {
                 listaInsumo.add(insumo);
             }
             tx.rollback();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         } finally {
 
@@ -44,7 +44,7 @@ public class TransporteRepository {
     }
 
 
-    public TransporteEntity getTransporteByNombre(String nombre){
+    public TransporteEntity getTransporteByNombre(String nombre) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
@@ -61,7 +61,7 @@ public class TransporteRepository {
     }
 
 
-    public TransporteEntity getTransporteById(Long id){
+    public TransporteEntity getTransporteById(Long id) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
@@ -73,7 +73,7 @@ public class TransporteRepository {
         while (iter.hasNext()) {
             insumo = (TransporteEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return insumo;
     }
 

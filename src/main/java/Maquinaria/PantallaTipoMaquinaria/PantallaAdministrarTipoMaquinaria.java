@@ -190,7 +190,7 @@ public class PantallaAdministrarTipoMaquinaria extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

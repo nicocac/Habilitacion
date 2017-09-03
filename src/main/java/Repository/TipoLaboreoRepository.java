@@ -17,9 +17,9 @@ import java.util.List;
 public class TipoLaboreoRepository {
 //    Session session = Conexion.getSessionFactory().openSession()
 
-    public List<TipoInsumoEntity> getAllTipoInsumos(){
+    public List<TipoInsumoEntity> getAllTipoInsumos() {
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-        Session    session = Conexion.getSessionFactory().getCurrentSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo;
@@ -35,8 +35,8 @@ public class TipoLaboreoRepository {
     }
 
 
-    public TipoLaboreoEntity getTipoLaboreoByNombre(String nombre){
-        Session  session = Conexion.getSessionFactory().getCurrentSession();
+    public TipoLaboreoEntity getTipoLaboreoByNombre(String nombre) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoLaboreoEntity tipoLaboreo = new TipoLaboreoEntity();
@@ -47,12 +47,29 @@ public class TipoLaboreoRepository {
         while (iter.hasNext()) {
             tipoLaboreo = (TipoLaboreoEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return tipoLaboreo;
     }
 
 
-    public TipoInsumoEntity getTipoInsumoById(Long id){
+    public TipoLaboreoEntity getTipoLaboreoByNombreSinTx(String nombre) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
+//        Transaction tx = session.beginTransaction();
+
+        TipoLaboreoEntity tipoLaboreo = new TipoLaboreoEntity();
+        Query query = session.createQuery("select x from TipoLaboreoEntity x where ucase(tpoNombre) like ucase(:pNombre) and tpoFechaBaja is null");
+        query.setParameter("pNombre", nombre);
+        List list = query.list();
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            tipoLaboreo = (TipoLaboreoEntity) iter.next();
+        }
+//        tx.rollback();
+        return tipoLaboreo;
+    }
+
+
+    public TipoInsumoEntity getTipoInsumoById(Long id) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 

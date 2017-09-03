@@ -194,7 +194,7 @@ public class AdministrarTipoCliente extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

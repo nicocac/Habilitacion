@@ -47,7 +47,7 @@ public class GestorCompras {
 
                 DetalleSolicitudInsumoEntity detalleEntity = new DetalleSolicitudInsumoEntity();
                 InsumoEntity insumoEntity = new InsumoEntity();
-                insumoEntity = insumoRepository.getInsumoByNombre(vectorDetalles.get(i).getInsumo().getNombre());
+                insumoEntity = insumoRepository.getInsumoByNombrePlanificar(vectorDetalles.get(i).getInsumo().getNombre());
                 Long stock;
                 if (insumoEntity.getInsStock() == null) {
                     stock = Long.valueOf(0);
@@ -84,8 +84,8 @@ public class GestorCompras {
 
     //INGRESO INSUMO REGISTRO REMITO
     public boolean registrarIngresoInsumos(IngresoInsumo ingreso) {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Session session = null;
+        Transaction tx = null;
         java.util.Date utilDate = new java.util.Date();
         ArrayList<DetalleIngresoInsumo> vectorDetalles = new ArrayList<>();
         ArrayList<DetalleIngresoInsumoEntity> vectorDetallesEntity = new ArrayList<>();
@@ -104,7 +104,13 @@ public class GestorCompras {
             SolicitudInsumoEntity solicitud = solicitudInsumoRepository.getSolicitudInsumoById(nro);
             solicitud.setSiNroRemito(ingreso.getIngresoNroRemito());
             solicitud.setSiEstado("Finalizada");
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
             session.update(solicitud);
+        }
+        if (session == null) {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
         }
         session.save(ingresoInsumoEntity);
 
@@ -113,7 +119,7 @@ public class GestorCompras {
 
             DetalleIngresoInsumoEntity detalleEntity = new DetalleIngresoInsumoEntity();
             InsumoEntity insumoEntity = new InsumoEntity();
-            insumoEntity = insumoRepository.getInsumoByNombre(vectorDetalles.get(i).getInsumo().getNombre());
+            insumoEntity = insumoRepository.getInsumoByNombrePlanificar(vectorDetalles.get(i).getInsumo().getNombre());
             BigDecimal stock;
             if (insumoEntity.getInsStock() == null) {
                 stock = BigDecimal.valueOf(0);
@@ -175,7 +181,7 @@ public class GestorCompras {
         } catch (Exception e) {
             System.out.print(e.toString());
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
         return retorno;

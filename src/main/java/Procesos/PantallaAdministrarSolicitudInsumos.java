@@ -208,7 +208,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
             }
             setModel(columnNames, data, tblCompras);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

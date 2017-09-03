@@ -209,7 +209,7 @@ public class AdministrarCampo extends JFrame {
             }
             setModel(columnNames, data, tblLote);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

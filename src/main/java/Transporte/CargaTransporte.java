@@ -97,8 +97,8 @@ public class CargaTransporte extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Session session = null;
+        Transaction tx = null;
 
         Boolean guardado = false;
         TransporteEntity transporte = new TransporteEntity();
@@ -113,6 +113,9 @@ public class CargaTransporte extends JFrame {
                 String tipoTransporte = cbxTipoTransporte.getSelectedItem().toString();
                 TipoTransporteEntity tipoTransporteEntity = tipoTransporteRepository.getTipoTransporteByNombre(tipoTransporte);
                 transporte.setTipoTransporteEntity(tipoTransporteEntity);
+
+                 session = Conexion.getSessionFactory().getCurrentSession();
+                 tx = session.beginTransaction();
 
 //                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {

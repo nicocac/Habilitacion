@@ -196,7 +196,7 @@ public class AdministrarTipoTransporte extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

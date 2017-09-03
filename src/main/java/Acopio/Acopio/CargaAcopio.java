@@ -42,8 +42,7 @@ public class CargaAcopio extends JFrame {
     private java.util.Date fecha = new java.util.Date();
     private Date fechaActual = new Date(fecha.getTime());
 
-    public CargaAcopio() {
-    }
+
 
 
     public CargaAcopio(String operacion, String nombre, Integer codigo, int id) {
@@ -58,7 +57,7 @@ public class CargaAcopio extends JFrame {
             this.setTitle("Modificar Acopio");
         }
         cargaComboBoxSemilla();
-
+        cargaComboBoxTipoAcopio();
 
         //NEVO TIPO ACOPIO
         nvoBtnTipoAcopio.addActionListener(new ActionListener() {
@@ -69,7 +68,10 @@ public class CargaAcopio extends JFrame {
                 getDefaultCloseOperation();
             }
         });
-        nvoBtnTipoAcopio.addFocusListener(new FocusAdapter() {
+
+
+
+        cbxTipoAcopio.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
@@ -97,6 +99,14 @@ public class CargaAcopio extends JFrame {
             txtCodigo.setText(codigo.toString());
             tinId = id;
         }
+        cbxTipoAcopio.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                borrarComboBoxTipoAcopio();
+                cargaComboBoxTipoAcopio();
+            }
+        });
     }
 
 
@@ -131,6 +141,7 @@ public class CargaAcopio extends JFrame {
                 guardado = true;
 //            ////session.close();
             } catch (Exception e) {
+                tx.rollback();
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el Acopio: " + e.toString());
                 return false;
             } finally {
@@ -190,7 +201,7 @@ public class CargaAcopio extends JFrame {
         for (TipoGranoEntity tipoMaquinaria : listaTipoMaquinaria) {
             //System.out.println(tipoMaquinaria.getTeMaNombre());
             miVectorTipoMaquinaria.add(tipoMaquinaria.getTgrNombre());
-            cbxTipoAcopio.addItem(tipoMaquinaria);
+            cbxGrano.addItem(tipoMaquinaria);
         }
         tx.rollback();
     }

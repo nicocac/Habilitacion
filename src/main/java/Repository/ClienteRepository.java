@@ -56,7 +56,7 @@ public class ClienteRepository {
         while (iter.hasNext()) {
             insumo = (ClienteEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return insumo;
     }
 
@@ -73,7 +73,7 @@ public class ClienteRepository {
         while (iter.hasNext()) {
             insumo = (ClienteEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return insumo;
     }
 

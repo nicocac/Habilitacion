@@ -390,7 +390,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             }
             setModelInsumo(columnNames, data);
         } finally {
-            //session.close();
+            tx.rollback();
         }
     }
 
@@ -441,7 +441,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             }
             setModelInsumo(columnNames, data);
         } finally {
-            //session.close();
+            tx.rollback();
         }
     }
 

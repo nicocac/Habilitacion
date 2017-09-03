@@ -141,7 +141,7 @@ public class AdministrarTransporte extends JFrame {
     //METODO DAR BAJA
     public int darBaja() {
         Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Transaction tx = null;
 
         Boolean guardado = false;
         try {
@@ -213,7 +213,7 @@ public class AdministrarTransporte extends JFrame {
             }
             setModel(columnNames, data, tblTransportes);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

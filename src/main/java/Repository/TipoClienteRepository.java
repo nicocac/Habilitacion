@@ -30,7 +30,7 @@ public class TipoClienteRepository {
             tipoInsumo = (TipoClienteEntity) iter.next();
             listaTipoInsumo.add(tipoInsumo);
         }
-        //session.close();
+        tx.rollback();
         return listaTipoInsumo;
     }
 
@@ -47,7 +47,7 @@ public class TipoClienteRepository {
         while (iter.hasNext()) {
             tipoInsumo = (TipoClienteEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return tipoInsumo;
     }
 

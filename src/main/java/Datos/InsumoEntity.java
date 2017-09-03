@@ -66,7 +66,7 @@ public class InsumoEntity {
     //=================================================================
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ins_id")
     public Integer getInsId() {
         return insId;
@@ -272,11 +272,4 @@ public class InsumoEntity {
     ////////////////////
     //=================================================================
 
-    public Integer getInsTinId() {
-        return insTinId;
-    }
-
-    public void setInsTinId(Integer insTinId) {
-        this.insTinId = insTinId;
-    }
 }

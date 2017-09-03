@@ -17,9 +17,9 @@ import java.util.List;
 public class TipoAcopioRepository {
 //    Session session = Conexion.getSessionFactory().openSession()
 
-    public List<TipoInsumoEntity> getAllTipoInsumos(){
+    public List<TipoInsumoEntity> getAllTipoInsumos() {
         List<TipoInsumoEntity> listaTipoInsumo = new ArrayList<>();
-        Session   session = Conexion.getSessionFactory().getCurrentSession();
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo;
@@ -35,8 +35,8 @@ public class TipoAcopioRepository {
     }
 
 
-    public TipoAcopioEntity getTipoAcopioByNombre(String nombre){
-        Session   session = Conexion.getSessionFactory().getCurrentSession();
+    public TipoAcopioEntity getTipoAcopioByNombre(String nombre) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoAcopioEntity tipoGrano = new TipoAcopioEntity();
@@ -47,7 +47,7 @@ public class TipoAcopioRepository {
         while (iter.hasNext()) {
             tipoGrano = (TipoAcopioEntity) iter.next();
         }
-        //session.close();
+        tx.rollback();
         return tipoGrano;
     }
 
@@ -68,8 +68,8 @@ public class TipoAcopioRepository {
 //    }
 
 
-    public TipoInsumoEntity getTipoInsumoById(Long id){
-        Session   session = Conexion.getSessionFactory().getCurrentSession();
+    public TipoInsumoEntity getTipoInsumoById(Long id) {
+        Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         TipoInsumoEntity tipoInsumo = new TipoInsumoEntity();

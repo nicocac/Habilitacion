@@ -191,7 +191,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

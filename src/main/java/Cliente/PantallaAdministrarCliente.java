@@ -226,7 +226,7 @@ public class PantallaAdministrarCliente extends JFrame {
             }
             setModel(columnNames, data, tblClientes);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

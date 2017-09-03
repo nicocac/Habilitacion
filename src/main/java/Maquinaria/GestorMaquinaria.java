@@ -27,7 +27,7 @@ public class GestorMaquinaria {
                 maq = (MaquinariaEntity) iter.next();
             }
         } finally {
-            //session.close();
+            tx.rollback();
         }
         return maq;
     }

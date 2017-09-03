@@ -193,7 +193,7 @@ public class PantallaAdministrarMedios extends JFrame {
             }
             setModel(columnNames, data, tblTipos);
         } finally {
-            //session.close();
+            tx.rollback();
         }
 
     }

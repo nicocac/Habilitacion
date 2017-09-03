@@ -65,6 +65,7 @@ public class SolicitudInsumoRepository {
             solicitud = (SolicitudInsumoEntity) iter.next();
         }
         //session.close();
+        tx.rollback();
         return solicitud;
     }
 
