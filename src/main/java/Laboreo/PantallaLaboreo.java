@@ -211,7 +211,7 @@ public class PantallaLaboreo extends JFrame {
                             , ins.getNombre()
                             , ins.getUnidadMedida()
                             , "1"
-                            , ins.getStockDisponible()
+//                            , ins.getStockDisponible()
                             , ins.getStock()});
                     fila++;
                 }
@@ -349,7 +349,8 @@ public class PantallaLaboreo extends JFrame {
                             }
                         }
 
-                        Integer stockIns = (insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible().intValue();
+//                        Integer stockIns = (insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible().intValue();
+                        Integer stockIns = (insumoEntity.getInsStock() == null) ? 0 : insumoEntity.getInsStock().intValue();
                         Integer cantidadFaltante = stockIns - Integer.parseInt((String) tblDetalles.getValueAt(i, 3));
                         if (cantidadFaltante < 0) {
                             stockFaltante = true;
@@ -361,7 +362,7 @@ public class PantallaLaboreo extends JFrame {
                         }
 
 
-                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null, null);
+                        Insumo ins = new Insumo((String) tblDetalles.getValueAt(i, 1), null, null, null, null);
                         det.setInsumo(ins);
                         det.setCantidadIsumo(Integer.parseInt((String) tblDetalles.getValueAt(i, 3)));
                     } else {
@@ -662,8 +663,8 @@ public class PantallaLaboreo extends JFrame {
                         data[i][1] = insumoEntity.getInsNombre();
                         data[i][2] = insumoEntity.getTipoInsumoByInsTinId().getTinNombre();
                         data[i][3] = String.valueOf(cantidad);
-                        data[i][4] = String.valueOf(insumoEntity.getInsStockDisponible());
-                        data[i][5] = String.valueOf(insumoEntity.getInsStock());
+//                        data[i][4] = String.valueOf(insumoEntity.getInsStockDisponible());
+                        data[i][4] = String.valueOf(insumoEntity.getInsStock());
                         i++;
                     }
                 }
@@ -684,7 +685,8 @@ public class PantallaLaboreo extends JFrame {
 //                }
 //            }
 
-                String[] columnNames = {"Secuencia", "Nombre", "Tipo", "Cantidad", "Stock Disponible", "Stock Real"};
+//                String[] columnNames = {"Secuencia", "Nombre", "Tipo", "Cantidad", "Stock Disponible", "Stock Real"};
+                String[] columnNames = {"Secuencia", "Nombre", "Tipo", "Cantidad", "Stock Real"};
 //                DefaultTableModel model = new DefaultTableModel();
 //                model.setDataVector(data, columnNames);
 //                tblDetalles.setModel(model);
@@ -793,7 +795,8 @@ public class PantallaLaboreo extends JFrame {
     }
 
     private void inicializaTabla() {
-        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad", "Stock Disponible", "Stock Real"};
+//        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad", "Stock Disponible", "Stock Real"};
+        String[] columnNamesCompra = {"Tipo", "Descripcion", "Unidad de Medida", "Cantidad", "Stock Real"};
         Object[][] data = new Object[1][6];
         setModelDetalles(columnNamesCompra, data);
 
@@ -843,8 +846,8 @@ public class PantallaLaboreo extends JFrame {
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(60);
         tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(60);
-        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(60);
-        col = tblDetalles.getColumnModel().getColumn(5);
+//        tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(60);
+        col = tblDetalles.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
     }

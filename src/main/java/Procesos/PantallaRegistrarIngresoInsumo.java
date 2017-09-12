@@ -188,7 +188,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             }
 
 
-            Insumo ins = new Insumo("(Sin datos)", null, null, null,null,null);
+            Insumo ins = new Insumo("(Sin datos)", null, null, null,null);
             DetalleIngresoInsumo detalle;
             IngresoInsumo ingreso = new IngresoInsumo();
             ArrayList<DetalleIngresoInsumo> detalles = new ArrayList<>();
@@ -207,7 +207,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
             try {
                 for (int i = 0; i < tblCompra.getRowCount(); i++) {
 
-                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null,null,null);
+                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null,null);
                     detalle = new DetalleIngresoInsumo();
                     detalle.setCantidadIngresada((Long.valueOf((String) tblCompra.getValueAt(i, 4))));
 //                    detalle.setPrecio(BigDecimal.valueOf(Double.valueOf((String)tblCompra.getValueAt(i,5))));

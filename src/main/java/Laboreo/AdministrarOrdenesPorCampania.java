@@ -186,7 +186,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
                             loteEntity.setEstado("LIBRE");
                             sessionLote.update(loteEntity);
                             txLote.commit();
-                            sessionLote.close();
+//                            sessionLote.close();
                         }
 
 
@@ -203,7 +203,7 @@ public class AdministrarOrdenesPorCampania extends JFrame {
                             campaniaEntity.setEstado("FINALIZADA");
                             sessionCamp.update(campaniaEntity);
                             txCamp.commit();
-                            sessionCamp.close();
+//                            sessionCamp.close();
                         }
 
                         JOptionPane.showMessageDialog(null, "La orden fue finalizada en forma definitiva con exito.");

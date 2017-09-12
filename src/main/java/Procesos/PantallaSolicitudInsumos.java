@@ -179,7 +179,7 @@ public class PantallaSolicitudInsumos extends JFrame {
                 return;
             }
 
-            Insumo ins = new Insumo("(Sin datos)", null, null, null, null, null);
+            Insumo ins = new Insumo("(Sin datos)", null, null, null, null);
             DetalleCompra detalle;
             Compra compra = new Compra();
             ArrayList<DetalleCompra> detalles = new ArrayList<>();
@@ -190,7 +190,7 @@ public class PantallaSolicitudInsumos extends JFrame {
             compra.setNroSolicitud(Integer.valueOf(txtSolicitud.getText()));
             try {
                 for (int i = 0; i < tblCompra.getRowCount(); i++) {
-                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null, null, null);
+                    ins = new Insumo((String) tblCompra.getValueAt(i, 1), null, null, null, null);
                     detalle = new DetalleCompra();
                     detalle.setCantidad(BigDecimal.valueOf(Double.valueOf((String) tblCompra.getValueAt(i, 4))));
 //                    detalle.setPrecio(BigDecimal.valueOf(Double.valueOf((String)tblCompra.getValueAt(i,5))));

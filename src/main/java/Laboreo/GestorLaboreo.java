@@ -47,7 +47,8 @@ public class GestorLaboreo {
             Iterator iter = list.iterator();
             while (iter.hasNext()) {
                 insumo = (InsumoEntity) iter.next();
-                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida(), insumo.getInsStock(), insumo.getInsStockDisponible());
+//                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida(), insumo.getInsStock(), insumo.getInsStockDisponible());
+                ins = new Insumo(insumo.getInsNombre(), insumo.getInsDescripcion(), new TipoInsumo(insumo.getTipoInsumoByInsTinId().getTinNombre(), insumo.getTipoInsumoByInsTinId().getTinDescripcion()), insumo.getInsUnidadMedida(), insumo.getInsStock());
                 retorno.add(ins);
             }
             tx.rollback();
@@ -315,10 +316,10 @@ public class GestorLaboreo {
                         try {
                             String nombreInsumo = insOmaq.getInsumo().getNombre();
                             insumoEntity = insumoRepository.getInsumoByNombrePlanificar(nombreInsumo);
-                            Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
-                            insumoEntity.setInsStockDisponible(stockDisponible - insOmaq.getCantidadIsumo());
+//                            Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
+//                            insumoEntity.setInsStockDisponible(stockDisponible - insOmaq.getCantidadIsumo());
                             for (InsumoEntity insumo : listaInsumosActualizar) {
-                                if (insumo.getInsId() == insumoEntity.getInsId()) {
+                                if (insumo.getInsId().equals(insumoEntity.getInsId())) {
                                     flag = true;
                                 }
                             }
@@ -662,12 +663,12 @@ public class GestorLaboreo {
                 Long stock = ((insumoEntity.getInsStock() == null) ? 0 : insumoEntity.getInsStock());
                 insumoEntity.setInsStock(stock - detallesLaboreo.get(i).getCantidadIsumo());
 
-                Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
-                if (!orden.isPrimerRegistro()) {
-                    insumoEntity.setInsStockDisponible(stockDisponible + detallesLaboreo.get(i).getCantidadIsumoOriginal());
-                    orden.setPrimerRegistro(true);
-                }
-                insumoEntity.setInsStockDisponible(stockDisponible - detallesLaboreo.get(i).getCantidadIsumo());
+//                Long stockDisponible = ((insumoEntity.getInsStockDisponible() == null) ? 0 : insumoEntity.getInsStockDisponible());
+//                if (!orden.isPrimerRegistro()) {
+//                    insumoEntity.setInsStockDisponible(stockDisponible + detallesLaboreo.get(i).getCantidadIsumoOriginal());
+//                    orden.setPrimerRegistro(true);
+//                }
+//                insumoEntity.setInsStockDisponible(stockDisponible - detallesLaboreo.get(i).getCantidadIsumo());
 
                 session.update(insumoEntity);
 
