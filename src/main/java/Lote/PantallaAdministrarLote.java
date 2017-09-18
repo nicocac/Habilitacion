@@ -42,7 +42,7 @@ public class PantallaAdministrarLote extends JFrame {
         pack();
         this.setTitle("Consultar Lote");
         inicializaTabla();
-
+        buscarLotes();
 
         //BUSCAR
         btnBuscar.addActionListener(e -> {
@@ -67,7 +67,7 @@ public class PantallaAdministrarLote extends JFrame {
             }
             int lotId = (int) tblLote.getModel().getValueAt(fila, 0);
             String nombre = (String) tblLote.getModel().getValueAt(fila, 1);
-            Integer metros = (Integer) tblLote.getModel().getValueAt(fila, 3);
+            Integer metros = (Integer) tblLote.getModel().getValueAt(fila, 2);
 
             CargaLote carga = new CargaLote("Modificacion", nombre, metros, lotId);
             carga.setVisible(true);

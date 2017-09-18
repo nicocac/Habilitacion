@@ -4,6 +4,7 @@ import Conexion.Conexion;
 import Datos.InsumoEntity;
 import Datos.TipoInsumoEntity;
 import Repository.InsumoRepository;
+import Repository.TipoInsumoRepository;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -48,6 +49,7 @@ public class PantallaAdministrarInsumo extends JFrame {
     Date fechaActual = new Date(fecha.getTime());
 
     InsumoRepository insumoRepository = new InsumoRepository();
+    TipoInsumoRepository tipoInsumoRepository = new TipoInsumoRepository();
 
 
     public PantallaAdministrarInsumo() {
@@ -100,7 +102,9 @@ public class PantallaAdministrarInsumo extends JFrame {
             String nombre = (String) tblInsumos.getModel().getValueAt(fila, 1);
             String descripcion = (String) tblInsumos.getModel().getValueAt(fila, 2);
             String unidadMedida = (String) tblInsumos.getModel().getValueAt(fila, 3);
-            TipoInsumoEntity tipoInsumo = (TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4);
+//            TipoInsumoEntity tipoInsumo = (TipoInsumoEntity) tblInsumos.getModel().getValueAt(fila, 4);
+            String nombreTipoInsumo = (String)tblInsumos.getModel().getValueAt(fila, 4);
+            TipoInsumoEntity tipoInsumo = tipoInsumoRepository.getTipoInsumoByNombre(nombreTipoInsumo);
             String stock = String.valueOf(tblInsumos.getModel().getValueAt(fila, 5));
 
             CargaInsumo carga = new CargaInsumo("Modificacion", nombre, descripcion, unidadMedida, tipoInsumo, stock, insId);
@@ -239,8 +243,7 @@ public class PantallaAdministrarInsumo extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+
 
         Boolean guardado = false;
         try {
@@ -264,8 +267,10 @@ public class PantallaAdministrarInsumo extends JFrame {
             insumo.setInsFechaBaja(fechaActual);
             insumo.setInsUsuarioBaja("adminBajaINSUMO");
             int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del insumo: " + tblInsumos.getModel().getValueAt(fila, 1));
+            Session session = Conexion.getSessionFactory().getCurrentSession();
+            Transaction tx = session.beginTransaction();
+
             if (i == 0) {
-                tx = session.beginTransaction();
                 session.update(insumo);
                 tx.commit();
                 guardado = tx.wasCommitted();

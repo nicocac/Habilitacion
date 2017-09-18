@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.Date;
 import java.util.Iterator;
 
@@ -22,6 +23,7 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
     private JTable tblTipos;
     private JButton btnEliminar;
     private JButton btnNuevo;
+    private JPanel panel2;
     private TipoInsumoEntity tipo;
     private Transaction tx;
     private DefaultTableModel model;
@@ -32,8 +34,17 @@ public class PantallaAdministrarTipoInsumo extends JFrame {
     public PantallaAdministrarTipoInsumo() {
 
 
+        JPanel container = new JPanel();
+        container.setPreferredSize(new Dimension(900, 800));
+        panel1.setPreferredSize(new Dimension(900, 800));
+        container.add(panel1);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+
         //INICIO
-        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Consultar Tipo de Insumo");

@@ -222,14 +222,14 @@ public class PantallaLaboreoCargado extends JFrame {
                     if (fila == 0) {
                         tblDetalles.setValueAt("Maquinaria", fila, 0);
                         tblDetalles.setValueAt(maq.getNombre() + ", " + maq.getDescripcion() + ", " + maq.getModeloAnio(), fila, 1);
-                        tblDetalles.setValueAt("-", fila, 2);
+                        tblDetalles.setValueAt("0", fila, 2);
                         tblDetalles.setValueAt("0", fila, 3);
                         fila++;
                     } else {
                         modelDetalle.addRow(new Object[]{"Maquinaria"
                                 , maq.getNombre() //+ ", " + maq.getDescripcion() + ", " + maq.getModeloAnio()
-                                , "-"
-                                , "-"});
+                                , "0"
+                                , "0"});
                         fila++;
                     }
                 }

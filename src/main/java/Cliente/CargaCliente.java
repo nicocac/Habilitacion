@@ -93,8 +93,7 @@ public class CargaCliente extends JFrame {
 
     //METODO GUARDAR
     private Boolean save() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+
 
         Boolean guardado = false;
         ClienteEntity cliente = new ClienteEntity();
@@ -112,7 +111,8 @@ public class CargaCliente extends JFrame {
                 TipoClienteEntity tipoClienteEntity = tipoClienteRepository.getTipoClienteByNombre(tipoCliente);
                 cliente.setTipoClienteEntity(tipoClienteEntity);
 
-//                Transaction tx = session.beginTransaction();
+                Session session = Conexion.getSessionFactory().getCurrentSession();
+                Transaction tx = session.beginTransaction();
                 if (tipoOperacion.equals("Carga")) {
                     session.save(cliente);
                 } else {

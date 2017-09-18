@@ -104,6 +104,7 @@ public class InsumoRepository {
         while (iter.hasNext()) {
             insumo = (InsumoEntity) iter.next();
         }
+        tx.rollback();
         //session.close();
         return insumo;
     }

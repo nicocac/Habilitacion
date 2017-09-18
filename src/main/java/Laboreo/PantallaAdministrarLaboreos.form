@@ -62,7 +62,7 @@
                         </constraints>
                         <properties>
                           <background color="-1114881"/>
-                          <text value="Administrar Laboreos"/>
+                          <text value=""/>
                         </properties>
                       </component>
                       <component id="2f2a5" class="javax.swing.JLabel">

@@ -691,6 +691,14 @@ public class PantallaEgresoAcopio extends JFrame {
         btnCargarPesada.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(cbxAcopio.getSelectedItem() == null){
+                    showMessage("Debe seleccionar acopio antes de continuar");
+                    return;
+                }
+                if(cbxSemilla.getSelectedItem() == null){
+                    showMessage("Debe seleccionar semilla antes de continuar");
+                    return;
+                }
                 TicketPesadaEgreso cargaTicketPesada = new TicketPesadaEgreso("Carga", "0", cbxAcopio.getSelectedItem().toString(), cbxSemilla.getSelectedItem().toString(), fecha.toString());
                 cargaTicketPesada.setVisible(true);
                 getDefaultCloseOperation();
