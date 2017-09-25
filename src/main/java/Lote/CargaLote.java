@@ -164,6 +164,7 @@ public class CargaLote extends JFrame {
                 lote.setLteFechaDesde(fechaActual);
                 lote.setLteFechaHasta(fechaActual);
                 lote.setLteUsuarioAlta("admin");
+                lote.setEstado("LIBRE");
 
                 String campo = cbxCampo.getSelectedItem().toString();
                 CampoEntity campoEntity = campoRepository.getCampoByNombre(campo);

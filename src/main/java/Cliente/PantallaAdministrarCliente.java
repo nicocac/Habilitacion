@@ -80,7 +80,8 @@ public class PantallaAdministrarCliente extends JFrame {
             int insId = (int) tblClientes.getModel().getValueAt(fila, 0);
             String nombre = (String) tblClientes.getModel().getValueAt(fila, 1);
             String apellido = (String) tblClientes.getModel().getValueAt(fila, 2);
-            TipoClienteEntity tipoCliente = (TipoClienteEntity) tblClientes.getModel().getValueAt(fila, 3);
+//            TipoClienteEntity tipoCliente = (TipoClienteEntity) tblClientes.getModel().getValueAt(fila, 3);
+            String tipoCliente = (String) tblClientes.getModel().getValueAt(fila, 3);
 
             String cuitCuil = (String) tblClientes.getModel().getValueAt(fila, 4);
 

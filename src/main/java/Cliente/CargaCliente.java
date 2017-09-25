@@ -37,7 +37,7 @@ public class CargaCliente extends JFrame {
     TipoClienteRepository tipoClienteRepository = new TipoClienteRepository();
 
 
-    public CargaCliente(String operacion, String nombre, String apellido, TipoClienteEntity tipoCliente, String cuitCuil, int id) {
+    public CargaCliente(String operacion, String nombre, String apellido, String tipoCliente, String cuitCuil, int id) {
 
         //INICIO
         setContentPane(panel1);

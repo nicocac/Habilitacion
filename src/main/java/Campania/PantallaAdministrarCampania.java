@@ -69,6 +69,12 @@ public class PantallaAdministrarCampania extends JFrame {
         inicializaTabla();
         buscarCampanias();
 
+        btnGenerarOrdenes.setEnabled(false);
+        btnRegistrarAvance.setEnabled(false);
+        btnRegistrarEgreso.setEnabled(false);
+        btnPlanificar.setEnabled(false);
+        btnFinalizar.setEnabled(false);
+
         //BUSCAR
         btnBuscar.addActionListener(e -> {
 //            Session session = Conexion.getSessionFactory().getCurrentSession();
@@ -193,6 +199,7 @@ public class PantallaAdministrarCampania extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 String column = (String) tblCampania.getValueAt(tblCampania.getSelectedRow(), 2);
+
                 if (column.equals("CREADA")) {
                     btnGenerarOrdenes.setEnabled(false);
                     btnRegistrarAvance.setEnabled(false);

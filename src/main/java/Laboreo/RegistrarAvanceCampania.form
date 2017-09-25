@@ -397,6 +397,7 @@
                 </constraints>
                 <properties>
                   <model>
+                    <item value="..."/>
                     <item value="Muy Bueno"/>
                     <item value="Bueno"/>
                     <item value="Malo"/>

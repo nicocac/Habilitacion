@@ -110,7 +110,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             CargaInsumo carga = new CargaInsumo("Modificacion", nombre, descripcion, unidadMedida, tipoInsumo, stock, insId);
             carga.setVisible(true);
             getDefaultCloseOperation();
-            inicializaTabla();
+//            inicializaTabla();
         });
 
 
@@ -119,7 +119,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             switch (darBaja()) {
                 case 0: {
                     showMessage("Se dio de baja exitosamente el insumo.");
-                    inicializaTabla();
+//                    inicializaTabla();
                     break;
                 }
                 case 1: {
@@ -140,7 +140,7 @@ public class PantallaAdministrarInsumo extends JFrame {
             CargaInsumo cargaInsumo = new CargaInsumo("Carga", "", "", "", null, "", 0);
             cargaInsumo.setVisible(true);
             getDefaultCloseOperation();
-            inicializaTabla();
+//            inicializaTabla();
         });
 
 
