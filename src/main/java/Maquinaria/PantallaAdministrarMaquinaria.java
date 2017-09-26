@@ -156,7 +156,8 @@ public class PantallaAdministrarMaquinaria extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListadoMaq.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("src\\main\\resources\\ListadosPDF\\testListadoMaq.pdf"));
+
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblMaquinaria.getColumnCount());
                     //adding table headers
@@ -180,7 +181,7 @@ public class PantallaAdministrarMaquinaria extends JFrame {
                     showMessage("Listado De stock de Maquinarias Impreso");
                     System.out.println("Listado De stock de Maquinarias Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListadoMaq.pdf";
+                    String pdfFile = "src\\main\\resources\\ListadosPDF\\testListadoMaq.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     }catch (IOException io) {

@@ -540,6 +540,9 @@ public class GestorLaboreo {
         laboreoEntity.setMedida(medida);
         laboreoEntity.setMetrica(metrica);
         laboreoEntity.setLboNombre(nombre);
+         java.util.Date fecha = new java.util.Date();
+         Date fechaActual = new Date(fecha.getTime());
+        laboreoEntity.setLboFechaAlta(fechaActual);
 
         tipoLaboreoEntity = tipoLaboreoRepository.getTipoLaboreoByNombreSinTx(tipoLaboreo.getTpoNombre());
         tipoGranoEntity = tipoGranoRepository.getTipoGranoByNombreSinTx(tipoGrano.getTgrNombre());
@@ -675,6 +678,8 @@ public class GestorLaboreo {
                 detalleOrdenEntity.setInsumo(insumoEntity);
 //                Integer cantidadTotal = detallesLaboreo.get(i).getCantidadInsumoTotal() + detallesLaboreo.get(i).getCantidadIsumo();
                 detalleOrdenEntity.setCantidadInsumo(detallesLaboreo.get(i).getCantidadIsumo());
+
+                detalleOrdenEntity.setCantidadTotalUtilizadaInsumo(detallesLaboreo.get(i).getCantidadInsumoTotal());
 
 
             } catch (NullPointerException npe) {

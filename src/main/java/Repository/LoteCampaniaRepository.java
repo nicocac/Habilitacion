@@ -55,14 +55,14 @@ public class LoteCampaniaRepository {
 
     public void deleteAllByCampania(int id) {
         Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+//        Transaction tx = session.beginTransaction();
 
 
         LoteCampaniaEntity loteCampania = new LoteCampaniaEntity();
         Query query = session.createQuery("DELETE FROM LoteCampaniaEntity where ucase(lcpCnaId) like ucase(:pId)");
         query.setParameter("pId", id);
         query.executeUpdate();
-        tx.rollback();
+//        tx.rollback();
         //session.close();
     }
 

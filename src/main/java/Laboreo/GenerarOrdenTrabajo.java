@@ -5,6 +5,7 @@ import Date.DateLabelFormatter;
 import Insumo.Insumo;
 import Maquinaria.Maquinaria;
 import Procesos.PantallaRegistrarIngresoInsumo;
+import Procesos.PantallaSolicitudInsumos;
 import Repository.InsumoRepository;
 import Repository.LaboreoRepository;
 import Repository.OrdenRepository;
@@ -283,24 +284,36 @@ public class GenerarOrdenTrabajo extends JFrame {
                 int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosSinStock + " se encuentran sin stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
                 if (respuesta == 0) {
 //                        dispose();
-                    PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
+                    PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosSinStock);
                     pantallaAdministrarSolicitudInsumos.setVisible(true);
                     getDefaultCloseOperation();
                     return;
                 } else {
-                    return;
+                    int respuesta2 = JOptionPane.showConfirmDialog(null, "Desea generar la orden cuando este disponible el stock? Se cerrara la ventana", "Cuidado", JOptionPane.YES_NO_OPTION);
+                    if (respuesta2 == 0) {
+                        dispose();
+                        return;
+                    } else {
+                        return;
+                    }
                 }
             }
 
             if (stockFaltante) {
                 int respuesta = JOptionPane.showConfirmDialog(null, "Los siguientes insumos: " + insumosFaltantes + " a la fecha no alcanzan la cantidad solicitada en stock. Desea Registrar el ingreso de insumos solicitados previamente?", "Cuidado", JOptionPane.YES_NO_OPTION);
                 if (respuesta == 0) {
-                    PantallaRegistrarIngresoInsumo pantallaAdministrarSolicitudInsumos = new PantallaRegistrarIngresoInsumo();
+                    PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosFaltantes);
                     pantallaAdministrarSolicitudInsumos.setVisible(true);
                     getDefaultCloseOperation();
                     return;
                 } else {
-                    return;
+                    int respuesta2 = JOptionPane.showConfirmDialog(null, "Desea generar la orden cuando este disponible el stock? Se cerrara la ventana", "Cuidado", JOptionPane.YES_NO_OPTION);
+                    if (respuesta2 == 0) {
+                        dispose();
+                        return;
+                    } else {
+                        return;
+                    }
                 }
             }
 
@@ -445,12 +458,9 @@ public class GenerarOrdenTrabajo extends JFrame {
     }
 
 
-
-
     private void limpiarPantalla() {
         inicializaTabla();
     }
-
 
 
     private void showMessage(String mensaje) {
@@ -530,7 +540,7 @@ public class GenerarOrdenTrabajo extends JFrame {
         tblDetalles.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(3).setPreferredWidth(150);
         tblDetalles.getColumnModel().getColumn(4).setPreferredWidth(150);
-        TableColumn col= tblDetalles.getColumnModel().getColumn(4);
+        TableColumn col = tblDetalles.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         tblDetalles.setCellSelectionEnabled(true);
 

@@ -26,6 +26,7 @@ public class AdministrarTransporte extends JFrame {
     private JButton btnNuevo;
     private JTable tblTransportes;
     private JButton btnCancelar;
+    public JPanel panelIni;
     private JTable table1;
     private TransporteEntity transporte;
     private Transaction tx;
@@ -38,11 +39,23 @@ public class AdministrarTransporte extends JFrame {
 
     public AdministrarTransporte() {
 
-
         //INICIO
-        setContentPane(panel1);
+        JPanel container = new JPanel();
+//        container.setPreferredSize(new Dimension(1920, 1900));
+//        panel1.setPreferredSize(new Dimension(1900, 1800));
+        container.add(panelIni);
+        JScrollPane jsp = new JScrollPane(container);
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        jsp.setBounds(50, 30, 900, 900);
+        this.add(jsp);
+//        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
+        inicializaTabla();
+
+
+
         this.setTitle("Consultar Transportes");
         inicializaTabla();
 

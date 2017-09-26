@@ -14,6 +14,7 @@ public class DetalleOrdenEntity {
     private Integer id;
     private String observaciones;
     private int cantidadInsumo;
+    private int cantidadTotalUtilizadaInsumo;
     private int cantidadMaquinaria;
     private int cantidadHorasMaquinaria;
     private boolean primerRegistro;
@@ -40,6 +41,17 @@ public class DetalleOrdenEntity {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Column(name = "catidad_total_utilizada")
+    public int getCantidadTotalUtilizadaInsumo() {
+        return cantidadTotalUtilizadaInsumo;
+    }
+
+    public void setCantidadTotalUtilizadaInsumo(int cantidadTotalUtilizadaInsumo) {
+        this.cantidadTotalUtilizadaInsumo = cantidadTotalUtilizadaInsumo;
+    }
+
+
 
     @Column(name = "observaciones")
     public String getObservaciones() {

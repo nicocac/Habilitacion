@@ -4,6 +4,7 @@ import Conexion.Conexion;
 import Datos.InsumoEntity;
 import Datos.LaboreoEntity;
 import Datos.TipoInsumoEntity;
+import Repository.LaboreoRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,6 +35,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
     java.util.Date fecha = new java.util.Date();
     Date fechaActual = new Date(fecha.getTime());
 
+    LaboreoRepository laboreoRepository = new LaboreoRepository();
     public PantallaAdministrarLaboreos() {
 
 
@@ -129,7 +131,7 @@ public class PantallaAdministrarLaboreos  extends JFrame {
         tblLaboreos.setModel(model);
         tblLaboreos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblLaboreos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblLaboreos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblLaboreos.getColumnModel().getColumn(1).setPreferredWidth(500);
         tblLaboreos.getColumnModel().getColumn(2).setPreferredWidth(300);
         tblLaboreos.getColumnModel().getColumn(3).setPreferredWidth(150);
         tblLaboreos.getColumnModel().getColumn(4).setPreferredWidth(150);
@@ -142,34 +144,33 @@ public class PantallaAdministrarLaboreos  extends JFrame {
 
     //METODO DAR BAJA
     public int darBaja() {
-        Session session = Conexion.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+
 
         Boolean guardado = false;
+        LaboreoEntity laboreoEntity = new LaboreoEntity();
+
         try {
-            insumo = new InsumoEntity();
+            laboreoEntity = new LaboreoEntity();
             int fila = tblLaboreos.getSelectedRow();
             if (fila == -1) {
                 showMessage("Debe seleccionar una fila para continuar.");
                 return -1;
             }
-            insumo.setInsId((int) tblLaboreos.getModel().getValueAt(fila, 0));
-            insumo.setInsNombre((String) tblLaboreos.getModel().getValueAt(fila, 1));
-            insumo.setInsDescripcion((String) tblLaboreos.getModel().getValueAt(fila, 2));
-            insumo.setInsUnidadMedida((String) tblLaboreos.getModel().getValueAt(fila, 3));
-            insumo.setTipoInsumoByInsTinId((TipoInsumoEntity) tblLaboreos.getModel().getValueAt(fila, 4));
-            insumo.setInsFechaAlta(fechaActual);
-            insumo.setInsUsuarioAlta("adminBajaLaboreo");
-            insumo.setInsFechaUltMod(fechaActual);
-            insumo.setInsUsuarioUtlMod("adminBajaLaboreo");
-            insumo.setInsFechaBaja(fechaActual);
-            insumo.setInsUsuarioBaja("adminBajaLaboreo");
+
+            Long laboreoId = (Long) tblLaboreos.getModel().getValueAt(fila, 0);
+            laboreoEntity = laboreoRepository.getLaboreoById(laboreoId);
+
+            laboreoEntity.setLboFechaBaja(fechaActual);
+            laboreoEntity.setLboUsuarioBaja("adminBajaLaboreo");
+
             int i = JOptionPane.showConfirmDialog(null, "Confirma la baja del laboreo: " + tblLaboreos.getModel().getValueAt(fila, 1));
             if (i == 0) {
-                tx = session.beginTransaction();
-                session.update(insumo);
+                Session session = Conexion.getSessionFactory().getCurrentSession();
+                Transaction tx = session.beginTransaction();
+
+                session.update(laboreoEntity);
                 tx.commit();
-                guardado = tx.wasCommitted();
+//                guardado = tx.wasCommitted();
             } else {
                 return 1;
             }

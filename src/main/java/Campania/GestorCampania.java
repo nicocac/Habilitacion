@@ -232,6 +232,7 @@ public class GestorCampania {
 
                 loteEntity.setEstado("OCUPADO");
 
+//
                 session.update(loteEntity);
 
 

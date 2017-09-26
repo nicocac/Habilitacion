@@ -25,6 +25,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
     private JButton btnNuevo;
     private JTable tblCompras;
     private JButton btnCancelar;
+    public JPanel panelini2;
     private JTable table1;
     private SolicitudInsumoEntity compra;
     private Transaction tx;
@@ -37,7 +38,7 @@ public class PantallaAdministrarSolicitudInsumos extends JFrame {
 
 
         //INICIO
-        setContentPane(panel1);
+        setContentPane(panelini2);
 //        this.setExtendedState(MAXIMIZED_BOTH);
         pack();
         this.setTitle("Administrar Solicitud de insumos");

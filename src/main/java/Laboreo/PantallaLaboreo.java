@@ -445,8 +445,6 @@ public class PantallaLaboreo extends JFrame {
                             pantallaAdministrarSolicitudInsumos.setVisible(true);
                             getDefaultCloseOperation();
                             return;
-                        } else {
-                            return;
                         }
                     }
 
@@ -456,8 +454,6 @@ public class PantallaLaboreo extends JFrame {
                             PantallaSolicitudInsumos pantallaAdministrarSolicitudInsumos = new PantallaSolicitudInsumos(insumosFaltantes);
                             pantallaAdministrarSolicitudInsumos.setVisible(true);
                             getDefaultCloseOperation();
-                            return;
-                        } else {
                             return;
                         }
                     }

@@ -645,7 +645,7 @@ public class RegistrarAvanceCampania extends JFrame {
 
                     if (dorden.getInsumo() != null) {
                         if (dorden.getInsumo().equals(insumoEntity)) {
-                            cantidadT += dorden.getCantidadInsumo();
+                            cantidadT += dorden.getCantidadTotalUtilizadaInsumo();
 
                         }
                     }

@@ -26,6 +26,7 @@ public class PantallaAdministrarCliente extends JFrame {
     private JButton btnNuevo;
     private JTable tblClientes;
     private JButton btnCancelar;
+    public JPanel panelini2;
     private JTable table1;
     private ClienteEntity cliente;
     private Transaction tx;
@@ -43,7 +44,7 @@ public class PantallaAdministrarCliente extends JFrame {
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
-        container.add(panel1);
+        container.add(panelini2);
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

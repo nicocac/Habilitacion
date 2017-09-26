@@ -644,9 +644,9 @@ public class PantallaEgresoAcopio extends JFrame {
 
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("src/main/resources/ListadosPDF/remito.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("src\\main\\resources\\ListadosPDF\\remito.pdf"));
                     doc.open();
-                    Image img = Image.getInstance("src/main/resources/Imagenes/MenuPrincipalBannerReporte.jpg");
+                    Image img = Image.getInstance("src\\main\\resources\\Imagenes\\MenuPrincipalBannerReporte.jpg");
 //                    doc.add(new Paragraph("Sample 1: This is simple image demo."));
                     doc.add(img);
 //                    PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
@@ -668,7 +668,7 @@ public class PantallaEgresoAcopio extends JFrame {
                     showMessage("Impresion del Remito Egreso Granos");
                     System.out.println("Se imprime Remito Egreso Granos");
 //                    doc.open();
-                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\remito.pdf";
+                    String pdfFile = "src\\main\\resources\\ListadosPDF\\remito.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     } catch (IOException io) {

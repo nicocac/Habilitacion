@@ -163,7 +163,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListado.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("src\\main\\resources\\ListadosPDF\\testListado.pdf"));
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblInsumos.getColumnCount());
                     //adding table headers
@@ -184,7 +184,7 @@ public class PantallaAdministrarInsumo extends JFrame {
                     showMessage("Listado De stock de Insumos Impreso");
                     System.out.println("Listado De stock de Insumos Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListado.pdf";
+                    String pdfFile = "src\\main\\resources\\ListadosPDF\\testListado.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     } catch (IOException io) {

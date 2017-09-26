@@ -54,10 +54,10 @@ public class CargaTransporte extends JFrame {
         guardarButton.addActionListener(e -> {
             if (save()) {
                 if (tipoOperacion.equals("Carga")) {
-                    JOptionPane.showMessageDialog(null, "El Transporte: " + txtNombre.getText() + "fue dado de alta con exito.");
+                    JOptionPane.showMessageDialog(null, "El Transporte: " + txtNombre.getText() + " fue dado de alta con exito.");
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "El Transporte: " + txtNombre.getText() + "fue modificado con exito.");
+                    JOptionPane.showMessageDialog(null, "El Transporte: " + txtNombre.getText() + " fue modificado con exito.");
                     dispose();
                 }
 
