@@ -1,7 +1,10 @@
 package Repository;
 
+import Campania.Campania;
 import Conexion.Conexion;
+import Datos.CampaniaEntity;
 import Datos.InsumoEntity;
+import Datos.LoteCampaniaEntity;
 import Datos.LoteEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -63,7 +66,6 @@ public class LoteRepository {
     }
 
 
-
     public LoteEntity getLoteByDenominacionEnRegistrarCampania(String denominacion) {
         Session session = null;
         Transaction tx = null;
@@ -71,7 +73,7 @@ public class LoteRepository {
 
         try {
             session = Conexion.getSessionFactory().getCurrentSession();
-//            tx = session.beginTransaction();
+            tx = session.beginTransaction();
 
             Query query = session.createQuery("select x from LoteEntity x where ucase(lteDenominacion) like ucase(:pNombre) and lteFechaBaja is null");
             query.setParameter("pNombre", denominacion);
@@ -80,10 +82,10 @@ public class LoteRepository {
             while (iter.hasNext()) {
                 lote = (LoteEntity) iter.next();
             }
-//            tx.rollback();
+            tx.rollback();
 
             //session.close();
-        }catch (Exception e){
+        } catch (Exception e) {
 //            tx.rollback();
         } finally {
 
@@ -92,6 +94,40 @@ public class LoteRepository {
         }
     }
 
+
+    public boolean grabarLoteCampEntities(LoteEntity lote, Campania campania, java.sql.Date fechaActual, CampaniaEntity campaniaEntity, boolean flag) {
+        Session session = null;
+        Transaction tx = null;
+        LoteCampaniaEntity loteCampaniaEntity = new LoteCampaniaEntity();
+
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            lote.setEstado("OCUPADO");
+            session.update(lote);
+
+            loteCampaniaEntity.setLcpFechaInicio(campania.getFechaInicio());
+            loteCampaniaEntity.setLcpFechaFin(campania.getFechaFinEstimada());
+            loteCampaniaEntity.setLcpFechaAlta(fechaActual);
+            loteCampaniaEntity.setLcpUsuarioAlta("admin");
+            loteCampaniaEntity.setCampaniaByLcpCnaId(campaniaEntity);
+            loteCampaniaEntity.setLoteByLcpLteId(lote);
+
+            session.save(loteCampaniaEntity);
+            if (!flag){
+                session.save(campaniaEntity);
+            } else {
+                session.merge(campaniaEntity);
+            }
+            flag = true;
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            return flag;
+
+        }
+    }
 
 
     public InsumoEntity getInsumoById(Long id) {

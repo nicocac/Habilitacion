@@ -205,8 +205,8 @@ public class GestorCampania {
         Session session = null;
         Transaction tx = null;
         try {
-            session = Conexion.getSessionFactory().getCurrentSession();
-            tx = session.beginTransaction();
+        //    session = Conexion.getSessionFactory().getCurrentSession();
+         //   tx = session.beginTransaction();
 
             CampaniaEntity campaniaEntity = new CampaniaEntity();
 
@@ -219,6 +219,7 @@ public class GestorCampania {
             campaniaEntity.setEstaPlanificada(false);
             campaniaEntity.setEstado("CREADA");
 
+            boolean flag = false;
             for (Lote lote : campania.getLotes()) {
                 //Si estamos modificando la campaa borrar y crear de nuevo todos los lotescampanias
 
@@ -226,30 +227,21 @@ public class GestorCampania {
                     loteCampaniaRepository.deleteAllByCampania(campaniaEntity.getCnaId());
                 }
 
-                LoteCampaniaEntity loteCampaniaEntity = new LoteCampaniaEntity();
 
                 LoteEntity loteEntity = loteRepository.getLoteByDenominacionEnRegistrarCampania(lote.getDenominacion());
+                loteRepository.grabarLoteCampEntities(loteEntity, campania, fechaActual, campaniaEntity, flag);
+                flag = true;
 
-                loteEntity.setEstado("OCUPADO");
-
-//
-                session.update(loteEntity);
-
-
-                loteCampaniaEntity.setLcpFechaInicio(campania.getFechaInicio());
-                loteCampaniaEntity.setLcpFechaFin(campania.getFechaFinEstimada());
-                loteCampaniaEntity.setLcpFechaAlta(fechaActual);
-                loteCampaniaEntity.setLcpUsuarioAlta("admin");
-                loteCampaniaEntity.setCampaniaByLcpCnaId(campaniaEntity);
-                loteCampaniaEntity.setLoteByLcpLteId(loteEntity);
-
-                session.save(loteCampaniaEntity);
             }
+
+
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
 
             if (tipoOperacion.equals("Carga"))
 
             {
-                session.save(campaniaEntity);
+                session.saveOrUpdate(campaniaEntity);
             } else
 
             {
