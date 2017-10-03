@@ -118,6 +118,7 @@ public class PantallaEgresoAcopio extends JFrame {
 
     Long cantidad = null;
     Long cantidadPesoTotal = 0L;
+    TicketPesadaEntity ticket = null;
 
     public PantallaEgresoAcopio(String operacion, int egresoId) {
 
@@ -148,7 +149,7 @@ public class PantallaEgresoAcopio extends JFrame {
         cargaComboBoxSemillas();
 
 
-        //----------------------------------------------------------------------
+                //----------------------------------------------------------------------
         //FECHA
         net.sourceforge.jdatepicker.impl.SqlDateModel modelIni = new net.sourceforge.jdatepicker.impl.SqlDateModel();
         modelIni.setDate(2017, 05, 28);
@@ -169,6 +170,10 @@ public class PantallaEgresoAcopio extends JFrame {
             EgresoAcopioEntity egreso = egresoAcopioRepository.getEgresoById(egresoId);
             cbxCliente.setSelectedItem(egreso.getCliente());
             cbxTransporte.setSelectedItem(egreso.getTransporte());
+            txtChofer.setText(egreso.getChofer());
+            btnCargarPesada.setVisible(false);
+            btnActualizarPeso.setVisible(false);
+//            txtNroTicket.setText(egreso);
             //DEBERIA SER SIEMPRE 1
             List<DetalleEgresoAcopioEntity> listaDetalles = egresoAcopioRepository.getAllDetallesByEgresoId(egresoId);
             DetalleEgresoAcopioEntity detalle = listaDetalles.get(0);
@@ -299,6 +304,9 @@ public class PantallaEgresoAcopio extends JFrame {
                     egreso.setChofer(txtChofer.getText());
                     egreso.setProvincia(cbxProvincia.getSelectedItem().toString());
                     egreso.setLocalidad(cbxLocalidad.getSelectedItem().toString());
+
+                    //ver
+                    egreso.setNroTicket(ticket.getNroTicket().toString());
 
                     TipoGranoEntity tipoGrano = null;
                     AcopioEntity acopio = null;
@@ -715,7 +723,7 @@ public class PantallaEgresoAcopio extends JFrame {
                 }
 
                 Integer nro = Integer.parseInt(txtNroTicket.getText());
-                TicketPesadaEntity ticket = ticketPesadaRepository.getTicketByNro(nro);
+                 ticket = ticketPesadaRepository.getTicketByNro(nro);
                 if (ticket == null) {
                     showMessage("Ese nro de ticket es inexistente, intente nuevamente");
                 } else {

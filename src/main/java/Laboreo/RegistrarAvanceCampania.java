@@ -107,7 +107,7 @@ public class RegistrarAvanceCampania extends JFrame {
         }
 //        inicializaTabla();
 //        cargarLotes(camId);
-
+        txtCantidad.setEnabled(false);
         txtNroOrden.setText(orden.getNroOrden().toString());
         txtCampania.setText(orden.getPlanificacion().getCampania().getCnaDenominacion());
         txtLote.setText(orden.getLote().getLteDenominacion());

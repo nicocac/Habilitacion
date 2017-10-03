@@ -30,6 +30,7 @@ public class EgresoAcopioEntity {
     private String codPostal;
     private String provincia;
     private String chofer;
+    private String nroTicket;
 
 
     private List<DetalleEgresoAcopioEntity> listaDetalleEgresoAcopioEntity;
@@ -210,5 +211,16 @@ public class EgresoAcopioEntity {
 
     public void setChofer(String chofer) {
         this.chofer = chofer;
+    }
+
+
+    @Column(name = "nro_ticket")
+    public String getNroTicket() {
+        return nroTicket;
+    }
+
+
+    public void setNroTicket(String nroTicket) {
+        this.nroTicket = nroTicket;
     }
 }

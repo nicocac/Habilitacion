@@ -76,7 +76,7 @@ public class AdministrarTipoAcopio extends JFrame {
             int tinId = (int) tblTipos.getModel().getValueAt(fila, 0);
             String nombre = (String) tblTipos.getModel().getValueAt(fila, 1);
             String descripcion = (String) tblTipos.getModel().getValueAt(fila, 2);
-            CargaTipoInsumo carga = new CargaTipoInsumo("Modificacion", nombre, descripcion, tinId);
+            CargaTipoAcopio carga = new CargaTipoAcopio("Modificacion", nombre, descripcion, tinId);
             carga.setVisible(true);
             getDefaultCloseOperation();
             inicializaTabla();
