@@ -130,7 +130,7 @@ public class CargaLote extends JFrame {
         Session session = Conexion.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        Query query = session.createQuery("SELECT p FROM CampoEntity p");
+        Query query = session.createQuery("SELECT p FROM CampoEntity p  where cpoFechaBaja is null");
         java.util.List<CampoEntity> listaTipoMaquinaria = query.list();
 
         Vector<String> miVectorTipoMaquinaria = new Vector<>();

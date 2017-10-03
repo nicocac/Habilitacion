@@ -85,6 +85,10 @@ public class CargaCampania extends JFrame {
                     for (Lote lote : lotes) {
                         LoteEntity loteEntity = loteRepository.getLoteByDenominacion(lote.getDenominacion());
                         if (loteEntity != null) {
+                            if (loteEntity.getEstado()==null){
+                                JOptionPane.showMessageDialog(null,"El lote seleccionado no posee estado, verifique.");
+                                return;
+                            }
                             if (loteEntity.getEstado().equals("OCUPADO")) {
                                 JOptionPane.showMessageDialog(this, "El lote: " + loteEntity.getLteDenominacion() + " seleccionado" +
                                         " no se puede incluir en la campa\u00f1a ya que el mismo esta siendo utilizado para otra campa\u00f1a." +
