@@ -277,7 +277,9 @@
           <forms/>
         </constraints>
         <properties>
-          <model/>
+          <model>
+            <item value=".."/>
+          </model>
         </properties>
       </component>
       <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
@@ -359,7 +361,9 @@
         </constraints>
         <properties>
           <enabled value="true"/>
-          <model/>
+          <model>
+            <item value=".."/>
+          </model>
         </properties>
       </component>
       <grid id="6d8b3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

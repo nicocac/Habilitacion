@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.MouseAdapter;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -42,7 +43,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
     private DefaultTableModel modelInsumo;
     private DefaultTableModel modelCompra;
     private String[] columnNamesInsumo = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock"};
-    private String[] columnNamesCompra = {"Cod", "Nombre", "Observaciones", "Unidad de Medida", "Cantidad", "Precio"};
+    private String[] columnNamesCompra = {"Cod", "Nombre", "Observaciones", "Unidad de Medida", "Cantidad"};
     private float total = 0;
     private java.util.Date fecha = new java.util.Date();
     private boolean existeValorCero = false;
@@ -133,7 +134,7 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
                 tblCompra.setValueAt("", fila, 2);
                 tblCompra.setValueAt(tblInsumos.getValueAt(tblInsumos.getSelectedRow(), 3), fila, 3);
                 tblCompra.setValueAt(scantidad, fila, 4);
-                tblCompra.setValueAt(sprecio, fila, 5);
+//                tblCompra.setValueAt(sprecio, fila, 5);
 
             } else {
 
@@ -262,12 +263,12 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
     private void inicializaTabla(int tipo) {
         if (tipo == 1 || tipo == 0) {
             //String[] columnNames = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock"};
-            Object[][] data = new Object[1][6];
+            Object[][] data = new Object[1][7];
             setModelInsumo(columnNamesInsumo, data);
         }
         if (tipo == 2 || tipo == 0) {
             //String[] columnNamesCompra = {"Cod", "Nombre", "Unidad de Medida", "Cantidad", "Precio"};
-            Object[][] data = new Object[1][5];
+            Object[][] data = new Object[1][6];
             setModelCompra(columnNamesCompra, data);
         }
     }
@@ -278,11 +279,12 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
         tblInsumos.setModel(modelInsumo);
         tblInsumos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblInsumos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblInsumos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblInsumos.getColumnModel().getColumn(2).setPreferredWidth(300);
-        tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tblInsumos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tblInsumos.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tblInsumos.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tblInsumos.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tblInsumos.getColumnModel().getColumn(4).setPreferredWidth(120);
         tblInsumos.getColumnModel().getColumn(5).setPreferredWidth(60);
+//        tblInsumos.getColumnModel().getColumn(6).setPreferredWidth(60);
         tblInsumos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //tblInsumos.setCe
     }
@@ -294,21 +296,22 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
         tblCompra.setModel(modelCompra);
         tblCompra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCompra.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblCompra.getColumnModel().getColumn(1).setPreferredWidth(180);
-        tblCompra.getColumnModel().getColumn(2).setPreferredWidth(300);
-        tblCompra.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblCompra.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tblCompra.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tblCompra.getColumnModel().getColumn(3).setPreferredWidth(120);
         tblCompra.getColumnModel().getColumn(4).setPreferredWidth(60);
+//        tblCompra.getColumnModel().getColumn(5).setPreferredWidth(60);
         col = tblCompra.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
-        tblCompra.getColumnModel().getColumn(5).setPreferredWidth(60);
-        col = tblCompra.getColumnModel().getColumn(5);
+        tblCompra.getColumnModel().getColumn(4).setPreferredWidth(60);
+        col = tblCompra.getColumnModel().getColumn(4);
         col.setCellEditor(new MyTableCellEditor());
         col = tblCompra.getColumnModel().getColumn(2);
         col.setCellEditor(new MyTableCellEditor());
         tblCompra.setCellSelectionEnabled(true);
         tblCompra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tblCompra.getModel().addTableModelListener(e -> {
-            if (tblCompra.getSelectedColumn() == 4 || tblCompra.getSelectedColumn() == 5) {
+            if (tblCompra.getSelectedColumn() == 4 || tblCompra.getSelectedColumn() == 4) {
                 actualizaTotal();
             }
         });
@@ -341,15 +344,15 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
                 ins = (String) tblCompra.getValueAt(i, 1);
                 scantidad = nvl((String) tblCompra.getValueAt(i, 4), "0");
                 scantidad = scantidad.replace(",", ".");
-                sprecio = nvl((String) tblCompra.getValueAt(i, 5), "0");
-                sprecio = sprecio.replace(",", ".");
+//                sprecio = nvl((String) tblCompra.getValueAt(i, 5), "0");
+//                sprecio = sprecio.replace(",", ".");
                 cantidad = Float.valueOf(scantidad);
-                precio = Float.valueOf(sprecio);
+//                precio = Float.valueOf(sprecio);
 //                if (cantidad == 0 || precio == 0) {
                 if (cantidad == 0) {
                     existeValorCero = true;
                 }
-                total += cantidad * precio;
+//                total += cantidad * precio;
             }
         } catch (NumberFormatException e) {
             showMessage("Ocurrio un error por el ingreso de datos del insumo: " + ins + ".\n Recuerde que solo debe ingresar datos numericos");
@@ -420,23 +423,26 @@ public class PantallaRegistrarIngresoInsumo extends JFrame{
         int i = 0;
         try {
             InsumoEntity insumo = new InsumoEntity();
-            Query query = session.createQuery("select t.insumo from DetalleSolicitudInsumoEntity t " +
+            Query query = session.createQuery("select t.insumo, t.dsiCantidad from DetalleSolicitudInsumoEntity t " +
                                                 "where t.solicitudInsumo.siNroSolicitud = :pNombre and t.dsiFechaBaja is null");
 //            query.setParameter("pNombre", "%" + listSolicitudes.getSelectedValue() + "%");
             query.setParameter("pNombre", nroSolicitud);
-            java.util.List list = query.list();
-            Iterator iter = list.iterator();
-            String[] columnNames = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock"};
-            Object[][] data = new Object[list.size()][6];
+            java.util.List<Object[]> list = query.list();
+//            Iterator iter = list.iterator();
+            String[] columnNames = {"Cod", "Nombre", "Descripcion", "Unidad de Medida", "Tipo Insumo", "Stock", "Cantidad Solicitada"};
+            Object[][] data = new Object[list.size()][7];
 
-            while (iter.hasNext()) {
-                insumo = (InsumoEntity) iter.next();
+            for(Object[] objeto: list){
+//            while (iter.hasNext()) {
+//                insumo = (InsumoEntity) iter.next();
+                insumo = (InsumoEntity) objeto[0];
                 data[i][0] = insumo.getInsId();
                 data[i][1] = insumo.getInsNombre();
                 data[i][2] = insumo.getInsDescripcion();
                 data[i][3] = insumo.getInsUnidadMedida();
                 data[i][4] = insumo.getTipoInsumoByInsTinId();
                 data[i][5] = insumo.getInsStock();
+                data[i][6] = objeto[1];
                 i++;
             }
             setModelInsumo(columnNames, data);
