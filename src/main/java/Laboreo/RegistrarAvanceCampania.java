@@ -118,11 +118,11 @@ public class RegistrarAvanceCampania extends JFrame {
         txtTiempo.setText("");
         tiempoEstimado.setText(orden.getTiempo());
         tiempoTotal.setText(orden.getTiempoGastado());
-        if (txtLaboreo.getText().equals("Siembra") || txtLaboreo.getText().equals("Preparacion del Terreno")
-                || txtLaboreo.getText().equals("Control") || txtLaboreo.getText().equals("Arado")) {
-            btnCargarPesada.setEnabled(false);
+        if (!txtLaboreo.getText().contains("Cosecha")){
             txtCantidad.setEnabled(false);
             btnActualizarPeso.setEnabled(false);
+            btnCargarPesada.setEnabled(false);
+            btnRellenar.setEnabled(false);
             cbxMedida.setEnabled(false);
             cbxEstado.setEnabled(false);
             cbxAcopio.setEnabled(false);
