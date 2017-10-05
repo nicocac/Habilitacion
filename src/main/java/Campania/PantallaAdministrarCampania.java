@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.sql.Date;
 import java.util.Calendar;
@@ -64,10 +65,13 @@ public class PantallaAdministrarCampania extends JFrame {
         this.add(jsp);
 //        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
-        pack();
+//        pack();
         this.setTitle("Consultar Campania");
         inicializaTabla();
         buscarCampanias();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        this.setMaximizedBounds(env.getMaximumWindowBounds());
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 
         btnGenerarOrdenes.setEnabled(false);
         btnRegistrarAvance.setEnabled(false);
@@ -98,8 +102,8 @@ public class PantallaAdministrarCampania extends JFrame {
             }
             int camId = (int) tblCampania.getModel().getValueAt(fila, 0);
             String denominacion = (String) tblCampania.getModel().getValueAt(fila, 1);
-            Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 2);
-            Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 3);
+            Date fechaInicio = (Date) tblCampania.getModel().getValueAt(fila, 3);
+            Date fechaFinEstimada = (Date) tblCampania.getModel().getValueAt(fila, 4);
             Date fechaFinReal = (Date) tblCampania.getModel().getValueAt(fila, 4);
 
             CargaCampania carga = new CargaCampania("", camId, denominacion, fechaInicio, fechaFinEstimada, fechaFinReal);
@@ -297,7 +301,7 @@ public class PantallaAdministrarCampania extends JFrame {
         tblCampania.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblCampania.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblCampania.getColumnModel().getColumn(4).setPreferredWidth(100);
-        tblCampania.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tblCampania.getColumnModel().getColumn(5).setPreferredWidth(145);
     }
 
     private void showMessage(String error) {
@@ -344,6 +348,7 @@ public class PantallaAdministrarCampania extends JFrame {
             tx.rollback();
         } catch (Exception e) {
             showMessage("Ocurrio un error al dar de baja la campania: " + e.toString());
+            tx.rollback();
             return 2;
         } finally {
             //session.close();
@@ -391,6 +396,8 @@ public class PantallaAdministrarCampania extends JFrame {
             tx.rollback();
         } catch (Exception e) {
             e.getMessage();
+            tx.rollback();
+
 //            //session.close();
         } finally {
             return codigoPlan;
@@ -433,6 +440,7 @@ public class PantallaAdministrarCampania extends JFrame {
             tx.rollback();
         } catch (Exception e) {
             e.getMessage();
+            tx.rollback();
             //session.close();
         } finally {
             return codigoPlan;
@@ -481,7 +489,7 @@ public class PantallaAdministrarCampania extends JFrame {
 //            setModel(columnNames, data, tblCampPlanificadas);
             tx.rollback();
         } catch (Exception e) {
-
+            tx.rollback();
         } finally {
 //            //session.close();
             return msj;
@@ -499,7 +507,12 @@ public class PantallaAdministrarCampania extends JFrame {
         int i = 0;
         try {
             session = Conexion.getSessionFactory().getCurrentSession();
-            t = session.beginTransaction();
+            if (session.getTransaction().isActive()){
+                t = session.getTransaction();
+            }else{
+                t = session.beginTransaction();
+            }
+
             campania = new CampaniaEntity();
             Query query = session.createQuery("select t from CampaniaEntity t where ucase(cnaDenominacion) like ucase(:pNombre) and cnaFechaBaja is null");
             query.setParameter("pNombre", "%" + txtBuscar.getText() + "%");

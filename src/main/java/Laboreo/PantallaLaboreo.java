@@ -105,9 +105,12 @@ public class PantallaLaboreo extends JFrame {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        this.setMaximizedBounds(env.getMaximumWindowBounds());
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 
 //        setContentPane(panel1);
-        pack();
+//        pack();
 //        this.set
 //        tipoOperacion = operacion;
 //        if (tipoOperacion.equals("Carga")) {

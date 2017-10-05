@@ -134,9 +134,12 @@ public class PantallaEgresoAcopio extends JFrame {
         this.add(jsp);
 
 //        setContentPane(panel1);
-        pack();
-        setBounds(200, 50, 1100, 1300);
+//        pack();
+//        setBounds(200, 50, 1100, 1300);
 //        inicializaTablaSemillas();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        this.setMaximizedBounds(env.getMaximumWindowBounds());
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
         tipoOperacion = operacion;
         if (tipoOperacion.equals("Carga")) {
             this.setTitle("Egreso de Semillas");

@@ -18,7 +18,7 @@
           </grid>
         </constraints>
         <properties/>
-        <border type="none" title="Administrar Silos">
+        <border type="none" title="">
           <font/>
           <color color="-14907371"/>
         </border>

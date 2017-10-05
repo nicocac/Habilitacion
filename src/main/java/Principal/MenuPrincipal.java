@@ -78,6 +78,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setContentPane(image);
         setTitle("Sistema de Administracion");
         finalizarCampanias();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        this.setMaximizedBounds(env.getMaximumWindowBounds());
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 //        liberarLotes();
 
         //BUTTONS

@@ -7,6 +7,7 @@ import Laboreo.GestorLaboreo;
 import Repository.AcopioRepository;
 import TipoInsumo.CargaTipoInsumo;
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.hibernate.Session;
@@ -14,6 +15,7 @@ import org.hibernate.Transaction;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -69,7 +71,10 @@ public class AdministrarAcopio extends JFrame {
 
 //        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
-        pack();
+//        pack();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        this.setMaximizedBounds(env.getMaximumWindowBounds());
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
         this.setTitle("Consultar Silos");
         inicializaTabla();
         buscarTiposAcopio();
