@@ -81,6 +81,8 @@
     </constraints>
     <properties>
       <autoscrolls value="true"/>
+      <background color="-1311745"/>
+      <foreground color="-1"/>
       <minimumSize width="800" height="800"/>
       <preferredSize width="1200" height="1200"/>
     </properties>
@@ -257,6 +259,7 @@
           <component id="df105" class="javax.swing.JList" binding="lstLotes">
             <constraints/>
             <properties>
+              <foreground color="-1"/>
               <selectionMode value="0"/>
             </properties>
           </component>

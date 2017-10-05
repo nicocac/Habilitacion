@@ -65,12 +65,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     public MenuPrincipal() {
 //        this.setExtendedState(MAXIMIZED_BOTH);
-        try {
-//            UIManager.setLookAndFeel( "com.seaglasslookandfeel.SeaGlassLookAndFeel" );
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+////            UIManager.setLookAndFeel( "com.seaglasslookandfeel.SeaGlassLookAndFeel" );
+////            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         setBounds(10, 10, 1300, 600);
         ImageFondo image = new ImageFondo();

@@ -107,6 +107,7 @@ public class PantallaLaboreo extends JFrame {
         this.add(jsp);
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.setMaximizedBounds(env.getMaximumWindowBounds());
+        panel1.setBackground(Color.white);
         this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 
 //        setContentPane(panel1);
