@@ -1,675 +1,869 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Laboreo.PantallaLaboreo">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FormLayout">
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:max(d;23px):noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;82px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="center:1430px:noGrow"/>
     <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:201px:grow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:298px:noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:467px:grow"/>
+    <colspec value="left:8dlu:noGrow"/>
     <colspec value="fill:d:grow"/>
-    <colspec value="fill:d:grow"/>
-    <colspec value="left:4dlu:noGrow"/>
-    <colspec value="fill:max(d;4px):noGrow"/>
-    <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:max(d;4px):noGrow"/>
     <constraints>
-      <xy x="20" y="20" width="1269" height="1293"/>
+      <xy x="20" y="20" width="1269" height="1600"/>
     </constraints>
     <properties>
       <autoscrolls value="true"/>
-      <background color="-1311745"/>
-      <foreground color="-1"/>
-      <minimumSize width="800" height="800"/>
-      <preferredSize width="1200" height="1200"/>
+      <background color="-12828863"/>
+      <enabled value="true"/>
+      <focusable value="false"/>
+      <foreground color="-4473925"/>
+      <maximumSize width="1200" height="1430"/>
+      <minimumSize width="1200" height="1430"/>
+      <preferredSize width="1200" height="1430"/>
+      <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="21f20" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="16" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Descripcion"/>
-        </properties>
-      </component>
-      <scrollpane id="17544">
-        <constraints>
-          <grid row="20" column="2" row-span="3" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="db926" class="javax.swing.JList" binding="lstInsumos">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
-      </scrollpane>
-      <scrollpane id="61b9b">
-        <constraints>
-          <grid row="20" column="21" row-span="3" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="ab441" class="javax.swing.JList" binding="lstMaquinarias">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
-      </scrollpane>
-      <component id="42235" class="javax.swing.JComboBox" binding="cboCampania">
-        <constraints>
-          <grid row="2" column="4" row-span="1" col-span="8" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="31521" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <labelFor value="42235"/>
-          <text value="Campaña"/>
-        </properties>
-      </component>
-      <component id="d66e3" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Lotes"/>
-        </properties>
-      </component>
-      <grid id="18b16" layout-manager="FormLayout">
-        <rowspec value="center:d:grow"/>
-        <colspec value="fill:d:grow"/>
-        <constraints>
-          <grid row="2" column="25" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
-      <grid id="be5c8" layout-manager="FormLayout">
-        <rowspec value="center:d:grow"/>
-        <colspec value="fill:d:grow"/>
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
-      <grid id="49d96" layout-manager="FormLayout">
-        <rowspec value="center:d:grow"/>
+      <grid id="49d96" binding="panelPrincipal" layout-manager="FormLayout">
+        <rowspec value="center:max(d;4px):noGrow"/>
         <rowspec value="top:4dlu:noGrow"/>
         <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:max(d;4px):noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:202px:noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:233px:noGrow"/>
+        <rowspec value="top:4dlu:noGrow"/>
+        <rowspec value="center:200px:noGrow"/>
+        <rowspec value="top:141dlu:noGrow"/>
+        <rowspec value="center:71px:noGrow"/>
+        <colspec value="fill:max(d;4px):noGrow"/>
         <colspec value="fill:d:grow"/>
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="23" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
+          <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <autoscrolls value="false"/>
+          <doubleBuffered value="true"/>
+          <inheritsPopupMenu value="false"/>
+          <maximumSize width="1200" height="1600"/>
+          <minimumSize width="1200" height="1600"/>
+          <opaque value="true"/>
+          <preferredSize width="1200" height="1600"/>
+        </properties>
         <border type="none"/>
         <children>
-          <component id="8eb54" class="javax.swing.JLabel">
+          <grid id="25f17" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="0" vgap="0">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="864" height="89"/>
-              </grid>
-              <forms/>
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
             </constraints>
             <properties>
-              <horizontalAlignment value="0"/>
-              <horizontalTextPosition value="0"/>
-              <icon value="Imagenes/MenuPrincipalBannerBig.jpg"/>
-              <iconTextGap value="5"/>
-              <inheritsPopupMenu value="true"/>
-              <opaque value="true"/>
-              <text value=""/>
-              <verticalAlignment value="1"/>
-              <verticalTextPosition value="1"/>
+              <maximumSize width="1200" height="50"/>
+              <minimumSize width="1200" height="50"/>
+              <name value="Campaña"/>
+              <preferredSize width="1200" height="50"/>
             </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="42235" class="javax.swing.JComboBox" binding="cboCampania">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="1100" height="25"/>
+                    <preferred-size width="1100" height="25"/>
+                    <maximum-size width="1100" height="25"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="3c980" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Campaña"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="af0bb" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="1200" height="60"/>
+              <minimumSize width="1200" height="60"/>
+              <preferredSize width="1200" height="60"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="1adb6" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="7a73a" class="javax.swing.JTextField" binding="txtFechaIni">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="100" height="25"/>
+                        <preferred-size width="100" height="25"/>
+                        <maximum-size width="100" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                    </properties>
+                  </component>
+                  <component id="2f9d3" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="-1" height="25"/>
+                        <preferred-size width="-1" height="25"/>
+                        <maximum-size width="-1" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="Fecha Inicio"/>
+                    </properties>
+                  </component>
+                  <component id="308c5" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Fecha Fin  "/>
+                    </properties>
+                  </component>
+                  <component id="77bf3" class="javax.swing.JTextField" binding="txtFechaFin">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="100" height="25"/>
+                        <preferred-size width="100" height="25"/>
+                        <maximum-size width="100" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                    </properties>
+                  </component>
+                  <component id="f9203" class="javax.swing.JButton" binding="nuevaCampaniaBtn">
+                    <constraints>
+                      <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="50" height="50"/>
+                        <preferred-size width="50" height="50"/>
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_new.png"/>
+                      <text value=""/>
+                      <toolTipText value="Nueva Campaña"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="5e140" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="1200" height="250"/>
+              <minimumSize width="1200" height="250"/>
+              <preferredSize width="1200" height="250"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <scrollpane id="c3be7">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="1100" height="200"/>
+                    <preferred-size width="1100" height="200"/>
+                    <maximum-size width="1100" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="df105" class="javax.swing.JList" binding="lstLotes">
+                    <constraints/>
+                    <properties>
+                      <foreground color="-12828863"/>
+                      <selectionMode value="0"/>
+                      <visible value="true"/>
+                      <visibleRowCount value="20"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="d66e3" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Lotes"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="a6690" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="1200" height="80"/>
+              <minimumSize width="1200" height="80"/>
+              <preferredSize width="1200" height="80"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="8eb54" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="1200" height="89"/>
+                    <preferred-size width="1200" height="89"/>
+                    <maximum-size width="1200" height="89"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <icon value="Imagenes/MenuPrincipalBannerBig.jpg"/>
+                  <iconTextGap value="5"/>
+                  <inheritsPopupMenu value="true"/>
+                  <opaque value="true"/>
+                  <text value=""/>
+                  <verticalAlignment value="1"/>
+                  <verticalTextPosition value="1"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d1e1e" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="1200" height="200"/>
+              <minimumSize width="1200" height="200"/>
+              <preferredSize width="1200" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="9e2b1" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="true">
+                    <minimum-size width="1000" height="-1"/>
+                    <preferred-size width="1000" height="-1"/>
+                    <maximum-size width="1000" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="56360" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Laboreo"/>
+                    </properties>
+                  </component>
+                  <component id="dcc5e" class="javax.swing.JComboBox" binding="cboMomentos">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value=".."/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="b6837" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <text value="Semilla"/>
+                    </properties>
+                  </component>
+                  <component id="d3584" class="javax.swing.JComboBox" binding="cbxSemillas">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <model>
+                        <item value=".."/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="ca0de" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Fecha"/>
+                    </properties>
+                  </component>
+                  <component id="9a21b" class="javax.swing.JButton" binding="buttonFecha">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="fecha"/>
+                    </properties>
+                  </component>
+                  <component id="21f20" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Descripcion"/>
+                    </properties>
+                  </component>
+                  <component id="9703d" class="javax.swing.JTextField" binding="txtDescripcion">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <opaque value="true"/>
+                      <preferredSize width="14" height="100"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="61e28" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="true"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="fc50a" class="javax.swing.JButton" binding="nuevoTipoLaboreoBtn">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_new.png"/>
+                      <text value=""/>
+                      <toolTipText value="Nueva Tarea"/>
+                    </properties>
+                  </component>
+                  <component id="fcfb0" class="javax.swing.JButton" binding="actualizarLaboreo">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <icon value="Imagenes/rsz_clean.png"/>
+                      <text value=""/>
+                      <toolTipText value="Nueva Semilla"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="ae5cf" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <maximumSize width="1200" height="230"/>
+              <minimumSize width="1200" height="230"/>
+              <preferredSize width="1200" height="230"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="45c93" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ea81a" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Insumos"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="17544">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="db926" class="javax.swing.JList" binding="lstInsumos">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="480c7" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="56bf1" class="javax.swing.JButton" binding="nuevoInsumoBtn">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_new.png"/>
+                      <text value=""/>
+                      <toolTipText value="Nuevo Insumo"/>
+                    </properties>
+                  </component>
+                  <component id="665b7" class="javax.swing.JButton" binding="actualizarInsumosBtn">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_clean.png"/>
+                      <text value=""/>
+                      <toolTipText value="Actualizar"/>
+                      <verticalAlignment value="1"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="22e87" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="df8fe" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Maquinarias"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="61b9b">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="ab441" class="javax.swing.JList" binding="lstMaquinarias">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="8f785" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2c1db" class="javax.swing.JButton" binding="nuevaMaquinariaBtn">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_new.png"/>
+                      <text value=""/>
+                      <toolTipText value="Nueva Maquinaria"/>
+                    </properties>
+                  </component>
+                  <component id="42dd" class="javax.swing.JButton" binding="actualizarMaqBtn">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <horizontalAlignment value="2"/>
+                      <icon value="Imagenes/rsz_clean.png"/>
+                      <text value=""/>
+                      <toolTipText value="Actualizar"/>
+                      <verticalAlignment value="1"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="db46a" class="javax.swing.JButton" binding="btnAgregarItem">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/item.png"/>
+                  <text value="Agregar Item"/>
+                </properties>
+              </component>
+              <component id="c5792" class="javax.swing.JButton" binding="btnAgregarMaquinaria">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <hideActionText value="false"/>
+                  <icon value="Imagenes/cosechadora.png"/>
+                  <text value="Agregar Maquinaria"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="13319" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <maximumSize width="1200" height="200"/>
+              <minimumSize width="1200" height="200"/>
+              <preferredSize width="1200" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="601db" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ff05b" class="javax.swing.JButton" binding="btnGenerarPedidoInsumo">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/carrito6.png"/>
+                      <inheritsPopupMenu value="false"/>
+                      <text value=""/>
+                      <toolTipText value="Solicitar Pedido"/>
+                    </properties>
+                  </component>
+                  <component id="3a11e" class="javax.swing.JButton" binding="btnQuitarInsumosOMaq">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_baja.png"/>
+                      <text value=""/>
+                      <toolTipText value="Eliminar Item"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="e6df7" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="1100" height="200"/>
+                    <preferred-size width="1100" height="200"/>
+                    <maximum-size width="1100" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="d90b0" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Insumos y Maquinarias Necesarias"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="86df1">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="1100" height="150"/>
+                        <preferred-size width="1100" height="150"/>
+                        <maximum-size width="1100" height="150"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <preferredSize width="460" height="200"/>
+                    </properties>
+                    <border type="none" title=""/>
+                    <children>
+                      <component id="e3ef9" class="javax.swing.JTable" binding="tblDetalles">
+                        <constraints/>
+                        <properties>
+                          <maximumSize width="1100" height="130"/>
+                          <minimumSize width="1100" height="130"/>
+                          <preferredSize width="1100" height="130"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="61deb" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="1200" height="250"/>
+                <preferred-size width="1200" height="250"/>
+                <maximum-size width="1200" height="250"/>
+              </grid>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="1200" height="240"/>
+              <minimumSize width="1200" height="240"/>
+              <preferredSize width="1200" height="240"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="53aac" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="1100" height="235"/>
+                    <preferred-size width="1100" height="235"/>
+                    <maximum-size width="1100" height="235"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="d23e2">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="-1" height="150"/>
+                        <preferred-size width="-1" height="150"/>
+                        <maximum-size width="-1" height="150"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="true"/>
+                      <minimumSize width="27" height="80"/>
+                      <opaque value="true"/>
+                      <preferredSize width="460" height="400"/>
+                    </properties>
+                    <border type="none" title=""/>
+                    <children>
+                      <component id="8461d" class="javax.swing.JTable" binding="tableLaboreos">
+                        <constraints/>
+                        <properties>
+                          <autoCreateRowSorter value="true"/>
+                          <autoResizeMode value="4"/>
+                          <cellSelectionEnabled value="false"/>
+                          <columnSelectionAllowed value="false"/>
+                          <dragEnabled value="false"/>
+                          <dropMode value="ON_OR_INSERT_ROWS"/>
+                          <editingColumn value="0"/>
+                          <editingRow value="-1"/>
+                          <enabled value="true"/>
+                          <rowHeight value="20"/>
+                          <rowMargin value="2"/>
+                          <rowSelectionAllowed value="false"/>
+                          <selectionBackground color="-13945937"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <component id="7a787" class="javax.swing.JButton" binding="btnAgregarLaboreo">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <hideActionText value="true"/>
+                      <icon value="Imagenes/tarea1.png"/>
+                      <text value="Agregar Laboreo"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="3e5c1" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="200"/>
+                    <preferred-size width="50" height="200"/>
+                    <maximum-size width="50" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="6662b" class="javax.swing.JButton" binding="btnArriba">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="ImagenesPantallas/arriba.png"/>
+                      <text value=""/>
+                      <toolTipText value="Borrar Laboreo"/>
+                    </properties>
+                  </component>
+                  <component id="ab33e" class="javax.swing.JButton" binding="btnAbajo">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="ImagenesPantallas/abajo.png"/>
+                      <text value=""/>
+                      <toolTipText value="Borrar Laboreo"/>
+                    </properties>
+                  </component>
+                  <component id="570cb" class="javax.swing.JButton" binding="btnQuitarLaboreos">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <maximum-size width="50" height="50"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <icon value="Imagenes/rsz_baja.png"/>
+                      <text value=""/>
+                      <toolTipText value="Borrar Laboreo"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="838a" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="true">
+                <minimum-size width="1200" height="60"/>
+                <preferred-size width="1200" height="60"/>
+                <maximum-size width="1200" height="60"/>
+              </grid>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <inheritsPopupMenu value="false"/>
+              <maximumSize width="1200" height="54"/>
+              <minimumSize width="1200" height="54"/>
+              <preferredSize width="1200" height="54"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="e9b7a" class="javax.swing.JButton" binding="btnLimpiar">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="250" height="50"/>
+                    <preferred-size width="250" height="50"/>
+                    <maximum-size width="250" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/rsz_clean.png"/>
+                  <label value="Limpiar"/>
+                  <text value="Limpiar"/>
+                </properties>
+              </component>
+              <component id="1231b" class="javax.swing.JButton" binding="btnEliminar">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="250" height="50"/>
+                    <preferred-size width="250" height="50"/>
+                    <maximum-size width="250" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/rsz_baja.png"/>
+                  <inheritsPopupMenu value="true"/>
+                  <label value="Cancelar"/>
+                  <text value="Cancelar"/>
+                </properties>
+              </component>
+              <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="250" height="50"/>
+                    <preferred-size width="250" height="50"/>
+                    <maximum-size width="250" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/login_out_48.png"/>
+                  <inheritsPopupMenu value="true"/>
+                  <label value="Salir"/>
+                  <text value="Salir"/>
+                </properties>
+              </component>
+              <component id="2d756" class="javax.swing.JButton" binding="btnFinalizar">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="250" height="50"/>
+                    <preferred-size width="250" height="50"/>
+                    <maximum-size width="250" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="Imagenes/Guardar48.png"/>
+                  <text value="Guardar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
-      <component id="ea81a" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="18" column="2" row-span="1" col-span="19" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Insumos"/>
-        </properties>
-      </component>
-      <component id="2d756" class="javax.swing.JButton" binding="btnFinalizar">
-        <constraints>
-          <grid row="46" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/Guardar48.png"/>
-          <text value="Guardar"/>
-        </properties>
-      </component>
-      <component id="e9b7a" class="javax.swing.JButton" binding="btnLimpiar">
-        <constraints>
-          <grid row="44" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_clean.png"/>
-          <label value="Limpiar"/>
-          <text value="Limpiar"/>
-        </properties>
-      </component>
-      <component id="1231b" class="javax.swing.JButton" binding="btnEliminar">
-        <constraints>
-          <grid row="44" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_baja.png"/>
-          <inheritsPopupMenu value="true"/>
-          <label value="Cancelar"/>
-          <text value="Cancelar"/>
-        </properties>
-      </component>
-      <scrollpane id="cc61b">
-        <constraints>
-          <grid row="6" column="4" row-span="1" col-span="18" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="df105" class="javax.swing.JList" binding="lstLotes">
-            <constraints/>
-            <properties>
-              <foreground color="-1"/>
-              <selectionMode value="0"/>
-            </properties>
-          </component>
-        </children>
-      </scrollpane>
-      <component id="56360" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Laboreo"/>
-        </properties>
-      </component>
-      <component id="dcc5e" class="javax.swing.JComboBox" binding="cboMomentos">
-        <constraints>
-          <grid row="10" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <model>
-            <item value=".."/>
-          </model>
-        </properties>
-      </component>
-      <component id="6a80" class="javax.swing.JButton" binding="btnCancelar">
-        <constraints>
-          <grid row="46" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/login_out_48.png"/>
-          <inheritsPopupMenu value="true"/>
-          <label value="Salir"/>
-          <text value="Salir"/>
-        </properties>
-      </component>
-      <component id="f9203" class="javax.swing.JButton" binding="nuevaCampaniaBtn">
-        <constraints>
-          <grid row="2" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_new.png"/>
-          <text value=""/>
-          <toolTipText value="Nueva Campaña"/>
-        </properties>
-      </component>
-      <component id="df8fe" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="18" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Maquinarias"/>
-        </properties>
-      </component>
-      <component id="2c1db" class="javax.swing.JButton" binding="nuevaMaquinariaBtn">
-        <constraints>
-          <grid row="20" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_new.png"/>
-          <text value=""/>
-          <toolTipText value="Nueva Maquinaria"/>
-        </properties>
-      </component>
-      <component id="42dd" class="javax.swing.JButton" binding="actualizarMaqBtn">
-        <constraints>
-          <grid row="22" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <horizontalAlignment value="2"/>
-          <icon value="Imagenes/rsz_clean.png"/>
-          <text value=""/>
-          <toolTipText value="Actualizar"/>
-          <verticalAlignment value="1"/>
-        </properties>
-      </component>
-      <component id="b6837" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <text value="Semilla"/>
-        </properties>
-      </component>
-      <component id="d3584" class="javax.swing.JComboBox" binding="cbxSemillas">
-        <constraints>
-          <grid row="12" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <model>
-            <item value=".."/>
-          </model>
-        </properties>
-      </component>
-      <grid id="6d8b3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="20" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
-      <component id="56bf1" class="javax.swing.JButton" binding="nuevoInsumoBtn">
-        <constraints>
-          <grid row="20" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_new.png"/>
-          <text value=""/>
-          <toolTipText value="Nuevo Insumo"/>
-        </properties>
-      </component>
-      <component id="665b7" class="javax.swing.JButton" binding="actualizarInsumosBtn">
-        <constraints>
-          <grid row="22" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_clean.png"/>
-          <text value=""/>
-          <toolTipText value="Actualizar"/>
-          <verticalAlignment value="1"/>
-        </properties>
-      </component>
-      <component id="77bf3" class="javax.swing.JTextField" binding="txtFechaFin">
-        <constraints>
-          <grid row="4" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-        </properties>
-      </component>
-      <component id="db46a" class="javax.swing.JButton" binding="btnAgregarItem">
-        <constraints>
-          <grid row="24" column="2" row-span="1" col-span="8" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/item.png"/>
-          <text value="Agregar Item"/>
-        </properties>
-      </component>
-      <component id="c5792" class="javax.swing.JButton" binding="btnAgregarMaquinaria">
-        <constraints>
-          <grid row="24" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <hideActionText value="false"/>
-          <icon value="Imagenes/cosechadora.png"/>
-          <text value="Agregar Maquinaria"/>
-        </properties>
-      </component>
-      <scrollpane id="86df1">
-        <constraints>
-          <grid row="26" column="2" row-span="9" col-span="20" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <preferredSize width="460" height="200"/>
-        </properties>
-        <border type="none" title="Insumos y Maquinarias Necesarias"/>
-        <children>
-          <component id="e3ef9" class="javax.swing.JTable" binding="tblDetalles">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
-      </scrollpane>
-      <component id="ff05b" class="javax.swing.JButton" binding="btnGenerarPedidoInsumo">
-        <constraints>
-          <grid row="30" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/carrito6.png"/>
-          <inheritsPopupMenu value="false"/>
-          <text value=""/>
-          <toolTipText value="Solicitar Pedido"/>
-        </properties>
-      </component>
-      <component id="3a11e" class="javax.swing.JButton" binding="btnQuitarInsumosOMaq">
-        <constraints>
-          <grid row="32" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_baja.png"/>
-          <text value=""/>
-          <toolTipText value="Eliminar Item"/>
-        </properties>
-      </component>
-      <scrollpane id="d23e2">
-        <constraints>
-          <grid row="38" column="2" row-span="5" col-span="20" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <minimumSize width="27" height="80"/>
-          <opaque value="true"/>
-          <preferredSize width="460" height="400"/>
-        </properties>
-        <border type="none" title="Laboreos"/>
-        <children>
-          <component id="8461d" class="javax.swing.JTable" binding="tableLaboreos">
-            <constraints/>
-            <properties>
-              <autoCreateRowSorter value="true"/>
-              <autoResizeMode value="4"/>
-              <cellSelectionEnabled value="false"/>
-              <columnSelectionAllowed value="false"/>
-              <dragEnabled value="false"/>
-              <dropMode value="ON_OR_INSERT_ROWS"/>
-              <editingColumn value="0"/>
-              <editingRow value="-1"/>
-              <enabled value="true"/>
-              <rowHeight value="20"/>
-              <rowMargin value="2"/>
-              <rowSelectionAllowed value="false"/>
-              <selectionBackground color="-13945937"/>
-            </properties>
-          </component>
-        </children>
-      </scrollpane>
-      <component id="6662b" class="javax.swing.JButton" binding="btnArriba">
-        <constraints>
-          <grid row="38" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="ImagenesPantallas/arriba.png"/>
-          <text value=""/>
-          <toolTipText value="Borrar Laboreo"/>
-        </properties>
-      </component>
-      <component id="9a21b" class="javax.swing.JButton" binding="buttonFecha">
-        <constraints>
-          <grid row="14" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="fecha"/>
-        </properties>
-      </component>
-      <component id="ca0de" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Fecha"/>
-        </properties>
-      </component>
-      <component id="2f3a8" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <font style="1"/>
-          <text value="Cantidad de Lotes Seleccionados:"/>
-        </properties>
-      </component>
-      <component id="e5620" class="javax.swing.JLabel" binding="lblLotes">
-        <constraints>
-          <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <font style="1"/>
-          <text value="0"/>
-        </properties>
-      </component>
-      <component id="7a787" class="javax.swing.JButton" binding="btnAgregarLaboreo">
-        <constraints>
-          <grid row="36" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <hideActionText value="true"/>
-          <icon value="Imagenes/tarea1.png"/>
-          <text value="Agregar Laboreo"/>
-        </properties>
-      </component>
-      <component id="308c5" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="10" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <text value="Fecha Fin  "/>
-        </properties>
-      </component>
-      <component id="2f9d3" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <text value="Fecha Inicio"/>
-        </properties>
-      </component>
-      <component id="7a73a" class="javax.swing.JTextField" binding="txtFechaIni">
-        <constraints>
-          <grid row="4" column="4" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-        </properties>
-      </component>
-      <component id="fc50a" class="javax.swing.JButton" binding="nuevoTipoLaboreoBtn">
-        <constraints>
-          <grid row="10" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_new.png"/>
-          <text value=""/>
-          <toolTipText value="Nueva Tarea"/>
-        </properties>
-      </component>
-      <component id="fcfb0" class="javax.swing.JButton" binding="actualizarLaboreo">
-        <constraints>
-          <grid row="10" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <icon value="Imagenes/rsz_clean.png"/>
-          <text value=""/>
-          <toolTipText value="Nueva Semilla"/>
-        </properties>
-      </component>
-      <component id="9703d" class="javax.swing.JTextField" binding="txtDescripcion">
-        <constraints>
-          <grid row="16" column="4" row-span="2" col-span="18" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties>
-          <opaque value="true"/>
-          <preferredSize width="14" height="100"/>
-        </properties>
-      </component>
-      <component id="570cb" class="javax.swing.JButton" binding="btnQuitarLaboreos">
-        <constraints>
-          <grid row="42" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="Imagenes/rsz_baja.png"/>
-          <text value=""/>
-          <toolTipText value="Borrar Laboreo"/>
-        </properties>
-      </component>
-      <component id="ab33e" class="javax.swing.JButton" binding="btnAbajo">
-        <constraints>
-          <grid row="40" column="23" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="50" height="25"/>
-          </grid>
-          <forms defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <icon value="ImagenesPantallas/abajo.png"/>
-          <text value=""/>
-          <toolTipText value="Borrar Laboreo"/>
-        </properties>
-      </component>
     </children>
   </grid>
 </form>

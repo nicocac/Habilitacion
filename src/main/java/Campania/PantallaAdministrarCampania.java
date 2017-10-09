@@ -38,6 +38,7 @@ public class PantallaAdministrarCampania extends JFrame {
     public JButton btnRegistrarAvance;
     public JButton btnRegistrarEgreso;
     public JButton btnFinalizar;
+    private JPanel panelCustom;
 
     private JTable table1;
     private CampaniaEntity campania;
@@ -61,17 +62,17 @@ public class PantallaAdministrarCampania extends JFrame {
         JScrollPane jsp = new JScrollPane(container);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//        jsp.setBounds(50, 30, 900, 900);
+        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
 //        setContentPane(panel1);
 //        this.setExtendedState(MAXIMIZED_BOTH);
-//        pack();
+        pack();
         this.setTitle("Consultar Campania");
         inicializaTabla();
         buscarCampanias();
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        /*GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.setMaximizedBounds(env.getMaximumWindowBounds());
-        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
+        this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);*/
 
         btnGenerarOrdenes.setEnabled(false);
         btnRegistrarAvance.setEnabled(false);
@@ -295,7 +296,7 @@ public class PantallaAdministrarCampania extends JFrame {
         model = new DefaultTableModel();
         model.setDataVector(data, columnames);
         tblCampania.setModel(model);
-        tblCampania.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblCampania.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         tblCampania.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblCampania.getColumnModel().getColumn(1).setPreferredWidth(150);
         tblCampania.getColumnModel().getColumn(2).setPreferredWidth(150);

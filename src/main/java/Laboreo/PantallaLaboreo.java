@@ -72,6 +72,7 @@ public class PantallaLaboreo extends JFrame {
     public JButton btnGenerarPedidoInsumo;
     public JButton btnAbajo;
     public JButton btnArriba;
+    private JPanel panelPrincipal;
     private DefaultTableModel modelDetalle = new DefaultTableModel();
     private DefaultTableModel modelLaboreos = new DefaultTableModel();
     private GestorLaboreo gestor = new GestorLaboreo();
