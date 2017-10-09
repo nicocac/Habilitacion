@@ -71,15 +71,6 @@ public class CargaAcopio extends JFrame {
 
 
 
-        cbxTipoAcopio.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                super.focusGained(e);
-                borrarComboBoxTipoAcopio();
-                cargaComboBoxTipoAcopio();
-            }
-        });
-
         //GUARDAR
         guardarButton.addActionListener(e -> {
             if (save()) {
@@ -99,14 +90,17 @@ public class CargaAcopio extends JFrame {
             txtCodigo.setText(codigo.toString());
             tinId = id;
         }
+
         cbxTipoAcopio.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
                 borrarComboBoxTipoAcopio();
                 cargaComboBoxTipoAcopio();
+
             }
         });
+
     }
 
 
@@ -148,6 +142,7 @@ public class CargaAcopio extends JFrame {
                 ////session.close();
             }
         } else {
+            tx.rollback();
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
         }
 
