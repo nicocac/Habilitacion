@@ -86,11 +86,15 @@ public class CargaTipoAcopio extends JFrame {
 //                guardado = true;
 //            //session.close();
             } catch (Exception e) {
+                tx.rollback();
+
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el tipo de Acopio: " + e.toString());
             } finally {
                 //session.close();
             }
         } else {
+            tx.rollback();
+
             JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos para continuar.");
         }
 
