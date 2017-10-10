@@ -49,27 +49,27 @@ public class PantallaAdministrarCampaniaPlanificada extends JFrame {
     PlanificacionRepository planificacionRepository = new PlanificacionRepository();
 
     public PantallaAdministrarCampaniaPlanificada(String tipo) {
-        this.setExtendedState(MAXIMIZED_BOTH);
+        //this.setExtendedState(MAXIMIZED_BOTH);
 
         JPanel container = new JPanel();
 //        container.setPreferredSize(new Dimension(1920, 1900));
 //        panel1.setPreferredSize(new Dimension(1900, 1800));
         container.add(panelIni);
         JScrollPane jsp = new JScrollPane(container);
-        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        //jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setBounds(50, 30, 900, 900);
         this.add(jsp);
-//        setContentPane(panel1);
+        setContentPane(panel1);
         pack();
 
 
         //INICIO
         if (tipo.equals("Generar")) {
-            btnRegistrarAvance.setVisible(false);
+            btnRegistrarAvance.setEnabled(false);
         } else {
             if (tipo.equals("Avance")) {
-                this.btnNuevaOrden.setVisible(false);
+                this.btnNuevaOrden.setEnabled(false);
             }
         }
 //        setContentPane(panelIni);
