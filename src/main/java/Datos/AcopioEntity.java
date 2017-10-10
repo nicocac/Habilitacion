@@ -173,6 +173,6 @@ public class AcopioEntity {
 
     @Override
     public String toString() {
-        return  codigo.toString() ;
+        return  nombre.toString() ;
     }
 }

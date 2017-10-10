@@ -62,6 +62,33 @@ public class AcopioRepository {
     }
 
 
+    public AcopioEntity getAcopioByNombre(String nombre){
+        Session session = null;
+        Transaction tx = null;
+        AcopioEntity acopio = new AcopioEntity();
+
+        try {
+            session = Conexion.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            Query query = session.createQuery("select x from AcopioEntity x where ucase(nombre) like ucase(:pNombre) and acopioFechaBaja is null");
+            query.setParameter("pNombre", nombre);
+            List list = query.list();
+            Iterator iter = list.iterator();
+            while (iter.hasNext()) {
+                acopio = (AcopioEntity) iter.next();
+            }
+            tx.rollback();
+        }catch (Exception e){
+
+        }finally {
+            return acopio;
+
+        }
+        //session.close();
+    }
+
+
 
 
 

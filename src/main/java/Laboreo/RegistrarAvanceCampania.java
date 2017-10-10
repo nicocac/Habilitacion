@@ -118,11 +118,11 @@ public class RegistrarAvanceCampania extends JFrame {
         txtTiempo.setText("");
         tiempoEstimado.setText(orden.getTiempo());
         tiempoTotal.setText(orden.getTiempoGastado());
-        if (!txtLaboreo.getText().contains("Cosecha")){
+        if (txtLaboreo.getText().equals("Siembra") || txtLaboreo.getText().equals("Preparacion del Terreno")
+                || txtLaboreo.getText().equals("Control") || txtLaboreo.getText().equals("Arado")) {
+            btnCargarPesada.setEnabled(false);
             txtCantidad.setEnabled(false);
             btnActualizarPeso.setEnabled(false);
-            btnCargarPesada.setEnabled(false);
-            btnRellenar.setEnabled(false);
             cbxMedida.setEnabled(false);
             cbxEstado.setEnabled(false);
             cbxAcopio.setEnabled(false);
@@ -319,7 +319,7 @@ public class RegistrarAvanceCampania extends JFrame {
                     try {
                         AcopioEntity acopioEntity = null;
                         if (!cbxAcopio.getSelectedItem().equals("..")) {
-                            acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
+                            acopioEntity = acopioRepository.getAcopioByNombre((cbxAcopio.getSelectedItem().toString()));
                         }
                         java.sql.Time time = new java.sql.Time(Calendar.getInstance().getTime().getTime());
 
@@ -500,7 +500,7 @@ public class RegistrarAvanceCampania extends JFrame {
                 if (cbxAcopio.getSelectedItem() == null) {
                     return;
                 }
-                AcopioEntity acopioEntity = acopioRepository.getAcopioByCodigo(Integer.parseInt(cbxAcopio.getSelectedItem().toString()));
+                AcopioEntity acopioEntity = acopioRepository.getAcopioByNombre((cbxAcopio.getSelectedItem().toString()));
                 if (acopioEntity != null) {
                     txtTipoAcopio.setText(acopioEntity.getTipoAcopioEntity().getTipoAcopioNombre());
                     txtNroAcopio.setText(acopioEntity.getCodigo().toString());
@@ -725,11 +725,11 @@ public class RegistrarAvanceCampania extends JFrame {
             Query query = session.createQuery("SELECT p FROM AcopioEntity p");
             java.util.List<AcopioEntity> listaAcopio = query.list();
 
-            Vector<String> miVectorTipoMaquinaria = new Vector<>();
+            Vector<String> acopios = new Vector<>();
             for (AcopioEntity acopio : listaAcopio) {
                 if (acopio.getTipoGrano() != null) {
                     if (acopio.getTipoGrano().equals(orden.getGrano())) {
-                        miVectorTipoMaquinaria.add(acopio.getNombre());
+                        acopios.add(acopio.getNombre());
                         cbxAcopio.addItem(acopio);
                     }
                 }

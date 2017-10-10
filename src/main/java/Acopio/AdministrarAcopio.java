@@ -169,7 +169,7 @@ public class AdministrarAcopio extends JFrame {
                     paragraph.add(new Phrase(Chunk.NEWLINE));
 
                     Document doc = new Document();
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListadoAcopio.pdf"));
+                    PdfWriter.getInstance(doc, new FileOutputStream("src\\main\\resources\\ListadosPDF\\testListadoAcopio.pdf"));
                     doc.open();
                     PdfPTable pdfTable = new PdfPTable(tblTipos.getColumnCount());
                     //adding table headers
@@ -190,7 +190,7 @@ public class AdministrarAcopio extends JFrame {
                     showMessage("Listado De stock de Semillas Impreso");
                     System.out.println("Listado De stock de Semillas Impreso");
 //                    doc.open();
-                    String pdfFile = "C:\\Users\\jagm\\Documents\\Habilitacion\\src\\main\\resources\\ListadosPDF\\testListadoAcopio.pdf";
+                    String pdfFile = "src\\main\\resources\\ListadosPDF\\testListadoAcopio.pdf";
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
                     } catch (IOException io) {

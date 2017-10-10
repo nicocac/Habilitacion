@@ -113,7 +113,7 @@ public class CargaInsumo extends JFrame {
                 insumo.setInsFechaAlta(fechaActual);
                 insumo.setInsUsuarioAlta("admin");
                 insumo.setInsUnidadMedida(textUnidadMedida.getSelectedItem().toString());
-
+                insumo.setInsStock(0L);
                 String tipoInsumo = cbxTipoInsumo.getSelectedItem().toString();
                 TipoInsumoEntity tipoInsumoEntity = tipoInsumoRepository.getTipoInsumoByNombre(tipoInsumo);
                 insumo.setTipoInsumoByInsTinId(tipoInsumoEntity);
